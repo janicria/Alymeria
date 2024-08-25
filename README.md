@@ -1,6 +1,9 @@
 # About
 
-Really do need to add a description here...
+*add desc here*
+
+## Demo
+Please note that this game is currently in it's 'Alpha' phase, meaning that many sprites don't make any sense and menus may have some unusable buttons
 
 # Installation
 
@@ -25,7 +28,6 @@ You can view my planning doc at the following url
 https://docs.google.com/document/d/1-JKUbbNwLlr0Cf3xtYCXf1nt2JtN55ohAl-p8EhhLDE
 
 # Credits
-
 In case you didn't catch them in game or I haven't implemented them yet (oops)
 
-Add credits as plaintext here
+*add credits as plaintext here*
