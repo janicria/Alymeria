@@ -11,16 +11,16 @@ Just clone this repository and bam, you've installed my game
 
 To update the game just pull the latest version
 
-Changelogs are stored at Alymeria/patch_notes.md
+Changelogs are stored at /'patch notes.md'
 (I guess you could also look at the commit history if you wanted)
 
 # Launching
 
 ## Windows
-Run the executable file located at Alymeria/Windows/Alymeria[VERSION].exe
+Run the executable file located at /Windows/Alymeria[VERSION].exe
 
 ## Linux
-Run the executable file located at Alymeria/Linux/Alymeria[VERSION].x86_64
+Run the executable file located at /Linux/Alymeria[VERSION].x86_64
 
 # Planned features
 You can view my planning doc at the following url
