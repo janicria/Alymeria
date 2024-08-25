@@ -21,6 +21,7 @@ Run the executable file located at Alymeria/Linux/Alymeria[VERSION].x86_64
 
 # Planned features
 You can view my planning doc at this url
+
 https://docs.google.com/document/d/1-JKUbbNwLlr0Cf3xtYCXf1nt2JtN55ohAl-p8EhhLDE
 
 # Credits
