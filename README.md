@@ -12,7 +12,7 @@ Just clone this repository and bam, you've installed my game
 To update the game just pull the latest version
 
 Changelogs are stored at 'patch notes.md'
-(I guess you could also look at the commit history if you wanted though even I can't make sense of it so ¯\_(ツ)_/¯ )
+(I guess you could also look at the commit history if you wanted though even I can't make sense of it so ¯\\_(ツ)_/¯ )
 
 # Launching
 
