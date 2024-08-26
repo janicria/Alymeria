@@ -10,12 +10,19 @@ func _ready() -> void:
 	Events.enemy_find_enemies.connect(_on_enemy_find_enemies)
 	Events.enemy_card_played.connect(play_next_card)
 
+
 func reset_enemy_actions() -> void:
 	var enemy : Enemy
 	for child in get_children():
 		enemy = child
 		enemy.current_action = null
 		enemy.update_action()
+
+
+func draw_cards() -> void:
+	# Filter prevents EnemyHand from being assigned
+	for enemy: Enemy in get_children().filter(func(child: Node)->bool: return child is Enemy):
+		enemy.draw_cards(enemy.stats.max_turn_draw)
 
 
 func start_turn() -> void:
@@ -31,6 +38,7 @@ func start_turn() -> void:
 
 func play_next_card() -> void:
 	if !enemy_hand.get_children():
+		Events.enemy_turn_ended.emit()
 		return
 	
 	await get_tree().create_timer(enemy_hand.time_before_next_card + 0.35).timeout

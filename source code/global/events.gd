@@ -49,6 +49,8 @@ signal enemy_reload_targets
 signal enemy_find_enemies(original_id : String, damage : int, repeats :int)
 signal enemy_give_enemies(targets : Array[Node], original_id : String)
 signal enemy_card_played
+signal enemy_died(enemy: Enemy)
+signal enemy_turn_ended
 
 signal enemy_add_card(stats: EnemyCard)
 # Adds an enemy card to play

@@ -50,7 +50,6 @@ func draw_cards(amount: int) -> void:
 			if ai.action_10 and ai.action_10.weight and ai.action_10.weight>roll-1:rolled_cards.append(ai.action_10); continue_rolling= false
 			if rolled_cards: add_card(rolled_cards.pick_random())
 
-
 func update_weights() -> void:
 	if ai.action_1: total_card_weight += ai.action_1.weight
 	if ai.action_2: total_card_weight += ai.action_2.weight
@@ -117,6 +116,7 @@ func do_turn() -> void:
 	stats.barrier -= 10
 	if stats.barrier < 0:
 		stats.barrier = 0
+	mana = stats.max_mana
 
 
 func take_damage(damage : int) -> void:
@@ -149,6 +149,7 @@ func death_animation(repeats : int) -> void:
 				death_animation(repeats - 1)
 	)
 	if !repeats:
+		Events.enemy_died.emit(self)
 		queue_free()
 
 

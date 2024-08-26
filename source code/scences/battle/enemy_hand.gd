@@ -21,13 +21,14 @@ func cardToGui(card: EnemyCard, enemy: Enemy) -> void:
 	tween.tween_property(card_ui, "global_position", target_pos, 0.6)
 
 
-func organise_cards() -> void:
+func organise_cards(draw_next_card := true) -> void:
+	await get_tree().create_timer(0.1).timeout # For cards which are queued_for_deletion()
+	organiser_target_pos = position - Vector2(30, -5) 
+	time_before_next_card = 0
 	for card: EnemyCardUI in get_children():
 		organiser_target_pos.x += 38
 		var tween := create_tween().set_trans(Tween.TRANS_BACK)
 		tween.tween_property(card, "global_position", organiser_target_pos, 0.5)
 		await get_tree().create_timer(0.1).timeout
 		time_before_next_card += 0.1
-	organiser_target_pos = position - Vector2(30, -5) 
-	time_before_next_card = 0
-	Events.enemy_card_played.emit()
+	if draw_next_card: Events.enemy_card_played.emit()

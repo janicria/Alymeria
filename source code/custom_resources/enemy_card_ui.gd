@@ -10,6 +10,11 @@ var card_stats: EnemyCard
 var enemy_stats: Enemy
 var final_targets: Array[Node]
 
+func _ready() -> void:
+	Events.enemy_died.connect(func(enemy:Enemy)->void: 
+		if enemy == enemy_stats: queue_free(); get_parent().organise_cards(false))
+
+
 func update_stats(card: EnemyCard, enemy: Enemy) -> void:
 	if !is_node_ready():
 		await ready
@@ -23,9 +28,6 @@ func update_stats(card: EnemyCard, enemy: Enemy) -> void:
 	attack_desc.text = str(card.amount)
 	if card.repeats != 1:
 		attack_desc.text += "x" + str(card.repeats)
-	
-
-
 
 
 func _on_control_mouse_entered() -> void:
@@ -55,7 +57,6 @@ func play() -> void:
 		return
 	
 	var targets := get_targets()
-	print(targets)
 	apply_effects(targets)
 
 
@@ -84,8 +85,7 @@ func get_targets() -> Array[Node]:
 func apply_effects(targets: Array[Node]) -> void:
 	var effect
 	if card_stats.type == EnemyCard.Type.ATTACK: effect = DamageEffect.new()
-	else: effect = BarrierEffect.new() # FIXME: Debug code
+	elif card_stats.type == EnemyCard.Type.BARRIER: effect = BarrierEffect.new()
 	effect.amount = card_stats.amount
 	effect.sound = card_stats.SFX_dict.get(card_stats.type)
 	effect.execute(targets)
-	#print("played %s card for %s" % [card_stats.type, targets])

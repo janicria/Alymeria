@@ -1,7 +1,7 @@
 class_name Battle
 extends Node2D
 
-enum BattleState {BASE, LOOPS, EVENTS, PLAYER, ENEMY, WIN, LOSE}
+enum BattleState {BASE, LOOPS, EVENTS, ENEMY, PLAYER, WIN, LOSE}
 
 @export var char_stats : CharacterStats
 @export var music : AudioStream
@@ -10,7 +10,6 @@ enum BattleState {BASE, LOOPS, EVENTS, PLAYER, ENEMY, WIN, LOSE}
 @onready var battle_ui: BattleUI = $BattleUI
 @onready var player_handeler: PlayerHandeler = $PlayerHandeler
 @onready var player: Player = $Player
-@onready var enemy_hand
 
 @export var state : BattleState
 
@@ -28,11 +27,11 @@ func _ready() -> void:
 	battle_ui.char_stats = new_stats
 	player.stats = new_stats
 	
-	Events.battle_state_updated.connect(_on_battle_state_updated)
-	
-	#enemy_hand.child_order_changed.connect(_on_enmeies_child_order_changed)
-	Events.player_hand_discarded.connect(enemy_handler.start_turn)
 	Events.player_died.connect(_on_player_died)
+	Events.battle_state_updated.connect(_on_battle_state_updated)
+	Events.enemy_turn_ended.connect(_on_enemy_turn_ended)
+	
+	Events.player_hand_discarded.connect(enemy_handler.start_turn)
 	
 	start_battle(new_stats)
 	battle_ui.initialise_card_pile_ui()
@@ -54,29 +53,31 @@ func _on_enmeies_child_order_changed() -> void:
 
 
 func _on_enemy_turn_ended() -> void:
+	if state == 5 or state == 6:
+		return
+	
 	player_handeler.start_turn()
-	#enemy_hand.reset_enemy_actions()
-	Events.battle_state_updated.emit(2)
+	enemy_handler.draw_cards()
 
 
 func _on_player_died() -> void:
 	Events.battle_state_updated.emit(6)
-	print("You died lol ", self)
+	print("You died lol")
 
 
 func _on_battle_state_updated(new_state : BattleState) -> void:
 	state = new_state
 	
-	if new_state == 1:  # Need to hook up loops state here
-		_on_enemy_turn_ended()
+	if new_state == 1:  # Loops turn
+		pass
 	
-	if new_state == 2:  # Need to hook up events state here
+	if new_state == 2:  # Events turn
 		Events.battle_state_updated.emit(3)
 	
-	if new_state == 3:
-		Events.enemy_reload_targets.emit(null)
+	if new_state == 3: # Enemy turn
+		enemy_handler.start_turn()
 	
-	if new_state == 4:
+	if new_state == 4: # Player turn
 		player_handeler.end_turn()
 	
 	return
