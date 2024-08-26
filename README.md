@@ -27,18 +27,28 @@ Either go to the latest release on the releases page and download Alymeria[VERSI
 # Launching
 
 ## Windows with updates
-Run the executable file located at Windows/Alymeria[VERSION].exe (can be moved wherever on your computers filesystem)
+Run the executable file located at Windows/Alymeria[VERSION].exe (can be moved to wherever on your computer's filesystem)
 
 ## Linux with updates
-Run the executable file located at Linux/Alymeria[VERSION].x86_64 (can be moved wherever on your computers filesystem)
+Run the executable file located at Linux/Alymeria[VERSION].x86_64 (can be moved to wherever on your computer's filesystem)
 
 ## Launching without updates
-Just run the executable file you downloaded (can be moved wherever on your computers filesystem)
+Just run the executable file you downloaded (can be moved to wherever on your computer's filesystem)
 
 # Planned features
 You can view my planning doc at the following url
 
 https://docs.google.com/document/d/1-JKUbbNwLlr0Cf3xtYCXf1nt2JtN55ohAl-p8EhhLDE
+
+# Bug reporting
+
+Any bug reports, suggestions for new ideas, questions or anything else; are all highly appreciated (doesn't matter if it's a 3 word sentance or a 3 paragraphy essay)
+
+You can contact me online via either:
+
+* Messaging me on discord (@janicria)
+* Creating an issue
+* Making a comment on the google doc
 
 # Credits
 In case you didn't catch them in game or I haven't implemented them yet (oops)
