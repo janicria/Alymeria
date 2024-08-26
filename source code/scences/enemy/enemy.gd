@@ -35,7 +35,7 @@ func draw_cards(amount: int) -> void:
 		var continue_rolling := true
 		update_weights()
 		
-		while continue_rolling:
+		while continue_rolling: # HACK: Yikes
 			var roll := randi_range(0, total_card_weight)
 			var rolled_cards: Array[EnemyCard]
 			if ai.action_1 and ai.action_1.weight and ai.action_1.weight > roll-1: rolled_cards.append(ai.action_1); continue_rolling = false
@@ -50,7 +50,7 @@ func draw_cards(amount: int) -> void:
 			if ai.action_10 and ai.action_10.weight and ai.action_10.weight>roll-1:rolled_cards.append(ai.action_10); continue_rolling= false
 			if rolled_cards: add_card(rolled_cards.pick_random())
 
-func update_weights() -> void:
+func update_weights() -> void: # HACK: Yikes again
 	if ai.action_1: total_card_weight += ai.action_1.weight
 	if ai.action_2: total_card_weight += ai.action_2.weight
 	if ai.action_3: total_card_weight += ai.action_3.weight
@@ -63,7 +63,7 @@ func update_weights() -> void:
 	if ai.action_10:total_card_weight += ai.action_10.weight
 
 
-func check_health_cards() -> void:
+func check_health_cards() -> void: # HACK: Yikes 3: The bad one that everyone likes for some reason
 	if ai.action_1 and ai.action_1.health and stats.health <= ai.action_1.health: add_card(ai.action_1)
 	if ai.action_2 and ai.action_2.health and stats.health <= ai.action_2.health: add_card(ai.action_2)
 	if ai.action_3 and ai.action_3.health and stats.health <= ai.action_3.health: add_card(ai.action_3)

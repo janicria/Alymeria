@@ -7,7 +7,7 @@ const ENEMY_CARD_SCENE = preload("res://custom_resources/enemy_card.tscn")
 
 var organiser_target_pos := position - Vector2(30, -5)
 
-func cardToGui(card: EnemyCard, enemy: Enemy) -> void:
+func cardToGui(card: EnemyCard, enemy: Enemy) -> void: #TODO: This is really messy
 	var card_ui := ENEMY_CARD_SCENE.instantiate()
 	card_ui.position = enemy.position - Vector2(100, 40)
 	card_ui.update_stats(card, enemy)
@@ -21,8 +21,10 @@ func cardToGui(card: EnemyCard, enemy: Enemy) -> void:
 	tween.tween_property(card_ui, "global_position", target_pos, 0.6)
 
 
-func organise_cards(draw_next_card := true) -> void:
-	await get_tree().create_timer(0.1).timeout # For cards which are queued_for_deletion()
+func organise_cards(draw_next_card := true) -> void: #TODO: This is also really messy
+	# await is for cards which are queued_for_deletion() bc the
+	# method doesn't work for some reason but this does soooo...
+	await get_tree().create_timer(0.1).timeout
 	organiser_target_pos = position - Vector2(30, -5) 
 	time_before_next_card = 0
 	for card: EnemyCardUI in get_children():

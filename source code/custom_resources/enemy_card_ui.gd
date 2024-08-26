@@ -83,9 +83,11 @@ func get_targets() -> Array[Node]:
 
 
 func apply_effects(targets: Array[Node]) -> void:
-	var effect
-	if card_stats.type == EnemyCard.Type.ATTACK: effect = DamageEffect.new()
-	elif card_stats.type == EnemyCard.Type.BARRIER: effect = BarrierEffect.new()
-	effect.amount = card_stats.amount
-	effect.sound = card_stats.SFX_dict.get(card_stats.type)
-	effect.execute(targets)
+	for i:int in card_stats.repeats:
+		var effect # Indentation moment
+		if card_stats.type == EnemyCard.Type.ATTACK: effect = DamageEffect.new()
+		elif card_stats.type == EnemyCard.Type.BARRIER: effect = BarrierEffect.new()
+		effect.amount = card_stats.amount
+		effect.sound = card_stats.SFX_dict.get(card_stats.type)
+		effect.execute(targets)
+		await get_tree().create_timer(0.15).timeout

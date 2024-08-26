@@ -46,6 +46,11 @@ func play_next_card() -> void:
 	var card := enemy_hand.get_child(0) as EnemyCardUI
 	
 	card.play()
+	
+	if card.card_stats.repeats != 1: # So it doesn't get shadowrealmed from memory right away
+		card.visible = false
+		await get_tree().create_timer((card.card_stats.repeats-1)*1.5).timeout
+	
 	enemy_hand.remove_child(card)
 	card.queue_free()
 	enemy_hand.organise_cards()

@@ -69,5 +69,10 @@ anchors_preset = 0
 offset_right = 36.0
 offset_bottom = 36.0
 
+[node name="Repeats timer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.15
+one_shot = true
+
 [connection signal="mouse_entered" from="Control" to="." method="_on_control_mouse_entered"]
 [connection signal="mouse_exited" from="Control" to="." method="_on_control_mouse_exited"]
