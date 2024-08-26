@@ -1,0 +1,23 @@
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://brs0hub03o0k0"]
+
+[ext_resource type="Texture2D" uid="uid://bfvi02kojsa00" path="res://assets/art/tile_0103.png" id="1_u0csp"]
+[ext_resource type="Script" path="res://characters/machine/cards/common/machine_laser_attack.gd" id="2_ouqcu"]
+[ext_resource type="AudioStream" uid="uid://b1vpjjmi5cj3n" path="res://assets/SFX/axe.ogg" id="3_8mdsh"]
+
+[resource]
+script = ExtResource("2_ouqcu")
+id = "machine_laser_attack"
+name = "Laser"
+type = 0
+rarity = 0
+target = 1
+repeats = 1
+cost = 1
+icon = ExtResource("1_u0csp")
+sound = ExtResource("3_8mdsh")
+tooltip_text = "Attack 3"
+effect_description = "[center]Attack - Deal [color=\"ff0000\"]damage[/color] to an enemy[/center]"
+is_summon_only = false
+is_chaotic = false
+has_exhaust = false
+has_draw = false

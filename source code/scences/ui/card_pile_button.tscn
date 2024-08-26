@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://cmrvm435qcold"]
+
+[ext_resource type="Texture2D" uid="uid://p6ayfwhw2vnj" path="res://assets/cards/draw.png" id="1_xaofm"]
+[ext_resource type="Script" path="res://scences/ui/card_pile_button.gd" id="2_hmt7m"]
+
+[node name="CardPileButton" type="TextureButton"]
+process_mode = 3
+offset_right = 12.0
+offset_bottom = 14.0
+texture_normal = ExtResource("1_xaofm")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("2_hmt7m")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

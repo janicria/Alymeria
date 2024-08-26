@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EnemyCard" load_steps=2 format=3 uid="uid://bq7ptk28yy42d"]
+
+[ext_resource type="Script" path="res://custom_resources/enemy_card.gd" id="1_5wct5"]
+
+[resource]
+script = ExtResource("1_5wct5")
+type = 0
+amount = 7
+repeats = 1
+cost = 1
+weight = 3
+health = 0
+optional_desc = ""

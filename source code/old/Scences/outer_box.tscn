@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Scripts/outerBox.gd" id="1_be7b7"]
+
+[node name="outer_box" type="RichTextLabel"]
+script = ExtResource("1_be7b7")

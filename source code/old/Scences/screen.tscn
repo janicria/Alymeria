@@ -1,0 +1,75 @@
+[gd_scene load_steps=8 format=3 uid="uid://cywpg3kksxxp"]
+
+[ext_resource type="PackedScene" uid="uid://dbymbl1ftj7ax" path="res://old/Scences/main_menu.tscn" id="5_ffkg0"]
+[ext_resource type="Script" path="res://old/Scripts/pause_menu.gd" id="5_x4ok1"]
+[ext_resource type="PackedScene" uid="uid://by8twq7fl640l" path="res://old/Scences/combat_screen.tscn" id="6_48kdy"]
+[ext_resource type="Script" path="res://old/Scripts/GameManager.gd" id="6_eq3ry"]
+[ext_resource type="Script" path="res://old/Scripts/player_stats.gd" id="8_t03lk"]
+[ext_resource type="Resource" path="res://inventory/player_inventory.tres" id="9_gj72e"]
+
+[sub_resource type="GDScript" id="GDScript_eot2i"]
+script/source = "extends Node2D
+
+@export_enum(\"Warrior\", \"Magician\", \"Thief\") var character_class: int
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	RenderingServer.set_default_clear_color(Color.BLACK)
+	get_tree().paused = true
+	
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[node name="Node2D" type="Node2D"]
+texture_filter = 1
+texture_repeat = 2
+script = SubResource("GDScript_eot2i")
+
+[node name="Settings Menus" type="CanvasLayer" parent="."]
+layer = 100
+follow_viewport_enabled = true
+
+[node name="Primary Settings Menu" type="Control" parent="Settings Menus"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -636.0
+offset_top = -300.0
+offset_right = -636.0
+offset_bottom = -300.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_x4ok1")
+
+[node name="Dark Tint" type="ColorRect" parent="Settings Menus/Primary Settings Menu"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 748.0
+offset_bottom = 7252.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.470588)
+
+[node name="unlock_proccess_mode" type="Timer" parent="Settings Menus/Primary Settings Menu"]
+autostart = true
+
+[node name="main_menu" parent="." instance=ExtResource("5_ffkg0")]
+
+[node name="player" type="Node" parent="."]
+script = ExtResource("8_t03lk")
+inventory = ExtResource("9_gj72e")
+
+[node name="Combat_Screen" parent="." instance=ExtResource("6_48kdy")]
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("6_eq3ry")

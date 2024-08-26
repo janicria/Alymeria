@@ -1,0 +1,93 @@
+[gd_scene load_steps=3 format=3 uid="uid://cmmmgm5gttqy0"]
+
+[ext_resource type="Script" path="res://old/Scripts/CardBase.gd" id="1_j2yal"]
+[ext_resource type="Texture2D" uid="uid://skiabgkt3u6n" path="res://old/assets/Cards/Witch_Cards/Flame.png" id="2_p4iqt"]
+
+[node name="CardBase" type="MarginContainer"]
+offset_left = 425.0
+offset_top = 550.0
+offset_right = 675.0
+offset_bottom = 900.0
+pivot_offset = Vector2(125, 175)
+script = ExtResource("1_j2yal")
+
+[node name="Card" type="Sprite2D" parent="."]
+texture_filter = 2
+texture = ExtResource("2_p4iqt")
+centered = false
+
+[node name="Border" type="Sprite2D" parent="."]
+centered = false
+
+[node name="Bars" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TopGap" type="MarginContainer" parent="Bars"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
+[node name="TopBar" type="HBoxContainer" parent="Bars"]
+layout_mode = 2
+
+[node name="LeftGap" type="MarginContainer" parent="Bars/TopBar"]
+custom_minimum_size = Vector2(15, 0)
+layout_mode = 2
+
+[node name="Name" type="MarginContainer" parent="Bars/TopBar"]
+layout_mode = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Bars/TopBar/Name"]
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="Bars/TopBar/Name"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="Bars/TopBar/Name/CenterContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Name"
+
+[node name="MidGap" type="MarginContainer" parent="Bars/TopBar"]
+custom_minimum_size = Vector2(110, 0)
+layout_mode = 2
+
+[node name="RightGap" type="MarginContainer" parent="Bars/TopBar"]
+custom_minimum_size = Vector2(23, 0)
+layout_mode = 2
+
+[node name="MidGap" type="MarginContainer" parent="Bars"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Description" type="HBoxContainer" parent="Bars"]
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="Bars/Description"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Description" type="Label" parent="Bars/Description/CenterContainer"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Desc"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Cost" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(230, 75)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Cost"]
+custom_minimum_size = Vector2(-160, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="Cost" type="Label" parent="Cost/MarginContainer"]
+layout_mode = 2
+text = "Cost"

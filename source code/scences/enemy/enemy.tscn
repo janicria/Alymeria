@@ -1,0 +1,47 @@
+[gd_scene load_steps=9 format=3 uid="uid://dkpw6tsw7i7y0"]
+
+[ext_resource type="Texture2D" uid="uid://ukld5o613i0a" path="res://assets/art/tile_0122.png" id="1_4apox"]
+[ext_resource type="Script" path="res://scences/enemy/enemy.gd" id="1_c8d2x"]
+[ext_resource type="Texture2D" uid="uid://bb3rcs5nqntir" path="res://assets/art/arrow.png" id="2_itpu6"]
+[ext_resource type="Resource" uid="uid://bx5d8snag76bf" path="res://enemies/spider/spider_ai.tres" id="2_pceij"]
+[ext_resource type="Resource" uid="uid://ck1uqa7fwc6me" path="res://enemies/spider/spider_stats.tres" id="3_aow6t"]
+[ext_resource type="PackedScene" uid="uid://b21bh1sh66gbd" path="res://scences/ui/stats_ui.tscn" id="3_jwf45"]
+[ext_resource type="Texture2D" uid="uid://wkomkbcn1sep" path="res://assets/enemies/enemy_box.png" id="7_eyb8k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5jego"]
+
+[node name="Enemy" type="Area2D" groups=["enemies"]]
+collision_layer = 4
+script = ExtResource("1_c8d2x")
+ai = ExtResource("2_pceij")
+stats = ExtResource("3_aow6t")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_4apox")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_5jego")
+
+[node name="Arrow" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -27)
+rotation = 3.14159
+texture = ExtResource("2_itpu6")
+
+[node name="StatsUI" parent="." instance=ExtResource("3_jwf45")]
+offset_top = 8.0
+offset_bottom = 24.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Box" type="TextureRect" parent="."]
+visible = false
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+texture = ExtResource("7_eyb8k")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

@@ -1,0 +1,421 @@
+[gd_scene load_steps=12 format=3 uid="uid://dbymbl1ftj7ax"]
+
+[ext_resource type="FontFile" uid="uid://xs7rhjifmsiq" path="res://old/Text/HeavyDataNerdFont-Regular.ttf" id="1_5kpv1"]
+[ext_resource type="Script" path="res://old/Scripts/main_menu.gd" id="1_ntup5"]
+[ext_resource type="FontFile" uid="uid://c2w5j3v7q50wn" path="res://old/Text/0xProtoNerdFontMono-Regular.ttf" id="3_fhuct"]
+[ext_resource type="Texture2D" uid="uid://ol4rhppsgx08" path="res://old/assets/Misc/main_screen.png" id="4_dq1rx"]
+[ext_resource type="Script" path="res://old/Scripts/title_screen.gd" id="5_1skxm"]
+[ext_resource type="Texture2D" uid="uid://ck8dj4y1s8t2u" path="res://old/assets/Misc/main_screen_begin.png" id="6_64jh0"]
+[ext_resource type="Texture2D" uid="uid://cagxbmsramfp7" path="res://old/assets/Misc/select_save_file.png" id="7_flbcb"]
+[ext_resource type="Texture2D" uid="uid://26706kxby26v" path="res://old/assets/Misc/cog_light.png" id="8_w5jjm"]
+[ext_resource type="Texture2D" uid="uid://b8jucy5wehtc4" path="res://old/assets/Misc/achievment_box.png" id="9_c2wj3"]
+[ext_resource type="FontFile" uid="uid://caa2i1vovy2ao" path="res://old/Text/ArimoNerdFont-Bold.ttf" id="10_t6pwq"]
+[ext_resource type="FontFile" uid="uid://bpxqa6fh334gm" path="res://old/Text/ArimoNerdFont-Regular.ttf" id="11_aki85"]
+
+[node name="main_menu" type="CanvasLayer"]
+process_mode = 3
+layer = 110
+offset = Vector2(-575, -325)
+transform = Transform2D(1, 0, 0, 1, -575, -325)
+follow_viewport_enabled = true
+script = ExtResource("1_ntup5")
+
+[node name="Alymeria" type="RichTextLabel" parent="."]
+visible = false
+texture_filter = 1
+offset_left = 20.0
+offset_top = -10.0
+offset_right = 1020.0
+offset_bottom = 190.0
+theme_override_fonts/normal_font = ExtResource("1_5kpv1")
+theme_override_font_sizes/normal_font_size = 110
+text = "Alymeria"
+
+[node name="News" type="RichTextLabel" parent="."]
+visible = false
+texture_filter = 2
+offset_left = 20.0
+offset_top = 475.0
+offset_right = 870.0
+offset_bottom = 645.0
+theme_override_fonts/normal_font = ExtResource("1_5kpv1")
+theme_override_fonts/bold_font = ExtResource("3_fhuct")
+theme_override_font_sizes/normal_font_size = 35
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+
+[node name="Splash_Text" type="RichTextLabel" parent="."]
+visible = false
+texture_filter = 2
+offset_left = 30.0
+offset_top = 110.0
+offset_right = 830.0
+offset_bottom = 260.0
+theme_override_fonts/normal_font = ExtResource("3_fhuct")
+theme_override_fonts/bold_font = ExtResource("3_fhuct")
+theme_override_font_sizes/normal_font_size = 25
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+
+[node name="&" type="RichTextLabel" parent="."]
+visible = false
+texture_filter = 2
+offset_left = 100.0
+offset_top = 478.0
+offset_right = 130.0
+offset_bottom = 528.0
+theme_override_fonts/normal_font = ExtResource("3_fhuct")
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+
+[node name="Run_Selector_Line_A" type="RichTextLabel" parent="."]
+visible = false
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -202.0
+offset_right = -162.0
+offset_bottom = 650.0
+grow_horizontal = 0
+theme_override_fonts/normal_font = ExtResource("3_fhuct")
+text = "
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+"
+scroll_active = false
+
+[node name="Run_Selector_Line_B" type="RichTextLabel" parent="."]
+visible = false
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -52.0
+offset_right = -12.0
+offset_bottom = 650.0
+grow_horizontal = 0
+theme_override_fonts/normal_font = ExtResource("3_fhuct")
+text = "
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+"
+scroll_active = false
+
+[node name="Run_Selector_Line_C" type="RichTextLabel" parent="."]
+visible = false
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -190.0
+offset_top = 7.0
+offset_right = -40.0
+offset_bottom = 657.0
+grow_horizontal = 0
+theme_override_fonts/normal_font = ExtResource("3_fhuct")
+theme_override_font_sizes/normal_font_size = 20
+text = "-----------"
+scroll_active = false
+
+[node name="Run_Selector_Line_D" type="RichTextLabel" parent="."]
+visible = false
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -190.0
+offset_top = 605.0
+offset_right = -40.0
+offset_bottom = 1255.0
+grow_horizontal = 0
+theme_override_fonts/normal_font = ExtResource("3_fhuct")
+theme_override_font_sizes/normal_font_size = 20
+text = "-----------"
+scroll_active = false
+
+[node name="Run_Box_A" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Run_Box_A_Lid" type="RichTextLabel" parent="Run_Box_A"]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -186.0
+offset_top = 48.0
+offset_right = -46.0
+offset_bottom = 698.0
+grow_horizontal = 0
+theme_override_fonts/normal_font = ExtResource("3_fhuct")
+theme_override_font_sizes/normal_font_size = 25
+text = " ------"
+scroll_active = false
+
+[node name="Run_Box_A_Text" type="RichTextLabel" parent="Run_Box_A"]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -147.0
+offset_top = 75.0
+offset_right = -77.0
+offset_bottom = 145.0
+grow_horizontal = 0
+theme_override_fonts/normal_font = ExtResource("3_fhuct")
+theme_override_font_sizes/normal_font_size = 25
+text = "NEW
+RUN"
+scroll_active = false
+
+[node name="Run_Box_A_Base" type="RichTextLabel" parent="Run_Box_A"]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -186.0
+offset_top = 130.0
+offset_right = -46.0
+offset_bottom = 780.0
+grow_horizontal = 0
+theme_override_fonts/normal_font = ExtResource("3_fhuct")
+theme_override_font_sizes/normal_font_size = 25
+text = " ------"
+scroll_active = false
+
+[node name="Run_Box_B" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 120.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Run_Box_B_Lid" type="RichTextLabel" parent="Run_Box_B"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -186.0
+offset_top = 48.0
+offset_right = -46.0
+offset_bottom = 698.0
+grow_horizontal = 0
+theme_override_fonts/normal_font = ExtResource("3_fhuct")
+theme_override_font_sizes/normal_font_size = 25
+text = " ------"
+scroll_active = false
+
+[node name="Run_Box_B_Text" type="RichTextLabel" parent="Run_Box_B"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -167.0
+offset_top = 75.0
+offset_right = -77.0
+offset_bottom = 155.0
+grow_horizontal = 0
+theme_override_fonts/normal_font = ExtResource("3_fhuct")
+theme_override_font_sizes/normal_font_size = 18
+text = "skye
+Floor 23
+0:46:28"
+scroll_active = false
+
+[node name="Run_Box_B_Base" type="RichTextLabel" parent="Run_Box_B"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -186.0
+offset_top = 138.0
+offset_right = -46.0
+offset_bottom = 788.0
+grow_horizontal = 0
+theme_override_fonts/normal_font = ExtResource("3_fhuct")
+theme_override_font_sizes/normal_font_size = 25
+text = " ------"
+scroll_active = false
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 109
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="run_modifer" type="RichTextLabel" parent="."]
+visible = false
+offset_left = 400.0
+offset_top = 200.0
+offset_right = 800.0
+offset_bottom = 400.0
+theme_override_fonts/normal_font = ExtResource("3_fhuct")
+text = "Artsystle - Regular (R) / Console (C)
+Difficulty - WIP
+Begin run - Enter"
+
+[node name="title_screen" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("4_dq1rx")
+script = ExtResource("5_1skxm")
+
+[node name="begin_option_timer" type="Timer" parent="title_screen"]
+wait_time = 2.5
+one_shot = true
+autostart = true
+
+[node name="begin_option_timer2" type="Timer" parent="title_screen"]
+wait_time = 2.5
+one_shot = true
+autostart = true
+
+[node name="title_text" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("6_64jh0")
+
+[node name="run_selector" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("7_flbcb")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+texture_filter = 1
+position = Vector2(385, 210)
+zoom = Vector2(0.6, 0.6)
+
+[node name="settings_cog" type="TextureRect" parent="."]
+offset_left = 1608.0
+offset_top = 288.0
+offset_right = 1622.0
+offset_bottom = 302.0
+scale = Vector2(6, 6)
+pivot_offset = Vector2(7, 7)
+texture = ExtResource("8_w5jjm")
+
+[node name="Save_1_option" type="ColorRect" parent="."]
+offset_left = 293.0
+offset_top = 719.0
+offset_right = 593.0
+offset_bottom = 819.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Save_1_option"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 49.0
+offset_top = -44.0
+offset_right = 49.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("11_aki85")
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = " 
+New run"
+
+[node name="Achievment_Box" type="TextureRect" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 378.0
+offset_top = 272.0
+offset_right = 628.0
+offset_bottom = 372.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("9_c2wj3")
+
+[node name="Achievment_Text" type="RichTextLabel" parent="Achievment_Box"]
+layout_mode = 1
+offset_left = 15.0
+offset_top = 20.0
+offset_right = 265.0
+offset_bottom = 120.0
+theme_override_fonts/normal_font = ExtResource("10_t6pwq")
+theme_override_font_sizes/normal_font_size = 25
+
+[node name="Achievment_Timer" type="Timer" parent="Achievment_Box"]
+wait_time = 5.0

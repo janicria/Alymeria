@@ -1,0 +1,210 @@
+[gd_scene load_steps=14 format=3 uid="uid://v7wgn4m7a0er"]
+
+[ext_resource type="Script" path="res://scences/ui/main_menu.gd" id="1_oaw6j"]
+[ext_resource type="Texture2D" uid="uid://con6y7mc74c5a" path="res://assets/art/tile_0120.png" id="2_4gpks"]
+[ext_resource type="Texture2D" uid="uid://dwwohw571cr2a" path="res://assets/art/tile_0092.png" id="3_lae7v"]
+[ext_resource type="Texture2D" uid="uid://chtnrxmaowwkd" path="res://assets/art/tile_0111.png" id="4_xsa1l"]
+[ext_resource type="Texture2D" uid="uid://cgopx2ponr1qi" path="res://assets/art/tile_0121.png" id="5_av3ul"]
+[ext_resource type="Texture2D" uid="uid://1u3b3hwqd8yh" path="res://assets/art/tile_0110.png" id="6_nmdkm"]
+[ext_resource type="PackedScene" uid="uid://bwuexw3t61b0h" path="res://scences/ui/top_bar.tscn" id="7_jvmsa"]
+
+[sub_resource type="Gradient" id="Gradient_mtqjb"]
+colors = PackedColorArray(0.2, 0.117647, 0.0509804, 1, 0.054902, 0, 0.0588235, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_tstuo"]
+gradient = SubResource("Gradient_mtqjb")
+width = 50
+
+[sub_resource type="LabelSettings" id="LabelSettings_aj7pw"]
+font_size = 32
+shadow_size = 4
+shadow_color = Color(0.772549, 0.454902, 0.72549, 0.509804)
+
+[sub_resource type="Animation" id="Animation_u5hhp"]
+resource_name = "fade_in"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ScenceTransition/ColorRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ScenceTransition/ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_mcieo"]
+resource_name = "fade_out"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ScenceTransition/ColorRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ScenceTransition/ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_km6g1"]
+_data = {
+"fade_in": SubResource("Animation_u5hhp"),
+"fade_out": SubResource("Animation_mcieo")
+}
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_oaw6j")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_tstuo")
+
+[node name="Tiitle" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -64.0
+offset_right = 60.0
+offset_bottom = -39.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Alymeria"
+label_settings = SubResource("LabelSettings_aj7pw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.0
+offset_top = -12.0
+offset_right = 30.0
+offset_bottom = 49.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 8
+
+[node name="Continue" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Continue"
+
+[node name="NewRun" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "New run"
+
+[node name="Exit" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Exit
+"
+
+[node name="Bat2" type="Sprite2D" parent="."]
+position = Vector2(61, 117)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_4gpks")
+
+[node name="Mimic" type="Sprite2D" parent="."]
+position = Vector2(36, 147)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("3_lae7v")
+
+[node name="Necromancer" type="Sprite2D" parent="."]
+position = Vector2(78, 152)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("4_xsa1l")
+
+[node name="Bat" type="Sprite2D" parent="."]
+position = Vector2(284, 116)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_4gpks")
+flip_h = true
+
+[node name="Ghost" type="Sprite2D" parent="."]
+position = Vector2(259, 146)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("5_av3ul")
+flip_h = true
+
+[node name="Crab" type="Sprite2D" parent="."]
+position = Vector2(301, 151)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("6_nmdkm")
+flip_h = true
+
+[node name="ScenceTransition" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_km6g1")
+}
+
+[node name="ColorRect" type="ColorRect" parent="ScenceTransition"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.2, 0.117647, 0.0509804, 1)
+
+[node name="TopBar" parent="." instance=ExtResource("7_jvmsa")]
+layout_mode = 0
+
+[connection signal="pressed" from="VBoxContainer/Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="VBoxContainer/NewRun" to="." method="_on_new_run_pressed"]
+[connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]
+[connection signal="animation_finished" from="ScenceTransition" to="." method="_on_scence_transition_animation_finished"]

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://da6w7bs4jgfvm"]
+
+[ext_resource type="Script" path="res://summons/attack_sentry/attack_sentry_ai.gd" id="1_x5rq6"]
+
+[node name="AttackSentryAI" type="Node"]
+script = ExtResource("1_x5rq6")

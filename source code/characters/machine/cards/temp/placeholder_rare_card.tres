@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://dxoxah522fws"]
+
+[ext_resource type="Script" path="res://custom_resources/card.gd" id="1_dj6l8"]
+
+[resource]
+script = ExtResource("1_dj6l8")
+id = "placeholder_rare_card"
+name = "Placeholder rare"
+type = 0
+rarity = 2
+target = 0
+repeats = 1
+cost = 0
+tooltip_text = ""
+effect_description = "Placeholder rare"
+is_summon_only = false
+is_chaotic = false
+has_exhaust = false
+has_draw = false

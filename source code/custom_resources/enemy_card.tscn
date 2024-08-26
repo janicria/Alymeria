@@ -1,0 +1,73 @@
+[gd_scene load_steps=5 format=3 uid="uid://dyympjy3226qe"]
+
+[ext_resource type="StyleBox" uid="uid://ck3105wj7dcrn" path="res://scences/card_ui/card_base_stylebox.tres" id="1_24aeo"]
+[ext_resource type="Script" path="res://custom_resources/enemy_card_ui.gd" id="1_maq84"]
+[ext_resource type="Texture2D" uid="uid://ukld5o613i0a" path="res://assets/art/tile_0122.png" id="2_uf0hh"]
+[ext_resource type="Texture2D" uid="uid://bfvi02kojsa00" path="res://assets/art/tile_0103.png" id="3_n08at"]
+
+[node name="EnemyCard" type="Node2D"]
+visible = false
+script = ExtResource("1_maq84")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 36.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("1_24aeo")
+
+[node name="Cost" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 3.0
+offset_top = 1.0
+offset_right = 46.0
+offset_bottom = 11.0
+text = "2"
+vertical_alignment = 1
+
+[node name="Icon" type="TextureRect" parent="."]
+unique_name_in_owner = true
+offset_left = 16.0
+offset_top = 2.0
+offset_right = 32.0
+offset_bottom = 18.0
+texture = ExtResource("2_uf0hh")
+stretch_mode = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_left = -5.0
+offset_top = 19.0
+offset_right = 37.0
+offset_bottom = 34.0
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="AttackIcon" type="TextureRect" parent="HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+texture = ExtResource("3_n08at")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="AttackDesc" type="Label" parent="HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+theme_override_constants/line_spacing = 1
+theme_override_font_sizes/font_size = 6
+text = "3"
+vertical_alignment = 2
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 36.0
+offset_bottom = 36.0
+
+[connection signal="mouse_entered" from="Control" to="." method="_on_control_mouse_entered"]
+[connection signal="mouse_exited" from="Control" to="." method="_on_control_mouse_exited"]

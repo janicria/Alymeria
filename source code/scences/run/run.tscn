@@ -1,0 +1,178 @@
+[gd_scene load_steps=9 format=3 uid="uid://da8s0fkwwmdle"]
+
+[ext_resource type="Script" path="res://scences/run/run.gd" id="1_327eg"]
+[ext_resource type="PackedScene" uid="uid://klm1dw58y8fj" path="res://scences/map/map.tscn" id="1_jorql"]
+[ext_resource type="Resource" uid="uid://dk2sl2aapuwe7" path="res://scences/ui/run_startup.tres" id="2_ehyhl"]
+[ext_resource type="PackedScene" uid="uid://bwuexw3t61b0h" path="res://scences/ui/top_bar.tscn" id="4_xv74x"]
+[ext_resource type="PackedScene" uid="uid://cmrfdlp25wcby" path="res://addons/simply-console/scenes/console_window.tscn" id="5_p3j0y"]
+
+[sub_resource type="Animation" id="Animation_u5hhp"]
+resource_name = "fade_in"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ScenceTransition/ColorRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ScenceTransition/ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_mcieo"]
+resource_name = "fade_out"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ScenceTransition/ColorRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ScenceTransition/ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_km6g1"]
+_data = {
+"fade_in": SubResource("Animation_u5hhp"),
+"fade_out": SubResource("Animation_mcieo")
+}
+
+[node name="Run" type="Node"]
+script = ExtResource("1_327eg")
+run_startup = ExtResource("2_ehyhl")
+
+[node name="Map" parent="." instance=ExtResource("1_jorql")]
+
+[node name="CurrentView" type="Node" parent="."]
+
+[node name="DebugMenu" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="DebugStats" type="Label" parent="DebugMenu"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -304.0
+offset_top = 22.0
+offset_right = -4.0
+offset_bottom = 42.0
+grow_horizontal = 0
+text = "Version: "
+horizontal_alignment = 2
+
+[node name="DebugButtons" type="VBoxContainer" parent="DebugMenu"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_top = 30.0
+offset_right = 40.0
+offset_bottom = 84.0
+grow_vertical = 2
+
+[node name="MapButton" type="Button" parent="DebugMenu/DebugButtons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 10)
+layout_mode = 2
+text = "Map"
+
+[node name="BattleButton" type="Button" parent="DebugMenu/DebugButtons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 10)
+layout_mode = 2
+text = "Battle"
+
+[node name="ShopButton" type="Button" parent="DebugMenu/DebugButtons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 10)
+layout_mode = 2
+text = "Shop"
+
+[node name="TreasureButton" type="Button" parent="DebugMenu/DebugButtons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 10)
+layout_mode = 2
+text = "Treasure"
+
+[node name="RewardsButton" type="Button" parent="DebugMenu/DebugButtons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 10)
+layout_mode = 2
+text = "Rewards"
+
+[node name="HavenButton" type="Button" parent="DebugMenu/DebugButtons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 10)
+layout_mode = 2
+text = "Haven"
+
+[node name="EventButton" type="Button" parent="DebugMenu/DebugButtons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 10)
+layout_mode = 2
+text = "Event"
+
+[node name="ScenceTransition" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_km6g1")
+}
+
+[node name="ColorRect" type="ColorRect" parent="ScenceTransition"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.2, 0.117647, 0.0509804, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="TopBar" parent="." instance=ExtResource("4_xv74x")]
+unique_name_in_owner = true
+
+[node name="ConsoleWindow" parent="." instance=ExtResource("5_p3j0y")]
+initial_position = 0
+position = Vector2i(50, 15)
+size = Vector2i(200, 130)
+borderless = true

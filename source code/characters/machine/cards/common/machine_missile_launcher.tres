@@ -1,0 +1,23 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://073voiuhw5gi"]
+
+[ext_resource type="Script" path="res://characters/machine/cards/common/machine_missile_launcher.gd" id="1_228oc"]
+[ext_resource type="AudioStream" uid="uid://b1vpjjmi5cj3n" path="res://assets/SFX/axe.ogg" id="2_qcqyc"]
+
+
+[resource]
+script = ExtResource("1_228oc")
+id = "machine_missile_launcher"
+name = "Missile launcher"
+type = 0
+rarity = 0
+target = 4
+repeats = 1
+cost = 1
+sound = ExtResource("2_qcqyc")
+tooltip_text = "Attack 6
+EVERYONE"
+effect_description = "[center]Attack - Deal [color=\"ff0000\"]damage[/color] to an enemy[/center]"
+is_summon_only = false
+is_chaotic = false
+has_exhaust = false
+has_draw = false

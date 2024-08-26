@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6uvw3m0xy3xg"]
+
+[ext_resource type="Theme" uid="uid://bhs76hnulf3s4" path="res://assets/main_theme.tres" id="1_a0213"]
+[ext_resource type="Script" path="res://scences/ui/mana_ui.gd" id="2_qjgcm"]
+
+[node name="ManaUI" type="Panel"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 53.0
+offset_top = -26.0
+offset_right = 71.0
+offset_bottom = -8.0
+grow_vertical = 0
+theme = ExtResource("1_a0213")
+script = ExtResource("2_qjgcm")
+
+[node name="ManaLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "4/4"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

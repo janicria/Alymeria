@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="CardPile" load_steps=7 format=3 uid="uid://ke1cmnfj0lc2"]
+
+[ext_resource type="Script" path="res://custom_resources/card_pile.gd" id="1_tawcb"]
+[ext_resource type="Resource" uid="uid://brs0hub03o0k0" path="res://characters/machine/cards/common/machine_laser_attack.tres" id="1_twjgt"]
+[ext_resource type="Resource" uid="uid://dprpiekopnhe0" path="res://characters/machine/cards/common/machine_block.tres" id="2_f3phy"]
+[ext_resource type="Resource" uid="uid://bivd0gsfass0" path="res://characters/machine/cards/common/machine_laser_barrage.tres" id="3_n5ee0"]
+[ext_resource type="Resource" uid="uid://c6ffdh3cljhno" path="res://characters/machine/cards/common/machine_repurposing.tres" id="4_cagwk"]
+[ext_resource type="Resource" uid="uid://ccjsu4qoghdrb" path="res://characters/machine/cards/common/machine_power_strike.tres" id="5_gv5xw"]
+
+[resource]
+script = ExtResource("1_tawcb")
+cards = Array[Resource("res://custom_resources/card.gd")]([ExtResource("1_twjgt"), ExtResource("1_twjgt"), ExtResource("1_twjgt"), ExtResource("1_twjgt"), ExtResource("2_f3phy"), ExtResource("2_f3phy"), ExtResource("2_f3phy"), ExtResource("2_f3phy"), ExtResource("3_n5ee0"), ExtResource("4_cagwk"), ExtResource("5_gv5xw")])

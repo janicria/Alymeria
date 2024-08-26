@@ -1,0 +1,78 @@
+{
+	"help": {
+		"target": "",
+		"type": 1,
+		"minPermission": 0,
+		"cheats": false,
+		"method": "show_command_list",
+		"argumentList": [
+			{
+				"name": "command",
+				"type": 4,
+				"optional": true
+			}
+		]
+	},
+	"clear": {
+		"target": "",
+		"type": 1,
+		"minPermission": 0,
+		"cheats": false,
+		"method": "clear_console",
+		"argumentList": []
+	},
+	"cheats": {
+		"target": "",
+		"type": 1,
+		"minPermission": 0,
+		"cheats": false,
+		"method": "toggle_cheats",
+		"argumentList": [
+			{
+				"name": "enabled",
+				"type": 1,
+				"optional": true
+			}
+		]
+	},
+	"echo": {
+		"target": "",
+		"type": 1,
+		"minPermission": 0,
+		"cheats": false,
+		"method": "echo",
+		"argumentList": [
+			{
+				"name": "text",
+				"type": 4,
+				"optional": false,
+				"description": "the output text"
+			}
+		],
+		"description": "Prints a string of text"
+	},
+	"file": {
+		"target": "",
+		"type": 1,
+		"minPermission": 0,
+		"cheats": true,
+		"method": "file",
+		"argumentList": [
+			{
+				"name": "path",
+				"type": 4,
+				"optional": false,
+				"description": "the path to the file"
+			},
+			{
+				"name": "action",
+				"type": 4,
+				"optional": true,
+				"description": "print(default): prints an internal file's contents
+system: prints a system file's contents
+contents: prints files inside the directory"
+			}
+		],
+		"description": "Prints either internal or system file contents"
+	}
+}

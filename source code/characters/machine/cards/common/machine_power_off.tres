@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://ypvdangpb04b"]
+
+[ext_resource type="Script" path="res://custom_resources/card.gd" id="1_8wkv4"]
+
+[resource]
+script = ExtResource("1_8wkv4")
+id = "machine_power_off"
+name = "Power off"
+type = 1
+rarity = 0
+target = 0
+repeats = 1
+cost = 1
+tooltip_text = "Attack X
+X = draw pile
+Cancel 2"
+effect_description = "Need to add logic to card"
+is_summon_only = false
+is_chaotic = false
+has_exhaust = false
+has_draw = false

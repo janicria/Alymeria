@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="EnemyAI" load_steps=5 format=3 uid="uid://cw32ms5tgh2o3"]
+
+[ext_resource type="Resource" uid="uid://dwu2pidsfaovs" path="res://enemies/bat/swoop.tres" id="1_bq27e"]
+[ext_resource type="Script" path="res://custom_resources/enemy_ai.gd" id="1_euor7"]
+[ext_resource type="Resource" uid="uid://criifnnvfhxgt" path="res://enemies/bat/shriek.tres" id="2_k81ok"]
+[ext_resource type="Resource" uid="uid://c6cwgq0y0a8d0" path="res://enemies/bat/bite.tres" id="3_iudyt"]
+
+[resource]
+script = ExtResource("1_euor7")
+action_1 = ExtResource("1_bq27e")
+action_2 = ExtResource("2_k81ok")
+action_3 = ExtResource("3_iudyt")
