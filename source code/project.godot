@@ -46,7 +46,7 @@ mouse_cursor/custom_image="res://assets/cursor.png"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/ScriptEditorQoL/plugin.cfg", "res://addons/Todo_Manager/plugin.cfg", "res://addons/godot_tabs/plugin.cfg", "res://addons/script-ide/plugin.cfg", "res://addons/simply-console/plugin.cfg")
+enabled=PackedStringArray("res://addons/ScriptEditorQoL/plugin.cfg", "res://addons/Todo_Manager/plugin.cfg", "res://addons/script-ide/plugin.cfg", "res://addons/simply-console/plugin.cfg")
 
 [godot_idea_board]
 
@@ -303,6 +303,7 @@ right_mouse_pressed={
 2d_physics/layer_1="card_target_selector"
 2d_physics/layer_2="card_drop_area"
 2d_physics/layer_3="enemies"
+2d_physics/layer_4="map_rooms"
 
 [rendering]
 

@@ -9,8 +9,6 @@ const ARROW_OFFSET := 8
 @onready var arrow : Sprite2D = $Arrow
 @onready var stats_ui : StatsUI = $StatsUI
 
-var enemy_action_picker : EnemyActionPicker
-
 
 func set_summon_stats(value : EnemyStats) -> void:
 	stats = value.create_instance()

@@ -2,13 +2,14 @@
 
 [ext_resource type="Texture2D" uid="uid://cd5efxrlqcru1" path="res://assets/top_bar/top_bar_full.png" id="1_1kdsi"]
 [ext_resource type="Script" path="res://scences/ui/top_bar.gd" id="2_6htc6"]
-[ext_resource type="Texture2D" uid="uid://do1aa6n7ws33d" path="res://assets/cog_v3.png" id="2_m2ekw"]
+[ext_resource type="Texture2D" uid="uid://do1aa6n7ws33d" path="res://assets/cog.png" id="2_m2ekw"]
 [ext_resource type="AudioStream" uid="uid://b1vpjjmi5cj3n" path="res://assets/SFX/axe.ogg" id="3_0dl4k"]
 [ext_resource type="PackedScene" uid="uid://bijq7mf8h0j85" path="res://scences/ui/tooltip.tscn" id="4_3gj2d"]
 [ext_resource type="PackedScene" uid="uid://cmrvm435qcold" path="res://scences/ui/card_pile_button.tscn" id="4_gewq0"]
 [ext_resource type="Texture2D" uid="uid://7p8kjadn847c" path="res://assets/cards/deck.png" id="5_4418h"]
 [ext_resource type="PackedScene" uid="uid://da7tuwoqikc3r" path="res://scences/ui/gold_ui.tscn" id="5_y82xe"]
 [ext_resource type="PackedScene" uid="uid://hqt3nv2gge3l" path="res://scences/ui/card_pile_view.tscn" id="7_dqec3"]
+
 
 [sub_resource type="LabelSettings" id="LabelSettings_dr0uj"]
 

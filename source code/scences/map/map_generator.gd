@@ -5,22 +5,21 @@ const X_DIST := 25
 const Y_DIST := 30
 const PLACEMENT_RANDOMNESS := 5
 const MAP_WIDTH := 5
-const MONSTER_WEIGHT := 60
-const SHOP_WEIGHT := 15
+const MONSTER_WEIGHT := 35
+const SHOP_WEIGHT := 18
 const HAVEN_WEIGHT := 25
+const ELITE_WEIGHT := 22
 
 var random_room_type_weights = {
+	Room.Type.MONSTER: 0.0,
 	Room.Type.HAVEN: 0.0,
 	Room.Type.SHOP: 0.0,
-	Room.Type.MONSTER: 0.0
+	Room.Type.ELITE: 0.0
 }
 var random_room_type_total_weight := 0
 var map_data: Array[Array]
 var floors: int
 
-
-func _ready() -> void:
-	generate_map()
 
 # Rotate by 90 degrees to make vertical
 func generate_map() -> Array[Array]:
@@ -36,7 +35,7 @@ func generate_map() -> Array[Array]:
 	_setup_random_room_weights()
 	_setup_room_types()
 	
-	var i := 0
+	var i := 0 #TODO: Delete me
 	for floor in map_data:
 		print("floor %s" % i)
 		var used_rooms = floor.filter(
@@ -82,7 +81,7 @@ func _get_random_starting_points() -> Array[int]:
 	for i in MAP_WIDTH:
 		result.append(i)
 	
-	while result.size() != 2:
+	while result.size() != 3:
 		result.pop_at(randi_range(0, result.size() - 1))
 	
 	return result
@@ -141,12 +140,13 @@ func _setup_boss_room() -> void:
 	boss_room.type = Room.Type.BOSS
 
 
-func _setup_random_room_weights() -> void:
+func _setup_random_room_weights() -> void: # I honestly have no idea how this works but it does
 	random_room_type_weights[Room.Type.MONSTER] = MONSTER_WEIGHT
 	random_room_type_weights[Room.Type.HAVEN] = MONSTER_WEIGHT + HAVEN_WEIGHT
 	random_room_type_weights[Room.Type.SHOP] = MONSTER_WEIGHT + HAVEN_WEIGHT + SHOP_WEIGHT
+	random_room_type_weights[Room.Type.ELITE] = random_room_type_weights[Room.Type.SHOP] + ELITE_WEIGHT
 	
-	random_room_type_total_weight = random_room_type_weights[Room.Type.SHOP]
+	random_room_type_total_weight = random_room_type_weights[Room.Type.ELITE]
 
 
 func _setup_room_types() -> void:
@@ -156,15 +156,16 @@ func _setup_room_types() -> void:
 			room.type = Room.Type.MONSTER
 	
 	
-	# (floors - 5) is always treasure
+	# 5th last floor is always treasure
 	for room: Room in map_data[floors - 5]:
 		if room.next_rooms.size() > 0:
 			room.type = Room.Type.TREASURE
 	
-	# (floors - 1) is always haven
-	for room: Room in map_data[floors - 1]:
+	# 2nd last floor is always either a haven or shop
+	for room: Room in map_data[floors - 2]:
 		if room.next_rooms.size() > 0:
-			room.type = Room.Type.HAVEN
+			if randi_range(0, 1): room.type = Room.Type.HAVEN
+			else: room.type = Room.Type.SHOP
 	
 	# all other non-boss rooms
 	for current_floor in map_data:
@@ -174,16 +175,15 @@ func _setup_room_types() -> void:
 					_set_room_randomly(next_room)
 
 
-
 func _set_room_randomly(room: Room) -> void:
 	var haven_below_4 := true
-	var elite_below_4 := true
+	var elite_below_3 := true
 	var consecutive_shop := true
 	var consecutive_haven := true
 	
 	var type_candidate: Room.Type
 	
-	while haven_below_4 or elite_below_4 or consecutive_shop or consecutive_haven:
+	while haven_below_4 or elite_below_3 or consecutive_shop or consecutive_haven:
 		type_candidate = _get_random_room_type_by_weight()
 		
 		var is_haven := type_candidate == Room.Type.HAVEN
@@ -195,7 +195,7 @@ func _set_room_randomly(room: Room) -> void:
 		
 		
 		haven_below_4 = is_haven and room.row < 3
-		elite_below_4 = is_elite and room.row < 3
+		elite_below_3 = is_elite and room.row < 2
 		consecutive_haven = is_haven and has_haven_parent
 		consecutive_shop = is_shop and has_shop_parent
 	
@@ -233,6 +233,9 @@ func _room_has_parent_of_type(room: Room, type: Room.Type) -> bool:
 func _get_random_room_type_by_weight() -> Room.Type:
 	var roll := randf_range(0.0, random_room_type_total_weight)
 	
-	#for type: Room.Tpe in random_room_type_weights:
-	#	if random_room_type_weights[]
-	return Room.Type.NOT_ASSIGNED
+	for type: Room.Type in random_room_type_weights:
+		if random_room_type_weights[type] > roll:
+			return type
+	
+	print("error generating room type")
+	return Room.Type.MONSTER
