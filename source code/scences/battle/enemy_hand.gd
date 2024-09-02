@@ -34,3 +34,4 @@ func organise_cards(draw_next_card := true) -> void: #TODO: This is also really 
 		await get_tree().create_timer(0.1).timeout
 		time_before_next_card += 0.1
 	if draw_next_card: Events.enemy_card_played.emit()
+	print("organisng hand")

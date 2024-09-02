@@ -1,5 +1,6 @@
 extends Node
 
+signal gold_changed
 
 # Settings-related variables
 var true_draw_amount := false
@@ -24,3 +25,12 @@ var biome_floors = {
 	Biome.STORM: 8,
 	Biome.FINAL: INF,
 }
+var gold := 0
+
+# Console-related variables
+var cheats := false
+var dev_mode := false
+
+func set_gold(new_amount : int) -> void:
+	gold = new_amount
+	gold_changed.emit()

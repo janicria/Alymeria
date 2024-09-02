@@ -132,25 +132,23 @@ func take_damage(damage : int) -> void:
 		func():
 			check_health_cards()
 			if stats.health <= 0:
-				death_animation(4)
+				death_animation(3)
 	)
 
 func death_animation(repeats : int) -> void:
-
 	var death_tween := create_tween()
 	death_tween.tween_callback(Shaker.shake.bind(self, 10, 0.15))
 	death_tween.tween_interval(0.2)
 	
 	death_tween.finished.connect(
 		func():
-			#await get_tree().create_timer(0.1, false).timeout
-			#queue_free()
-			for i in repeats:
+			for i in repeats: #Repeats damage anim for more effect
 				death_animation(repeats - 1)
+			if !repeats:
+				await get_tree().create_timer(0.2, false).timeout # stops enemy death anim
+				Events.enemy_died.emit(self)                      # from ending early
+				queue_free()
 	)
-	if !repeats:
-		Events.enemy_died.emit(self)
-		queue_free()
 
 
 func update_box() -> void:

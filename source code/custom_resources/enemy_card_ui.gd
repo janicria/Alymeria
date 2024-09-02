@@ -9,10 +9,19 @@ extends Node2D
 var card_stats: EnemyCard
 var enemy_stats: Enemy
 var final_targets: Array[Node]
+var is_dead := false
+
 
 func _ready() -> void:
 	Events.enemy_died.connect(func(enemy:Enemy)->void: 
-		if enemy == enemy_stats: queue_free(); get_parent().organise_cards(false))
+		if enemy == enemy_stats: kms())
+
+
+func kms() -> void: # make myself dead
+	cost.text = "X"
+	icon.texture = preload("res://assets/enemies/cross.png")
+	attack_desc.text = "X"
+	is_dead = true
 
 
 func update_stats(card: EnemyCard, enemy: Enemy) -> void:
@@ -31,6 +40,11 @@ func update_stats(card: EnemyCard, enemy: Enemy) -> void:
 
 
 func _on_control_mouse_entered() -> void:
+	var wr =weakref(enemy_stats)
+	if !wr.get_ref(): 
+		Events.card_tooltip_requested.emit("[center]This enemy died, but it's card is still here for some reason? \n [s](bad programming)[/s][/center]")
+		return # Safety for if enemy was freed
+	
 	var tooltip_text:String = "[center]This enemy is going to " + card_stats.tooltip_text_dict.get(card_stats.type)
 	
 	if card_stats.type == card_stats.Type.ATTACK and card_stats.repeats != 1:
@@ -44,12 +58,14 @@ func _on_control_mouse_entered() -> void:
 	tooltip_text +=  " when this card is played[/center]"
 	Events.card_tooltip_requested.emit(tooltip_text)
 	
-	enemy_stats.update_box()
+	enemy_stats.update_box() 
 
 
 func _on_control_mouse_exited() -> void:
 	Events.tooltip_hide_requested.emit()
-	enemy_stats.update_box()
+	var wr =weakref(enemy_stats)
+	if !wr.get_ref(): return # Safety for if enemy was freed
+	if enemy_stats.sprite_2d: enemy_stats.update_box()
 
 
 func play() -> void:
@@ -83,6 +99,7 @@ func get_targets() -> Array[Node]:
 
 
 func apply_effects(targets: Array[Node]) -> void:
+	if is_dead: return
 	for i:int in card_stats.repeats:
 		var effect # Indentation moment
 		if card_stats.type == EnemyCard.Type.ATTACK: effect = DamageEffect.new()

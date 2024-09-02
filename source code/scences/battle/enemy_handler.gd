@@ -9,6 +9,7 @@ func _ready() -> void:
 	Events.battle_find_enemies.connect(_on_battle_find_enemies)
 	Events.enemy_find_enemies.connect(_on_enemy_find_enemies)
 	Events.enemy_card_played.connect(play_next_card)
+	
 
 
 func reset_enemy_actions() -> void:
