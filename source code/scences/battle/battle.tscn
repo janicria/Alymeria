@@ -216,3 +216,5 @@ visible = false
 [node name="DiscardPileView" parent="CardPileViews" instance=ExtResource("25_e6li0")]
 unique_name_in_owner = true
 visible = false
+
+[connection signal="child_order_changed" from="EnemyHandler" to="." method="_on_enemy_handler_child_order_changed"]

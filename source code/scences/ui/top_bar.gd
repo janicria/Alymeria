@@ -3,7 +3,6 @@ extends TextureRect
 const DEFAULT_BUS_LAYOUT = preload("res://assets/default_bus_layout.tres")
 
 @export var sfx_slider_sound : AudioStream
-@export var stats: RunStats
 
 @onready var gold_ui: GoldUI = %GoldUI
 @onready var counter: Label = %Counter
@@ -40,8 +39,7 @@ func  _ready() -> void:
 	color_rect.visible = false
 	#gold_ui.visible = false
 	
-	stats = RunStats.new()
-	gold_ui.run_stats = stats
+	gold_ui
 
 
 func _setup(card_pile : CardPile) -> void:

@@ -104,6 +104,7 @@ func apply_effects(targets: Array[Node]) -> void:
 		var effect # Indentation moment
 		if card_stats.type == EnemyCard.Type.ATTACK: effect = DamageEffect.new()
 		elif card_stats.type == EnemyCard.Type.BARRIER: effect = BarrierEffect.new()
+		elif card_stats.type == EnemyCard.Type.LARGE_BARRIER: effect = BarrierEffect.new()
 		effect.amount = card_stats.amount
 		effect.sound = card_stats.SFX_dict.get(card_stats.type)
 		effect.execute(targets)

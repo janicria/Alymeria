@@ -7,6 +7,6 @@
 script = ExtResource("1_p6ud5")
 max_turn_draw = 3
 max_mana = 2
-max_health = 15
+max_health = 1
 art = ExtResource("1_iq3lt")
 id = "spider"

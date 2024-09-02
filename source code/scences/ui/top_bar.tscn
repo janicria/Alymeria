@@ -10,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://da7tuwoqikc3r" path="res://scences/ui/gold_ui.tscn" id="5_y82xe"]
 [ext_resource type="PackedScene" uid="uid://hqt3nv2gge3l" path="res://scences/ui/card_pile_view.tscn" id="7_dqec3"]
 
-
 [sub_resource type="LabelSettings" id="LabelSettings_dr0uj"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_as8hc"]

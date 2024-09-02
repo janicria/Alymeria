@@ -10,7 +10,7 @@ const CARD_TEXT := "Add a New Card"
 const REGULAR_POTION_ICON := preload("res://assets/art/tile_0114.png")
 #const POTION_TEXT := ""
 
-@export var run_stats: RunStats
+#@export var GameSave: RunStats
 @export var character_stats: CharacterStats
 
 @onready var rewards: VBoxContainer = %Rewards
@@ -24,6 +24,8 @@ var card_rarity_weights := {
 
 
 func _ready() -> void:
+	character_stats = GameSave.character
+	
 	for node: Node in rewards.get_children():
 		node.queue_free()
 
@@ -45,9 +47,6 @@ func add_gold_reward(amount: int) -> void:
 
 
 func _show_card_rewards() -> void:
-	if !run_stats or !character_stats:
-		return
-	
 	var card_rewards := CARD_REWARDS.instantiate() as CardRewards
 	add_child(card_rewards)
 	card_rewards.card_reward_selected.connect(_on_card_reward_taken)
@@ -56,7 +55,7 @@ func _show_card_rewards() -> void:
 	var available_cards: Array[Card] = character_stats.card_pool.duplicate_cards()
 	
 	# RNG for selecting each card (dark magic)
-	for i in run_stats.card_rewards:
+	for i in GameSave.card_rewards:
 		setup_card_rarity_chances()
 		var roll := randf_range(0.0, card_reward_total_weight)
 		
@@ -98,10 +97,10 @@ func _show_card_rewards() -> void:
 
 
 func setup_card_rarity_chances() -> void:
-	card_reward_total_weight = run_stats.common_weight + run_stats.uncommon_weight + run_stats.rare_weight
-	card_rarity_weights[Card.Rarity.COMMON] = run_stats.common_weight
-	card_rarity_weights[Card.Rarity.UNCOMMON] = run_stats.uncommon_weight
-	card_rarity_weights[Card.Rarity.RARE] = run_stats.rare_weight
+	card_reward_total_weight = GameSave.common_weight + GameSave.uncommon_weight + GameSave.rare_weight
+	card_rarity_weights[Card.Rarity.COMMON] = GameSave.common_weight
+	card_rarity_weights[Card.Rarity.UNCOMMON] = GameSave.uncommon_weight
+	card_rarity_weights[Card.Rarity.RARE] = GameSave.rare_weight
 	var biome := 0 # TODO replace w/ GameSave.biome
 	if biome:
 		card_rarity_weights[Card.Rarity.UNCOMMON] *= (biome * 2)
@@ -112,25 +111,25 @@ func setup_card_rarity_chances() -> void:
 # TODO change for elites and boss combat rewards
 func _modify_weights(rarity_rolled: Card.Rarity) -> void:
 	if rarity_rolled == Card.Rarity.UNCOMMON:
-		run_stats.common_weight = RunStats.BASE_COMMON_WEIGHT - run_stats.rare_weight
-		run_stats.uncommon_weight = run_stats.BASE_UNCOMMON_WEIGHT
+		GameSave.common_weight = RunStats.BASE_COMMON_WEIGHT - GameSave.rare_weight
+		GameSave.uncommon_weight = GameSave.BASE_UNCOMMON_WEIGHT
 	else:
-		run_stats.uncommon_weight = clampf(run_stats.uncommon_weight + 6.0, run_stats.BASE_UNCOMMON_WEIGHT, 80.0)
-		run_stats.common_weight = run_stats.BASE_COMMON_WEIGHT - run_stats.uncommon_weight
+		GameSave.uncommon_weight = clampf(GameSave.uncommon_weight + 8.0, GameSave.BASE_UNCOMMON_WEIGHT, 80.0)
+		GameSave.common_weight = GameSave.BASE_COMMON_WEIGHT - GameSave.uncommon_weight
 	
 	if rarity_rolled == Card.Rarity.RARE:
-		run_stats.rare_weight = RunStats.BASE_RARE_WEIGHT
-		run_stats.common_weight = RunStats.BASE_COMMON_WEIGHT
-		run_stats.uncommon_weight = RunStats.BASE_UNCOMMON_WEIGHT
+		GameSave.rare_weight = RunStats.BASE_RARE_WEIGHT
+		GameSave.common_weight = RunStats.BASE_COMMON_WEIGHT
+		GameSave.uncommon_weight = RunStats.BASE_UNCOMMON_WEIGHT
 	else:
-		run_stats.rare_weight = clampf(run_stats.rare_weight + 3.0, run_stats.BASE_RARE_WEIGHT, 50.0)
-		run_stats.common_weight = run_stats.BASE_COMMON_WEIGHT - run_stats.rare_weight
+		GameSave.rare_weight = clampf(GameSave.rare_weight + 4.0, GameSave.BASE_RARE_WEIGHT, 50.0)
+		GameSave.common_weight = GameSave.BASE_COMMON_WEIGHT - GameSave.rare_weight
 	
 	while card_reward_total_weight > 100:
-		run_stats.common_weight -= 1
+		GameSave.common_weight -= 1
 		setup_card_rarity_chances()
 	while card_reward_total_weight < 100:
-		run_stats.common_weight += 1
+		GameSave.common_weight += 1
 		setup_card_rarity_chances()
 
 
@@ -148,15 +147,18 @@ func _on_card_reward_taken(card: Card) -> void:
 	if !character_stats or !card:
 		return
 	
+	print(character_stats.description)
+	print(GameSave.character.description)
 	print("drafted %s" % card.id)
-	character_stats.deck.add_card(card)
+	#character_stats.deck.add_card(card)
+	GameSave.character.deck.add_card(card)
 
 
 func _on_gold_reward_taken(amount: int) -> void:
-	if ! run_stats:
+	if ! GameSave:
 		return
 	
-	run_stats.gold += amount
+	GameSave.gold += amount
 
 
 func _on_back_button_pressed() -> void:

@@ -25,6 +25,8 @@ func set_current_character(new_character: CharacterStats) -> void:
 	description.text = current_character.description
 	character_portrait.texture = current_character.portrait
 	GameSave.character = current_character
+	GameSave.deck = current_character.starting_deck
+
 
 func _on_start_button_pressed() -> void:
 	run_startup.type = RunStartup.Type.NEW_RUN

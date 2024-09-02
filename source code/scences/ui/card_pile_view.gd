@@ -69,4 +69,3 @@ func _on_update_deck_buttons(amount : int, returning : bool):
 		return
 	
 	Events.update_deck_buttons.emit(cards.get_child_count(), true)
-

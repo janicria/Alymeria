@@ -10,7 +10,6 @@ const HAVEN_SCENCE := preload("res://scences/haven/haven.tscn")
 const EVENT_SCENCE := preload("res://scences/events/event.tscn")
 
 @export var run_startup: RunStartup
-@export var stats: RunStats
 
 @onready var console_window: Window = $ConsoleWindow
 @onready var current_view: Node = $CurrentView
@@ -101,8 +100,6 @@ func _input(event: InputEvent) -> void:
 
 
 func _process(delta: float) -> void:
-	stats = top_bar.stats
-	
 	if !debug_menu.visible:
 		return
 	
@@ -116,11 +113,10 @@ current scence: "
 
 func _on_battle_won() -> void:
 	var reward_scence := _change_view(BATTLE_REWARD_SCENCE) as BattleReward
-	reward_scence.run_stats = stats
-	reward_scence.character_stats = character
 	
 	reward_scence.add_gold_reward(72)
 	reward_scence.add_card_reward()
+	print("battle own")
 
 
 func _on_reward_exited() -> void:

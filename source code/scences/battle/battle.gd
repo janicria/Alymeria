@@ -23,9 +23,11 @@ func _ready() -> void:
 	# As otherwise we can't have multiple floors
 	# or even multiple runs
 	
+	
 	var new_stats : CharacterStats = char_stats.create_instance()
 	battle_ui.char_stats = new_stats
 	player.stats = new_stats
+	GameSave.character = new_stats
 	
 	Events.player_died.connect(_on_player_died)
 	Events.battle_state_updated.connect(_on_battle_state_updated)
@@ -45,13 +47,6 @@ func start_battle(stats : CharacterStats) -> void:
 	Events.battle_state_updated.emit(0)
 
 
-func _on_enmeies_child_order_changed() -> void:
-	#if enemy_hand.get_child_count() == 0:
-	#	Events.battle_state_updated.emit(5)
-	#	print("Victory! ", self)
-	pass
-
-
 func _on_enemy_turn_ended() -> void:
 	if state == 5 or state == 6:
 		return
@@ -67,7 +62,7 @@ func _on_player_died() -> void:
 
 func _on_battle_state_updated(new_state : BattleState) -> void:
 	state = new_state
-	
+	# FIXME: Replace with switch 
 	if new_state == 1:  # Loops turn
 		pass
 	
@@ -80,4 +75,13 @@ func _on_battle_state_updated(new_state : BattleState) -> void:
 	if new_state == 4: # Player turn
 		player_handeler.end_turn()
 	
+	if new_state == 5: # Victory
+		Events.battle_won.emit()
 	return
+
+
+func _on_enemy_handler_child_order_changed() -> void:
+	if enemy_handler.get_child_count() == 1:
+		Events.battle_state_updated.emit(5)
+		Events.battle_won.emit()
+		print("Victory! ", self)

@@ -7,6 +7,6 @@
 script = ExtResource("1_nrbak")
 max_turn_draw = 2
 max_mana = 1
-max_health = 8
+max_health = 1
 art = ExtResource("1_dgw2n")
 id = "bat"
