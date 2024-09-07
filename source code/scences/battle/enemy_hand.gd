@@ -26,9 +26,8 @@ func cardToGui(card: EnemyCard, enemy: Enemy) -> void:
 	tween.tween_property(card_ui, "global_position", target_pos, 0.6)
 	
 	# Starting player draw
-	if card_ui == get_child(-1): 
-		await get_tree().create_timer(0.5).timeout # Anim looks nicer
-		Events.battle_state_updated.emit(3)
+	if card_ui == get_child(-1):
+		Events.battle_request_player_turn.emit()
 
 
 # await is for cards which are queued_for_deletion() bc the method doesn't work lol

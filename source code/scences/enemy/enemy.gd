@@ -37,7 +37,7 @@ func draw_cards(amount: int) -> void:
 		
 		while continue_rolling:
 			var roll := randi_range(0, total_card_weight)
-			var rolled_cards: Array[EnemyCard]
+			var rolled_cards: Array[EnemyCard] # HACK: No loop?
 			if ai.action_1 and ai.action_1.weight and ai.action_1.weight > roll-1: rolled_cards.append(ai.action_1); continue_rolling = false
 			if ai.action_2 and ai.action_2.weight and ai.action_2.weight > roll-1: rolled_cards.append(ai.action_2); continue_rolling = false
 			if ai.action_3 and ai.action_3.weight and ai.action_3.weight > roll-1: rolled_cards.append(ai.action_3); continue_rolling = false
@@ -50,7 +50,7 @@ func draw_cards(amount: int) -> void:
 			if ai.action_10 and ai.action_10.weight and ai.action_10.weight>roll-1:rolled_cards.append(ai.action_10); continue_rolling= false
 			if rolled_cards: add_card(rolled_cards.pick_random())  # HACK: Weight systems are hard
 
-func update_weights() -> void: # HACK: Yikes again
+func update_weights() -> void: # HACK: No loop 2: Electric boogaloo (TIL this from a movie)
 	if ai.action_1: total_card_weight += ai.action_1.weight
 	if ai.action_2: total_card_weight += ai.action_2.weight
 	if ai.action_3: total_card_weight += ai.action_3.weight
@@ -145,8 +145,9 @@ func death_animation(repeats : int) -> void:
 			for i in repeats: #Repeats damage anim for more effect
 				death_animation(repeats - 1)
 			if !repeats:
-				await get_tree().create_timer(0.2, false).timeout # stops enemy death anim
-				Events.enemy_died.emit(self)                      # from ending early
+				# await stops enemy death anim from ending early
+				await get_tree().create_timer(0.2, false).timeout
+				Events.enemy_died.emit(self)
 				queue_free()
 	)
 

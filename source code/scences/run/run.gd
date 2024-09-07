@@ -60,6 +60,7 @@ func _change_view(scence : PackedScene) -> Node:
 	var wr = weakref(get_tree())
 	if !wr.get_ref(): return
 	
+	
 	if current_view.get_child_count() > 0:
 		current_view.get_child(0).queue_free()
 	
@@ -67,11 +68,8 @@ func _change_view(scence : PackedScene) -> Node:
 	var new_view := scence.instantiate()
 	current_view.add_child(new_view)
 	
-#	await get_tree().create_timer(0.01).timeout 
 	if current_view.get_child(0).get_name() == "Battle":
-		top_bar.texture = preload("res://assets/top_bar/top_bar_battle.png")
-	else:
-		top_bar.texture = preload("res://assets/top_bar/top_bar_full.png")
+		pass
 	
 	return new_view
 
@@ -108,11 +106,8 @@ func _process(delta: float) -> void:
 		return
 	
 	debug_stats.text = "version: " + ProjectSettings.get_setting("application/config/version") + "
-character: " + run_startup.picked_character.id + "
-difficulty: " + str(run_startup.difficulty) + "
-current scence: "
-	if current_view.get_children():
-		debug_stats.text = debug_stats.text + current_view.get_child(0).get_name()
+character: %s" % run_startup.picked_character.id + "
+difficulty: %s " % str(run_startup.difficulty)
 
 
 func _on_battle_won() -> void:

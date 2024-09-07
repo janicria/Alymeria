@@ -37,9 +37,6 @@ func  _ready() -> void:
 		gold_ui.queue_free()
 	settings.visible = false
 	color_rect.visible = false
-	#gold_ui.visible = false
-	
-	gold_ui
 
 
 func _setup(card_pile : CardPile) -> void:
@@ -154,4 +151,19 @@ func _on_true_deck_button_toggled(toggled_on: bool) -> void:
 
 func _on_h_box_container_2_mouse_entered() -> void:
 	Events.settings_tooltip_requested.emit("[center]Show useful gameplay hints during menus
-recommended[/center]")
+(recommended)[/center]")
+
+
+func _on_h_box_container_mouse_entered() -> void:
+	Events.settings_tooltip_requested.emit("[center]Cards which draw show how far they move your deck[/center]")
+
+func _on_h_box_container_4_mouse_entered() -> void:
+	Events.settings_tooltip_requested.emit("[center]Deck counter doesn't show cards which exhaust[/center]")
+
+
+func _on_h_box_container_3_mouse_entered() -> void:
+	Events.settings_tooltip_requested.emit("[center]Moves your draw and discard pile buttons to a more accessible place[/center]")
+
+
+func hide_settings_tooltip() -> void:
+	Events.tooltip_hide_requested.emit()

@@ -18,8 +18,8 @@ var deck : CardPile
 var discard : CardPile
 var draw_pile : CardPile
 
-
-func set_mana(value : int) -> void: # May need to clampi to prevent mana going into negatives/above 99
+# May need to clampi to prevent mana going above 99
+func set_mana(value : int) -> void: 
 	mana = value
 	stats_changed.emit()
 

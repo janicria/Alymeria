@@ -171,13 +171,12 @@ func show_command_list(commandName: String = \"\") -> String:
 		if COMMAND_LIST_[commandName][\"argumentList\"].is_empty():
 			return \"Command '\" + commandName + \"' does not have any arguments.\"
 		
-		response = COMMAND_LIST_[commandName][\"description\"] + \"\\n\"
-		response += \"Argument(s) for '\" + commandName + \"':\\n \\n\"
+		response = COMMAND_LIST_[commandName][\"description\"] +\"\\n\"
+		response += \"Argument(s) for '\" + commandName + \"':\\n\"
 		for ARGUMENT_ in COMMAND_LIST_[commandName][\"argumentList\"]:
 			response += ARGUMENT_[\"name\"]
 			if ARGUMENT_[\"optional\"]:
 				response += \" (optional)\"
-			response += \"\\n\" + ARGUMENT_[\"description\"] + \"\\n\"
 
 		return response.trim_suffix(\"\\n\")
 	
@@ -200,20 +199,11 @@ func echo(text: String) -> String:
 	return text
 
 
-func file(path: String, action: String = \"print\") -> String:
-	var file := FileAccess.open(\"res://\" + path, FileAccess.READ)
-	var dir := DirAccess.open(\"res://\" + path)
-	var system_dir := FileAccess.open(\"/\" + path, FileAccess.READ)
-	
-	if action == \"contents\":
-		return str(dir.get_files())
-	if action == \"print\":
-		return file.get_as_text()
-	if action == \"system\":
-		return system_dir.get_as_text()
-	if !file:
-		return \"No file found in path '%s'\" % path
-	return \"Error executing command\"
+func gold(amount: int) -> String:
+	GameSave.gold += amount
+	return \"Added %s gold\" % amount
+
+
 #endregion
 "
 

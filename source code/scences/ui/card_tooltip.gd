@@ -12,8 +12,6 @@ func show_tooltip(card : Card) -> void:
 	new_card.card_tooltip_requested.connect(hide_tooltip.unbind(1))
 	card_description.text = card.effect_description
 	
-	#Events.update_card_tooltip_position.emit()
-	
 	show()
 
 

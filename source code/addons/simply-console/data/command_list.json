@@ -11,7 +11,8 @@
 				"type": 4,
 				"optional": true
 			}
-		]
+		],
+		"description": "Displays information about commands"
 	},
 	"clear": {
 		"target": "",
@@ -19,7 +20,8 @@
 		"minPermission": 0,
 		"cheats": false,
 		"method": "clear_console",
-		"argumentList": []
+		"argumentList": [],
+		"description": "Clears the console's text"
 	},
 	"cheats": {
 		"target": "",
@@ -33,7 +35,8 @@
 				"type": 1,
 				"optional": true
 			}
-		]
+		],
+		"description": "Enables cheat commands\n(disables achievements)"
 	},
 	"echo": {
 		"target": "",
@@ -45,34 +48,24 @@
 			{
 				"name": "text",
 				"type": 4,
-				"optional": false,
-				"description": "the output text"
+				"optional": false
 			}
 		],
 		"description": "Prints a string of text"
 	},
-	"file": {
+	"gold": {
 		"target": "",
 		"type": 1,
 		"minPermission": 0,
 		"cheats": true,
-		"method": "file",
+		"method": "gold",
 		"argumentList": [
 			{
-				"name": "path",
-				"type": 4,
-				"optional": false,
-				"description": "the path to the file"
-			},
-			{
-				"name": "action",
-				"type": 4,
-				"optional": true,
-				"description": "print(default): prints an internal file's contents
-system: prints a system file's contents
-contents: prints files inside the directory"
+				"name": "amount",
+				"type": 2,
+				"optional": false
 			}
 		],
-		"description": "Prints either internal or system file contents"
+		"description": "Increases gold by a set amount\n(can be negative)"
 	}
 }

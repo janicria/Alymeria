@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://scences/ui/tooltip.gd" id="2_y0pru"]
 
 [node name="Tooltip" type="PanelContainer"]
+process_mode = 3
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -33,3 +34,7 @@ bbcode_enabled = true
 text = "Tooltip description
 Tooltip description"
 fit_content = true
+
+[node name="HideTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true

@@ -2,7 +2,7 @@ class_name OLDEnemyAI
 extends Node
 
 @export var enemy : Enemy : set = _set_enemy
-@export var target : Node2D #: set = _set_target
+@export var target : Node2D
 
 
 func _ready() -> void:

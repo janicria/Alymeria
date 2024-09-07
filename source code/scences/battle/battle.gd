@@ -1,7 +1,7 @@
 class_name Battle
 extends Node2D
 
-enum BattleState {BASE, LOOPS, DRAW, ENEMY, PLAYER, WIN, LOSE}
+enum BattleState {BASE, LOOPS, ENEMY_DRAW, PLAYER, ENEMY_CARDS, WIN, LOSE}
 
 @export var char_stats : CharacterStats
 @export var music : AudioStream
@@ -31,7 +31,7 @@ func _ready() -> void:
 	
 	Events.player_died.connect(_on_player_died)
 	Events.battle_state_updated.connect(_on_battle_state_updated)
-	#Events.enemy_turn_ended.connect(_on_enemy_turn_ended)
+	Events.battle_request_player_turn.connect(_on_battle_request_player_turn)
 	
 	Events.player_hand_discarded.connect(enemy_handler.start_turn)
 	
@@ -42,7 +42,6 @@ func _ready() -> void:
 func start_battle(stats : CharacterStats) -> void:
 	get_tree().paused = false
 	MusicPlayer.play(music, true)
-	#enemy_hand.reset_enemy_actions()
 	player_handeler.start_battle(stats)
 	Events.battle_state_updated.emit(0)
 
@@ -54,9 +53,12 @@ func _on_player_died() -> void:
 
 func _on_battle_state_updated(new_state : BattleState) -> void:
 	state = new_state
-	match state:   
+	match state:
+		0: # Base
+			Events.battle_state_updated.emit(1)
+		
 		1: # Loops
-			Events.battle_state_updated.emit(2) 
+			Events.battle_state_updated.emit(2)
 		
 		2: # Enemy drawing cards
 			enemy_handler.draw_cards()
@@ -78,3 +80,10 @@ func _on_battle_state_updated(new_state : BattleState) -> void:
 func _on_enemy_handler_child_order_changed() -> void:
 	if enemy_handler.get_child_count() == 1:
 		Events.battle_state_updated.emit(5)
+
+
+func _on_battle_request_player_turn() -> void:
+	if state == BattleState.ENEMY_DRAW :
+		# Pause so anim looks nicer
+		await get_tree().create_timer(0.5).timeout
+		Events.battle_state_updated.emit(3)

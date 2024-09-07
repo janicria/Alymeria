@@ -4,10 +4,12 @@ extends PanelContainer
 @export var fade_seconds := 0.2
 
 @onready var tooltip_text_label: RichTextLabel = %TooltipText
+@onready var hide_timer: Timer = %HideTimer
 
 var tween : Tween
 var is_visible := false
 var is_playable := true
+
 
 func _ready() -> void:
 	Events.card_tooltip_requested.connect(show_tooltop)
@@ -40,7 +42,6 @@ func show_settings(text : String) -> void:
 	tween.tween_callback(show)
 	tween.tween_property(self, "modulate", Color.WHITE, fade_seconds)
 
-	print(tooltip_text_label.text + "s")
 
 func show_tooltop(text : String) -> void:
 	if get_name() == "SettingsTooltip":
@@ -57,12 +58,15 @@ func show_tooltop(text : String) -> void:
 	tween.tween_property(self, "modulate", Color.WHITE, fade_seconds)
 
 
+# Starts a the timer to hide the tooltip
 func hide_tooltip() -> void:
 	is_visible = false
+	
 	if tween:
 		tween.kill()
-
-	get_tree().create_timer(fade_seconds, false).timeout.connect(hide_animation)
+	
+	hide_timer.start(fade_seconds)
+	hide_timer.timeout.connect(hide_animation)
 
 
 func hide_animation() -> void:

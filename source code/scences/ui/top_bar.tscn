@@ -1,6 +1,5 @@
-[gd_scene load_steps=13 format=3 uid="uid://bwuexw3t61b0h"]
+[gd_scene load_steps=12 format=3 uid="uid://bwuexw3t61b0h"]
 
-[ext_resource type="Texture2D" uid="uid://cd5efxrlqcru1" path="res://assets/top_bar/top_bar_full.png" id="1_1kdsi"]
 [ext_resource type="Script" path="res://scences/ui/top_bar.gd" id="2_6htc6"]
 [ext_resource type="Texture2D" uid="uid://do1aa6n7ws33d" path="res://assets/cog.png" id="2_m2ekw"]
 [ext_resource type="AudioStream" uid="uid://b1vpjjmi5cj3n" path="res://assets/SFX/axe.ogg" id="3_0dl4k"]
@@ -22,7 +21,6 @@ font_size = 6
 modulate = Color(0.737255, 0.737255, 0.737255, 1)
 offset_right = 334.0
 offset_bottom = 20.0
-texture = ExtResource("1_1kdsi")
 expand_mode = 1
 stretch_mode = 2
 script = ExtResource("2_6htc6")
@@ -246,41 +244,23 @@ text = "Disabled"
 
 [node name="SettingsTooltip" parent="SettingsLayer" instance=ExtResource("4_3gj2d")]
 unique_name_in_owner = true
-offset_left = -68.0
-offset_top = -8.0
-offset_right = 82.0
-offset_bottom = 28.0
+offset_left = -138.0
+offset_top = 14.0
+offset_right = 12.0
+offset_bottom = 50.0
 
 [node name="TopBarHbox" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -2.0
+offset_left = 7.0
 offset_top = 5.0
-offset_right = -7.0
+offset_right = -249.0
 offset_bottom = 5.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 4
-alignment = 2
-
-[node name="GoldUI" parent="TopBarHbox" instance=ExtResource("5_y82xe")]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="Counter" type="Label" parent="TopBarHbox"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "99"
-horizontal_alignment = 1
-
-[node name="DeckButton" parent="TopBarHbox" node_paths=PackedStringArray("counter") instance=ExtResource("4_gewq0")]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(12, 14)
-layout_mode = 2
-texture_normal = ExtResource("5_4418h")
-counter = NodePath("../Counter")
 
 [node name="Cog" type="TextureRect" parent="TopBarHbox"]
 unique_name_in_owner = true
@@ -291,6 +271,23 @@ texture = ExtResource("2_m2ekw")
 expand_mode = 1
 stretch_mode = 5
 
+[node name="DeckButton" parent="TopBarHbox" node_paths=PackedStringArray("counter") instance=ExtResource("4_gewq0")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(12, 14)
+layout_mode = 2
+texture_normal = ExtResource("5_4418h")
+counter = NodePath("../Counter")
+
+[node name="Counter" type="Label" parent="TopBarHbox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "99"
+horizontal_alignment = 1
+
+[node name="GoldUI" parent="TopBarHbox" instance=ExtResource("5_y82xe")]
+unique_name_in_owner = true
+layout_mode = 2
+
 [node name="DeckViewLayer" type="CanvasLayer" parent="."]
 layer = 2
 
@@ -300,10 +297,17 @@ visible = false
 
 [connection signal="gui_input" from="ColorRect" to="." method="_on_color_rect_gui_input"]
 [connection signal="gui_input" from="SettingsLayer/Settings" to="." method="_on_settings_gui_input"]
+[connection signal="mouse_entered" from="SettingsLayer/Settings/VBoxContainer/HBoxContainer/Gameplay/HBoxContainer" to="." method="_on_h_box_container_mouse_entered"]
+[connection signal="mouse_exited" from="SettingsLayer/Settings/VBoxContainer/HBoxContainer/Gameplay/HBoxContainer" to="." method="hide_settings_tooltip"]
 [connection signal="toggled" from="SettingsLayer/Settings/VBoxContainer/HBoxContainer/Gameplay/HBoxContainer/TrueDrawButton" to="." method="_on_true_draw_button_toggled"]
+[connection signal="mouse_entered" from="SettingsLayer/Settings/VBoxContainer/HBoxContainer/Gameplay/HBoxContainer4" to="." method="_on_h_box_container_4_mouse_entered"]
+[connection signal="mouse_exited" from="SettingsLayer/Settings/VBoxContainer/HBoxContainer/Gameplay/HBoxContainer4" to="." method="hide_settings_tooltip"]
 [connection signal="toggled" from="SettingsLayer/Settings/VBoxContainer/HBoxContainer/Gameplay/HBoxContainer4/TrueDeckButton" to="." method="_on_true_deck_button_toggled"]
 [connection signal="mouse_entered" from="SettingsLayer/Settings/VBoxContainer/HBoxContainer/Gameplay/HBoxContainer2" to="." method="_on_h_box_container_2_mouse_entered"]
+[connection signal="mouse_exited" from="SettingsLayer/Settings/VBoxContainer/HBoxContainer/Gameplay/HBoxContainer2" to="." method="hide_settings_tooltip"]
 [connection signal="toggled" from="SettingsLayer/Settings/VBoxContainer/HBoxContainer/Gameplay/HBoxContainer2/HintsButton" to="." method="_on_hints_button_toggled"]
+[connection signal="mouse_entered" from="SettingsLayer/Settings/VBoxContainer/HBoxContainer/Gameplay/HBoxContainer3" to="." method="_on_h_box_container_3_mouse_entered"]
+[connection signal="mouse_exited" from="SettingsLayer/Settings/VBoxContainer/HBoxContainer/Gameplay/HBoxContainer3" to="." method="hide_settings_tooltip"]
 [connection signal="toggled" from="SettingsLayer/Settings/VBoxContainer/HBoxContainer/Gameplay/HBoxContainer3/PileButton" to="." method="_on_pile_button_toggled"]
 [connection signal="drag_ended" from="SettingsLayer/Settings/VBoxContainer/HBoxContainer/Audio & Visual/HBoxContainer/MasterVolume" to="." method="_on_sfx_volume_drag_ended"]
 [connection signal="value_changed" from="SettingsLayer/Settings/VBoxContainer/HBoxContainer/Audio & Visual/HBoxContainer/MasterVolume" to="." method="_on_sfx_volume_value_changed"]

@@ -2,6 +2,9 @@
 
 *add desc here*
 
+Changelogs are stored at 'patch notes.md'
+(I guess you could also look at the commit history if you wanted, though it's mainly internal stuff so ¯\\\_(ツ)\_/¯ )
+
 ## Demo
 Please note that this game is currently in it's pre-release 'Alpha' phase, meaning that many sprites don't make any sense and menus may have some unusable buttons
 

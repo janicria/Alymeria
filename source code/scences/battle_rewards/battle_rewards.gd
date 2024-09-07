@@ -10,7 +10,6 @@ const CARD_TEXT := "Add a New Card"
 const REGULAR_POTION_ICON := preload("res://assets/art/tile_0114.png")
 #const POTION_TEXT := ""
 
-#@export var GameSave: RunStats
 @export var character_stats: CharacterStats
 
 @onready var rewards: VBoxContainer = %Rewards
@@ -74,9 +73,9 @@ func _show_card_rewards() -> void:
 				break
 
 
-	# Don't think this is needed anymore, if it
-	# still hasn't ever ran by the end of Alpha
-	# development then remove it
+	# Don't think this is needed anymore
+	# TODO: if it still hasn't ever ran by 
+	# the end of Alpha development then remove it
 	while card_reward_array.size() < 4:
 		for i in (4 - card_reward_array.size()):
 			setup_card_rarity_chances()
@@ -108,7 +107,7 @@ func setup_card_rarity_chances() -> void:
 
 
 # Increments rare weights over time (reuse for pot chances)
-# TODO change for elites and boss combat rewards
+# TODO: change for elites and boss combat rewards
 func _modify_weights(rarity_rolled: Card.Rarity) -> void:
 	if rarity_rolled == Card.Rarity.UNCOMMON:
 		GameSave.common_weight = RunStats.BASE_COMMON_WEIGHT - GameSave.rare_weight
@@ -150,7 +149,6 @@ func _on_card_reward_taken(card: Card) -> void:
 	print(character_stats.description)
 	print(GameSave.character.description)
 	print("drafted %s" % card.id)
-	#character_stats.deck.add_card(card)
 	GameSave.character.deck.add_card(card)
 
 

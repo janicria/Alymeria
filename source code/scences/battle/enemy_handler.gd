@@ -44,8 +44,10 @@ func play_next_card() -> void:
 	
 	card.play()
 	
-	if card.card_stats.repeats != 1: # So it doesn't get shadowrealmed from memory right away
+	# So it doesn't get shadowrealmed from memory right away
+	if card.card_stats.repeats != 1: 
 		card.visible = false
+		# Approx time taken for a card to be played
 		await get_tree().create_timer((card.card_stats.repeats-1)*1.5).timeout
 	
 	enemy_hand.remove_child(card)

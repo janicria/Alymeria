@@ -17,7 +17,7 @@ func _ready() -> void:
 		if enemy == enemy_stats: kms())
 
 
-func kms() -> void: # make myself dead
+func kms() -> void:
 	cost.text = "X"
 	icon.texture = preload("res://assets/enemies/cross.png")
 	attack_desc.text = "X"
@@ -40,10 +40,11 @@ func update_stats(card: EnemyCard, enemy: Enemy) -> void:
 
 
 func _on_control_mouse_entered() -> void:
+	# Checks if enemy has been freed
 	var wr =weakref(enemy_stats)
 	if !wr.get_ref(): 
 		Events.card_tooltip_requested.emit("[center]This enemy died, but it's card is still here for some reason? \n [s](bad programming)[/s][/center]")
-		return # Safety for if enemy was freed
+		return
 	
 	var tooltip_text:String = "[center]This enemy is going to " + card_stats.tooltip_text_dict.get(card_stats.type)
 	
@@ -63,9 +64,12 @@ func _on_control_mouse_entered() -> void:
 
 func _on_control_mouse_exited() -> void:
 	Events.tooltip_hide_requested.emit()
+	
+	# Safety for if enemy was freed
 	var wr =weakref(enemy_stats)
-	if !wr.get_ref(): return # Safety for if enemy was freed
-	if enemy_stats.sprite_2d: enemy_stats.update_box()
+	if !wr.get_ref(): return
+	
+	enemy_stats.update_box()
 
 
 func play() -> void:
@@ -101,10 +105,16 @@ func get_targets() -> Array[Node]:
 func apply_effects(targets: Array[Node]) -> void:
 	if is_dead: return
 	for i:int in card_stats.repeats:
-		var effect # Indentation moment
-		if card_stats.type == EnemyCard.Type.ATTACK: effect = DamageEffect.new()
-		elif card_stats.type == EnemyCard.Type.BARRIER: effect = BarrierEffect.new()
-		elif card_stats.type == EnemyCard.Type.LARGE_BARRIER: effect = BarrierEffect.new()
+		var effect # Indentation moment (cannot be declared in switch below then refrenced below)
+		match card_stats.type:
+			EnemyCard.Type.ATTACK:
+				effect = DamageEffect.new()
+				
+			EnemyCard.Type.BARRIER :
+				effect = BarrierEffect.new()
+				# Game crashes if combined in an or statement with Type.Barrier ¯\_(ツ)_/¯
+			EnemyCard.Type.LARGE_BARRIER:
+				effect = BarrierEffect.new()
 		effect.amount = card_stats.amount
 		effect.sound = card_stats.SFX_dict.get(card_stats.type)
 		effect.execute(targets)

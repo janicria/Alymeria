@@ -104,10 +104,10 @@ func _would_cross_existing_path(i: int, j: int, room: Room) -> bool:
 	var left_neighbour: Room
 	var right_neighbour: Room
 	
-	# if j == 0 there is no left neighbour
+	# if j == 0: there is no left neighbour
 	if j > 0:
 		left_neighbour = map_data[i][j - 1]
-	# if j == (MAP_WIDTH - 1) there is no right neighbour
+	# if j == (MAP_WIDTH - 1): there is no right neighbour
 	if j < MAP_WIDTH - 1:
 		right_neighbour = map_data[i][j + 1]
 	
@@ -140,7 +140,8 @@ func _setup_boss_room() -> void:
 	boss_room.type = Room.Type.BOSS
 
 
-func _setup_random_room_weights() -> void: # I honestly have no idea how this works but it does
+# I honestly have no idea how this (weight systems) work, but it does
+func _setup_random_room_weights() -> void:
 	random_room_type_weights[Room.Type.MONSTER] = MONSTER_WEIGHT
 	random_room_type_weights[Room.Type.HAVEN] = MONSTER_WEIGHT + HAVEN_WEIGHT
 	random_room_type_weights[Room.Type.SHOP] = MONSTER_WEIGHT + HAVEN_WEIGHT + SHOP_WEIGHT

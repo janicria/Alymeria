@@ -12,7 +12,7 @@ length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ScenceTransition/ColorRect:self_modulate")
+tracks/0/path = NodePath("UI/ScenceTransition/ColorRect:self_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -24,7 +24,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("ScenceTransition/ColorRect:visible")
+tracks/1/path = NodePath("UI/ScenceTransition/ColorRect:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -40,7 +40,7 @@ length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ScenceTransition/ColorRect:self_modulate")
+tracks/0/path = NodePath("UI/ScenceTransition/ColorRect:self_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -52,7 +52,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("ScenceTransition/ColorRect:visible")
+tracks/1/path = NodePath("UI/ScenceTransition/ColorRect:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -93,9 +93,9 @@ anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -304.0
-offset_top = 22.0
+offset_top = 5.0
 offset_right = -4.0
-offset_bottom = 42.0
+offset_bottom = 25.0
 grow_horizontal = 0
 text = "Version: "
 horizontal_alignment = 2
@@ -104,8 +104,9 @@ horizontal_alignment = 2
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
+offset_left = 9.0
 offset_top = 30.0
-offset_right = 40.0
+offset_right = 49.0
 offset_bottom = 84.0
 grow_vertical = 2
 
@@ -151,13 +152,24 @@ custom_minimum_size = Vector2(40, 10)
 layout_mode = 2
 text = "Event"
 
-[node name="ScenceTransition" type="AnimationPlayer" parent="."]
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TopBar" parent="UI" instance=ExtResource("4_xv74x")]
 unique_name_in_owner = true
+layout_mode = 0
+
+[node name="ScenceTransition" type="AnimationPlayer" parent="UI"]
+unique_name_in_owner = true
+root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_km6g1")
 }
 
-[node name="ColorRect" type="ColorRect" parent="ScenceTransition"]
+[node name="ColorRect" type="ColorRect" parent="UI/ScenceTransition"]
 unique_name_in_owner = true
 visible = false
 anchors_preset = 15
@@ -168,11 +180,8 @@ grow_vertical = 2
 color = Color(0.2, 0.117647, 0.0509804, 1)
 metadata/_edit_use_anchors_ = true
 
-[node name="TopBar" parent="." instance=ExtResource("4_xv74x")]
-unique_name_in_owner = true
-
 [node name="ConsoleWindow" parent="." instance=ExtResource("5_p3j0y")]
 initial_position = 0
-position = Vector2i(50, 15)
+position = Vector2i(50, 26)
 size = Vector2i(200, 130)
 borderless = true
