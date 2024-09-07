@@ -1,7 +1,7 @@
 class_name Battle
 extends Node2D
 
-enum BattleState {BASE, LOOPS, EVENTS, ENEMY, PLAYER, WIN, LOSE}
+enum BattleState {BASE, LOOPS, DRAW, ENEMY, PLAYER, WIN, LOSE}
 
 @export var char_stats : CharacterStats
 @export var music : AudioStream
@@ -31,7 +31,7 @@ func _ready() -> void:
 	
 	Events.player_died.connect(_on_player_died)
 	Events.battle_state_updated.connect(_on_battle_state_updated)
-	Events.enemy_turn_ended.connect(_on_enemy_turn_ended)
+	#Events.enemy_turn_ended.connect(_on_enemy_turn_ended)
 	
 	Events.player_hand_discarded.connect(enemy_handler.start_turn)
 	
@@ -47,14 +47,6 @@ func start_battle(stats : CharacterStats) -> void:
 	Events.battle_state_updated.emit(0)
 
 
-func _on_enemy_turn_ended() -> void:
-	if state == 5 or state == 6:
-		return
-	
-	player_handeler.start_turn()
-	enemy_handler.draw_cards()
-
-
 func _on_player_died() -> void:
 	Events.battle_state_updated.emit(6)
 	print("You died lol")
@@ -62,26 +54,27 @@ func _on_player_died() -> void:
 
 func _on_battle_state_updated(new_state : BattleState) -> void:
 	state = new_state
-	# FIXME: Replace with switch 
-	if new_state == 1:  # Loops turn
-		pass
-	
-	if new_state == 2:  # Events turn
-		Events.battle_state_updated.emit(3)
-	
-	if new_state == 3: # Enemy turn
-		enemy_handler.start_turn()
-	
-	if new_state == 4: # Player turn
-		player_handeler.end_turn()
-	
-	if new_state == 5: # Victory
-		Events.battle_won.emit()
-	return
+	match state:   
+		1: # Loops
+			Events.battle_state_updated.emit(2) 
+		
+		2: # Enemy drawing cards
+			enemy_handler.draw_cards()
+		
+		3: # Player drawing & playing cards
+			player_handeler.start_turn()
+			enemy_handler.start_turn()
+		
+		4: # Enemy playing cards
+			player_handeler.end_turn()
+			await Events.player_hand_discarded
+			enemy_handler.play_next_card()
+		
+		5: # Victory
+			Events.battle_won.emit() 
+			print("Victory! ", self)
 
 
 func _on_enemy_handler_child_order_changed() -> void:
 	if enemy_handler.get_child_count() == 1:
 		Events.battle_state_updated.emit(5)
-		Events.battle_won.emit()
-		print("Victory! ", self)

@@ -5,11 +5,9 @@ extends Node2D
 
 
 func _ready() -> void:
-	Events.enemy_action_completed.connect(_on_enemy_action_completed)
 	Events.battle_find_enemies.connect(_on_battle_find_enemies)
 	Events.enemy_find_enemies.connect(_on_enemy_find_enemies)
 	Events.enemy_card_played.connect(play_next_card)
-	
 
 
 func reset_enemy_actions() -> void:
@@ -33,13 +31,11 @@ func start_turn() -> void:
 	# Filter prevents EnemyHand from being assigned
 	for enemy: Enemy in get_children().filter(func(child: Node)->bool: return child is Enemy):
 		enemy.do_turn()
-	
-	play_next_card()
 
 
 func play_next_card() -> void:
 	if !enemy_hand.get_children():
-		Events.enemy_turn_ended.emit()
+		Events.battle_state_updated.emit(1)
 		return
 	
 	await get_tree().create_timer(enemy_hand.time_before_next_card + 0.35).timeout
@@ -55,12 +51,6 @@ func play_next_card() -> void:
 	enemy_hand.remove_child(card)
 	card.queue_free()
 	enemy_hand.organise_cards()
-
-
-func _on_enemy_action_completed(enemy : Enemy) -> void:
-	if enemy.get_index() == get_child_count() -1:
-		if get_parent().state != 6:
-			Events.battle_state_updated.emit(1)
 
 
 func _on_battle_find_enemies() -> void:

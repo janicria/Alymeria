@@ -19,15 +19,15 @@ func start_battle(char_stats : CharacterStats) -> void:
 	character.draw_pile = character.deck.duplicate(true)
 	character.draw_pile.shuffle()
 	character.discard = CardPile.new()
-	start_turn()
+	#start_turn()
 
 
 func start_turn() -> void:
+	draw_cards(character.cards_per_turn)
 	character.barrier -= 10
 	if character.barrier < 0:
 		character.barrier = 0
 	character.reset_mana()
-	draw_cards(character.cards_per_turn)
 
 
 func end_turn() -> void:
@@ -42,7 +42,6 @@ func draw_card() -> void:
 	Events.update_card_stats.emit()
 
 # TODO Add tween animation for reshuffling discard into draw using a for loop
-
 func draw_cards(amount : int) -> void:
 	var tween := create_tween()
 	for i in range(amount):
@@ -50,9 +49,10 @@ func draw_cards(amount : int) -> void:
 		tween.tween_interval(HAND_DRAW_INTERVAL)
 	
 		tween.finished.connect(
-			func (): 
+			func ():
 				Events.player_hand_drawn.emit()
 				Events.update_card_stats.emit()
+				#Events.battle_state_updated.emit(3)
 		)
 
 

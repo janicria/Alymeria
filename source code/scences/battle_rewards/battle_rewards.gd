@@ -101,7 +101,7 @@ func setup_card_rarity_chances() -> void:
 	card_rarity_weights[Card.Rarity.COMMON] = GameSave.common_weight
 	card_rarity_weights[Card.Rarity.UNCOMMON] = GameSave.uncommon_weight
 	card_rarity_weights[Card.Rarity.RARE] = GameSave.rare_weight
-	var biome := 0 # TODO replace w/ GameSave.biome
+	var biome := GameSave.current_biome
 	if biome:
 		card_rarity_weights[Card.Rarity.UNCOMMON] *= (biome * 2)
 		card_rarity_weights[Card.Rarity.RARE] += biome

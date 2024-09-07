@@ -35,7 +35,7 @@ func draw_cards(amount: int) -> void:
 		var continue_rolling := true
 		update_weights()
 		
-		while continue_rolling: # HACK: Yikes
+		while continue_rolling:
 			var roll := randi_range(0, total_card_weight)
 			var rolled_cards: Array[EnemyCard]
 			if ai.action_1 and ai.action_1.weight and ai.action_1.weight > roll-1: rolled_cards.append(ai.action_1); continue_rolling = false
@@ -48,7 +48,7 @@ func draw_cards(amount: int) -> void:
 			if ai.action_8 and ai.action_8.weight and ai.action_8.weight > roll-1: rolled_cards.append(ai.action_8); continue_rolling = false
 			if ai.action_9 and ai.action_9.weight and ai.action_9.weight > roll-1: rolled_cards.append(ai.action_9); continue_rolling = false
 			if ai.action_10 and ai.action_10.weight and ai.action_10.weight>roll-1:rolled_cards.append(ai.action_10); continue_rolling= false
-			if rolled_cards: add_card(rolled_cards.pick_random())
+			if rolled_cards: add_card(rolled_cards.pick_random())  # HACK: Weight systems are hard
 
 func update_weights() -> void: # HACK: Yikes again
 	if ai.action_1: total_card_weight += ai.action_1.weight
@@ -76,10 +76,10 @@ func check_health_cards() -> void: # HACK: Yikes 3: The bad one that everyone li
 	if ai.action_10 and ai.action_10.health and stats.health<=ai.action_10.health:add_card(ai.action_10)
 
 
-func add_card(card: EnemyCard) -> void:
+func add_card(card: EnemyCard) -> void: #FIXME
 	if !card.cost and !card.weight and card.health > stats.health:
 		hand.append(card)
-		get_parent().get_child(0).cardToGui(card, self)  # HACK: .getparent() moment
+		get_parent().get_child(0).cardToGui(card, self)
 		print("%s added card %s via health loss | health -  %s, card health -  %s" % [stats.id, card.optional_desc, stats.health, card.health])
 	elif !card.cost and card.weight and hand.size() < stats.max_turn_draw:
 		print("%s added card %s via card weight" % [stats.id, card.type])

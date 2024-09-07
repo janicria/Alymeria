@@ -56,6 +56,10 @@ func _start_run() -> void:
 
 
 func _change_view(scence : PackedScene) -> Node:
+	# Failsafe which runs while the game is exiting
+	var wr = weakref(get_tree())
+	if !wr.get_ref(): return
+	
 	if current_view.get_child_count() > 0:
 		current_view.get_child(0).queue_free()
 	
@@ -112,6 +116,11 @@ current scence: "
 
 
 func _on_battle_won() -> void:
+	# Failsafe which runs while the game is exiting
+	var wr = weakref(get_tree())
+	if !wr.get_ref(): return
+	
+	
 	var reward_scence := _change_view(BATTLE_REWARD_SCENCE) as BattleReward
 	
 	reward_scence.add_gold_reward(72)
