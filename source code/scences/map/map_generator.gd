@@ -21,7 +21,6 @@ var map_data: Array[Array]
 var floors: int
 
 
-# Rotate by 90 degrees to make vertical
 func generate_map() -> Array[Array]:
 	map_data = _generate_inital_grid()
 	var starting_points := _get_random_starting_points()
@@ -34,15 +33,6 @@ func generate_map() -> Array[Array]:
 	_setup_boss_room()
 	_setup_random_room_weights()
 	_setup_room_types()
-	
-	var i := 0 #TODO: Delete me
-	for floor in map_data:
-		print("floor %s" % i)
-		var used_rooms = floor.filter(
-			func(room: Room): return room.next_rooms.size() > 0
-		)
-		print(used_rooms)
-		i += 1
 	
 	return map_data
 

@@ -80,7 +80,6 @@ func add_card(card: EnemyCard) -> void: #FIXME
 	if !card.cost and !card.weight and card.health > stats.health:
 		hand.append(card)
 		get_parent().get_child(0).cardToGui(card, self)
-		print("%s added card %s via health loss | health -  %s, card health -  %s" % [stats.id, card.optional_desc, stats.health, card.health])
 	elif !card.cost and card.weight and hand.size() < stats.max_turn_draw:
 		print("%s added card %s via card weight" % [stats.id, card.type])
 		hand.append(card)

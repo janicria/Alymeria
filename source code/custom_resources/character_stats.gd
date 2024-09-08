@@ -14,7 +14,7 @@ extends Stats
 @export var mana_type : String
 
 var mana : int : set = set_mana
-var deck : CardPile
+@export var deck : CardPile
 var discard : CardPile
 var draw_pile : CardPile
 

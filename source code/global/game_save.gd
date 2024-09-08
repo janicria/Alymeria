@@ -20,7 +20,7 @@ var spider_bestiary_entry := false
 var bat_bestiary_entry := false
 
 # Gameplay-related variables
-var character: CharacterStats
+var character: CharacterStats : set = update_stats
 enum Biome {FOREST, TOWN, CAVES, CITY, TRAIN, STORM, FINAL}
 var current_biome := Biome.FOREST
 var biome_floors = {

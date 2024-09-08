@@ -73,8 +73,10 @@ script = ExtResource("1_327eg")
 run_startup = ExtResource("2_ehyhl")
 
 [node name="Map" parent="." instance=ExtResource("1_jorql")]
+unique_name_in_owner = true
 
 [node name="CurrentView" type="Node" parent="."]
+unique_name_in_owner = true
 
 [node name="DebugMenu" type="Control" parent="."]
 unique_name_in_owner = true
@@ -181,6 +183,7 @@ color = Color(0.2, 0.117647, 0.0509804, 1)
 metadata/_edit_use_anchors_ = true
 
 [node name="ConsoleWindow" parent="." instance=ExtResource("5_p3j0y")]
+unique_name_in_owner = true
 initial_position = 0
 position = Vector2i(50, 26)
 size = Vector2i(200, 130)

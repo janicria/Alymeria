@@ -57,7 +57,7 @@ signal update_card_tooltip_position(card : CardMenuUI)
 
 
 # Map-related events
-signal map_exited
+signal map_exited(current_room: Room)
 
 # Shop-related events
 signal shop_exited

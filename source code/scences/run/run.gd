@@ -1,7 +1,6 @@
 class_name Run
 extends Node
 
-const MAP_SCENCE := preload("res://scences/map/map.tscn")
 const BATTLE_SCENCE := preload("res://scences/battle/battle.tscn")
 const SHOP_SCENCE := preload("res://scences/shop/shop.tscn")
 const TREASURE_SCENCE := preload("res://scences/treasure/treasure.tscn")
@@ -11,11 +10,15 @@ const EVENT_SCENCE := preload("res://scences/events/event.tscn")
 
 @export var run_startup: RunStartup
 
-@onready var console_window: Window = $ConsoleWindow
-@onready var current_view: Node = $CurrentView
+@onready var map: Map = %Map
+@onready var current_view: Node = %CurrentView
+@onready var top_bar: TextureRect = %TopBar
+@onready var scence_transition: AnimationPlayer = %ScenceTransition
+@onready var color_rect: ColorRect = %ColorRect
+# Debug
+@onready var console_window: Window = %ConsoleWindow
 @onready var debug_menu: Control = %DebugMenu
 @onready var debug_stats: Label = %DebugStats
-@onready var top_bar: TextureRect = %TopBar
 @onready var map_button: Button = %MapButton
 @onready var battle_button: Button = %BattleButton
 @onready var shop_button: Button = %ShopButton
@@ -23,8 +26,7 @@ const EVENT_SCENCE := preload("res://scences/events/event.tscn")
 @onready var rewards_button: Button = %RewardsButton
 @onready var haven_button: Button = %HavenButton
 @onready var event_button: Button = %EventButton
-@onready var scence_transition: AnimationPlayer = %ScenceTransition
-@onready var color_rect: ColorRect = %ColorRect
+
 
 var character: CharacterStats
 
@@ -52,7 +54,8 @@ func _ready() -> void:
 func _start_run() -> void:
 	_setup_event_connections()
 	Events.update_card_pile.emit(character.deck)
-	print("Need procedurally generated map")
+	map.generate_new_map()
+	map.unlock_floor(0)
 
 
 func _change_view(scence : PackedScene) -> Node:
@@ -67,28 +70,40 @@ func _change_view(scence : PackedScene) -> Node:
 	get_tree().paused = false
 	var new_view := scence.instantiate()
 	current_view.add_child(new_view)
+	map.hide_map()
 	
 	if current_view.get_child(0).get_name() == "Battle":
 		pass
 	
 	return new_view
 
+
+func _show_map() -> void:
+	# Prevents multiple views from being open at the same time
+	if current_view.get_child_count() > 0:
+		current_view.get_child(0).queue_free()
+	
+	map.show_map()
+	map.unlock_next_rooms()
+
+
 func _setup_event_connections() -> void:
 	Events.battle_won.connect(_on_battle_won)
 	Events.battle_reward_exited.connect(_on_reward_exited)
-	Events.haven_exited.connect(_change_view.bind(MAP_SCENCE))
+	Events.haven_exited.connect(_show_map)
 	Events.map_exited.connect(_on_map_exited)
-	Events.shop_exited.connect(_change_view.bind(MAP_SCENCE))
-	Events.treasure_room_exited.connect(_change_view.bind(MAP_SCENCE))
-	Events.events_extied.connect(_change_view.bind(MAP_SCENCE))
+	Events.shop_exited.connect(_show_map)
+	Events.treasure_room_exited.connect(_show_map)
+	Events.events_extied.connect(_show_map)
 	
+	# Debug
 	battle_button.pressed.connect(_change_view.bind(BATTLE_SCENCE))
 	haven_button.pressed.connect(_change_view.bind(HAVEN_SCENCE))
 	event_button.pressed.connect(_change_view.bind(EVENT_SCENCE))
 	treasure_button.pressed.connect(_change_view.bind(TREASURE_SCENCE))
 	shop_button.pressed.connect(_change_view.bind(SHOP_SCENCE))
 	rewards_button.pressed.connect(_change_view.bind(BATTLE_REWARD_SCENCE))
-	map_button.pressed.connect(_change_view.bind(MAP_SCENCE))
+	map_button.pressed.connect(_show_map)
 
 
 func _input(_event: InputEvent) -> void:
@@ -120,7 +135,6 @@ func _on_battle_won() -> void:
 	
 	reward_scence.add_gold_reward(72)
 	reward_scence.add_card_reward()
-	print("battle own")
 
 
 func _on_reward_exited() -> void:
@@ -130,8 +144,22 @@ func _on_reward_exited() -> void:
 		_change_view(EVENT_SCENCE)
 	else:
 		print("rolled map scence %s (4/5)" % event_chance)
-		_change_view(MAP_SCENCE)
+	
+	# TODO: Only call in else block above (rolled map scence)
+	_show_map()
 
 
-func _on_map_exited() -> void:
-	print("Need to change room based on room type from exiting the map")
+func _on_map_exited(room: Room) -> void:
+	match room.type:
+		Room.Type.MONSTER:
+			_change_view(BATTLE_SCENCE)
+		Room.Type.TREASURE:
+			_change_view(TREASURE_SCENCE)
+		Room.Type.HAVEN:
+			_change_view(HAVEN_SCENCE)
+		Room.Type.SHOP:
+			_change_view(SHOP_SCENCE)
+		Room.Type.ELITE:
+			_change_view(BATTLE_SCENCE)
+		Room.Type.BOSS:
+			_change_view(BATTLE_SCENCE)

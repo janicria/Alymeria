@@ -23,11 +23,10 @@ func _ready() -> void:
 	# As otherwise we can't have multiple floors
 	# or even multiple runs
 	
-	
 	var new_stats : CharacterStats = char_stats.create_instance()
+	# FIXME: If statement is bc you can skip selecting a char at run start
 	battle_ui.char_stats = new_stats
 	player.stats = new_stats
-	GameSave.character = new_stats
 	
 	Events.player_died.connect(_on_player_died)
 	Events.battle_state_updated.connect(_on_battle_state_updated)
@@ -74,7 +73,7 @@ func _on_battle_state_updated(new_state : BattleState) -> void:
 		
 		5: # Victory
 			Events.battle_won.emit() 
-			print("Victory! ", self)
+			print("Victory!")
 
 
 func _on_enemy_handler_child_order_changed() -> void:

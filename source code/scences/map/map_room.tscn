@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://cvcecqn4jjhfd"]
+[gd_scene load_steps=8 format=3 uid="uid://cvcecqn4jjhfd"]
 
 [ext_resource type="Texture2D" uid="uid://bfvi02kojsa00" path="res://assets/art/tile_0103.png" id="1_ipt5o"]
+[ext_resource type="Script" path="res://scences/map/map_room.gd" id="1_w7qjy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jqvep"]
 radius = 12.0
@@ -63,6 +64,20 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_on_map_room_selected"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_koiob"]
 _data = {
@@ -74,10 +89,12 @@ _data = {
 [node name="MapRoom" type="Area2D"]
 collision_layer = 8
 collision_mask = 0
+script = ExtResource("1_w7qjy")
 
 [node name="Visuals" type="Node2D" parent="."]
 
 [node name="Line2D" type="Line2D" parent="Visuals"]
+unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0)
 points = PackedVector2Array(-8, 6, -2, 10, 4, 10, 10, 4, 10, -4, 0, -10, -8, -6)
 closed = true
@@ -85,12 +102,19 @@ width = 2.0
 default_color = Color(0.529412, 0.529412, 0.529412, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="Visuals"]
+unique_name_in_owner = true
+texture_filter = 1
 texture = ExtResource("1_ipt5o")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_jqvep")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_koiob")
 }
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
