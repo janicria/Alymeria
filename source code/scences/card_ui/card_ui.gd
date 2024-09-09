@@ -160,17 +160,17 @@ func _on_drop_point_detector_area_exited(area : Area2D) -> void:
 	targets.erase(area)
 
 
-func _on_card_drag_or_aiming_started(used_card : Card) -> void:
+func _on_card_drag_or_aiming_started(used_card : CardUI) -> void:
 	if used_card == self:
 		return
 	
 	disabled = true
 
 
-func _on_card_drag_or_aiming_ended(_card : Card) -> void:
+func _on_card_drag_or_aiming_ended(_card : CardUI) -> void:
 	disabled = false
-	self.playable = char_stats.can_play_card(card)
+	playable = char_stats.can_play_card(card)
 
 
 func _on_char_stats_changed() -> void:
-	self.playable = char_stats.can_play_card(card)
+	playable = char_stats.can_play_card(card)

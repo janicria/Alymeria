@@ -116,7 +116,7 @@ func _input(_event: InputEvent) -> void:
 			console_window.visible = true
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if !debug_menu.visible:
 		return
 	

@@ -26,12 +26,12 @@ func take_damage(damage: int) -> void:
 		return
 	var initial_damage := damage
 	damage = clampi(damage - barrier, 0, damage)
-	self.barrier = clampi(barrier - initial_damage, 0, barrier)
-	self.health -= damage
+	barrier = clampi(barrier - initial_damage, 0, barrier)
+	health -= damage
 
 
 func heal(amount : int) -> void:
-	self.health += amount
+	health += amount
 
 
 func create_instance() -> Resource:

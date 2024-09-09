@@ -18,7 +18,7 @@ func shake (thing : Node2D, strength : float, duration : float = 0.2) -> void:
 		strength *= 0.75
 	
 	tween.finished.connect(
-		func():
+		func()->void:
 			if !thing: # Stops multi-attacks from crashing the game
 				return
 			thing.position = orig_pos

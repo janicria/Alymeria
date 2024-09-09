@@ -30,6 +30,7 @@ func set_current_character(new_character: CharacterStats) -> void:
 func _on_start_button_pressed() -> void:
 	run_startup.type = RunStartup.Type.NEW_RUN
 	run_startup.picked_character = current_character
+	GameSave.character = current_character
 	difficulty_loading_started = true
 	scence_transition.play("fade_out")
 
@@ -42,6 +43,6 @@ func _on_witch_button_pressed() -> void:
 	current_character = WITCH_STATS
 
 
-func _on_scence_transition_animation_finished(anim_name: StringName) -> void:
+func _on_scence_transition_animation_finished(_anim_name: StringName) -> void:
 	if difficulty_loading_started:
 		get_tree().change_scene_to_packed(DIFFICULTY_SCREEN)

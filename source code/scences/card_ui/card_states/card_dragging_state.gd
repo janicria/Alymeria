@@ -15,7 +15,7 @@ func enter() -> void:
 	
 	mininium_drag_time_elapsed = false
 	var thereshold_timer := get_tree().create_timer(DRAG_MINIMUM_THERESHOLD, false)
-	thereshold_timer.timeout.connect(func(): mininium_drag_time_elapsed = true)
+	thereshold_timer.timeout.connect(func()->void: mininium_drag_time_elapsed = true)
 
 func exit() -> void:
 	Events.card_drag_ended.emit(card_ui)

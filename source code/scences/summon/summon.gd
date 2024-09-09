@@ -55,7 +55,7 @@ func take_damage(damage : int) -> void:
 	tween.tween_interval(0.2)
 	
 	tween.finished.connect(
-		func():
+		func()->void:
 			if stats.health <= 0:
 				death_animation(4)
 	)
@@ -71,7 +71,7 @@ func death_animation(repeats : int) -> void:
 	death_tween.tween_interval(0.2)
 	
 	death_tween.finished.connect(
-		func():
+		func()->void:
 			for i in repeats:
 				death_animation(repeats - 1)
 	)
@@ -79,11 +79,11 @@ func death_animation(repeats : int) -> void:
 		queue_free()
 
 
-func _on_area_entered(_area):
+func _on_area_entered(_area) -> void:
 	arrow.show()
 
 
-func _on_area_exited(_area):
+func _on_area_exited(_area) -> void:
 	arrow.hide()
 
 

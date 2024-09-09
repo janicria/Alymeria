@@ -48,7 +48,7 @@ func draw_cards(amount : int) -> void:
 		tween.tween_interval(HAND_DRAW_INTERVAL)
 	
 		tween.finished.connect(
-			func ():
+			func()->void:
 				Events.player_hand_drawn.emit()
 				Events.update_card_stats.emit()
 		)
@@ -62,7 +62,7 @@ func discard_cards() -> void:
 		tween.tween_interval(HAND_DISCARD_INTERVAL)
 	
 	tween.finished.connect(
-		func():
+		func()->void:
 			Events.player_hand_discarded.emit()
 	)
 

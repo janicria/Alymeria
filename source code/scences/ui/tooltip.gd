@@ -66,7 +66,8 @@ func hide_tooltip() -> void:
 		tween.kill()
 	
 	hide_timer.start(fade_seconds)
-	hide_timer.timeout.connect(hide_animation)
+	if !hide_timer.timeout.is_connected(hide_animation):
+		hide_timer.timeout.connect(hide_animation)
 
 
 func hide_animation() -> void:

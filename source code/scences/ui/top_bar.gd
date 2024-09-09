@@ -117,7 +117,7 @@ func _on_music_volume_value_changed(value: float) -> void:
 			child.volume_db = -INF
 
 
-func _on_sfx_volume_drag_ended(value_changed: bool) -> void:
+func _on_sfx_volume_drag_ended(_value_changed: bool) -> void:
 	SFXPlayer.play(sfx_slider_sound)
 
 

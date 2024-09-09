@@ -96,7 +96,6 @@ func _ready() -> void:
 
 func update_stats() -> void:
 	stats_ui.update_stats(stats)
-	stats.health
 
 
 func update_enemy() -> void:
@@ -128,7 +127,7 @@ func take_damage(damage : int) -> void:
 	tween.tween_interval(0.2)
 	
 	tween.finished.connect(
-		func():
+		func()->void:
 			check_health_cards()
 			if stats.health <= 0:
 				death_animation(3)
@@ -140,7 +139,7 @@ func death_animation(repeats : int) -> void:
 	death_tween.tween_interval(0.2)
 	
 	death_tween.finished.connect(
-		func():
+		func()->void:
 			for i in repeats: #Repeats damage anim for more effect
 				death_animation(repeats - 1)
 			if !repeats:

@@ -43,6 +43,10 @@ var cheats := false
 var dev_mode := false
 
 
+func _ready() -> void: # TMP
+	#character.deck.cards = Array[preload("res://characters/machine/cards/common/machine_barrier.gd")]
+	pass
+
 func set_gold(new_amount : int) -> void:
 	gold = new_amount
 	gold_changed.emit()

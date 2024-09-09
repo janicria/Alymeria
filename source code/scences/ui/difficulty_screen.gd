@@ -109,6 +109,6 @@ func _on_start_button_pressed() -> void:
 
 
 
-func _on_scence_transition_animation_finished(anim_name: StringName) -> void:
+func _on_scence_transition_animation_finished(_anim_name: StringName) -> void:
 	if run_loading_started:
 		get_tree().change_scene_to_packed(RUN_SCENCE)

@@ -14,7 +14,7 @@ func set_card_pile(new_value : CardPile) -> void:
 	
 	Events.update_deck_buttons.connect(update_ui)
 	Events.update_deck_counter.connect(
-		func():
+		func()->void:
 			update_ui(exhausts_in_deck, true)
 	)
 	

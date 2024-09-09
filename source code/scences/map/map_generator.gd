@@ -10,7 +10,7 @@ const SHOP_WEIGHT := 18
 const HAVEN_WEIGHT := 25
 const ELITE_WEIGHT := 22
 
-var random_room_type_weights = {
+var random_room_type_weights := {
 	Room.Type.MONSTER: 0.0,
 	Room.Type.HAVEN: 0.0,
 	Room.Type.SHOP: 0.0,
@@ -48,7 +48,7 @@ func _generate_inital_grid() -> Array[Array]:
 		
 		for j in MAP_WIDTH:
 			var current_room := Room.new()
-			var offset = Vector2(randf(), randf()) * PLACEMENT_RANDOMNESS
+			var offset := Vector2(randf(), randf()) * PLACEMENT_RANDOMNESS
 			current_room.position = Vector2(j * X_DIST, i * -Y_DIST) + offset
 			current_room.row = i
 			current_room.column = j
@@ -78,7 +78,7 @@ func _get_random_starting_points() -> Array[int]:
 
 
 func _setup_connection(i: int, j: int) -> int:
-	var next_room: Room
+	var next_room: Room = null
 	var current_room := map_data[i][j] as Room
 	
 	while !next_room or _would_cross_existing_path(i, j, next_room):
