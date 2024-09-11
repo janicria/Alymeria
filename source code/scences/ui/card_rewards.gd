@@ -19,9 +19,11 @@ func _ready() -> void:
 	Events.update_card_tooltip_position.connect(_on_update_card_tooltip_position)
 	
 	card_tooltip.hitbox.gui_input.connect(
-		func(input: InputEvent)->void:
+		func(input: InputEvent):
 			if input.is_action_pressed("left_mouse_pressed"):
 				card_reward_selected.emit(selected_card)
+				# Prevents the game from crashing without giving a warning
+				get_parent().remove_child(self)
 				queue_free()
 	)
 	

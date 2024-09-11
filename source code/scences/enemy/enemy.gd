@@ -156,10 +156,10 @@ func update_box() -> void:
 	box.visible = !box.visible
 
 
-func _on_area_entered(_area: Node):
+func _on_area_entered(_area: Node) -> void:
 	if _area.get_parent().get_name() == "CardTargetSelector":
 		arrow.show()
 
 
-func _on_area_exited(_area):
+func _on_area_exited(_area: Node) -> void:
 	arrow.hide()

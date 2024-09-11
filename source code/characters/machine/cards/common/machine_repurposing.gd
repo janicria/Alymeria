@@ -12,6 +12,6 @@ func _init() -> void:
 	)
 
 
-func apply_effects(targets : Array[Node]) -> void:
+func apply_effects(_targets : Array[Node]) -> void:
 	SFXPlayer.play(sound)
 	Events.player_draw_cards.emit(draw_amount)

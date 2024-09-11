@@ -79,11 +79,11 @@ func death_animation(repeats : int) -> void:
 		queue_free()
 
 
-func _on_area_entered(_area) -> void:
+func _on_area_entered(_area: Node) -> void:
 	arrow.show()
 
 
-func _on_area_exited(_area) -> void:
+func _on_area_exited(_area: Node) -> void:
 	arrow.hide()
 
 

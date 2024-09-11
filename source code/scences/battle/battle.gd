@@ -3,7 +3,6 @@ extends Node2D
 
 enum BattleState {BASE, LOOPS, ENEMY_DRAW, PLAYER, ENEMY_CARDS, WIN, LOSE}
 
-@export var char_stats : CharacterStats
 @export var music : AudioStream
 
 @onready var enemy_handler: EnemyHandler = $EnemyHandler
@@ -23,8 +22,8 @@ func _ready() -> void:
 	# As otherwise we can't have multiple floors
 	# or even multiple runs
 	
-	var new_stats : CharacterStats = char_stats.create_instance()
-	# FIXME: If statement is bc you can skip selecting a char at run start
+	var new_stats : CharacterStats = GameSave.character#.create_instance()
+	
 	battle_ui.char_stats = new_stats
 	player.stats = new_stats
 	

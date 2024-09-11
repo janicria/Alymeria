@@ -44,7 +44,7 @@ func show_selected() -> void:
 	line_2d.modulate = Color.WHITE
 
 
-func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	# Safety for selecting unavailable rooms / right clicking rooms
 	if !available or !event.is_action_pressed("left_mouse_pressed"):
 		return 

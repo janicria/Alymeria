@@ -1,7 +1,7 @@
 class_name CardPile
 extends Resource
 
-signal card_pile_size_changed(cards_amount)
+signal card_pile_size_changed(cards_amount: int)
 
 @export var cards : Array[Card] = []
 
@@ -11,7 +11,7 @@ func empty() -> bool:
 
 
 func draw_card() -> Card:
-	var card = cards.pop_front()
+	var card: Card = cards.pop_front()
 	card_pile_size_changed.emit(cards.size())
 	return card
 
@@ -34,6 +34,7 @@ func _to_string() -> String:
 	var _card_strings: PackedStringArray = []
 	for i in range(cards.size()):
 		_card_strings.append("%s: %s" % [i+1, cards[1].id])
+		print(("%s: %s" % [i+1, cards[1].id]))
 	return "\n".join(_card_strings)
 
 

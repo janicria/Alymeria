@@ -54,6 +54,7 @@ func _show_card_rewards() -> void:
 	var available_cards: Array[Card] = character_stats.card_pool.duplicate_cards()
 	
 	# RNG for selecting each card (dark magic)
+	# TODO: change for elites and boss combat rewards
 	for i in GameSave.card_rewards:
 		setup_card_rarity_chances()
 		var roll := randf_range(0.0, card_reward_total_weight)
@@ -87,7 +88,7 @@ func _show_card_rewards() -> void:
 					var picked_card := _get_random_available_card(available_cards, rarity)
 					card_reward_array.append(picked_card)
 					available_cards.erase(picked_card)
-					print("Error selecting card, hotfix selected %s" % picked_card)
+					OS.alert("Wait, I actually needed this?: Hotfix selected %s" % picked_card, "Pls tell janicria")
 					break
 	
 	card_rewards.rewards = card_reward_array
@@ -107,7 +108,6 @@ func setup_card_rarity_chances() -> void:
 
 
 # Increments rare weights over time (reuse for pot chances)
-# TODO: change for elites and boss combat rewards
 func _modify_weights(rarity_rolled: Card.Rarity) -> void:
 	if rarity_rolled == Card.Rarity.UNCOMMON:
 		GameSave.common_weight = RunStats.BASE_COMMON_WEIGHT - GameSave.rare_weight
@@ -144,10 +144,9 @@ func _get_random_available_card(available_cards: Array[Card], with_rarity: Card.
 
 func _on_card_reward_taken(card: Card) -> void:
 	if !character_stats or !card:
+		print("whoops")
 		return
 	
-	print(character_stats.description)
-	print(GameSave.character.description)
 	print("drafted %s" % card.id)
 	GameSave.character.deck.add_card(card)
 

@@ -182,7 +182,7 @@ func _set_room_randomly(room: Room) -> void:
 		var is_shop := type_candidate == Room.Type.SHOP
 		var has_shop_parent := _room_has_parent_of_type(room, Room.Type.SHOP)
 		var is_elite := type_candidate == Room.Type.ELITE
-		var has_elite_parent := _room_has_parent_of_type(room, Room.Type.ELITE)
+		#var has_elite_parent := _room_has_parent_of_type(room, Room.Type.ELITE)
 		
 		
 		haven_below_4 = is_haven and room.row < 3

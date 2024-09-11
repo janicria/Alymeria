@@ -3,7 +3,7 @@ extends HBoxContainer
 
 const ENEMY_CARD_SCENE = preload("res://custom_resources/enemy_card.tscn")
 
-@export var time_before_next_card := 0
+@export var time_before_next_card := 0.0
 
 var organiser_target_pos := position - Vector2(30, -5)
 

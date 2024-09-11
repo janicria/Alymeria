@@ -7,13 +7,13 @@ func _ready() -> void:
 	Events.enemy_give_enemies.connect(_on_enemy_give_enemies)
 
 
-func start(enemies : bool, summons : bool, damage :int, repeats : int, original_id : String) -> void:
+func start(_enemies : bool, _summons : bool, damage :int, repeats : int, original_id : String) -> void:
 	Events.enemy_find_enemies.emit(original_id, damage, repeats)
 
 
-func _on_enemy_give_enemies(targets : Array[Node], original_id : String, damage : int, repeats : int) -> void:
+func _on_enemy_give_enemies(targets : Array[Node], original_id : String, damage : int, _repeats : int) -> void:
 	if original_id == "AttackSentry":
-		var target = targets
+		var target := targets
 		target.shuffle()
 		for Node2D in target:
 			if target.size() != 1:

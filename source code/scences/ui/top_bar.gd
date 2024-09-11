@@ -42,6 +42,7 @@ func  _ready() -> void:
 func _setup(card_pile : CardPile) -> void:
 	deck_button.card_pile = card_pile
 	deck_view.card_pile = card_pile
+	GameSave.character.deck = card_pile
 	deck_button.pressed.connect(deck_view.show_current_view.bind("Deck"))
 
 

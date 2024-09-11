@@ -41,7 +41,7 @@ func update_stats(card: EnemyCard, enemy: Enemy) -> void:
 
 func _on_control_mouse_entered() -> void:
 	# Checks if enemy has been freed
-	var wr =weakref(enemy_stats)
+	var wr = weakref(enemy_stats)
 	if !wr.get_ref(): 
 		Events.card_tooltip_requested.emit("[center]This enemy died, but it's card is still here for some reason? \n [s](bad programming)[/s][/center]")
 		return

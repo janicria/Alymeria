@@ -33,7 +33,6 @@ size = Vector2(334, 115)
 
 [node name="Battle" type="Node2D"]
 script = ExtResource("1_aq6po")
-char_stats = ExtResource("4_jn668")
 music = ExtResource("3_up5un")
 metadata/_edit_lock_ = true
 

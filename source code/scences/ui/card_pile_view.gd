@@ -64,7 +64,7 @@ func _on_update_card_tooltip_position(card : CardMenuUI) -> void:
 		card_tooltip.hitbox.position.x = 120
 
 
-func _on_update_deck_buttons(amount : int, returning : bool):
+func _on_update_deck_buttons(_amount : int, returning : bool) -> void:
 	if returning:
 		return
 	
