@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://j16iwp255gqv" path="res://assets/art/background_v13.png.png" id="1_rkqh7"]
 [ext_resource type="PackedScene" uid="uid://dkpw6tsw7i7y0" path="res://scences/enemy/enemy.tscn" id="2_2gdxf"]
 [ext_resource type="Script" path="res://scences/ui/hand.gd" id="2_jt18g"]
-[ext_resource type="PackedScene" uid="uid://d4ejck6c4qtqh" path="res://card_target_selector/card_target_selector.tscn" id="3_eiww7"]
+[ext_resource type="PackedScene" uid="uid://d4ejck6c4qtqh" path="res://scences/card_target_selector/card_target_selector.tscn" id="3_eiww7"]
 [ext_resource type="PackedScene" uid="uid://bgoevwf8o3b04" path="res://scences/player/player.tscn" id="3_qq8kc"]
 [ext_resource type="AudioStream" uid="uid://dpdenqqbovwfq" path="res://assets/SFX/8_bit_iced_village_lofi.mp3" id="3_up5un"]
 [ext_resource type="Resource" uid="uid://ctbo0h42ed02e" path="res://characters/machine/machine.tres" id="4_jn668"]

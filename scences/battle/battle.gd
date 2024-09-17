@@ -3,45 +3,37 @@ extends Node2D
 
 enum BattleState {BASE, LOOPS, ENEMY_DRAW, PLAYER, ENEMY_CARDS, WIN, LOSE}
 
+@export var battle_stats: BattleStats
 @export var music : AudioStream
+@export var char_stats: CharacterStats
+@export var state : BattleState
 
 @onready var enemy_handler: EnemyHandler = $EnemyHandler
 @onready var battle_ui: BattleUI = $BattleUI
 @onready var player_handeler: PlayerHandeler = $PlayerHandeler
 @onready var player: Player = $Player
 
-@export var state : BattleState
 
 func _ready() -> void:
-	# Normally, we would do this on a 'run'
-	# level so we keep our health, gold and deck
-	# between battles
-	# So change this code to only run at the start
-	# of a new run later down the line
-	# instead of running everytime the game starts
-	# As otherwise we can't have multiple floors
-	# or even multiple runs
-	
-	var new_stats : CharacterStats = GameSave.character.create_instance()
-	
-	battle_ui.char_stats = new_stats
-	player.stats = new_stats
-	
 	Events.player_died.connect(_on_player_died)
 	Events.battle_state_updated.connect(_on_battle_state_updated)
 	Events.battle_request_player_turn.connect(_on_battle_request_player_turn)
 	
 	Events.player_hand_discarded.connect(enemy_handler.start_turn)
-	
-	start_battle(new_stats)
-	battle_ui.initialise_card_pile_ui()
 
 
-func start_battle(stats : CharacterStats) -> void:
+func start_battle() -> void:
 	get_tree().paused = false
 	MusicPlayer.play(music, true)
-	player_handeler.start_battle(stats)
+	
+	battle_ui.char_stats = char_stats
+	player.stats = char_stats
+	enemy_handler.setup_enemies(battle_stats)
+	player_handeler.start_battle(char_stats)
+	battle_ui.initialise_card_pile_ui()
+	
 	Events.battle_state_updated.emit(0)
+
 
 
 func _on_player_died() -> void:

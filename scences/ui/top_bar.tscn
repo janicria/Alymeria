@@ -21,6 +21,7 @@ font_size = 6
 modulate = Color(0.737255, 0.737255, 0.737255, 1)
 offset_right = 334.0
 offset_bottom = 20.0
+mouse_filter = 2
 expand_mode = 1
 stretch_mode = 2
 script = ExtResource("2_6htc6")
@@ -34,7 +35,7 @@ offset_left = -3.0
 offset_top = -4.0
 offset_right = 337.0
 offset_bottom = 191.0
-mouse_filter = 1
+mouse_filter = 2
 color = Color(0, 0, 0, 0.470588)
 
 [node name="SettingsLayer" type="CanvasLayer" parent="."]

@@ -43,7 +43,7 @@ func _ready() -> void:
 	
 	match run_startup.type:
 		RunStartup.Type.NEW_RUN:
-			character = run_startup.picked_character.create_instance()
+			GameSave.character = run_startup.picked_character.create_instance()
 			_start_run()
 		RunStartup.Type.CONTINUED_RUN:
 			print("Load contuined run")
@@ -53,7 +53,7 @@ func _ready() -> void:
 
 func _start_run() -> void:
 	_setup_event_connections()
-	Events.update_card_pile.emit(character.deck)
+	Events.update_card_pile.emit(GameSave.character.deck)
 	map.generate_new_map()
 	map.unlock_floor(0)
 
@@ -63,7 +63,7 @@ func _change_view(scence : PackedScene) -> Node:
 	var wr = weakref(get_tree())
 	if !wr.get_ref(): return
 	
-	
+	# Removes the previous view
 	if current_view.get_child_count() > 0:
 		current_view.get_child(0).queue_free()
 	
@@ -71,9 +71,6 @@ func _change_view(scence : PackedScene) -> Node:
 	var new_view := scence.instantiate()
 	current_view.add_child(new_view)
 	map.hide_map()
-	
-	if current_view.get_child(0).get_name() == "Battle":
-		pass
 	
 	return new_view
 
@@ -125,6 +122,13 @@ character: %s" % run_startup.picked_character.id + "
 difficulty: %s " % str(run_startup.difficulty)
 
 
+func _on_battle_room_entered(room: Room) -> void:
+	var battle_scence: Battle = _change_view(BATTLE_SCENCE) as Battle
+	battle_scence.char_stats = GameSave.character
+	battle_scence.battle_stats = preload("res://battles/a1_tier0_pure_bat2.tres")
+	battle_scence.start_battle()
+
+
 func _on_battle_won() -> void:
 	# Failsafe which runs while the game is exiting
 	var wr = weakref(get_tree())
@@ -152,7 +156,7 @@ func _on_reward_exited() -> void:
 func _on_map_exited(room: Room) -> void:
 	match room.type:
 		Room.Type.MONSTER:
-			_change_view(BATTLE_SCENCE)
+			_on_battle_room_entered(room)
 		Room.Type.TREASURE:
 			_change_view(TREASURE_SCENCE)
 		Room.Type.HAVEN:
@@ -160,6 +164,6 @@ func _on_map_exited(room: Room) -> void:
 		Room.Type.SHOP:
 			_change_view(SHOP_SCENCE)
 		Room.Type.ELITE:
-			_change_view(BATTLE_SCENCE)
+			_on_battle_room_entered(room)
 		Room.Type.BOSS:
-			_change_view(BATTLE_SCENCE)
+			_on_battle_room_entered(room)

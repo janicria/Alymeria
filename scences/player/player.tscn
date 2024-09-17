@@ -11,5 +11,5 @@ script = ExtResource("1_u6pjk")
 texture = ExtResource("1_f7p4x")
 
 [node name="StatsUI" parent="." instance=ExtResource("2_qygbq")]
-offset_top = 7.0
-offset_bottom = 23.0
+offset_top = 5.0
+offset_bottom = 21.0

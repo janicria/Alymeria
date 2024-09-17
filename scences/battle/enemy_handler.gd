@@ -10,13 +10,30 @@ func _ready() -> void:
 	Events.enemy_card_played.connect(play_next_card)
 
 
+func setup_enemies(battle_stats: BattleStats) -> void:
+	if !battle_stats:
+		return
+	
+	# Removes old enemies
+	for enemy: Node in get_children():
+		if enemy is Enemy: enemy.queue_free()
+	
+	var new_enemies := battle_stats.enemies.instantiate()
+	
+	for enemy: Node2D in new_enemies.get_children():
+		var enemy_child := enemy.duplicate() as Enemy
+		add_child(enemy_child)
+	
+	new_enemies.queue_free()
+
+
 func reset_enemy_actions() -> void:
 	var enemy : Enemy
 	for child in get_children():
 		enemy = child
 		enemy.current_action = null
 		enemy.update_action()
-
+	print("this ran (enemy_handler)")
 
 func draw_cards() -> void:
 	# Filter prevents EnemyHand from being assigned

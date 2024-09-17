@@ -9,6 +9,8 @@ enum Type {NOT_ASSIGNED, MONSTER, TREASURE, HAVEN, SHOP, ELITE, BOSS}
 @export var position: Vector2
 @export var next_rooms: Array[Room]
 @export var selected := false
+# Only used by combat encounters
+@export var battle_stats: BattleStats
 
 
 func _to_string() -> String:
