@@ -1,12 +1,13 @@
 [gd_scene load_steps=9 format=3 uid="uid://dkpw6tsw7i7y0"]
 
-[ext_resource type="Texture2D" uid="uid://ukld5o613i0a" path="res://assets/art/tile_0122.png" id="1_4apox"]
+[ext_resource type="Texture2D" uid="uid://ukld5o613i0a" path="res://assets/art/characters/tile_0122.png" id="1_4apox"]
 [ext_resource type="Script" path="res://scences/enemy/enemy.gd" id="1_c8d2x"]
-[ext_resource type="Texture2D" uid="uid://bb3rcs5nqntir" path="res://assets/art/arrow.png" id="2_itpu6"]
+[ext_resource type="Texture2D" uid="uid://bb3rcs5nqntir" path="res://assets/ui/arrow.png" id="2_itpu6"]
 [ext_resource type="Resource" uid="uid://bx5d8snag76bf" path="res://enemies/spider/spider_ai.tres" id="2_pceij"]
 [ext_resource type="Resource" uid="uid://ck1uqa7fwc6me" path="res://enemies/spider/spider_stats.tres" id="3_aow6t"]
 [ext_resource type="PackedScene" uid="uid://b21bh1sh66gbd" path="res://scences/ui/stats_ui.tscn" id="3_jwf45"]
-[ext_resource type="Texture2D" uid="uid://wkomkbcn1sep" path="res://assets/enemies/enemy_box.png" id="7_eyb8k"]
+[ext_resource type="Texture2D" uid="uid://wkomkbcn1sep" path="res://assets/ui/enemies/enemy_box.png" id="7_eyb8k"]
+
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5jego"]
 

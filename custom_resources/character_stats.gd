@@ -18,9 +18,9 @@ var mana : int : set = set_mana
 var discard : CardPile
 var draw_pile : CardPile
 
-# May need to clampi to prevent mana going above 99
-func set_mana(value : int) -> void: 
-	mana = value
+
+func set_mana(value : int) -> void:
+	mana = clamp(value, 0, 99)
 	stats_changed.emit()
 
 

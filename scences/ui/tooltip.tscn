@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bijq7mf8h0j85"]
 
-[ext_resource type="Theme" uid="uid://bhs76hnulf3s4" path="res://assets/main_theme.tres" id="1_j5lpm"]
+[ext_resource type="Theme" uid="uid://bhs76hnulf3s4" path="res://assets/misc/main_theme.tres" id="1_j5lpm"]
 [ext_resource type="Script" path="res://scences/ui/tooltip.gd" id="2_y0pru"]
 
 [node name="Tooltip" type="PanelContainer"]

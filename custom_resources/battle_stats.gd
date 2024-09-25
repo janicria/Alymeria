@@ -11,7 +11,7 @@ var accumulated_weight := 0.0
 
 func roll_gold_reward() -> int:
 	match battle_tier:
-		0: 
+		0: # Easy pool
 			return (randi_range(10, 20)*(GameSave.current_biome+1)) /2
 		1: #TODO: Check for infected enemy combats
 			return (randi_range(5, 25)*(GameSave.current_biome+1)) /2
@@ -21,4 +21,5 @@ func roll_gold_reward() -> int:
 			return randi_range(15, 25)*(GameSave.current_biome+1)
 		4: # Snal
 			return randi_range(15, 25)
-	return INF #TODO: add error to logs then return (randi_range(5, 25)*(GameSave.current_biome+1)) /2
+	GameSave._log("[FAILSAFE] Unable to return gold reward", true)
+	return (randi_range(5, 25)*(GameSave.current_biome+1)) /2

@@ -1,9 +1,8 @@
 [gd_resource type="Resource" load_steps=4 format=3 uid="uid://c6ffdh3cljhno"]
 
-[ext_resource type="Texture2D" uid="uid://7p8kjadn847c" path="res://assets/cards/deck.png" id="1_f1ye8"]
+[ext_resource type="Texture2D" uid="uid://7p8kjadn847c" path="res://assets/ui/cards/deck.png" id="1_is1ov"]
 [ext_resource type="Script" path="res://characters/machine/cards/common/machine_repurposing.gd" id="2_ngu3b"]
 [ext_resource type="AudioStream" uid="uid://dixklg6g4jnsq" path="res://assets/SFX/slash.ogg" id="3_8os66"]
-
 
 [resource]
 script = ExtResource("2_ngu3b")
@@ -14,7 +13,7 @@ rarity = 0
 target = 0
 repeats = 1
 cost = 1
-icon = ExtResource("1_f1ye8")
+icon = ExtResource("1_is1ov")
 sound = ExtResource("3_8os66")
 tooltip_text = "Draw 2"
 effect_description = "[center]Draw - Add a card from your draw pile to your hand[/center]"

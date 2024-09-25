@@ -40,8 +40,9 @@ func update_stats() -> void:
 
 func update_damage_counter(amount: int, reset: bool) -> void:
 	if reset: damage_count = 0
+	damage_counter.visible = damage_count != 0
 	damage_count += amount
-	damage_counter.text = "[center][color=ff0000] %s [/color][/center]" % str(damage_count) 
+	damage_counter.text = "[center][color=AB3321] %s [/color][/center]" % str(damage_count) 
 
 
 func take_damage(damage : int) -> void:

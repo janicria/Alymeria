@@ -5,6 +5,7 @@
 [ext_resource type="Resource" uid="uid://criifnnvfhxgt" path="res://enemies/bat/shriek.tres" id="2_k81ok"]
 [ext_resource type="Resource" uid="uid://c6cwgq0y0a8d0" path="res://enemies/bat/bite.tres" id="3_iudyt"]
 
+
 [resource]
 script = ExtResource("1_euor7")
 action_1 = ExtResource("1_bq27e")

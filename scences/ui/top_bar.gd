@@ -2,7 +2,7 @@ extends TextureRect
 
 # FIXME: Everything 
 
-const DEFAULT_BUS_LAYOUT = preload("res://assets/default_bus_layout.tres")
+const DEFAULT_BUS_LAYOUT = preload("res://assets/misc/default_bus_layout.tres")
 
 @export var sfx_slider_sound : AudioStream
 
@@ -63,10 +63,8 @@ func _process(_delta: float) -> void:
 		cog_speed_boost -= 0.04
 	mouse_on_cog = false
 	
-	if !color_rect.visible:
-		return
-	
-	color_rect.visible = deck_view.visible
+	var wr = weakref(deck_view)
+	if wr.get_ref(): color_rect.visible = deck_view.visible or settings.visible
 
 
 func _on_color_rect_gui_input(event: InputEvent) -> void:
@@ -91,6 +89,7 @@ func settings_open_state(open : bool) -> void:
 		settings.visible = false
 		color_rect.visible = false
 		get_tree().paused = false
+		Events.tooltip_hide_requested.emit()
 		Events.update_deck_counter.emit()
 
 
@@ -157,6 +156,10 @@ func _on_true_deck_button_toggled(toggled_on: bool) -> void:
 	Events.update_deck_buttons.emit(0, false)
 
 
+func hide_tooltip() -> void:
+	Events.tooltip_hide_requested.emit()
+
+
 func _on_h_box_container_2_mouse_entered() -> void:
 	Events.settings_tooltip_requested.emit("[center]Show useful gameplay hints during menus
 (recommended)[/center]")
@@ -164,6 +167,7 @@ func _on_h_box_container_2_mouse_entered() -> void:
 
 func _on_h_box_container_mouse_entered() -> void:
 	Events.settings_tooltip_requested.emit("[center]Cards which draw show how far they move your deck[/center]")
+
 
 func _on_h_box_container_4_mouse_entered() -> void:
 	Events.settings_tooltip_requested.emit("[center]Deck counter doesn't show cards which exhaust[/center]")
@@ -175,4 +179,5 @@ func _on_h_box_container_3_mouse_entered() -> void:
 
 # TODO: Save before exiting here
 func _on_exit_button_pressed() -> void:
+	GameSave._log("Save & exit selected. Quiting...")
 	get_tree().quit()

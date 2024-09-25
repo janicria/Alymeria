@@ -3,9 +3,9 @@
 *add desc here*
 
 ## Demo
-Please note that this game is currently in it's pre-release 'Alpha' phase, meaning that many sprites don't make any sense and menus may have some unusable buttons
+Please note that this game is currently in it's pre-release 'Alpha' phase (Beta builds are more like demos), meaning that many sprites have misplaced textures and menus may have some unusable buttons
 
-This also means that you can also find 'Beta builds' in the /Releases/'Beta Builds/ directory
+This also means that you can also find 'Beta builds' in the /Releases/'Beta Builds/ directory (though they are not guaranteed to run smoothly)
 
 ## Releases
 
@@ -18,7 +18,7 @@ You can also find my planning doc at https://docs.google.com/document/d/1-JKUbbN
 
 ## Windows
 
-Go to the latest release on the releases page (https://github.com/janicria/Alymeria/releases) and download the file named Alymeria-[VERSION].exe
+Go to the latest release on the releases page (https://github.com/janicria/Alymeria/releases) and download the file named Alymeria-[VERSION].exe (windows may warn you before running it)
 
 i.e: Download 'Alymeria-0.2.exe' under release 'Version 0.2'
 

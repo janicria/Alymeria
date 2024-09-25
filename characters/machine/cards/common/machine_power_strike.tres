@@ -1,9 +1,8 @@
 [gd_resource type="Resource" load_steps=4 format=3 uid="uid://ccjsu4qoghdrb"]
 
-[ext_resource type="Texture2D" uid="uid://bfvi02kojsa00" path="res://assets/art/tile_0103.png" id="1_yded1"]
+[ext_resource type="Texture2D" uid="uid://bfvi02kojsa00" path="res://assets/art/objects/tile_0103.png" id="1_yded1"]
 [ext_resource type="Script" path="res://characters/machine/cards/common/machine_power_strike.gd" id="2_fuj8h"]
 [ext_resource type="AudioStream" uid="uid://b1vpjjmi5cj3n" path="res://assets/SFX/axe.ogg" id="3_ldjk2"]
-
 
 [resource]
 script = ExtResource("2_fuj8h")
@@ -16,7 +15,7 @@ repeats = 1
 cost = 2
 icon = ExtResource("1_yded1")
 sound = ExtResource("3_ldjk2")
-tooltip_text = "Attack 8"
+tooltip_text = "ATK 8"
 effect_description = "[center]Attack - Deal [color=\"ff0000\"]damage[/color] to an enemy[/center]"
 is_summon_only = false
 is_chaotic = false

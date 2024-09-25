@@ -3,11 +3,11 @@ extends Control
 
 const CARD_REWARDS := preload("res://scences/ui/card_rewards.tscn")
 const REWARD_BUTTON := preload("res://scences/ui/reward_button.tscn")
-const GOLD_ICON := preload("res://assets/art/gold.png")
+const GOLD_ICON := preload("res://assets/ui/gold.png")
 const GOLD_TEXT := "%s gold"
-const CARD_ICON := preload("res://assets/art/rarity.png")
+const CARD_ICON := preload("res://assets/ui/rarity.png")
 const CARD_TEXT := "Add a New Card"
-const REGULAR_POTION_ICON := preload("res://assets/art/tile_0114.png")
+const REGULAR_POTION_ICON := preload("res://assets/art/objects/tile_0114.png")
 #const POTION_TEXT := ""
 
 @export var character_stats: CharacterStats
@@ -112,11 +112,10 @@ func _modify_weights(rarity_rolled: Card.Rarity) -> void:
 		setup_card_rarity_chances()
 
 
-# Ensures that you get a card that has the rarity
-# which was rolled by _show_card_rewards()
+# Ensures that you get a card that has the rarity which was rolled by _show_card_rewards()
 func _get_random_available_card(available_cards: Array[Card], with_rarity: Card.Rarity) -> Card:
 	var all_possible_cards := available_cards.filter(
-		func(card: Card):
+		func(card: Card)-> int:
 			return card.rarity == with_rarity
 	)
 	return all_possible_cards.pick_random()

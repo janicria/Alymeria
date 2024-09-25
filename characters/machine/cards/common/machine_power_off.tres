@@ -11,8 +11,8 @@ rarity = 0
 target = 0
 repeats = 1
 cost = 1
-tooltip_text = "Attack X
-X = draw pile
+tooltip_text = "ATK X
+X = DRAW
 Cancel 2"
 effect_description = "Need to add logic to card"
 is_summon_only = false

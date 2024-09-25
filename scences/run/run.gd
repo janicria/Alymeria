@@ -88,7 +88,7 @@ func _input(_event: InputEvent) -> void:
 		Events.update_settings_visibility.emit()
 
 
-func _on_battle_room_entered(room: Room) -> void:
+func _on_battle_room_entered(_room: Room) -> void:
 	var battle_scence: Battle = _change_view(BATTLE_SCENCE) as Battle
 	battle_scence.char_stats = GameSave.character
 	battle_scence.battle_stats = preload("res://floors/battles/a1_tier0_pure_bat2.tres")

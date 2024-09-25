@@ -122,7 +122,7 @@ func _setup_boss_room() -> void:
 	
 	# edits connections to boss room
 	for j in MAP_WIDTH:
-		var current_room = map_data[floors - 2][j] as Room
+		var current_room := map_data[floors - 2][j] as Room
 		if current_room.next_rooms:
 			current_room.next_rooms = [] as Array[Room]
 			current_room.next_rooms.append(boss_room)

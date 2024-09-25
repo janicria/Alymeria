@@ -5,6 +5,7 @@
 [ext_resource type="Resource" uid="uid://b7e76ouxktv47" path="res://enemies/spider/hide.tres" id="2_l3bqa"]
 [ext_resource type="Resource" uid="uid://cshuck57f1vur" path="res://enemies/spider/fortify.tres" id="3_rpipw"]
 
+
 [resource]
 script = ExtResource("1_34fr1")
 action_1 = ExtResource("2_l3bqa")

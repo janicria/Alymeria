@@ -5,12 +5,12 @@ signal selected(room: Room)
 
 const ICONS := { # Element 1 (Vector2) = scale
 	Room.Type.NOT_ASSIGNED: [null, Vector2.ONE],
-	Room.Type.MONSTER: [preload("res://assets/art/tile_0103.png"), Vector2.ONE],
-	Room.Type.TREASURE: [preload("res://assets/art/tile_0089.png"), Vector2.ONE],
-	Room.Type.HAVEN: [preload("res://assets/art/player_heart.png"), Vector2(0.6, 0.6)],
-	Room.Type.SHOP: [preload("res://assets/art/gold.png"), Vector2(0.6, 0.6)],
-	Room.Type.ELITE: [preload("res://assets/art/tile_0105.png"), Vector2.ONE],
-	Room.Type.BOSS: [preload("res://assets/art/tile_0107.png"), Vector2(1.6, 1.6)]
+	Room.Type.MONSTER: [preload("res://assets/art/objects/tile_0103.png"), Vector2.ONE],
+	Room.Type.TREASURE: [preload("res://assets/art/objects/tile_0089.png"), Vector2.ONE],
+	Room.Type.HAVEN: [preload("res://assets/ui/player_heart.png"), Vector2(0.6, 0.6)],
+	Room.Type.SHOP: [preload("res://assets/ui/gold.png"), Vector2(0.6, 0.6)],
+	Room.Type.ELITE: [preload("res://assets/art/objects/tile_0105.png"), Vector2.ONE],
+	Room.Type.BOSS: [preload("res://assets/art/objects/tile_0107.png"), Vector2(1.6, 1.6)]
 	
 }
 

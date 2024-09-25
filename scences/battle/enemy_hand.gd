@@ -28,17 +28,15 @@ func cardToGui(card: EnemyCard, enemy: Enemy) -> void:
 	
 	# Updating player damage counter
 	tween.finished.connect(func()->void: if card.type == EnemyCard.Type.ATTACK:
-		Events.update_player_dmg_counter.emit(card.amount, false))
+		Events.update_player_dmg_counter.emit(card.amount * card.repeats, false))
 	
 	# Starting player draw
 	if card_ui == get_child(-1):
 		Events.battle_request_player_turn.emit()
 
 
-# await is for cards which are queued_for_deletion() bc the method doesn't work lol
 func organise_cards(draw_next_card := true) -> void:
 	# Setup
-	await get_tree().create_timer(0.1).timeout
 	organiser_target_pos = position - Vector2(30, -5) 
 	time_before_next_card = 0
 	

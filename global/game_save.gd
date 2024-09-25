@@ -64,16 +64,13 @@ func _init() -> void:
 	elif OS.has_feature("windows"): _log("Version: Windows " + ProjectSettings.get_setting("application/config/version"))
 
 
-# 0= Regular/Error, 1= Failsafe 2= Editor
-func _log(text: String, type := 0) -> void:
+func _log(text: String, notify := false) -> void:
 	if !OS.has_feature("release"):
-		if type == 1: OS.alert(text, "Oopsie daisey")
+		if notify: OS.alert(text, "Oopsie daisey")
 		print(text)
-	else: # TODO: Replace print statements with writing to a file
+	else:
 		print(text)
-		match type:
-			1: OS.alert("Janicria did an oopsie and asks for you to send the file 'info.log' at the path '[path]'. (Dw you can still play the game)", "Oopsie daisey")
-			2: var test = RandomAttack.new(); test.explide()
+		if notify: OS.alert("Janicria did an oopsie and asks for you to send the file 'info.log' at the path '%s'. (Dw you can still play the game)" % ProjectSettings.globalize_path("user://logs/info.log"), "Oopsie daisey")
 
 
 func set_gold(new_amount : int) -> void:

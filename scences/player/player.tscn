@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bgoevwf8o3b04"]
 
-[ext_resource type="Texture2D" uid="uid://dpfqok8tuy4r7" path="res://assets/art/tile_0084.png" id="1_f7p4x"]
+[ext_resource type="Texture2D" uid="uid://dpfqok8tuy4r7" path="res://assets/art/characters/tile_0084.png" id="1_f7p4x"]
 [ext_resource type="Script" path="res://scences/player/player.gd" id="1_u6pjk"]
 [ext_resource type="PackedScene" uid="uid://b21bh1sh66gbd" path="res://scences/ui/stats_ui.tscn" id="2_qygbq"]
 
@@ -18,8 +18,8 @@ offset_bottom = 21.0
 
 [node name="DamageCounter" type="RichTextLabel" parent="."]
 unique_name_in_owner = true
-offset_left = -19.0
+offset_left = -20.0
 offset_top = -16.0
-offset_right = 21.0
+offset_right = 20.0
 offset_bottom = -10.0
 bbcode_enabled = true

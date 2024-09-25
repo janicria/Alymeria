@@ -16,15 +16,15 @@ enum Targets {SINGLE, SELF, ENEMIES, ALLIES, EVERYONE}
 
 
 var icon_dict := {
-	Type.ATTACK: preload("res://assets/art/tile_0103.png"),
-	Type.BARRIER: preload("res://assets/art/tile_0101.png"),
-	Type.LARGE_BARRIER: preload("res://assets/art/tile_0102.png"),
-	Type.DRAW: preload("res://assets/cards/deck.png"),
-	Type.ENERGY: preload("res://assets/art/tile_0113.png"),
-	Type.BUFF: preload("res://assets/art/tile_0126.png"),
-	Type.DEBUFF: preload("res://assets/art/tile_0127.png"),
-	Type.SPAWN: preload("res://assets/art/tile_0122.png"),
-	Type.UNKNOWN: preload("res://assets/art/rarity.png")
+	Type.ATTACK: preload("res://assets/art/objects/tile_0103.png"),
+	Type.BARRIER: preload("res://assets/art/objects/tile_0101.png"),
+	Type.LARGE_BARRIER: preload("res://assets/art/objects/tile_0102.png"),
+	Type.DRAW: preload("res://assets/ui/cards/deck.png"),
+	Type.ENERGY: preload("res://assets/art/objects/tile_0113.png"),
+	Type.BUFF: preload("res://assets/art/objects/tile_0126.png"),
+	Type.DEBUFF: preload("res://assets/art/objects/tile_0127.png"),
+	Type.SPAWN: preload("res://assets/art/characters/tile_0122.png"),
+	Type.UNKNOWN: preload("res://assets/ui/rarity.png")
 }
 
 var tooltip_text_dict := {

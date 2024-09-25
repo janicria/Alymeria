@@ -23,9 +23,7 @@ func start_battle(char_stats : CharacterStats) -> void:
 
 func start_turn() -> void:
 	draw_cards(character.cards_per_turn)
-	character.barrier -= 10
-	if character.barrier < 0:
-		character.barrier = 0
+	character.barrier = clamp(character.barrier -10, 0, 999)
 	character.reset_mana()
 
 
@@ -43,12 +41,14 @@ func draw_card() -> void:
 # TODO Add tween animation for reshuffling discard into draw
 func draw_cards(amount : int) -> void:
 	var tween := create_tween()
-	for i in range(amount):
+	for i:int in amount:
 		tween.tween_callback(draw_card)
 		tween.tween_interval(HAND_DRAW_INTERVAL)
 	
 		tween.finished.connect(
 			func()->void:
+				# Prevents cards from being placed after being draw in between updating mana
+				character.set_mana(character.mana)
 				Events.player_hand_drawn.emit()
 				Events.update_card_stats.emit()
 		)

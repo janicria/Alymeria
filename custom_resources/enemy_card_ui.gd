@@ -18,10 +18,13 @@ func _ready() -> void:
 
 
 func kms() -> void:
-	cost.text = "X"
-	icon.texture = preload("res://assets/enemies/cross.png")
-	attack_desc.text = "X"
-	is_dead = true
+	# Prevents method from spamming
+	if !is_dead:
+		cost.text = "X"
+		icon.texture = preload("res://assets/ui/enemies/cross.png")
+		attack_desc.text = "X"
+		is_dead = true
+		Events.update_player_dmg_counter.emit(card_stats.amount * card_stats.repeats * -1, false)
 
 
 func update_stats(card: EnemyCard, enemy: Enemy) -> void:
@@ -66,7 +69,7 @@ func _on_control_mouse_exited() -> void:
 	Events.tooltip_hide_requested.emit()
 	
 	# Safety for if enemy was freed
-	var wr =weakref(enemy_stats)
+	var wr = weakref(enemy_stats)
 	if !wr.get_ref(): return
 	
 	enemy_stats.update_box()
@@ -105,7 +108,7 @@ func get_targets() -> Array[Node]:
 func apply_effects(targets: Array[Node]) -> void:
 	if is_dead: return
 	for i:int in card_stats.repeats:
-		var effect # Indentation moment (cannot be declared in switch below then refrenced below)
+		var effect: Effect # Indentation moment (cannot be declared in switch below then refrenced below)
 		match card_stats.type:
 			EnemyCard.Type.ATTACK:
 				effect = DamageEffect.new()

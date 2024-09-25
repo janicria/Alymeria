@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" path="res://custom_resources/card.gd" id="1_dj6l8"]
 
+
 [resource]
 script = ExtResource("1_dj6l8")
 id = "placeholder_rare_card"

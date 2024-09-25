@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://xryyxhv5ib3h"]
+[gd_scene load_steps=9 format=3 uid="uid://xryyxhv5ib3h"]
 
 [ext_resource type="PackedScene" uid="uid://4lwv2ug5j5j6" path="res://scences/ui/card_menu_ui.tscn" id="1_jl4mf"]
 [ext_resource type="Script" path="res://scences/ui/card_rewards.gd" id="1_vmbv4"]
 [ext_resource type="Resource" uid="uid://ccjsu4qoghdrb" path="res://characters/machine/cards/common/machine_power_strike.tres" id="2_bax7w"]
+[ext_resource type="Script" path="res://custom_resources/card.gd" id="2_exbs0"]
 [ext_resource type="PackedScene" uid="uid://n3v1mvmtakc" path="res://scences/ui/card_tooltip.tscn" id="2_k2vqf"]
 [ext_resource type="Resource" uid="uid://073voiuhw5gi" path="res://characters/machine/cards/common/machine_missile_launcher.tres" id="3_kg0bk"]
 [ext_resource type="Resource" uid="uid://dprpiekopnhe0" path="res://characters/machine/cards/common/machine_block.tres" id="4_p1fof"]
@@ -16,7 +17,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.627451)
 script = ExtResource("1_vmbv4")
-rewards = Array[Resource("res://custom_resources/card.gd")]([ExtResource("2_bax7w"), ExtResource("3_kg0bk"), ExtResource("4_p1fof"), ExtResource("5_7yg2y")])
+rewards = Array[ExtResource("2_exbs0")]([ExtResource("2_bax7w"), ExtResource("3_kg0bk"), ExtResource("4_p1fof"), ExtResource("5_7yg2y")])
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1

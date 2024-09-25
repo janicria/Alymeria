@@ -1,9 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://dnp55n4j8t44y"]
 
 [ext_resource type="Script" path="res://scences/summon/summon.gd" id="1_7gjkk"]
-[ext_resource type="Texture2D" uid="uid://ukld5o613i0a" path="res://assets/art/tile_0122.png" id="2_tywey"]
-[ext_resource type="Texture2D" uid="uid://bb3rcs5nqntir" path="res://assets/art/arrow.png" id="3_fcg7b"]
+[ext_resource type="Texture2D" uid="uid://ukld5o613i0a" path="res://assets/art/characters/tile_0122.png" id="2_tywey"]
+[ext_resource type="Texture2D" uid="uid://bb3rcs5nqntir" path="res://assets/ui/arrow.png" id="3_fcg7b"]
 [ext_resource type="PackedScene" uid="uid://b21bh1sh66gbd" path="res://scences/ui/stats_ui.tscn" id="4_epdbr"]
+
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5jego"]
 

@@ -110,9 +110,7 @@ func update_enemy() -> void:
 
 
 func do_turn() -> void:
-	stats.barrier -= 10
-	if stats.barrier < 0:
-		stats.barrier = 0
+	stats.barrier = clamp(stats.barrier -10, 0, 999)
 	mana = stats.max_mana
 
 

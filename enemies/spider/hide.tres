@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" path="res://custom_resources/enemy_card.gd" id="1_bo1ko"]
 
+
 [resource]
 script = ExtResource("1_bo1ko")
 type = 1

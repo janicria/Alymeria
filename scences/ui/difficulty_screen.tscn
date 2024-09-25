@@ -2,12 +2,13 @@
 
 [ext_resource type="Script" path="res://scences/ui/difficulty_screen.gd" id="1_yhugv"]
 [ext_resource type="Resource" uid="uid://dk2sl2aapuwe7" path="res://scences/ui/run_startup.tres" id="2_cbc13"]
-[ext_resource type="Texture2D" uid="uid://dpfqok8tuy4r7" path="res://assets/art/tile_0084.png" id="3_bdorm"]
-[ext_resource type="Texture2D" uid="uid://o6mhnfvroyvx" path="res://assets/art/tile_0125.png" id="4_7ui1l"]
-[ext_resource type="Texture2D" uid="uid://clbji84e7ec6m" path="res://assets/art/tile_0126.png" id="5_jnmxl"]
-[ext_resource type="Texture2D" uid="uid://c7xx3uproscj" path="res://assets/art/tile_0128.png" id="6_dxxy6"]
-[ext_resource type="Texture2D" uid="uid://cn2c1psh561cc" path="res://assets/art/tile_0127.png" id="7_2dfqt"]
-[ext_resource type="Texture2D" uid="uid://f7tgpjiguspe" path="res://assets/art/tile_0129.png" id="8_4m3hb"]
+[ext_resource type="Texture2D" uid="uid://dpfqok8tuy4r7" path="res://assets/art/characters/tile_0084.png" id="3_bdorm"]
+[ext_resource type="Texture2D" uid="uid://o6mhnfvroyvx" path="res://assets/art/objects/tile_0125.png" id="4_7ui1l"]
+[ext_resource type="Texture2D" uid="uid://clbji84e7ec6m" path="res://assets/art/objects/tile_0126.png" id="5_jnmxl"]
+[ext_resource type="Texture2D" uid="uid://c7xx3uproscj" path="res://assets/art/objects/tile_0128.png" id="6_dxxy6"]
+[ext_resource type="Texture2D" uid="uid://cn2c1psh561cc" path="res://assets/art/objects/tile_0127.png" id="7_2dfqt"]
+[ext_resource type="Texture2D" uid="uid://f7tgpjiguspe" path="res://assets/art/objects/tile_0129.png" id="8_4m3hb"]
+
 
 [sub_resource type="Gradient" id="Gradient_mtqjb"]
 colors = PackedColorArray(0.2, 0.117647, 0.0509804, 1, 0.054902, 0, 0.0588235, 1)
