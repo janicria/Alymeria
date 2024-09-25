@@ -18,7 +18,7 @@ var hand: Array[EnemyCard]
 var total_card_weight: int
 var pool: Array[EnemyCard]
 var mana: int
-
+var active := false
 
 func _setup_stats(value: EnemyStats) -> void:
 	stats = value.create_instance()
@@ -63,7 +63,7 @@ func update_weights() -> void: # HACK: No loop 2: Electric boogaloo (TIL this fr
 	if ai.action_10:total_card_weight += ai.action_10.weight
 
 
-func check_health_cards() -> void: # HACK: Yikes 3: The bad one that everyone likes for some reason
+func check_health_cards() -> void: # HACK: No loop 3: The bad one that everyone likes for some reason
 	if ai.action_1 and ai.action_1.health and stats.health <= ai.action_1.health: add_card(ai.action_1)
 	if ai.action_2 and ai.action_2.health and stats.health <= ai.action_2.health: add_card(ai.action_2)
 	if ai.action_3 and ai.action_3.health and stats.health <= ai.action_3.health: add_card(ai.action_3)
@@ -77,6 +77,9 @@ func check_health_cards() -> void: # HACK: Yikes 3: The bad one that everyone li
 
 
 func add_card(card: EnemyCard) -> void: #FIXME
+	# Prevents old enemies from adding cards right before they're freed
+	if !active: return
+	
 	if !card.cost and !card.weight and card.health > stats.health:
 		hand.append(card)
 		get_parent().get_child(0).cardToGui(card, self)
@@ -88,10 +91,6 @@ func add_card(card: EnemyCard) -> void: #FIXME
 		mana -= card.cost
 		hand.append(card)
 		get_parent().get_child(0).cardToGui(card, self)
-
-
-func _ready() -> void:
-	draw_cards(stats.max_turn_draw)
 
 
 func update_stats() -> void:

@@ -15,18 +15,7 @@ const EVENT_SCENCE := preload("res://scences/events/event.tscn")
 @onready var top_bar: TextureRect = %TopBar
 @onready var scence_transition: AnimationPlayer = %ScenceTransition
 @onready var color_rect: ColorRect = %ColorRect
-# Debug
 @onready var console_window: Window = %ConsoleWindow
-@onready var debug_menu: Control = %DebugMenu
-@onready var debug_stats: Label = %DebugStats
-@onready var map_button: Button = %MapButton
-@onready var battle_button: Button = %BattleButton
-@onready var shop_button: Button = %ShopButton
-@onready var treasure_button: Button = %TreasureButton
-@onready var rewards_button: Button = %RewardsButton
-@onready var haven_button: Button = %HavenButton
-@onready var event_button: Button = %EventButton
-
 
 var character: CharacterStats
 
@@ -35,10 +24,8 @@ func _ready() -> void:
 	if !run_startup:
 		return
 	
-	
 	color_rect.visible = true
-	debug_menu.visible = false
-	console_window.visible = false
+	#console_window.close_requested.emit()
 	scence_transition.play("fade_in")
 	
 	match run_startup.type:
@@ -92,40 +79,19 @@ func _setup_event_connections() -> void:
 	Events.shop_exited.connect(_show_map)
 	Events.treasure_room_exited.connect(_show_map)
 	Events.events_extied.connect(_show_map)
-	
-	# Debug
-	battle_button.pressed.connect(_change_view.bind(BATTLE_SCENCE))
-	haven_button.pressed.connect(_change_view.bind(HAVEN_SCENCE))
-	event_button.pressed.connect(_change_view.bind(EVENT_SCENCE))
-	treasure_button.pressed.connect(_change_view.bind(TREASURE_SCENCE))
-	shop_button.pressed.connect(_change_view.bind(SHOP_SCENCE))
-	rewards_button.pressed.connect(_change_view.bind(BATTLE_REWARD_SCENCE))
-	map_button.pressed.connect(_show_map)
 
 
 func _input(_event: InputEvent) -> void:
-	if Input.is_action_just_pressed("~_pressed"):
-		if debug_menu.visible:
-			debug_menu.visible = false
-			console_window.visible = false
-		else:
-			debug_menu.visible = true
-			console_window.visible = true
-
-
-func _process(_delta: float) -> void:
-	if !debug_menu.visible:
-		return
-	
-	debug_stats.text = "version: " + ProjectSettings.get_setting("application/config/version") + "
-character: %s" % run_startup.picked_character.id + "
-difficulty: %s " % str(run_startup.difficulty)
+	if _event.is_action_pressed("~_pressed"):
+		console_window.visible = !console_window.visible
+	elif _event.is_action_pressed("escape"):
+		Events.update_settings_visibility.emit()
 
 
 func _on_battle_room_entered(room: Room) -> void:
 	var battle_scence: Battle = _change_view(BATTLE_SCENCE) as Battle
 	battle_scence.char_stats = GameSave.character
-	battle_scence.battle_stats = preload("res://battles/a1_tier0_pure_bat2.tres")
+	battle_scence.battle_stats = preload("res://floors/battles/a1_tier0_pure_bat2.tres")
 	battle_scence.start_battle()
 
 
@@ -149,11 +115,10 @@ func _on_reward_exited() -> void:
 	else:
 		print("rolled map scence %s (4/5)" % event_chance)
 		_show_map()
-	
-	# TODO: Only call in else block above (rolled map scence)
 
 
 func _on_map_exited(room: Room) -> void:
+	GameSave._log("Floor %s: %s (column/type)" % [map.floors_climbed, room])
 	match room.type:
 		Room.Type.MONSTER:
 			_on_battle_room_entered(room)

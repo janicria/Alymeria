@@ -77,6 +77,11 @@ func _on_color_rect_gui_input(event: InputEvent) -> void:
 			settings_open_state(false)
 
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("escape"):
+		settings_open_state(!settings.visible)
+
+
 func settings_open_state(open : bool) -> void:
 	if open:
 		settings.visible = true
@@ -165,10 +170,6 @@ func _on_h_box_container_4_mouse_entered() -> void:
 
 
 func _on_h_box_container_3_mouse_entered() -> void:
-	Events.settings_tooltip_requested.emit("[center]Moves your draw and discard pile buttons to a more accessible place[/center]")
-
-
-func _on_save__exit_mouse_entered() -> void:
 	Events.settings_tooltip_requested.emit("[center]Moves your draw and discard pile buttons to a more accessible place[/center]")
 
 

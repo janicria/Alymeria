@@ -35,7 +35,6 @@ func start_battle() -> void:
 	Events.battle_state_updated.emit(0)
 
 
-
 func _on_player_died() -> void:
 	Events.battle_state_updated.emit(6)
 	print("You died lol")

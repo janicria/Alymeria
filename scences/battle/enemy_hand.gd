@@ -7,6 +7,7 @@ const ENEMY_CARD_SCENE = preload("res://custom_resources/enemy_card.tscn")
 
 var organiser_target_pos := position - Vector2(30, -5)
 
+
 func cardToGui(card: EnemyCard, enemy: Enemy) -> void:
 	# Creating card
 	var card_ui := ENEMY_CARD_SCENE.instantiate()
@@ -24,6 +25,10 @@ func cardToGui(card: EnemyCard, enemy: Enemy) -> void:
 	# Moving card
 	var tween := create_tween().set_trans(Tween.TRANS_BACK)
 	tween.tween_property(card_ui, "global_position", target_pos, 0.6)
+	
+	# Updating player damage counter
+	tween.finished.connect(func()->void: if card.type == EnemyCard.Type.ATTACK:
+		Events.update_player_dmg_counter.emit(card.amount, false))
 	
 	# Starting player draw
 	if card_ui == get_child(-1):

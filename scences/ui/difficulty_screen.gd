@@ -102,11 +102,12 @@ You cannot heal more than 20 health in one go"
 
 func _on_start_button_pressed() -> void:
 	if run_startup.difficulty:
-		print("Version: ", ProjectSettings.get_setting("application/config/version"))
-		print("Start new Run with ", run_startup.picked_character.character_name, " and difficulty ", run_startup.difficulty)
+		GameSave._log("\nStarted a new run")
+		GameSave._log("Character: %s " % run_startup.picked_character.character_name)
+		GameSave._log("Difficulty: %s" % run_startup.difficulty)
+		GameSave._log("Seed: ")
 		scence_transition.play("fade_out")
 		run_loading_started = true
-
 
 
 func _on_scence_transition_animation_finished(_anim_name: StringName) -> void:

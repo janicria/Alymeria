@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://hmurq7k0cm7y"]
+[gd_scene load_steps=27 format=3 uid="uid://hmurq7k0cm7y"]
 
 [ext_resource type="Script" path="res://scences/battle/battle.gd" id="1_aq6po"]
 [ext_resource type="Texture2D" uid="uid://j16iwp255gqv" path="res://assets/art/background_v13.png.png" id="1_rkqh7"]
@@ -15,8 +15,6 @@
 [ext_resource type="Script" path="res://scences/ui/battle_ui.gd" id="7_pjj3c"]
 [ext_resource type="Resource" uid="uid://c22fqvciaix8w" path="res://enemies/bat/bat_stats.tres" id="7_ulgmk"]
 [ext_resource type="Script" path="res://scences/player/player_handeler.gd" id="8_yhxx8"]
-[ext_resource type="PackedScene" uid="uid://dnp55n4j8t44y" path="res://scences/summon/summon.tscn" id="9_vllmp"]
-[ext_resource type="Resource" uid="uid://bxn42tjj2pjo7" path="res://characters/summons/attack_sentry/attack_sentry.tres" id="10_yg5fe"]
 [ext_resource type="PackedScene" uid="uid://c6uvw3m0xy3xg" path="res://scences/ui/mana_ui.tscn" id="11_a3x14"]
 [ext_resource type="PackedScene" uid="uid://bijq7mf8h0j85" path="res://scences/ui/tooltip.tscn" id="12_rl0gg"]
 [ext_resource type="Theme" uid="uid://bhs76hnulf3s4" path="res://assets/main_theme.tres" id="13_j1van"]
@@ -79,10 +77,6 @@ ai = ExtResource("6_ay38m")
 stats = ExtResource("7_ulgmk")
 
 [node name="SummonHandler" type="Node2D" parent="."]
-
-[node name="AttackSentry" parent="SummonHandler" instance=ExtResource("9_vllmp")]
-position = Vector2(163, 91)
-stats = ExtResource("10_yg5fe")
 
 [node name="Player" parent="." instance=ExtResource("3_qq8kc")]
 position = Vector2(119, 88)

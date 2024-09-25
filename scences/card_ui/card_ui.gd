@@ -59,7 +59,7 @@ func play() -> void:
 		
 
 
-# Dependency for other scripts # <- TODO: Is it actually though?
+# Dependency for other scripts <- Is it actually though?
 func has_targets() -> bool:
 	if targets:
 		return true

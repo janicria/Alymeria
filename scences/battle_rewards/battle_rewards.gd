@@ -54,7 +54,6 @@ func _show_card_rewards() -> void:
 	var available_cards: Array[Card] = character_stats.card_pool.duplicate_cards()
 	
 	# RNG for selecting each card (dark magic)
-	# TODO: change for elites and boss combat rewards
 	for i in GameSave.card_rewards:
 		setup_card_rarity_chances()
 		var roll := randf_range(0.0, card_reward_total_weight)
@@ -72,35 +71,16 @@ func _show_card_rewards() -> void:
 				card_reward_array.append(picked_card)
 				available_cards.erase(picked_card)
 				break
-
-
-	# Don't think this is needed anymore
-	# TODO: if it still hasn't ever ran by 
-	# the end of Alpha development then remove it
-	while card_reward_array.size() < 4:
-		for i in (4 - card_reward_array.size()):
-			setup_card_rarity_chances()
-			var roll := randf_range(0.0, card_reward_total_weight)
-			
-			for rarity: Card.Rarity in card_rarity_weights:
-				if card_rarity_weights[rarity] > roll:
-					_modify_weights(rarity)
-					var picked_card := _get_random_available_card(available_cards, rarity)
-					card_reward_array.append(picked_card)
-					available_cards.erase(picked_card)
-					OS.alert("Wait, I actually needed this?: Hotfix selected %s" % picked_card, "Pls tell janicria")
-					break
 	
 	card_rewards.rewards = card_reward_array
 	card_rewards.show()
 
 
-
 func setup_card_rarity_chances() -> void:
 	card_reward_total_weight = GameSave.common_weight + GameSave.uncommon_weight + GameSave.rare_weight
 	card_rarity_weights[Card.Rarity.COMMON] = GameSave.common_weight
-	card_rarity_weights[Card.Rarity.UNCOMMON] = GameSave.uncommon_weight
-	card_rarity_weights[Card.Rarity.RARE] = GameSave.rare_weight
+	card_rarity_weights[Card.Rarity.UNCOMMON] = GameSave.uncommon_weight + GameSave.multipliers.get("UNCOMMON_CARD_RARITY")
+	card_rarity_weights[Card.Rarity.RARE] = GameSave.rare_weight + GameSave.multipliers.get("RARE_CARD_RARITY")
 	var biome := GameSave.current_biome
 	if biome:
 		card_rarity_weights[Card.Rarity.UNCOMMON] *= (biome * 2)
@@ -112,7 +92,7 @@ func _modify_weights(rarity_rolled: Card.Rarity) -> void:
 	if rarity_rolled == Card.Rarity.UNCOMMON:
 		GameSave.common_weight = RunStats.BASE_COMMON_WEIGHT - GameSave.rare_weight
 		GameSave.uncommon_weight = GameSave.BASE_UNCOMMON_WEIGHT
-	else:
+	else: # Increases uncommon chances
 		GameSave.uncommon_weight = clampf(GameSave.uncommon_weight + 8.0, GameSave.BASE_UNCOMMON_WEIGHT, 80.0)
 		GameSave.common_weight = GameSave.BASE_COMMON_WEIGHT - GameSave.uncommon_weight
 	
@@ -120,7 +100,7 @@ func _modify_weights(rarity_rolled: Card.Rarity) -> void:
 		GameSave.rare_weight = RunStats.BASE_RARE_WEIGHT
 		GameSave.common_weight = RunStats.BASE_COMMON_WEIGHT
 		GameSave.uncommon_weight = RunStats.BASE_UNCOMMON_WEIGHT
-	else:
+	else: # Increases rare chances
 		GameSave.rare_weight = clampf(GameSave.rare_weight + 4.0, GameSave.BASE_RARE_WEIGHT, 50.0)
 		GameSave.common_weight = GameSave.BASE_COMMON_WEIGHT - GameSave.rare_weight
 	

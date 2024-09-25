@@ -3,8 +3,14 @@ extends Node2D
 
 @export var stats : CharacterStats : set = set_character_stats
 
-@onready var sprite_2d : Sprite2D = $Sprite2D
-@onready var stats_ui : StatsUI = $StatsUI
+@onready var sprite_2d : Sprite2D = %Sprite2D
+@onready var stats_ui : StatsUI = %StatsUI
+@onready var damage_counter: RichTextLabel = %DamageCounter
+
+var damage_count: int
+
+func _ready() -> void:
+	Events.update_player_dmg_counter.connect(update_damage_counter)
 
 
 func set_character_stats(value : CharacterStats) -> void:
@@ -30,6 +36,12 @@ func update_player() -> void:
 
 func update_stats() -> void:
 	stats_ui.update_stats(stats)
+
+
+func update_damage_counter(amount: int, reset: bool) -> void:
+	if reset: damage_count = 0
+	damage_count += amount
+	damage_counter.text = "[center][color=ff0000] %s [/color][/center]" % str(damage_count) 
 
 
 func take_damage(damage : int) -> void:

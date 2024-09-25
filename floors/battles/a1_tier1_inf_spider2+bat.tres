@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BattleStats" load_steps=3 format=3 uid="uid://c6gs3s1ngmnlx"]
+
+[ext_resource type="PackedScene" uid="uid://m2prg2d1me4o" path="res://floors/battles/a1_tier1_inf_spider_2+bat.tscn" id="1_4hvgk"]
+[ext_resource type="Script" path="res://custom_resources/battle_stats.gd" id="2_3827f"]
+
+[resource]
+script = ExtResource("2_3827f")
+battle_tier = 1
+weight = 70
+pure = false
+enemies = ExtResource("1_4hvgk")
