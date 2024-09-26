@@ -1,0 +1,331 @@
+[gd_scene load_steps=12 format=3 uid="uid://bwuexw3t61b0h"]
+
+[ext_resource type="Script" path="res://scences/ui/settings_bar.gd" id="1_gqwvr"]
+[ext_resource type="AudioStream" uid="uid://b1vpjjmi5cj3n" path="res://assets/SFX/axe.ogg" id="2_mu1su"]
+[ext_resource type="Texture2D" uid="uid://do1aa6n7ws33d" path="res://assets/ui/cog.png" id="3_xk6qw"]
+[ext_resource type="PackedScene" uid="uid://cmrvm435qcold" path="res://scences/ui/card_pile_button.tscn" id="4_hmjjb"]
+[ext_resource type="Texture2D" uid="uid://7p8kjadn847c" path="res://assets/ui/cards/deck.png" id="5_ye2i7"]
+[ext_resource type="PackedScene" uid="uid://da7tuwoqikc3r" path="res://scences/ui/gold_ui.tscn" id="6_qme55"]
+[ext_resource type="PackedScene" uid="uid://bijq7mf8h0j85" path="res://scences/ui/tooltip.tscn" id="7_w5c4v"]
+[ext_resource type="PackedScene" uid="uid://hqt3nv2gge3l" path="res://scences/ui/card_pile_view.tscn" id="8_4kgy7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_dr0uj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_as8hc"]
+font_size = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_kiq6t"]
+font_size = 6
+
+[node name="SettingsBar" type="TextureRect"]
+process_mode = 3
+modulate = Color(0.737255, 0.737255, 0.737255, 1)
+offset_right = 334.0
+offset_bottom = 20.0
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 2
+script = ExtResource("1_gqwvr")
+sfx_slider_sound = ExtResource("2_mu1su")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+visible = false
+layout_mode = 0
+offset_left = -3.0
+offset_top = -4.0
+offset_right = 337.0
+offset_bottom = 191.0
+mouse_filter = 1
+color = Color(0, 0, 0, 0.470588)
+
+[node name="TopHbox" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 7.0
+offset_top = 5.0
+offset_right = -249.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 4
+
+[node name="Cog" type="TextureRect" parent="TopHbox"]
+unique_name_in_owner = true
+texture_filter = 1
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+texture = ExtResource("3_xk6qw")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="DeckButton" parent="TopHbox" node_paths=PackedStringArray("counter") instance=ExtResource("4_hmjjb")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(12, 14)
+layout_mode = 2
+texture_normal = ExtResource("5_ye2i7")
+counter = NodePath("../Counter")
+
+[node name="Counter" type="Label" parent="TopHbox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "99"
+horizontal_alignment = 1
+
+[node name="GoldUI" parent="TopHbox" instance=ExtResource("6_qme55")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="SettingsLayer" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+layer = 100
+
+[node name="Settings" type="Panel" parent="SettingsLayer"]
+unique_name_in_owner = true
+process_mode = 3
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = -75.0
+offset_right = 125.0
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingsLayer/Settings"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -2.0
+offset_top = 4.0
+offset_right = 2.0
+offset_bottom = 116.0
+grow_horizontal = 2
+theme_override_constants/separation = 12
+
+[node name="SettingsTitle" type="Label" parent="SettingsLayer/Settings/VBoxContainer"]
+layout_mode = 2
+text = "Settings"
+label_settings = SubResource("LabelSettings_dr0uj")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SettingsHbox" type="HBoxContainer" parent="SettingsLayer/Settings/VBoxContainer"]
+layout_mode = 2
+
+[node name="Gameplay" type="VBoxContainer" parent="SettingsLayer/Settings/VBoxContainer/SettingsHbox"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="GameplayTitle" type="Label" parent="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay"]
+layout_mode = 2
+text = "Gameplay"
+label_settings = SubResource("LabelSettings_as8hc")
+horizontal_alignment = 1
+
+[node name="TrueDrawHbox" type="HBoxContainer" parent="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Label" type="Label" parent="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/TrueDrawHbox"]
+custom_minimum_size = Vector2(62, 0)
+layout_mode = 2
+text = "  True draw amount"
+label_settings = SubResource("LabelSettings_kiq6t")
+horizontal_alignment = 1
+
+[node name="TrueDrawButton" type="Button" parent="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/TrueDrawHbox"]
+unique_name_in_owner = true
+layout_mode = 2
+toggle_mode = true
+text = "Disabled"
+
+[node name="TrueDeckHbox" type="HBoxContainer" parent="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Label" type="Label" parent="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/TrueDeckHbox"]
+custom_minimum_size = Vector2(62, 0)
+layout_mode = 2
+text = "  True deck size"
+label_settings = SubResource("LabelSettings_kiq6t")
+horizontal_alignment = 1
+
+[node name="TrueDeckButton" type="Button" parent="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/TrueDeckHbox"]
+unique_name_in_owner = true
+layout_mode = 2
+toggle_mode = true
+text = "Disabled"
+
+[node name="HintsHbox" type="HBoxContainer" parent="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Label" type="Label" parent="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/HintsHbox"]
+custom_minimum_size = Vector2(62, 0)
+layout_mode = 2
+text = "  Gameplay hints"
+label_settings = SubResource("LabelSettings_kiq6t")
+horizontal_alignment = 1
+
+[node name="HintsButton" type="Button" parent="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/HintsHbox"]
+unique_name_in_owner = true
+layout_mode = 2
+toggle_mode = true
+button_pressed = true
+text = "Enabled"
+
+[node name="CardPilePosHbox" type="HBoxContainer" parent="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Label" type="Label" parent="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/CardPilePosHbox"]
+custom_minimum_size = Vector2(62, 0)
+layout_mode = 2
+text = "  Card pile position"
+label_settings = SubResource("LabelSettings_kiq6t")
+horizontal_alignment = 1
+
+[node name="CardPilePosButton" type="Button" parent="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/CardPilePosHbox"]
+unique_name_in_owner = true
+layout_mode = 2
+toggle_mode = true
+text = "Outside"
+
+[node name="ExitButton" type="Button" parent="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Save and Exit"
+
+[node name="AudioVisual" type="VBoxContainer" parent="SettingsLayer/Settings/VBoxContainer/SettingsHbox"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="AudioVisualTitle" type="Label" parent="SettingsLayer/Settings/VBoxContainer/SettingsHbox/AudioVisual"]
+layout_mode = 2
+text = "Audio & Visual
+"
+label_settings = SubResource("LabelSettings_as8hc")
+horizontal_alignment = 1
+
+[node name="MasterVolumeHbox" type="HBoxContainer" parent="SettingsLayer/Settings/VBoxContainer/SettingsHbox/AudioVisual"]
+layout_mode = 2
+size_flags_horizontal = 0
+alignment = 1
+
+[node name="Label" type="Label" parent="SettingsLayer/Settings/VBoxContainer/SettingsHbox/AudioVisual/MasterVolumeHbox"]
+custom_minimum_size = Vector2(62, 0)
+layout_mode = 2
+text = "Master voume"
+label_settings = SubResource("LabelSettings_kiq6t")
+horizontal_alignment = 1
+
+[node name="MasterVolumeSlider" type="HSlider" parent="SettingsLayer/Settings/VBoxContainer/SettingsHbox/AudioVisual/MasterVolumeHbox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+value = 100.0
+rounded = true
+ticks_on_borders = true
+
+[node name="SFXVolumeHbox" type="HBoxContainer" parent="SettingsLayer/Settings/VBoxContainer/SettingsHbox/AudioVisual"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Label" type="Label" parent="SettingsLayer/Settings/VBoxContainer/SettingsHbox/AudioVisual/SFXVolumeHbox"]
+custom_minimum_size = Vector2(62, 0)
+layout_mode = 2
+text = "SFX voume"
+label_settings = SubResource("LabelSettings_kiq6t")
+horizontal_alignment = 1
+
+[node name="SFXVolumeSlider" type="HSlider" parent="SettingsLayer/Settings/VBoxContainer/SettingsHbox/AudioVisual/SFXVolumeHbox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+max_value = 32.0
+value = 32.0
+rounded = true
+ticks_on_borders = true
+
+[node name="MusicVolumeHbox" type="HBoxContainer" parent="SettingsLayer/Settings/VBoxContainer/SettingsHbox/AudioVisual"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Label" type="Label" parent="SettingsLayer/Settings/VBoxContainer/SettingsHbox/AudioVisual/MusicVolumeHbox"]
+custom_minimum_size = Vector2(62, 0)
+layout_mode = 2
+text = "Music voume"
+label_settings = SubResource("LabelSettings_kiq6t")
+horizontal_alignment = 1
+
+[node name="MusicVolumeSlider" type="HSlider" parent="SettingsLayer/Settings/VBoxContainer/SettingsHbox/AudioVisual/MusicVolumeHbox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+max_value = 32.0
+value = 16.0
+rounded = true
+ticks_on_borders = true
+
+[node name="FullscreenHbox" type="HBoxContainer" parent="SettingsLayer/Settings/VBoxContainer/SettingsHbox/AudioVisual"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Label" type="Label" parent="SettingsLayer/Settings/VBoxContainer/SettingsHbox/AudioVisual/FullscreenHbox"]
+custom_minimum_size = Vector2(62, 0)
+layout_mode = 2
+text = "Fullscreen"
+label_settings = SubResource("LabelSettings_kiq6t")
+horizontal_alignment = 1
+
+[node name="FullscreenButton" type="Button" parent="SettingsLayer/Settings/VBoxContainer/SettingsHbox/AudioVisual/FullscreenHbox"]
+unique_name_in_owner = true
+layout_mode = 2
+toggle_mode = true
+text = "Disabled"
+
+[node name="SettingsTooltip" parent="SettingsLayer" instance=ExtResource("7_w5c4v")]
+unique_name_in_owner = true
+offset_left = -138.0
+offset_top = 14.0
+offset_right = 12.0
+offset_bottom = 50.0
+
+[node name="DeckViewLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="DeckView" parent="DeckViewLayer" instance=ExtResource("8_4kgy7")]
+unique_name_in_owner = true
+visible = false
+
+[connection signal="gui_input" from="ColorRect" to="." method="_on_color_rect_gui_input"]
+[connection signal="gui_input" from="TopHbox/Cog" to="." method="_on_cog_gui_input"]
+[connection signal="mouse_entered" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/TrueDrawHbox" to="." method="_on_hbox_mouse_entered" binds= ["Cards which draw show how far they move your deck (show one less in the draw counter)"]]
+[connection signal="mouse_exited" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/TrueDrawHbox" to="." method="hide_tooltip"]
+[connection signal="toggled" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/TrueDrawHbox/TrueDrawButton" to="." method="_on_toggled_button_toggled" binds= ["true_draw"]]
+[connection signal="mouse_entered" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/TrueDeckHbox" to="." method="_on_hbox_mouse_entered" binds= ["Deck counter doesn't show cards which exhaust"]]
+[connection signal="mouse_exited" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/TrueDeckHbox" to="." method="hide_tooltip"]
+[connection signal="toggled" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/TrueDeckHbox/TrueDeckButton" to="." method="_on_toggled_button_toggled" binds= ["true_deck"]]
+[connection signal="mouse_entered" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/HintsHbox" to="." method="_on_hbox_mouse_entered" binds= ["how useful gameplay hints during menus (recommended)"]]
+[connection signal="mouse_exited" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/HintsHbox" to="." method="hide_tooltip"]
+[connection signal="toggled" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/HintsHbox/HintsButton" to="." method="_on_toggled_button_toggled" binds= ["hints"]]
+[connection signal="mouse_entered" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/CardPilePosHbox" to="." method="_on_hbox_mouse_entered" binds= ["Moves your draw and discard pile buttons to a more accessible location"]]
+[connection signal="mouse_exited" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/CardPilePosHbox" to="." method="hide_tooltip"]
+[connection signal="toggled" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/CardPilePosHbox/CardPilePosButton" to="." method="_on_toggled_button_toggled" binds= ["card_pile_pos"]]
+[connection signal="pressed" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="value_changed" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/AudioVisual/MasterVolumeHbox/MasterVolumeSlider" to="." method="_on_volume_slider_value_changed" binds= ["master"]]
+[connection signal="drag_ended" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/AudioVisual/SFXVolumeHbox/SFXVolumeSlider" to="." method="_on_sfx_volume_drag_ended"]
+[connection signal="value_changed" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/AudioVisual/SFXVolumeHbox/SFXVolumeSlider" to="." method="_on_volume_slider_value_changed" binds= ["sfx"]]
+[connection signal="value_changed" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/AudioVisual/MusicVolumeHbox/MusicVolumeSlider" to="." method="_on_volume_slider_value_changed" binds= ["music"]]
+[connection signal="toggled" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/AudioVisual/FullscreenHbox/FullscreenButton" to="." method="_on_toggled_button_toggled" binds= ["fullscreen"]]

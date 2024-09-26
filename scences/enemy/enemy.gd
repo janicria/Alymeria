@@ -76,7 +76,7 @@ func check_health_cards() -> void: # HACK: No loop 3: The bad one that everyone 
 	if ai.action_10 and ai.action_10.health and stats.health<=ai.action_10.health:add_card(ai.action_10)
 
 
-func add_card(card: EnemyCard) -> void: #FIXME
+func add_card(card: EnemyCard) -> void: #FIXME: Organise me pls
 	# Prevents old enemies from adding cards right before they're freed
 	if !active: return
 	

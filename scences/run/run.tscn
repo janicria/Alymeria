@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scences/run/run.gd" id="1_327eg"]
 [ext_resource type="PackedScene" uid="uid://klm1dw58y8fj" path="res://scences/map/map.tscn" id="1_jorql"]
 [ext_resource type="Resource" uid="uid://dk2sl2aapuwe7" path="res://scences/ui/run_startup.tres" id="2_ehyhl"]
-[ext_resource type="PackedScene" uid="uid://bwuexw3t61b0h" path="res://scences/ui/top_bar.tscn" id="4_xv74x"]
+[ext_resource type="PackedScene" uid="uid://bwuexw3t61b0h" path="res://scences/ui/settings_bar.tscn" id="4_xv74x"]
 [ext_resource type="PackedScene" uid="uid://cmrfdlp25wcby" path="res://addons/simply-console/scenes/console_window.tscn" id="5_p3j0y"]
 
 [sub_resource type="Animation" id="Animation_u5hhp"]
@@ -84,7 +84,7 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="TopBar" parent="UI" instance=ExtResource("4_xv74x")]
+[node name="SettingsBar" parent="UI" instance=ExtResource("4_xv74x")]
 unique_name_in_owner = true
 layout_mode = 0
 

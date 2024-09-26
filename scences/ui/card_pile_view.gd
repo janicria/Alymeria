@@ -15,7 +15,9 @@ func _ready() -> void:
 	Events.update_card_tooltip_position.connect(_on_update_card_tooltip_position)
 	Events.update_deck_buttons.connect(_on_update_deck_buttons)
 	
-	return_button.pressed.connect(hide)
+	return_button.pressed.connect(func()->void:
+		hide()
+		GameManager.card_pile_open = false)
 	
 	for card: Node in cards.get_children():
 		card.queue_free()
@@ -26,9 +28,12 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		hide()
+		GameManager.card_pile_open = false
 
 
 func show_current_view(new_title : String, randomized : bool = false) -> void:
+	GameManager.card_pile_open = true
+	
 	for card: Node in cards.get_children():
 		card.queue_free()
 	

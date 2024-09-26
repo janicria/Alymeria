@@ -7,7 +7,7 @@ var draw_amount := 2
 func _init() -> void:
 	Events.update_card_stats.connect(
 		func() -> void:
-			if self.has_draw and GameSave.true_draw_amount:
+			if self.has_draw and GameManager.true_draw_amount:
 				self.tooltip_text = str(draw_amount) + "(" + str(draw_amount - 1) + ")"
 	)
 

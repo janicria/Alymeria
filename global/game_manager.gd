@@ -56,21 +56,27 @@ var multipliers := {
 var cheats := false
 var dev := false
 
+# Global variables
+var card_pile_open := false : set = set_card_pile
+
+
+# Prevents settings from opening the same frame a card pile closes
+func set_card_pile(value: bool) -> void:
+	await get_tree().process_frame
+	card_pile_open = value
+
 
 func _init() -> void:
-	_log("Successful launch")
-	if !OS.has_feature("release"): _log("Version: Debug " + ProjectSettings.get_setting("application/config/version"))
-	elif OS.has_feature("linux"): _log("Version: Linux " + ProjectSettings.get_setting("application/config/version"))
-	elif OS.has_feature("windows"): _log("Version: Windows " + ProjectSettings.get_setting("application/config/version"))
+	print("Successful launch")
+	if !OS.has_feature("release"): print("Version: Debug " + ProjectSettings.get_setting("application/config/version"))
+	elif OS.has_feature("linux"): print("Version: Linux " + ProjectSettings.get_setting("application/config/version"))
+	elif OS.has_feature("windows"): print("Version: Windows " + ProjectSettings.get_setting("application/config/version"))
 
 
-func _log(text: String, notify := false) -> void:
-	if !OS.has_feature("release"):
-		if notify: OS.alert(text, "Oopsie daisey")
-		print(text)
-	else:
-		print(text)
-		if notify: OS.alert("Janicria did an oopsie and asks for you to send the file 'info.log' at the path '%s'. (Dw you can still play the game)" % ProjectSettings.globalize_path("user://logs/info.log"), "Oopsie daisey")
+func notify(text: String, fail := false) -> void:
+	if fail: printerr("[FAIL] " + text)
+	else: printerr("[ERROR] " + text)
+	OS.alert("Janicria did an oopsie and asks for you to send the file 'info.log' at the path '%s'. (Dw you can still play the game)" % ProjectSettings.globalize_path("user://logs/info.log"), "Oopsie daisey")
 
 
 func set_gold(new_amount : int) -> void:

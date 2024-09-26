@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://chtnrxmaowwkd" path="res://assets/art/characters/tile_0111.png" id="4_xsa1l"]
 [ext_resource type="Texture2D" uid="uid://cgopx2ponr1qi" path="res://assets/art/characters/tile_0121.png" id="5_av3ul"]
 [ext_resource type="Texture2D" uid="uid://1u3b3hwqd8yh" path="res://assets/art/characters/tile_0110.png" id="6_nmdkm"]
-[ext_resource type="PackedScene" uid="uid://bwuexw3t61b0h" path="res://scences/ui/top_bar.tscn" id="7_jvmsa"]
+[ext_resource type="PackedScene" uid="uid://bwuexw3t61b0h" path="res://scences/ui/settings_bar.tscn" id="7_jvmsa"]
 
 [sub_resource type="Gradient" id="Gradient_mtqjb"]
 colors = PackedColorArray(0.2, 0.117647, 0.0509804, 1, 0.054902, 0, 0.0588235, 1)
@@ -153,34 +153,39 @@ theme_override_font_sizes/font_size = 8
 text = "Exit
 "
 
-[node name="Bat2" type="Sprite2D" parent="."]
+[node name="SettingsBar" parent="." instance=ExtResource("7_jvmsa")]
+layout_mode = 0
+
+[node name="Creatures" type="Node2D" parent="."]
+
+[node name="Bat2" type="Sprite2D" parent="Creatures"]
 position = Vector2(61, 117)
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("2_4gpks")
 
-[node name="Mimic" type="Sprite2D" parent="."]
+[node name="Mimic" type="Sprite2D" parent="Creatures"]
 position = Vector2(36, 147)
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("3_lae7v")
 
-[node name="Necromancer" type="Sprite2D" parent="."]
+[node name="Necromancer" type="Sprite2D" parent="Creatures"]
 position = Vector2(78, 152)
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("4_xsa1l")
 
-[node name="Bat" type="Sprite2D" parent="."]
+[node name="Bat" type="Sprite2D" parent="Creatures"]
 position = Vector2(284, 116)
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("2_4gpks")
 flip_h = true
 
-[node name="Ghost" type="Sprite2D" parent="."]
+[node name="Ghost" type="Sprite2D" parent="Creatures"]
 position = Vector2(259, 146)
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("5_av3ul")
 flip_h = true
 
-[node name="Crab" type="Sprite2D" parent="."]
+[node name="Crab" type="Sprite2D" parent="Creatures"]
 position = Vector2(301, 151)
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("6_nmdkm")
@@ -200,9 +205,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.2, 0.117647, 0.0509804, 1)
-
-[node name="TopBar" parent="." instance=ExtResource("7_jvmsa")]
-layout_mode = 0
 
 [connection signal="pressed" from="VBoxContainer/Continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="VBoxContainer/NewRun" to="." method="_on_new_run_pressed"]

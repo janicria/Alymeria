@@ -39,9 +39,9 @@ func generate_map() -> Array[Array]:
 
 func _generate_inital_grid() -> Array[Array]:
 	var result: Array[Array] = []
-	for biome: GameSave.Biome in GameSave.biome_floors:
-		if biome == GameSave.current_biome:
-			floors = GameSave.biome_floors[biome]
+	for biome: GameManager.Biome in GameManager.biome_floors:
+		if biome == GameManager.current_biome:
+			floors = GameManager.biome_floors[biome]
 	
 	for i in floors:
 		var adjacent_rooms: Array[Room] = []
@@ -228,5 +228,5 @@ func _get_random_room_type_by_weight() -> Room.Type:
 		if random_room_type_weights[type] > roll:
 			return type
 	
-	print("error generating room type")
+	GameManager.notify("Unable to return room type", true)
 	return Room.Type.MONSTER

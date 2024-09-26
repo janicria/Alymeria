@@ -203,7 +203,7 @@ func echo(text: String) -> String:
 
 
 func gold(amount: int) -> String:
-	GameSave.gold += amount
+	GameManager.gold += amount
 	return \"Added %s gold\" % amount
 
 

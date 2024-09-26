@@ -12,7 +12,6 @@ const EVENT_SCENCE := preload("res://scences/events/event.tscn")
 
 @onready var map: Map = %Map
 @onready var current_view: Node = %CurrentView
-@onready var top_bar: TextureRect = %TopBar
 @onready var scence_transition: AnimationPlayer = %ScenceTransition
 @onready var color_rect: ColorRect = %ColorRect
 @onready var console_window: Window = %ConsoleWindow
@@ -30,7 +29,7 @@ func _ready() -> void:
 	
 	match run_startup.type:
 		RunStartup.Type.NEW_RUN:
-			GameSave.character = run_startup.picked_character.create_instance()
+			GameManager.character = run_startup.picked_character.create_instance()
 			_start_run()
 		RunStartup.Type.CONTINUED_RUN:
 			print("Load contuined run")
@@ -40,7 +39,7 @@ func _ready() -> void:
 
 func _start_run() -> void:
 	_setup_event_connections()
-	Events.update_card_pile.emit(GameSave.character.deck)
+	Events.update_card_pile.emit(GameManager.character.deck)
 	map.generate_new_map()
 	map.unlock_floor(0)
 
@@ -84,13 +83,13 @@ func _setup_event_connections() -> void:
 func _input(_event: InputEvent) -> void:
 	if _event.is_action_pressed("~_pressed"):
 		console_window.visible = !console_window.visible
-	elif _event.is_action_pressed("escape"):
+	elif _event.is_action_pressed("ui_cancel"):
 		Events.update_settings_visibility.emit()
 
 
 func _on_battle_room_entered(_room: Room) -> void:
 	var battle_scence: Battle = _change_view(BATTLE_SCENCE) as Battle
-	battle_scence.char_stats = GameSave.character
+	battle_scence.char_stats = GameManager.character
 	battle_scence.battle_stats = preload("res://floors/battles/a1_tier0_pure_bat2.tres")
 	battle_scence.start_battle()
 
@@ -110,15 +109,15 @@ func _on_battle_won() -> void:
 func _on_reward_exited() -> void:
 	var event_chance := randi_range(0, 4)
 	if !event_chance:
-		print("rolled event scence %s (1/5)" % event_chance)
+		print("Rolled event scence %s (1/5)" % event_chance)
 		_change_view(EVENT_SCENCE)
 	else:
-		print("rolled map scence %s (4/5)" % event_chance)
+		print("Rolled map scence %s (4/5)" % event_chance)
 		_show_map()
 
 
 func _on_map_exited(room: Room) -> void:
-	GameSave._log("Floor %s: %s (column/type)" % [map.floors_climbed, room])
+	print("Floor %s: %s (column/type)" % [map.floors_climbed, room])
 	match room.type:
 		Room.Type.MONSTER:
 			_on_battle_room_entered(room)

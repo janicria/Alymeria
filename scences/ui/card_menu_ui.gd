@@ -50,16 +50,16 @@ func set_card(value : Card) -> void:
 	elif card.type == 1:
 		type.text = " -Internal"
 	elif card.type == 2:
-		if GameSave.character.character_name == "Machine":
+		if GameManager.character.character_name == "Machine":
 			type.text = "  -Looped"
-		elif GameSave.character.character_name == "Machine":
+		elif GameManager.character.character_name == "Machine":
 			type.text = " -Summon"
 	elif card.type == 3:
 		type.text = " -Status"
 	elif card.type == 4:
-		if GameSave.character.character_name == "Machine":
+		if GameManager.character.character_name == "Machine":
 			type.text = " -Malware"
-		elif GameSave.character.character_name == "Machine":
+		elif GameManager.character.character_name == "Machine":
 			type.text = " -Hex"
 	
 	if _name.get_line_count() > 1:

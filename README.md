@@ -3,9 +3,9 @@
 *add desc here*
 
 ## Demo
-Please note that this game is currently in it's pre-release 'Alpha' phase (Beta builds are more like demos), meaning that many sprites have misplaced textures and menus may have some unusable buttons
+Please note that this game is currently in it's pre-release 'Pre-alpha' phase, meaning that many sprites have misplaced textures and menus may have some unusable buttons
 
-This also means that you can also find 'Beta builds' in the /Releases/'Beta Builds/ directory (though they are not guaranteed to run smoothly)
+This also means that you can also find experimental builds at the path /Releases/'Experimental'/ (Updated 1-4 times a week) There is also a README file explaining what experimental features each build contains (not guaranteed to run ~smoothly~ at all).
 
 ## Releases
 
@@ -27,6 +27,18 @@ i.e: Download 'Alymeria-0.2.exe' under release 'Version 0.2'
 Go to the latest release on the releases page (https://github.com/janicria/Alymeria/releases) and download the file named Alymeria-[VERSION].x86_64 (may need to make executable)
 
 i.e: Download 'Alymeria-0.2.x86_64' under release 'Version 0.2'
+
+# Saving & Logging
+
+All versions of Alymeria share the same directory for storing save and log files, which can be found at:
+
+```
+Windows: C:\Users\USER\AppData\Roaming\Alymeria
+
+Linux: ~/.local/share/Alymeria
+```
+
+This also means that switching versions will overwrite previous versions save and log files.
 
 # Credits
 In case you didn't catch them in game or I haven't implemented them yet (oops)

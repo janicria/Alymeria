@@ -23,7 +23,7 @@ var card_rarity_weights := {
 
 
 func _ready() -> void:
-	character_stats = GameSave.character
+	character_stats = GameManager.character
 	
 	for node: Node in rewards.get_children():
 		node.queue_free()
@@ -54,7 +54,7 @@ func _show_card_rewards() -> void:
 	var available_cards: Array[Card] = character_stats.card_pool.duplicate_cards()
 	
 	# RNG for selecting each card (dark magic)
-	for i in GameSave.card_rewards:
+	for i in GameManager.card_rewards:
 		setup_card_rarity_chances()
 		var roll := randf_range(0.0, card_reward_total_weight)
 		
@@ -77,11 +77,11 @@ func _show_card_rewards() -> void:
 
 
 func setup_card_rarity_chances() -> void:
-	card_reward_total_weight = GameSave.common_weight + GameSave.uncommon_weight + GameSave.rare_weight
-	card_rarity_weights[Card.Rarity.COMMON] = GameSave.common_weight
-	card_rarity_weights[Card.Rarity.UNCOMMON] = GameSave.uncommon_weight + GameSave.multipliers.get("UNCOMMON_CARD_RARITY")
-	card_rarity_weights[Card.Rarity.RARE] = GameSave.rare_weight + GameSave.multipliers.get("RARE_CARD_RARITY")
-	var biome := GameSave.current_biome
+	card_reward_total_weight = GameManager.common_weight + GameManager.uncommon_weight + GameManager.rare_weight
+	card_rarity_weights[Card.Rarity.COMMON] = GameManager.common_weight
+	card_rarity_weights[Card.Rarity.UNCOMMON] = GameManager.uncommon_weight + GameManager.multipliers.get("UNCOMMON_CARD_RARITY")
+	card_rarity_weights[Card.Rarity.RARE] = GameManager.rare_weight + GameManager.multipliers.get("RARE_CARD_RARITY")
+	var biome := GameManager.current_biome
 	if biome:
 		card_rarity_weights[Card.Rarity.UNCOMMON] *= (biome * 2)
 		card_rarity_weights[Card.Rarity.RARE] += biome
@@ -90,25 +90,25 @@ func setup_card_rarity_chances() -> void:
 # Increments rare weights over time (reuse for pot chances)
 func _modify_weights(rarity_rolled: Card.Rarity) -> void:
 	if rarity_rolled == Card.Rarity.UNCOMMON:
-		GameSave.common_weight = RunStats.BASE_COMMON_WEIGHT - GameSave.rare_weight
-		GameSave.uncommon_weight = GameSave.BASE_UNCOMMON_WEIGHT
+		GameManager.common_weight = RunStats.BASE_COMMON_WEIGHT - GameManager.rare_weight
+		GameManager.uncommon_weight = GameManager.BASE_UNCOMMON_WEIGHT
 	else: # Increases uncommon chances
-		GameSave.uncommon_weight = clampf(GameSave.uncommon_weight + 8.0, GameSave.BASE_UNCOMMON_WEIGHT, 80.0)
-		GameSave.common_weight = GameSave.BASE_COMMON_WEIGHT - GameSave.uncommon_weight
+		GameManager.uncommon_weight = clampf(GameManager.uncommon_weight + 8.0, GameManager.BASE_UNCOMMON_WEIGHT, 80.0)
+		GameManager.common_weight = GameManager.BASE_COMMON_WEIGHT - GameManager.uncommon_weight
 	
 	if rarity_rolled == Card.Rarity.RARE:
-		GameSave.rare_weight = RunStats.BASE_RARE_WEIGHT
-		GameSave.common_weight = RunStats.BASE_COMMON_WEIGHT
-		GameSave.uncommon_weight = RunStats.BASE_UNCOMMON_WEIGHT
+		GameManager.rare_weight = RunStats.BASE_RARE_WEIGHT
+		GameManager.common_weight = RunStats.BASE_COMMON_WEIGHT
+		GameManager.uncommon_weight = RunStats.BASE_UNCOMMON_WEIGHT
 	else: # Increases rare chances
-		GameSave.rare_weight = clampf(GameSave.rare_weight + 4.0, GameSave.BASE_RARE_WEIGHT, 50.0)
-		GameSave.common_weight = GameSave.BASE_COMMON_WEIGHT - GameSave.rare_weight
+		GameManager.rare_weight = clampf(GameManager.rare_weight + 4.0, GameManager.BASE_RARE_WEIGHT, 50.0)
+		GameManager.common_weight = GameManager.BASE_COMMON_WEIGHT - GameManager.rare_weight
 	
 	while card_reward_total_weight > 100:
-		GameSave.common_weight -= 1
+		GameManager.common_weight -= 1
 		setup_card_rarity_chances()
 	while card_reward_total_weight < 100:
-		GameSave.common_weight += 1
+		GameManager.common_weight += 1
 		setup_card_rarity_chances()
 
 
@@ -123,18 +123,17 @@ func _get_random_available_card(available_cards: Array[Card], with_rarity: Card.
 
 func _on_card_reward_taken(card: Card) -> void:
 	if !character_stats or !card:
-		print("whoops")
 		return
 	
-	print("drafted %s" % card.id)
-	GameSave.character.deck.add_card(card)
+	print("Drafted %s" % card.id)
+	GameManager.character.deck.add_card(card)
 
 
 func _on_gold_reward_taken(amount: int) -> void:
-	if ! GameSave:
+	if ! GameManager:
 		return
 	
-	GameSave.gold += amount
+	GameManager.gold += amount
 
 
 func _on_back_button_pressed() -> void:

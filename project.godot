@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Alymeria"
-config/version="0.0 (Beta build)"
+config/version="0.0.0 (Experimental)"
 run/main_scene="res://scences/ui/main_menu.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="Alymeria"
@@ -29,7 +29,7 @@ Events="*res://global/events.gd"
 Shaker="*res://global/shaker.gd"
 MusicPlayer="*res://global/music_player.tscn"
 SFXPlayer="*res://global/sfx_player.tscn"
-GameSave="*res://global/game_save.gd"
+GameManager="*res://global/game_manager.gd"
 ConsoleDataManager="*res://addons/simply-console/singletons/console_data_manager.gd"
 
 [debug]
