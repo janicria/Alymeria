@@ -1,6 +1,5 @@
 extends TextureRect
 
-# FIXME: Everything
 
 const DEFAULT_BUS_LAYOUT = preload("res://assets/misc/default_bus_layout.tres")
 
@@ -146,10 +145,11 @@ func _on_hbox_mouse_entered(text: String) -> void:
 	Events.settings_tooltip_requested.emit("[center]" + text + "[/center]")
 
 
-# TODO: Save before exiting here
 func _on_exit_button_pressed() -> void:
-	print("Save & exit selected. Quiting...")
-	get_tree().quit()
+	print("Save & exit selected")
+	if GameManager.save_to_file():
+		print("Quitting...")
+		get_tree().quit()
 
 
 func hide_tooltip() -> void:

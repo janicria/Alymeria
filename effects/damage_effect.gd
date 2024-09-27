@@ -5,9 +5,9 @@ var amount := 0
 var new_targets : Array[Node]
 
 
-func execute(targets : Array[Node]) -> void:
+func execute(targets : Array[Node], random := false) -> void:
 	for target in targets:
-		var wr = weakref(target)
+		var wr: WeakRef = weakref(target)
 		if wr.get_ref():
 			if target is Enemy or target is Player or target is Summon:
 				target.take_damage(amount)

@@ -1,13 +1,14 @@
-[gd_resource type="Resource" script_class="EnemyAI" load_steps=5 format=3 uid="uid://bx5d8snag76bf"]
+[gd_resource type="Resource" script_class="EnemyAI" load_steps=6 format=3 uid="uid://bx5d8snag76bf"]
 
 [ext_resource type="Script" path="res://custom_resources/enemy_ai.gd" id="1_34fr1"]
 [ext_resource type="Resource" uid="uid://bq7ptk28yy42d" path="res://enemies/spider/pinch.tres" id="1_uwx3v"]
 [ext_resource type="Resource" uid="uid://b7e76ouxktv47" path="res://enemies/spider/hide.tres" id="2_l3bqa"]
 [ext_resource type="Resource" uid="uid://cshuck57f1vur" path="res://enemies/spider/fortify.tres" id="3_rpipw"]
-
+[ext_resource type="Script" path="res://custom_resources/enemy_card.gd" id="4_myx2d"]
 
 [resource]
 script = ExtResource("1_34fr1")
 action_1 = ExtResource("2_l3bqa")
 action_2 = ExtResource("1_uwx3v")
 action_3 = ExtResource("3_rpipw")
+actions = Array[ExtResource("4_myx2d")]([ExtResource("2_l3bqa"), ExtResource("1_uwx3v"), ExtResource("3_rpipw")])

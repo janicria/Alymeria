@@ -24,7 +24,8 @@ func kms() -> void:
 		icon.texture = preload("res://assets/ui/enemies/cross.png")
 		attack_desc.text = "X"
 		is_dead = true
-		Events.update_player_dmg_counter.emit(card_stats.amount * card_stats.repeats * -1, false)
+		if card_stats.type == card_stats.Type.ATTACK:
+			Events.update_player_dmg_counter.emit(card_stats.amount * card_stats.repeats * -1, false)
 
 
 func update_stats(card: EnemyCard, enemy: Enemy) -> void:
@@ -44,7 +45,7 @@ func update_stats(card: EnemyCard, enemy: Enemy) -> void:
 
 func _on_control_mouse_entered() -> void:
 	# Checks if enemy has been freed
-	var wr = weakref(enemy_stats)
+	var wr: WeakRef = weakref(enemy_stats)
 	if !wr.get_ref(): 
 		Events.card_tooltip_requested.emit("[center]This enemy died, but it's card is still here for some reason? \n [s](bad programming)[/s][/center]")
 		return
@@ -62,17 +63,17 @@ func _on_control_mouse_entered() -> void:
 	tooltip_text +=  " when this card is played[/center]"
 	Events.card_tooltip_requested.emit(tooltip_text)
 	
-	enemy_stats.update_box() 
+	enemy_stats.arrow.visible = !enemy_stats.arrow.visible
 
 
 func _on_control_mouse_exited() -> void:
 	Events.tooltip_hide_requested.emit()
 	
 	# Safety for if enemy was freed
-	var wr = weakref(enemy_stats)
+	var wr: WeakRef = weakref(enemy_stats)
 	if !wr.get_ref(): return
 	
-	enemy_stats.update_box()
+	enemy_stats.arrow.visible = !enemy_stats.arrow.visible
 
 
 func play() -> void:
@@ -89,6 +90,10 @@ func get_targets() -> Array[Node]:
 		target = get_tree().get_first_node_in_group("summons")
 	
 	var targets: Array[Node] = []
+	
+	# Incase enemy has been freed (only a warning is thrown but ¯\_(ツ)_/¯ )
+	var wr: WeakRef = weakref(enemy_stats)
+	if !wr.get_ref(): return []
 	
 	if card_stats.targets == EnemyCard.Targets.SINGLE: targets.append(target)
 	elif card_stats.targets == EnemyCard.Targets.SELF: targets.append(enemy_stats)

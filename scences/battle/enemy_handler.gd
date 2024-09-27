@@ -3,6 +3,9 @@ extends Node2D
 
 @onready var enemy_hand: EnemyHand = $EnemyHand
 
+signal add_card_to_hand(card: EnemyCard, sender: Node2D)
+signal finished_drawing()
+
 
 func _ready() -> void:
 	Events.battle_find_enemies.connect(_on_battle_find_enemies)
@@ -33,6 +36,7 @@ func draw_cards() -> void:
 	# Filter prevents EnemyHand from being assigned
 	for enemy: Enemy in get_children().filter(func(child: Node)->bool: return child is Enemy):
 		enemy.draw_cards(enemy.stats.max_turn_draw)
+	
 
 
 func start_turn() -> void:

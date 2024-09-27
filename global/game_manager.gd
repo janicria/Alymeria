@@ -67,16 +67,29 @@ func set_card_pile(value: bool) -> void:
 
 
 func _init() -> void:
+	process_mode = PROCESS_MODE_ALWAYS
+	
 	print("Successful launch")
 	if !OS.has_feature("release"): print("Version: Debug " + ProjectSettings.get_setting("application/config/version"))
 	elif OS.has_feature("linux"): print("Version: Linux " + ProjectSettings.get_setting("application/config/version"))
 	elif OS.has_feature("windows"): print("Version: Windows " + ProjectSettings.get_setting("application/config/version"))
 
 
-func notify(text: String, fail := false) -> void:
-	if fail: printerr("[FAIL] " + text)
-	else: printerr("[ERROR] " + text)
+func notify(text: String, error := false) -> void:
+	if error: printerr("[ERROR] " + text)
+	else: printerr("[FAIL] " + text)
 	OS.alert("Janicria did an oopsie and asks for you to send the file 'info.log' at the path '%s'. (Dw you can still play the game)" % ProjectSettings.globalize_path("user://logs/info.log"), "Oopsie daisey")
+
+
+# TODO: lmao
+func save_to_file() -> bool:
+	var result: bool
+	
+	result = true
+	if result: print("Game saved! - %s" % get_tree().get_frame())
+	else: notify("Failed writing save file to path %s" % ProjectSettings.globalize_path("user://saves/save.exampleExtenstion"), true)
+	
+	return result
 
 
 func set_gold(new_amount : int) -> void:

@@ -51,6 +51,9 @@ func _on_battle_state_updated(new_state : BattleState) -> void:
 		
 		2: # Enemy drawing cards
 			enemy_handler.draw_cards()
+			# await is here instead of in draw_cards() incase an enemy draws a card
+			await enemy_handler.finished_drawing
+			Events.battle_state_updated.emit(3)
 		
 		3: # Player drawing & playing cards
 			player_handeler.start_turn()
@@ -64,6 +67,10 @@ func _on_battle_state_updated(new_state : BattleState) -> void:
 		5: # Victory
 			Events.battle_won.emit() 
 			print("Victory!")
+			# When the game is exiting all enemies are freed causing 
+			# it to think the battle is won and try to save the game
+			var wr: WeakRef = weakref(get_tree())
+			if wr.get_ref(): GameManager.save_to_file()
 
 
 func _on_enemy_handler_child_order_changed() -> void:

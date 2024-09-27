@@ -12,10 +12,7 @@ const ARROW_OFFSET := 19
 @onready var sprite_2d : Sprite2D = $Sprite2D
 @onready var arrow : Sprite2D = $Arrow
 @onready var stats_ui : StatsUI = $StatsUI
-@onready var box: TextureRect = $Box
 
-var hand: Array[EnemyCard]
-var total_card_weight: int
 var pool: Array[EnemyCard]
 var mana: int
 var active := false
@@ -31,66 +28,39 @@ func _setup_stats(value: EnemyStats) -> void:
 
 
 func draw_cards(amount: int) -> void:
-	for i in amount:
-		var continue_rolling := true
-		update_weights()
+	for card in amount:
+		# Setting up the weights
+		var total_card_weight := 0
+		var cumulative_weight := 0
+		for i in ai.actions.size(): 
+			total_card_weight += ai.actions[i].weight
+		var roll := randi_range(0, total_card_weight)
 		
-		while continue_rolling:
-			var roll := randi_range(0, total_card_weight)
-			var rolled_cards: Array[EnemyCard] # HACK: No loop?
-			if ai.action_1 and ai.action_1.weight and ai.action_1.weight > roll-1: rolled_cards.append(ai.action_1); continue_rolling = false
-			if ai.action_2 and ai.action_2.weight and ai.action_2.weight > roll-1: rolled_cards.append(ai.action_2); continue_rolling = false
-			if ai.action_3 and ai.action_3.weight and ai.action_3.weight > roll-1: rolled_cards.append(ai.action_3); continue_rolling = false
-			if ai.action_4 and ai.action_4.weight and ai.action_4.weight > roll-1: rolled_cards.append(ai.action_4); continue_rolling = false
-			if ai.action_5 and ai.action_5.weight and ai.action_5.weight > roll-1: rolled_cards.append(ai.action_5); continue_rolling = false
-			if ai.action_6 and ai.action_6.weight and ai.action_6.weight > roll-1: rolled_cards.append(ai.action_6); continue_rolling = false
-			if ai.action_7 and ai.action_7.weight and ai.action_7.weight > roll-1: rolled_cards.append(ai.action_7); continue_rolling = false
-			if ai.action_8 and ai.action_8.weight and ai.action_8.weight > roll-1: rolled_cards.append(ai.action_8); continue_rolling = false
-			if ai.action_9 and ai.action_9.weight and ai.action_9.weight > roll-1: rolled_cards.append(ai.action_9); continue_rolling = false
-			if ai.action_10 and ai.action_10.weight and ai.action_10.weight>roll-1:rolled_cards.append(ai.action_10); continue_rolling= false
-			if rolled_cards: add_card(rolled_cards.pick_random())  # HACK: Weight systems are hard
-
-func update_weights() -> void: # HACK: No loop 2: Electric boogaloo (TIL this from a movie)
-	if ai.action_1: total_card_weight += ai.action_1.weight
-	if ai.action_2: total_card_weight += ai.action_2.weight
-	if ai.action_3: total_card_weight += ai.action_3.weight
-	if ai.action_4: total_card_weight += ai.action_4.weight
-	if ai.action_5: total_card_weight += ai.action_5.weight
-	if ai.action_6: total_card_weight += ai.action_6.weight
-	if ai.action_7: total_card_weight += ai.action_7.weight
-	if ai.action_8: total_card_weight += ai.action_8.weight
-	if ai.action_9: total_card_weight += ai.action_9.weight
-	if ai.action_10:total_card_weight += ai.action_10.weight
+		# Rolling the cards
+		for i in ai.actions.size():
+			cumulative_weight += ai.actions[i].weight
+			# Health check is prevent health cards from being added as they have 0 weight
+			if roll < cumulative_weight && !ai.actions[i].health: add_card(ai.actions[i])
 
 
-func check_health_cards() -> void: # HACK: No loop 3: The bad one that everyone likes for some reason
-	if ai.action_1 and ai.action_1.health and stats.health <= ai.action_1.health: add_card(ai.action_1)
-	if ai.action_2 and ai.action_2.health and stats.health <= ai.action_2.health: add_card(ai.action_2)
-	if ai.action_3 and ai.action_3.health and stats.health <= ai.action_3.health: add_card(ai.action_3)
-	if ai.action_4 and ai.action_4.health and stats.health <= ai.action_4.health: add_card(ai.action_4)
-	if ai.action_5 and ai.action_5.health and stats.health <= ai.action_5.health: add_card(ai.action_5)
-	if ai.action_6 and ai.action_6.health and stats.health <= ai.action_6.health: add_card(ai.action_6)
-	if ai.action_7 and ai.action_7.health and stats.health <= ai.action_7.health: add_card(ai.action_7)
-	if ai.action_8 and ai.action_8.health and stats.health <= ai.action_8.health: add_card(ai.action_8)
-	if ai.action_9 and ai.action_9.health and stats.health <= ai.action_9.health: add_card(ai.action_9)
-	if ai.action_10 and ai.action_10.health and stats.health<=ai.action_10.health:add_card(ai.action_10)
+func check_health_cards() -> void:
+	for i in ai.actions.size(): 
+		if ai.actions[i].health and stats.health <= ai.actions[i].health:
+			add_card(ai.actions[i])
 
 
-func add_card(card: EnemyCard) -> void: #FIXME: Organise me pls
+func add_card(card: EnemyCard) -> void:
 	# Prevents old enemies from adding cards right before they're freed
 	if !active: return
 	
+	# Adds a new card using damage taken
 	if !card.cost and !card.weight and card.health > stats.health:
-		hand.append(card)
-		get_parent().get_child(0).cardToGui(card, self)
-	elif !card.cost and card.weight and hand.size() < stats.max_turn_draw:
-		print("%s added card %s via card weight" % [stats.id, card.type])
-		hand.append(card)
-		get_parent().get_child(0).cardToGui(card, self)
+		get_parent().add_card_to_hand.emit(card, self)
+	
+	# Adds a new card using mana
 	elif mana:
 		mana -= card.cost
-		hand.append(card)
-		get_parent().get_child(0).cardToGui(card, self)
+		get_parent().add_card_to_hand.emit(card, self)
 
 
 func update_stats() -> void:
@@ -105,7 +75,7 @@ func update_enemy() -> void:
 		await ready
 	
 	sprite_2d.texture = stats.art
-	arrow.position = Vector2.UP * (sprite_2d.get_rect().size.y / 2 + ARROW_OFFSET)
+	arrow.position = (Vector2.UP * (sprite_2d.get_rect().size.y / 2 + ARROW_OFFSET)) + Vector2(0, 8)
 	update_stats()
 
 
@@ -145,12 +115,6 @@ func death_animation(repeats : int) -> void:
 				Events.enemy_died.emit(self)
 				queue_free()
 	)
-
-
-func update_box() -> void:
-	box.position = sprite_2d.position - (sprite_2d.texture.get_size() / 2) - Vector2(2, 2)
-	box.size = sprite_2d.texture.get_size() * 1.25
-	box.visible = !box.visible
 
 
 func _on_area_entered(_area: Node) -> void:

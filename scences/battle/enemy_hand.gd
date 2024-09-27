@@ -8,6 +8,10 @@ const ENEMY_CARD_SCENE = preload("res://custom_resources/enemy_card.tscn")
 var organiser_target_pos := position - Vector2(30, -5)
 
 
+func _ready() -> void:
+	get_parent().add_card_to_hand.connect(cardToGui)
+
+
 func cardToGui(card: EnemyCard, enemy: Enemy) -> void:
 	# Creating card
 	var card_ui := ENEMY_CARD_SCENE.instantiate()
@@ -32,7 +36,7 @@ func cardToGui(card: EnemyCard, enemy: Enemy) -> void:
 	
 	# Starting player draw
 	if card_ui == get_child(-1):
-		Events.battle_request_player_turn.emit()
+		get_parent().finished_drawing.emit()
 
 
 func organise_cards(draw_next_card := true) -> void:

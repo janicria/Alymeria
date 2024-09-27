@@ -46,7 +46,7 @@ func _start_run() -> void:
 
 func _change_view(scence : PackedScene) -> Node:
 	# Failsafe which runs while the game is exiting
-	var wr = weakref(get_tree())
+	var wr: WeakRef = weakref(get_tree())
 	if !wr.get_ref(): return
 	
 	# Removes the previous view
@@ -90,15 +90,14 @@ func _input(_event: InputEvent) -> void:
 func _on_battle_room_entered(_room: Room) -> void:
 	var battle_scence: Battle = _change_view(BATTLE_SCENCE) as Battle
 	battle_scence.char_stats = GameManager.character
-	battle_scence.battle_stats = preload("res://floors/battles/a1_tier0_pure_bat2.tres")
+	battle_scence.battle_stats = preload("res://floors/battles/a1_tier1_inf_spider2+bat.tres")
 	battle_scence.start_battle()
 
 
 func _on_battle_won() -> void:
 	# Failsafe which runs while the game is exiting
-	var wr = weakref(get_tree())
+	var wr: WeakRef = weakref(get_tree())
 	if !wr.get_ref(): return
-	
 	
 	var reward_scence := _change_view(BATTLE_REWARD_SCENCE) as BattleReward
 	

@@ -21,5 +21,5 @@ func roll_gold_reward() -> int:
 			return randi_range(15, 25)*(GameManager.current_biome+1)
 		4: # Snal
 			return randi_range(15, 25)
-	GameManager.notify("Unable to return gold reward", true)
+	GameManager.notify("Unable to return gold reward")
 	return (randi_range(5, 25)*(GameManager.current_biome+1)) /2

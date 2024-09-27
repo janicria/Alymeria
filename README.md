@@ -38,7 +38,7 @@ Windows: C:\Users\USER\AppData\Roaming\Alymeria
 Linux: ~/.local/share/Alymeria
 ```
 
-This also means that switching versions will overwrite previous versions save and log files.
+This also means that switching versions will overwrite previous versions' save and log files.
 
 # Credits
 In case you didn't catch them in game or I haven't implemented them yet (oops)
