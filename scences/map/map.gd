@@ -22,6 +22,7 @@ func _ready() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	# Prevents scrolling up whilst viewing a separate scene
 	if !visible:
 		return
 	

@@ -87,10 +87,10 @@ func _input(_event: InputEvent) -> void:
 		Events.update_settings_visibility.emit()
 
 
-func _on_battle_room_entered(_room: Room) -> void:
+func _on_battle_room_entered(room: Room) -> void:
 	var battle_scence: Battle = _change_view(BATTLE_SCENCE) as Battle
 	battle_scence.char_stats = GameManager.character
-	battle_scence.battle_stats = preload("res://floors/battles/a1_tier1_inf_spider2+bat.tres")
+	battle_scence.battle_stats = room.battle_stats
 	battle_scence.start_battle()
 
 
@@ -101,7 +101,7 @@ func _on_battle_won() -> void:
 	
 	var reward_scence := _change_view(BATTLE_REWARD_SCENCE) as BattleReward
 	
-	reward_scence.add_gold_reward(72)
+	reward_scence.add_gold_reward(map.last_room.battle_stats.roll_gold_reward())
 	reward_scence.add_card_reward()
 
 

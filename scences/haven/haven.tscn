@@ -12,17 +12,7 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_6pdmf")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0.217147, 0.127604, 0.0571354, 0.705882)
-
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="UI" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -36,15 +26,15 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="Title" type="Label" parent="UI"]
 layout_mode = 2
 text = "Safe Haven"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button" type="Button" parent="VBoxContainer"]
+[node name="PlaceholderButton" type="Button" parent="UI"]
 custom_minimum_size = Vector2(0, 14)
 layout_mode = 2
 text = "Go back"
 
-[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="UI/PlaceholderButton" to="." method="_on_button_pressed"]

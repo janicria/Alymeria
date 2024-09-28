@@ -50,17 +50,29 @@ func _on_control_mouse_entered() -> void:
 		Events.card_tooltip_requested.emit("[center]This enemy died, but it's card is still here for some reason? \n [s](bad programming)[/s][/center]")
 		return
 	
-	var tooltip_text:String = "[center]This enemy is going to " + card_stats.tooltip_text_dict.get(card_stats.type)
-	
+	var tooltip_text := "[center]This enemy is going to "
+
 	if card_stats.type == card_stats.Type.ATTACK and card_stats.repeats != 1:
-		tooltip_text += str(card_stats.amount) + "x" + str(card_stats.repeats) + "[/color]"
-	elif card_stats.type == card_stats.Type.ATTACK: tooltip_text += str(card_stats.amount) + "[/color]"
-	elif card_stats.type == card_stats.Type.DRAW: tooltip_text += str(card_stats.amount) + " cards"
-	elif card_stats.type == card_stats.Type.ENERGY: tooltip_text += str(card_stats.amount) + " energy"
-	elif card_stats.type == card_stats.Type.BUFF: tooltip_text += str(card_stats.amount) + " to itself"
-	elif card_stats.type == card_stats.Type.DEBUFF: tooltip_text += str(card_stats.amount)
+		tooltip_text += "[color=ff0000]attack for %sx%s[/color]" % [card_stats.amount, card_stats.repeats]
+	else: match card_stats.type:
+		card_stats.Type.ATTACK: tooltip_text += "[color=ff0000]attack for %s[/color]" % card_stats.amount
+		card_stats.Type.BARRIER: tooltip_text += "apply a small amount of [color=0044ff]barrier[/color]"
+		card_stats.Type.LARGE_BARRIER: tooltip_text +=  "apply a large amount of [color=0044ff]barrier[/color]"
+		card_stats.Type.DRAW: tooltip_text += "draw %s cards" % card_stats.amount
+		card_stats.Type.ENERGY: tooltip_text += "replenish %s mana" % card_stats.amount
+		card_stats.Type.BUFF: tooltip_text += "apply a buff"
+		card_stats.Type.DEBUFF: tooltip_text += "apply a debuff"
+		card_stats.Type.SPAWN: tooltip_text += "spawn an ally"
+		card_stats.Type.UNKNOWN: tooltip_text += "do something unknown"
 	
-	tooltip_text +=  " when this card is played[/center]"
+	if card_stats.type != card_stats.Type.ATTACK: match card_stats.targets:
+		card_stats.Targets.SINGLE: tooltip_text += " to you"
+		card_stats.Targets.SELF: tooltip_text += " to itself"
+		card_stats.Targets.ENEMIES: tooltip_text += "to you and your summons"
+		card_stats.Targets.ALLIES: tooltip_text += "to all enemies"
+		card_stats.Targets.EVERYONE: tooltip_text += "to everyone"
+	
+	tooltip_text += " when this card is played[/center]"
 	Events.card_tooltip_requested.emit(tooltip_text)
 	
 	enemy_stats.arrow.visible = !enemy_stats.arrow.visible
@@ -95,17 +107,18 @@ func get_targets() -> Array[Node]:
 	var wr: WeakRef = weakref(enemy_stats)
 	if !wr.get_ref(): return []
 	
-	if card_stats.targets == EnemyCard.Targets.SINGLE: targets.append(target)
-	elif card_stats.targets == EnemyCard.Targets.SELF: targets.append(enemy_stats)
-	elif card_stats.targets == EnemyCard.Targets.ENEMIES: 
-		targets.append_array(get_tree().get_nodes_in_group("player"))
-		targets.append_array(get_tree().get_nodes_in_group("summons"))
-	elif card_stats.targets == EnemyCard.Targets.ALLIES:
-		targets.append_array(get_tree().get_nodes_in_group("enemies"))
-	elif card_stats.targets == EnemyCard.Targets.EVERYONE:
-		targets.append_array(get_tree().get_nodes_in_group("player"))
-		targets.append_array(get_tree().get_nodes_in_group("summons"))
-		targets.append_array(get_tree().get_nodes_in_group("enemies"))
+	match card_stats.targets:
+		card_stats.Targets.SINGLE: targets.append(target)
+		card_stats.Targets.SELF: targets.append(enemy_stats)
+		card_stats.Targets.ENEMIES: 
+			targets.append_array(get_tree().get_nodes_in_group("player"))
+			targets.append_array(get_tree().get_nodes_in_group("summons"))
+		card_stats.Targets.ALLIES:
+			targets.append_array(get_tree().get_nodes_in_group("enemies"))
+		card_stats.Targets.EVERYONE:
+			targets.append_array(get_tree().get_nodes_in_group("player"))
+			targets.append_array(get_tree().get_nodes_in_group("summons"))
+			targets.append_array(get_tree().get_nodes_in_group("enemies"))
 	
 	return targets
 

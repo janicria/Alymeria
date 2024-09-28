@@ -55,6 +55,11 @@ func draw_cards(amount : int) -> void:
 
 
 func discard_cards() -> void:
+	# Prevents tween from failing to run with an empty hand
+	if hand.get_child_count() == 0:
+		Events.player_hand_discarded.emit()
+		return
+	
 	var tween := create_tween()
 	for card_ui in hand.get_children():
 		tween.tween_callback(character.discard.add_card.bind(card_ui.card))

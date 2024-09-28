@@ -27,18 +27,6 @@ var icon_dict := {
 	Type.UNKNOWN: preload("res://assets/ui/rarity.png")
 }
 
-var tooltip_text_dict := {
-	Type.ATTACK: "[color=ff0000]attack for ",
-	Type.BARRIER: "regain a small amount of [color=0044ff]barrier[/color]",
-	Type.LARGE_BARRIER: "regain a large amount of [color=0044ff]barrier[/color]",
-	Type.DRAW: "draw ",
-	Type.ENERGY: "replenish ",
-	Type.BUFF: "apply ",
-	Type.DEBUFF: "apply ",
-	Type.SPAWN: "spawn an ally",
-	Type.UNKNOWN: "do something unknown"
-}
-
 var SFX_dict := {
 	Type.ATTACK: preload("res://assets/SFX/enemy_attack.ogg"),
 	Type.BARRIER: preload("res://assets/SFX/enemy_block.ogg"),

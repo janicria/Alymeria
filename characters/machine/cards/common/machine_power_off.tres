@@ -1,6 +1,7 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://ypvdangpb04b"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://ypvdangpb04b"]
 
 [ext_resource type="Script" path="res://characters/machine/cards/common/power_off.gd" id="1_flyex"]
+[ext_resource type="AudioStream" uid="uid://b1vpjjmi5cj3n" path="res://assets/SFX/axe.ogg" id="2_i4tq1"]
 
 [resource]
 script = ExtResource("1_flyex")
@@ -8,9 +9,10 @@ id = "machine_power_off"
 name = "Power off"
 type = 1
 rarity = 0
-target = 0
+target = 1
 repeats = 1
 cost = 1
+sound = ExtResource("2_i4tq1")
 tooltip_text = "ATK X
 X = DRAW
 Cancel 2"
@@ -18,7 +20,3 @@ effect_description = "[center]Attack - Deal [color=\"ff0000\"]damage[/color] to 
 X - Attack equals the number of cards in your draw pile
 Cancel - You cannot play cards. Decreases by 1 at the END of each turn.[/center]
 "
-is_summon_only = false
-is_chaotic = false
-has_exhaust = false
-has_draw = false

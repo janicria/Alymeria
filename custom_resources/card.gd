@@ -16,16 +16,10 @@ enum Target {SELF, SINGLE_ENEMY, ALL_ENEMIES, RANDOM, EVERYONE}
 @export var cost : int
 
 @export_group("Card Visuals")
-@export var icon : Texture
 @export var sound : AudioStream
 @export_multiline var tooltip_text : String
 @export_multiline var effect_description : String
 
-@export_group("Debug stats")
-@export var is_summon_only := false
-@export var is_chaotic := false
-@export var has_exhaust := false
-@export var has_draw := false
 
 var fully_played := false
 

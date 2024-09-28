@@ -18,50 +18,41 @@ const HOVER_STYLEBOX := preload("res://scences/card_ui/card_hover_stylebox.tres"
 
 var description := ''
 
+# Not actually a copy from CardUI's method with the same name, the two just look very similar <- # HACK: yes it is wtf are you yapping about
 func set_card(value : Card) -> void:
 	if ! is_node_ready():
 		await ready
 	
 	card = value
-	cost.text = str(card.cost)
-	icon.texture = card.icon
-	desc.text = card.tooltip_text
-	description = card.effect_description
-	_name.text = card.name
-	card = value
 	
-	if !card.rarity:
-		type.modulate = Color(Color.GRAY)
-	elif card.rarity == 1:
-		type.modulate = Color(Color.CORNFLOWER_BLUE)
-	elif card.rarity == 2:
-		type.modulate = Color(Color.GOLD)
-	elif card.rarity == 3:
-		type.modulate = Color(Color.DARK_RED)
+	match card.rarity:
+		0: type.modulate = Color(Color.GRAY)
+		1: type.modulate = Color(Color.CORNFLOWER_BLUE)
+		2: type.modulate = Color(Color.GOLD)
+		3: type.modulate = Color(Color.DARK_RED)
+	
 	_name.modulate = type.modulate
-	
 	cost.text = str(card.cost)
-	icon.texture = card.icon
 	desc.text = card.tooltip_text
 	_name.text = card.name
 	
-	if !card.type:
-		type.text = " -Physical" 
-	elif card.type == 1:
-		type.text = " -Internal"
-	elif card.type == 2:
-		if GameManager.character.character_name == "Machine":
-			type.text = "  -Looped"
-		elif GameManager.character.character_name == "Machine":
-			type.text = " -Summon"
-	elif card.type == 3:
-		type.text = " -Status"
-	elif card.type == 4:
-		if GameManager.character.character_name == "Machine":
-			type.text = " -Malware"
-		elif GameManager.character.character_name == "Machine":
-			type.text = " -Hex"
 	
+	match card.type:
+		0: type.text = " -Physical" 
+		1: type.text = " -Internal"
+		2:
+			if GameManager.character.character_name == "Machine":
+				type.text = "  -Looped"
+			elif GameManager.character.character_name == "Witch":
+				type.text = " -Summon"
+		3: type.text = " -Status"
+		4:
+			if GameManager.character.character_name == "Machine":
+				type.text = " -Malware"
+			elif GameManager.character.character_name == "Witch":
+				type.text = " -Hex"
+	
+	# Prevents card names from going out of its area/hitbox
 	if _name.get_line_count() > 1:
 		cost.position.y = cost.position.y + (_name.get_line_count() * _name.get_line_height()) -5
 		type.position.y = cost.position.y

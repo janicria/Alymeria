@@ -1,7 +1,5 @@
 extends Card
 
-@export var optional_sound : AudioStream
-
 var draw_amount := 2
 
 # _init() is fine since Events is ready long before this is initialised

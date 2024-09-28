@@ -10,6 +10,8 @@ const SHOP_WEIGHT := 18
 const HAVEN_WEIGHT := 25
 const ELITE_WEIGHT := 22
 
+@export var battle_stats_pool: BattleStatsPool
+
 var random_room_type_weights := {
 	Room.Type.MONSTER: 0.0,
 	Room.Type.HAVEN: 0.0,
@@ -29,6 +31,8 @@ func generate_map() -> Array[Array]:
 		var current_j := j
 		for i in floors - 1:
 			current_j = _setup_connection(i, current_j)
+	
+	battle_stats_pool.setup()
 	
 	_setup_boss_room()
 	_setup_random_room_weights()
@@ -128,6 +132,7 @@ func _setup_boss_room() -> void:
 			current_room.next_rooms.append(boss_room)
 	
 	boss_room.type = Room.Type.BOSS
+	boss_room.battle_stats = battle_stats_pool.get_random_battle_from_tier(3)
 
 
 # I honestly have no idea how this (weight systems) work, but it does
@@ -141,10 +146,11 @@ func _setup_random_room_weights() -> void:
 
 
 func _setup_room_types() -> void:
-	# first floor is always an enemy
+	# The first floor is always an enemy
 	for room: Room in map_data[0]:
 		if room.next_rooms.size() > 0:
 			room.type = Room.Type.MONSTER
+			room.battle_stats = battle_stats_pool.get_random_battle_from_tier(0)
 	
 	
 	# 5th last floor is always treasure
@@ -158,7 +164,7 @@ func _setup_room_types() -> void:
 			if randi_range(0, 1): room.type = Room.Type.HAVEN
 			else: room.type = Room.Type.SHOP
 	
-	# all other non-boss rooms
+	# All other non-boss rooms
 	for current_floor in map_data:
 		for room: Room in current_floor:
 			for next_room: Room in room.next_rooms:
@@ -171,9 +177,9 @@ func _set_room_randomly(room: Room) -> void:
 	var elite_below_3 := true
 	var consecutive_shop := true
 	var consecutive_haven := true
-	
 	var type_candidate: Room.Type
 	
+	# Rerolls room type until conditions are NOT met
 	while haven_below_4 or elite_below_3 or consecutive_shop or consecutive_haven:
 		type_candidate = _get_random_room_type_by_weight()
 		
@@ -182,7 +188,6 @@ func _set_room_randomly(room: Room) -> void:
 		var is_shop := type_candidate == Room.Type.SHOP
 		var has_shop_parent := _room_has_parent_of_type(room, Room.Type.SHOP)
 		var is_elite := type_candidate == Room.Type.ELITE
-		#var has_elite_parent := _room_has_parent_of_type(room, Room.Type.ELITE)
 		
 		
 		haven_below_4 = is_haven and room.row < 3
@@ -191,6 +196,14 @@ func _set_room_randomly(room: Room) -> void:
 		consecutive_shop = is_shop and has_shop_parent
 	
 	room.type = type_candidate
+	
+	# Causes the first three rows of monsters to be tier 0 (row starts at 0)
+	if type_candidate == Room.Type.MONSTER:
+		var tier := 0
+		if room.row > 2: tier = 1
+		room.battle_stats = battle_stats_pool.get_random_battle_from_tier(tier)
+	elif type_candidate == Room.Type.ELITE:
+		room.battle_stats = battle_stats_pool.get_random_battle_from_tier(2)
 
 
 func _room_has_parent_of_type(room: Room, type: Room.Type) -> bool:

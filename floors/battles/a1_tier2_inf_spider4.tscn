@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://ucpfeo01s7yt"]
+
+[ext_resource type="PackedScene" uid="uid://dkpw6tsw7i7y0" path="res://scences/enemy/enemy.tscn" id="1_18l1f"]
+
+[node name="a1_tier2_inf_spider4" type="Node2D"]
+
+[node name="Enemy" parent="." instance=ExtResource("1_18l1f")]
+position = Vector2(211, 76)
+
+[node name="Enemy2" parent="." instance=ExtResource("1_18l1f")]
+position = Vector2(245, 83)
+
+[node name="Enemy3" parent="." instance=ExtResource("1_18l1f")]
+position = Vector2(274, 74)
+
+[node name="Enemy4" parent="." instance=ExtResource("1_18l1f")]
+position = Vector2(305, 83)

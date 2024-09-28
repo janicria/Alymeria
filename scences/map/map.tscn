@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://klm1dw58y8fj"]
+[gd_scene load_steps=7 format=3 uid="uid://klm1dw58y8fj"]
 
 [ext_resource type="Script" path="res://scences/map/map.gd" id="1_udxo6"]
 [ext_resource type="Script" path="res://scences/map/map_generator.gd" id="2_eocmu"]
+[ext_resource type="Resource" uid="uid://chao0x4ettper" path="res://floors/battles/battle_stats_pool.tres" id="3_qmh5o"]
 [ext_resource type="Texture2D" uid="uid://dv4gtxwjv0yvi" path="res://assets/ui/left_box.png" id="3_qn01p"]
 
 [sub_resource type="Gradient" id="Gradient_gw1d3"]
@@ -30,6 +31,7 @@ offset = Vector2(167, 94)
 [node name="MapGenerator" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("2_eocmu")
+battle_stats_pool = ExtResource("3_qmh5o")
 
 [node name="MapBackground" type="CanvasLayer" parent="."]
 layer = -1

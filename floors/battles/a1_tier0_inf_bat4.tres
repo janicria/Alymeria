@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="BattleStats" load_steps=3 format=3 uid="uid://dliemj8rv8xjp"]
 
 [ext_resource type="Script" path="res://custom_resources/battle_stats.gd" id="1_3m1bs"]
-[ext_resource type="PackedScene" uid="uid://wt33c7fawlt7" path="res://floors/battles/a1_tier1_inf_bat_4.tscn" id="1_76h5x"]
+[ext_resource type="PackedScene" uid="uid://wt33c7fawlt7" path="res://floors/battles/a1_tier0_inf_bat_4.tscn" id="1_76h5x"]
 
 [resource]
 script = ExtResource("1_3m1bs")
-battle_tier = 1
+battle_tier = 0
 weight = 30
 pure = false
 enemies = ExtResource("1_76h5x")

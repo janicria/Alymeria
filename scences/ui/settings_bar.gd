@@ -58,6 +58,9 @@ func _on_cog_gui_input(event: InputEvent) -> void:
 
 
 func _process(_delta: float) -> void:
+	# Prevents camera from moving screen position
+	global_position.y = 0 - get_canvas_transform().origin.y
+	
 	if cog_speed_boost < 0.01: return
 	cog.rotation_degrees += cog_speed_boost * 1.5
 	cog_speed_boost -= 0.02
@@ -119,22 +122,21 @@ func _on_toggled_button_toggled(toggled_on: bool, button_string: String) -> void
 
 func _on_volume_slider_value_changed(_value: float, slider: String) -> void: 
 	if slider == "master":
-		update_slider_volume("sfx", true)
-		update_slider_volume("music", true)
+		update_slider_volume("sfx")
+		update_slider_volume("music")
 	else: update_slider_volume(slider)
 
 
-func update_slider_volume(slider: String, from_master := false) -> void:
+func update_slider_volume(slider: String) -> void:
 	match slider:
 		"sfx":
 			for child: AudioStreamPlayer in SFXPlayer.get_children():
-				child.volume_db = (sfx_volume.value - 32) * (master_volume.value / 100)
-				if from_master: child.volume_db *= -1 # Idk why but this is needed
+				# If SFX is too loud the audio breaks
+				child.volume_db = (sfx_volume.value / 4) * (master_volume.value / 100)
 				if !sfx_volume.value or !master_volume.value: child.volume_db = -INF
 		"music":
 			for child: AudioStreamPlayer in MusicPlayer.get_children():
-				child.volume_db = (music_volume.value - 32) * (master_volume.value / 100)
-				if from_master: child.volume_db *= -1 # Idk why but this is needed
+				child.volume_db = (music_volume.value / 2) * (master_volume.value / 100)
 				if !music_volume.value or !master_volume.value: child.volume_db = -INF
 
 
