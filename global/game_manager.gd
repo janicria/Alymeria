@@ -70,9 +70,13 @@ func _init() -> void:
 	process_mode = PROCESS_MODE_ALWAYS
 	
 	print("Successful launch")
-	if !OS.has_feature("release"): print("Version: Debug " + ProjectSettings.get_setting("application/config/version"))
-	elif OS.has_feature("linux"): print("Version: Linux " + ProjectSettings.get_setting("application/config/version"))
-	elif OS.has_feature("windows"): print("Version: Windows " + ProjectSettings.get_setting("application/config/version"))
+	var platform := "Unknown"
+	if OS.has_feature("release"): platform = "Release ("
+	else: platform = "Debug ("
+	if OS.has_feature("linux"): platform += "Linux)"
+	elif OS.has_feature("windows"): platform += "Windows)"
+	else: platform += "Unknown)"; notify("Unable to detect OS", true)
+	print("Version: %s %s" % [platform, ProjectSettings.get_setting("application/config/version")])
 
 
 func notify(text: String, error := false) -> void:

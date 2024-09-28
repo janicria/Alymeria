@@ -8,7 +8,4 @@
 
 [resource]
 script = ExtResource("1_34fr1")
-action_1 = ExtResource("2_l3bqa")
-action_2 = ExtResource("1_uwx3v")
-action_3 = ExtResource("3_rpipw")
 actions = Array[ExtResource("4_myx2d")]([ExtResource("2_l3bqa"), ExtResource("1_uwx3v"), ExtResource("3_rpipw")])

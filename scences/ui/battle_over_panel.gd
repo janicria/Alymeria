@@ -1,12 +1,11 @@
 extends Panel
 
-enum Type {WIN, LOSE}
 
 @onready var label: Label = %Label
 @onready var continue_button: Button = %ContinueButton
 @onready var restart_button: Button = %RestartButton
+@onready var color_rect: ColorRect = %ColorRect
 
-var text : String
 
 func _ready() -> void:
 	continue_button.pressed.connect(func()->void: Events.battle_won.emit())
@@ -15,55 +14,49 @@ func _ready() -> void:
 
 
 func show_screen(state : Battle.BattleState) -> void:
-	if state == 5:
-		continue_button.visible = true
-		restart_button.visible = false
-		label.text = generate_win_text()
-	elif state == 6:
-		restart_button.visible = true
-		continue_button.visible = false
-		label.text = generate_lose_text()
-	
-	if state > 4:
-		show()
-		get_tree().paused = true
+	match state:
+		5:
+			continue_button.visible = true
+			restart_button.visible = false
+			label.text = generate_win_text()
+		6:
+			restart_button.visible = true
+			continue_button.visible = false
+			label.text = generate_lose_text()
+			await get_tree().create_timer(1).timeout
+			color_rect.visible = true
+
+
+func _process(_delta: float) -> void:
+	if !color_rect.visible or color_rect.color.a > 0.8: return
+	show()
+	color_rect.color.a += 0.003
 
 
 func generate_win_text() -> String:
-	var rand_text := randi_range(1, 4)
+	match randi_range(0, 3):
+		0:
+			label.label_settings.font_size = 16
+			return "Victorirus"
+		1:
+			label.label_settings.font_size = 16
+			return "You win!"
+		2:
+			label.label_settings.font_size = 14
+			return "Too easy"
+		3:
+			label.label_settings.font_size = 10
+			return "Not even a stratch"
 	
-	if rand_text == 1:
-		label.label_settings.font_size = 16
-		return "Victorirus"
-	if rand_text == 2:
-		label.label_settings.font_size = 16
-		return "You win!"
-	if rand_text == 3:
-		label.label_settings.font_size = 14
-		return "Too easy"
-	if rand_text == 4:
-		label.label_settings.font_size = 10
-		return "Not even a stratch"
-
-	return "Congrats! 
-You broke the victory message script! 
-(Please tell Janicria about this)"
+	GameManager.notify("Unable to return victory screen text")
+	return ""
 
 func generate_lose_text() -> String:
-	var rand_text := randi_range(1, 4)
+	match randi_range(0, 3):
+		0: label.label_settings.font_size = 16; return "Defeat"
+		1: return "You died lol"
+		2: return "Maybe try not\ndoing that next time?"
+		3: return "Should've taken\nthat barrier card..."
 	
-	if rand_text == 1:
-		label.label_settings.font_size = 16
-		return "Defeat"
-	if rand_text == 2:
-		return "You died lol"
-	if rand_text == 3:
-		return "Maybe try not 
-doing that next time?"
-	if rand_text == 4:
-		return "Should've taken 
-that barrier card..."
-
-	return "Congrats! 
-You broke the lose message script! 
-(Please tell Janicria about this)"
+	GameManager.notify("Unable to return defeat screen text")
+	return ""

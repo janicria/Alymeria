@@ -88,7 +88,8 @@ func _on_toggled_button_toggled(toggled_on: bool, button_string: String) -> void
 		"true_draw": 
 			button = %TrueDrawButton
 			GameManager.true_draw_amount = toggled_on
-			Events.update_deck_buttons.emit(0, false)
+			#Events.update_deck_buttons.emit(0, false)
+			Events.update_card_stats.emit()
 		"true_deck": 
 			button = %TrueDeckButton
 			GameManager.true_deck_size = toggled_on

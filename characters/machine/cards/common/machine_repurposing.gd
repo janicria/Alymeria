@@ -4,12 +4,12 @@ extends Card
 
 var draw_amount := 2
 
+# _init() is fine since Events is ready long before this is initialised
 func _init() -> void:
-	Events.update_card_stats.connect(
-		func() -> void:
-			if self.has_draw and GameManager.true_draw_amount:
-				self.tooltip_text = str(draw_amount) + "(" + str(draw_amount - 1) + ")"
-	)
+	Events.update_card_stats.connect(func() -> void:
+		if GameManager.true_draw_amount:
+			tooltip_text = "Draw %s(%s)" % [draw_amount, draw_amount - 1]
+		else: tooltip_text = "Draw %s" % draw_amount)
 
 
 func apply_effects(_targets : Array[Node]) -> void:

@@ -20,11 +20,20 @@ var active := false
 func _setup_stats(value: EnemyStats) -> void:
 	stats = value.create_instance()
 	
+	if !Events.play_infinite_enemy_cards.is_connected(play_infinite_cards):
+		Events.play_infinite_enemy_cards.connect(play_infinite_cards)
 	if !stats.stats_changed.is_connected(update_stats):
 		stats.stats_changed.connect(update_stats)
 	
 	mana = stats.max_mana
 	update_enemy()
+
+
+func play_infinite_cards() -> void:
+	do_turn()
+	draw_cards(2)
+	await get_parent().finished_drawing
+	play_infinite_cards()
 
 
 func draw_cards(amount: int) -> void:
@@ -43,6 +52,7 @@ func draw_cards(amount: int) -> void:
 			if roll < cumulative_weight && !ai.actions[i].health: add_card(ai.actions[i])
 
 
+# Health cards are drawn whenever the enemy takes damage and health is <= the cards health stat
 func check_health_cards() -> void:
 	for i in ai.actions.size(): 
 		if ai.actions[i].health and stats.health <= ai.actions[i].health:
@@ -97,10 +107,10 @@ func take_damage(damage : int) -> void:
 		func()->void:
 			check_health_cards()
 			if stats.health <= 0:
-				death_animation(3)
+				death_animation()
 	)
 
-func death_animation(repeats : int) -> void:
+func death_animation(repeats := 3) -> void:
 	var death_tween := create_tween()
 	death_tween.tween_callback(Shaker.shake.bind(self, 10, 0.15))
 	death_tween.tween_interval(0.2)
@@ -110,7 +120,7 @@ func death_animation(repeats : int) -> void:
 			for i in repeats: #Repeats damage anim for more effect
 				death_animation(repeats - 1)
 			if !repeats:
-				# await stops enemy death anim from ending early
+				# Await prevents death anim from ending early
 				await get_tree().create_timer(0.2, false).timeout
 				Events.enemy_died.emit(self)
 				queue_free()

@@ -51,8 +51,10 @@ func _on_battle_state_updated(new_state : BattleState) -> void:
 		
 		2: # Enemy drawing cards
 			enemy_handler.draw_cards()
-			# await is here instead of in draw_cards() incase an enemy draws a card
+			# First wait incase an enemy draws a card by itself
+			# Second is simply to smooth out animations / UX
 			await enemy_handler.finished_drawing
+			await get_tree().create_timer(0.2).timeout
 			Events.battle_state_updated.emit(3)
 		
 		3: # Player drawing & playing cards
@@ -71,6 +73,9 @@ func _on_battle_state_updated(new_state : BattleState) -> void:
 			# it to think the battle is won and try to save the game
 			var wr: WeakRef = weakref(get_tree())
 			if wr.get_ref(): GameManager.save_to_file()
+		
+		6: # Defeat
+			pass
 
 
 func _on_enemy_handler_child_order_changed() -> void:

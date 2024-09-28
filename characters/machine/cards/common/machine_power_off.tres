@@ -1,9 +1,9 @@
-[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://ypvdangpb04b"]
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://ypvdangpb04b"]
 
-[ext_resource type="Script" path="res://custom_resources/card.gd" id="1_8wkv4"]
+[ext_resource type="Script" path="res://characters/machine/cards/common/power_off.gd" id="1_flyex"]
 
 [resource]
-script = ExtResource("1_8wkv4")
+script = ExtResource("1_flyex")
 id = "machine_power_off"
 name = "Power off"
 type = 1
@@ -14,7 +14,10 @@ cost = 1
 tooltip_text = "ATK X
 X = DRAW
 Cancel 2"
-effect_description = "Need to add logic to card"
+effect_description = "[center]Attack - Deal [color=\"ff0000\"]damage[/color] to an enemy
+X - Attack equals the number of cards in your draw pile
+Cancel - You cannot play cards. Decreases by 1 at the END of each turn.[/center]
+"
 is_summon_only = false
 is_chaotic = false
 has_exhaust = false

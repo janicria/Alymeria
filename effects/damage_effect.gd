@@ -5,7 +5,7 @@ var amount := 0
 var new_targets : Array[Node]
 
 
-func execute(targets : Array[Node], random := false) -> void:
+func execute(targets : Array[Node]) -> void:
 	for target in targets:
 		var wr: WeakRef = weakref(target)
 		if wr.get_ref():

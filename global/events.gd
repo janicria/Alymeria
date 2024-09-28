@@ -1,5 +1,7 @@
 extends Node
 
+# FIXME: Everything
+
 ## Card-related events
 signal card_drag_started(card_ui : CardUI)
 signal card_drag_ended(card_ui : CardUI)
@@ -29,6 +31,7 @@ signal enemy_card_played
 signal enemy_died(enemy: Enemy)
 signal enemy_turn_ended
 signal enemy_add_card(stats: EnemyCard)
+signal play_infinite_enemy_cards()
 
 ## UI-related events
 signal update_settings_visibility(state: bool)
