@@ -36,7 +36,7 @@
 				"optional": true
 			}
 		],
-		"description": "Enables cheat commands\n(disables achievements)"
+		"description": "Enables cheat commands. Leaving no argument displays whether or not checks are enabled\n(running 'cheats true' disables achievements)"
 	},
 	"echo": {
 		"target": "",
@@ -67,5 +67,75 @@
 			}
 		],
 		"description": "Increases gold by a set amount\n(can be negative)"
+	},
+	"kill": {
+		"target": "",
+		"type": 1,
+		"minPermission": 0,
+		"cheats": true,
+		"method": "kill",
+		"argumentList": [
+			{
+				"name": "who",
+				"type": 4,
+				"optional": false
+			}
+		],
+		"description": "Kills a group in the current combat\nOptions for who: self, enemies, summons"
+	},
+	"health": {
+		"target": "",
+		"type": 1,
+		"minPermission": 0,
+		"cheats": true,
+		"method": "heal",
+		"argumentList": [
+			{
+				"name": "amount",
+				"type": 2,
+				"optional": false
+			}
+		],
+		"description": "Increases health by a set amount\n(can be negative and cannot go above max health)"
+	},
+	"deck": {
+		"target": "",
+		"type": 1,
+		"minPermission": 0,
+		"cheats": true,
+		"method": "deck",
+		"argumentList": [
+			{
+				"name": "action",
+				"type": 4,
+				"optional": false
+			},
+			{
+				"name": "rarity",
+				"type": 4,
+				"optional": false
+			},
+			{
+				"name": "card",
+				"type": 4,
+				"optional": true
+			}
+		],
+		"description": "Edit or check cards in your deck\nOptions for action:\nadd - adds a card with the matching rarity and id\nEx: deck add common machine_power_strike\nremove - removes a card with the matching id\nhas - checks if your deck contains a card with the matching id"
+	},
+	"act": {
+		"target": "",
+		"type": 1,
+		"minPermission": 0,
+		"cheats": true,
+		"method": "act",
+		"argumentList": [
+			{
+				"name": "number",
+				"type": 2,
+				"optional": false
+			}
+		],
+		"description": "Changes the act number (doesn't switch map)"
 	}
 }

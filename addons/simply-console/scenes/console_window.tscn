@@ -31,7 +31,7 @@ var historyPosition: int = 0
 
 func _ready() -> void:
 	output_comment(
-		\"To see a list of available commands use the 'help' command.\"
+		\"To see a list of available commands use the 'help' command (most are locked behind the cheats command)\"
 	)
 	output_comment(
 		\"Optionally, use 'help (command)' to get more information about a specific command.\"
@@ -172,15 +172,16 @@ func show_command_list(commandName: String = \"\") -> String:
 	# Show list of arguments for command
 	if COMMAND_LIST_.has(commandName):
 		if COMMAND_LIST_[commandName][\"argumentList\"].is_empty():
-			return \"Command '\" + commandName + \"' does not have any arguments.\"
+			return \"%s\\nCommand %s does not have any arguments.\" % [COMMAND_LIST_[commandName][\"description\"], commandName]
 		
-		response = COMMAND_LIST_[commandName][\"description\"] +\"\\n\"
+		response = \"%s\\n\" % COMMAND_LIST_[commandName][\"description\"]
 		response += \"Argument(s) for '\" + commandName + \"':\\n\"
 		for ARGUMENT_ in COMMAND_LIST_[commandName][\"argumentList\"]:
 			response += ARGUMENT_[\"name\"]
 			if ARGUMENT_[\"optional\"]:
 				response += \" (optional)\"
-
+			response += \" \"
+	
 		return response.trim_suffix(\"\\n\")
 	
 	return \"Command '\" + commandName + \"' does not exist.\"
@@ -195,7 +196,7 @@ func toggle_cheats(state: bool = cheatsEnabled) -> String:
 		return \"Cheats are currently \" + (\"enabled.\" if state else \"disabled.\")
 	
 	cheatsEnabled = state
-	return \"Cheats have been \" + (\"enabled.\" if state else \"disabled.\")
+	return \"Cheats are now \" + (\"enabled (try running help with cheats on)\" if state else \"disabled.\")
 
 
 func echo(text: String) -> String:
@@ -205,6 +206,58 @@ func echo(text: String) -> String:
 func gold(amount: int) -> String:
 	GameManager.gold += amount
 	return \"Added %s gold\" % amount
+
+
+func kill(who: String) -> String:
+	if who == \"self\" or who == \"player\":
+		var player := get_tree().get_first_node_in_group(\"player\") as Player
+		# In case the player scene hasn't been instanced yet
+		var wr: WeakRef = weakref(player)
+		if !wr.get_ref(): return \"Not in a battle!\"
+		player.damage_counter.hide()
+		Events.player_died.emit()
+		player.death_animation()
+		hide()
+		return \"Killed %s\" % who
+	
+	for target in get_tree().get_nodes_in_group(who):
+		target.death_animation()
+	return \"Killed %s\" % who
+
+
+func heal(amount: int) -> String:
+	GameManager.character.heal(amount)
+	if GameManager.character.health < 1: kill(\"self\")
+	return \"Healed %s health\" % amount
+
+
+func deck(action: String, rarity: String, id: String = \"\") -> String:
+	match action:
+		\"add\":
+			# Checking if card exists
+			var wr: WeakRef = weakref(load(\"res://characters/%s/cards/%s/%s.tres\" % [GameManager.character.id, rarity, id]))
+			if !wr.get_ref() or wr.get_ref() is not Card: return \"Card %s with rarity %s does not exist\" % [id, rarity]
+			# Adding card to deck
+			var card := load(\"res://characters/%s/cards/%s/%s.tres\" % [GameManager.character.id, rarity, id])
+			GameManager.character.deck.add_card(card)
+			return \"Added card %s with rarity %s\" % [id, rarity]
+		\"remove\": # TODO: Add card removal here
+			return \"Removing cards is not available in the current version of the game\"
+		\"has\":
+			var response := \"\"
+			for card in GameManager.character.deck.cards:
+				# Rarity is 2nd arg
+				if card.id == rarity: return \"true\"
+			return \"false\"
+	
+	return \"%s is not an action for command deck, possible actions: add, remove, has\" % action
+
+
+# Mainly used to test of gold / card rewards scale properly with the current biome
+func act(number: int) -> String:
+	var old_number := GameManager.current_biome
+	GameManager.current_biome = number
+	return \"Changed act number from %s(%s) to %s(%s)\" % [GameManager.Biome.keys()[old_number], old_number, GameManager.Biome.keys()[GameManager.current_biome], number]
 
 
 #endregion

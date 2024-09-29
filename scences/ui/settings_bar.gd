@@ -5,10 +5,11 @@ const DEFAULT_BUS_LAYOUT = preload("res://assets/misc/default_bus_layout.tres")
 
 @export var sfx_slider_sound : AudioStream
 
-# TopHbox
+# TopVbox
 @onready var gold_ui: GoldUI = %GoldUI
 @onready var counter: Label = %Counter
 @onready var cog: TextureRect = %Cog
+@onready var health_ui: HealthUI = %HealthUI
 # Misc
 @onready var color_rect: ColorRect = %ColorRect
 @onready var settings: Panel = %Settings
@@ -26,13 +27,12 @@ const DEFAULT_BUS_LAYOUT = preload("res://assets/misc/default_bus_layout.tres")
 
 
 var cog_speed_boost := 0.0
-var card_pile_open := false
 
 
 func _ready() -> void:
 	Events.update_card_pile.connect(_setup)
 	
-	cog.pivot_offset = Vector2(7.5, 10)
+	cog.pivot_offset = cog.size / 2
 	_on_volume_slider_value_changed(0, "master")
 	
 	if get_parent().get_name() == "MainMenu":
@@ -40,6 +40,7 @@ func _ready() -> void:
 		deck_button.queue_free()
 		counter.queue_free()
 		gold_ui.queue_free()
+		health_ui.queue_free()
 
 
 func _setup(card_pile : CardPile) -> void:
@@ -47,14 +48,23 @@ func _setup(card_pile : CardPile) -> void:
 	deck_view.card_pile = card_pile
 	GameManager.character.deck = card_pile
 	deck_button.pressed.connect(deck_view.show_current_view.bind("Deck"))
+	GameManager.character.stats_changed.connect(health_ui.update_stats.bind(GameManager.character))
+	health_ui.update_stats(GameManager.character)
+	
+	# Updates buttons from MainMenu / restarting run
+	_on_toggled_button_toggled(GameManager.true_draw_amount, "true_draw")
+	_on_toggled_button_toggled(GameManager.true_deck_size, "true_deck")
+	_on_toggled_button_toggled(GameManager.gameplay_tips, "hints")
+	if DisplayServer.window_get_mode() == 3: _on_toggled_button_toggled(true, "fullscreen")
+	_on_toggled_button_toggled(GameManager.card_pile_above_mana, "card_pile_pos")
 
 
 func _on_cog_gui_input(event: InputEvent) -> void:
 	if event.is_action_released("left_mouse_pressed"):
 		toggle_settings()
 	
-	cog.rotation_degrees += 3.5 + cog_speed_boost
-	cog_speed_boost += 0.025
+	cog.rotation_degrees += 5 + cog_speed_boost
+	cog_speed_boost += 0.05
 
 
 func _process(_delta: float) -> void:
@@ -91,7 +101,6 @@ func _on_toggled_button_toggled(toggled_on: bool, button_string: String) -> void
 		"true_draw": 
 			button = %TrueDrawButton
 			GameManager.true_draw_amount = toggled_on
-			#Events.update_deck_buttons.emit(0, false)
 			Events.update_card_stats.emit()
 		"true_deck": 
 			button = %TrueDeckButton

@@ -109,7 +109,8 @@ metadata/_edit_use_anchors_ = true
 [node name="ConsoleWindow" parent="." instance=ExtResource("5_p3j0y")]
 unique_name_in_owner = true
 initial_position = 0
-position = Vector2i(50, 26)
-size = Vector2i(200, 130)
+position = Vector2i(50, 20)
+size = Vector2i(150, 98)
 visible = false
 borderless = true
+always_on_top = true

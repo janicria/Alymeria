@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://bwuexw3t61b0h"]
+[gd_scene load_steps=13 format=3 uid="uid://bwuexw3t61b0h"]
 
 [ext_resource type="Script" path="res://scences/ui/settings_bar.gd" id="1_gqwvr"]
 [ext_resource type="AudioStream" uid="uid://b1vpjjmi5cj3n" path="res://assets/SFX/axe.ogg" id="2_mu1su"]
 [ext_resource type="Texture2D" uid="uid://do1aa6n7ws33d" path="res://assets/ui/cog.png" id="3_xk6qw"]
 [ext_resource type="PackedScene" uid="uid://cmrvm435qcold" path="res://scences/ui/card_pile_button.tscn" id="4_hmjjb"]
 [ext_resource type="Texture2D" uid="uid://7p8kjadn847c" path="res://assets/ui/cards/deck.png" id="5_ye2i7"]
+[ext_resource type="PackedScene" uid="uid://dn8ooj6qia3x8" path="res://scences/ui/health_ui.tscn" id="6_5u5dc"]
 [ext_resource type="PackedScene" uid="uid://da7tuwoqikc3r" path="res://scences/ui/gold_ui.tscn" id="6_qme55"]
 [ext_resource type="PackedScene" uid="uid://bijq7mf8h0j85" path="res://scences/ui/tooltip.tscn" id="7_w5c4v"]
 [ext_resource type="PackedScene" uid="uid://hqt3nv2gge3l" path="res://scences/ui/card_pile_view.tscn" id="8_4kgy7"]
@@ -40,20 +41,18 @@ offset_bottom = 191.0
 mouse_filter = 1
 color = Color(0, 0, 0, 0.470588)
 
-[node name="TopHbox" type="HBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 7.0
-offset_top = 5.0
-offset_right = -249.0
-offset_bottom = 5.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="TopVbox" type="VBoxContainer" parent="."]
+layout_mode = 2
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 77.0
+offset_bottom = 58.0
+
+[node name="Layer1" type="HBoxContainer" parent="TopVbox"]
+layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="Cog" type="TextureRect" parent="TopHbox"]
+[node name="Cog" type="TextureRect" parent="TopVbox/Layer1"]
 unique_name_in_owner = true
 texture_filter = 1
 custom_minimum_size = Vector2(15, 15)
@@ -62,20 +61,28 @@ texture = ExtResource("3_xk6qw")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="DeckButton" parent="TopHbox" node_paths=PackedStringArray("counter") instance=ExtResource("4_hmjjb")]
+[node name="DeckButton" parent="TopVbox/Layer1" node_paths=PackedStringArray("counter") instance=ExtResource("4_hmjjb")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(12, 14)
+custom_minimum_size = Vector2(12, 16)
 layout_mode = 2
 texture_normal = ExtResource("5_ye2i7")
 counter = NodePath("../Counter")
 
-[node name="Counter" type="Label" parent="TopHbox"]
+[node name="Counter" type="Label" parent="TopVbox/Layer1"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "99"
 horizontal_alignment = 1
 
-[node name="GoldUI" parent="TopHbox" instance=ExtResource("6_qme55")]
+[node name="Layer2" type="HBoxContainer" parent="TopVbox"]
+layout_mode = 2
+
+[node name="HealthUI" parent="TopVbox/Layer2" instance=ExtResource("6_5u5dc")]
+unique_name_in_owner = true
+layout_mode = 2
+show_max_hp = true
+
+[node name="GoldUI" parent="TopVbox/Layer2" instance=ExtResource("6_qme55")]
 unique_name_in_owner = true
 layout_mode = 2
 
@@ -310,7 +317,7 @@ unique_name_in_owner = true
 visible = false
 
 [connection signal="gui_input" from="ColorRect" to="." method="_on_color_rect_gui_input"]
-[connection signal="gui_input" from="TopHbox/Cog" to="." method="_on_cog_gui_input"]
+[connection signal="gui_input" from="TopVbox/Layer1/Cog" to="." method="_on_cog_gui_input"]
 [connection signal="mouse_entered" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/TrueDrawHbox" to="." method="_on_hbox_mouse_entered" binds= ["Cards which draw show how far they move your deck (show one less in the draw counter)"]]
 [connection signal="mouse_exited" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/TrueDrawHbox" to="." method="hide_tooltip"]
 [connection signal="toggled" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/TrueDrawHbox/TrueDrawButton" to="." method="_on_toggled_button_toggled" binds= ["true_draw"]]

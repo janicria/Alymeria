@@ -14,7 +14,7 @@ enum Biome {FOREST, TOWN, CAVES, CITY, TRAIN, STORM, FINAL}
 var true_draw_amount := false
 var true_deck_size := false
 var card_pile_above_mana := false
-var gameplay_tips := false
+var gameplay_tips := true
 
 # Bestiary-related variables
 var spider_bestiary_entry := false
