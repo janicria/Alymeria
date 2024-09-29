@@ -7,7 +7,6 @@ enum Target {SELF, SINGLE_ENEMY, ALL_ENEMIES, RANDOM, EVERYONE}
 
 
 @export_group("Card Attributes")
-@export var id: String
 @export var name: String
 @export var type: Type
 @export var rarity: Rarity
@@ -20,8 +19,8 @@ enum Target {SELF, SINGLE_ENEMY, ALL_ENEMIES, RANDOM, EVERYONE}
 @export_multiline var tooltip_text : String
 @export_multiline var effect_description : String
 
-
 var fully_played := false
+
 
 func is_single_targeted() -> bool:
 	return target == Target.SINGLE_ENEMY
@@ -31,7 +30,8 @@ func _get_targets(targets: Array[Node]) -> Array[Node]:
 	if !targets:
 		return []
 	
-	var  tree := targets[0].get_tree()
+	# Scene tree
+	var tree := targets[0].get_tree()
 	
 	match target:
 		Target.SELF:

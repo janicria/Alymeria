@@ -1,15 +1,16 @@
 [gd_resource type="Resource" script_class="CardPile" load_steps=11 format=3 uid="uid://dgqbrh131722d"]
 
-[ext_resource type="Resource" uid="uid://dprpiekopnhe0" path="res://characters/machine/cards/common/machine_block.tres" id="1_ows0m"]
-[ext_resource type="Resource" uid="uid://brs0hub03o0k0" path="res://characters/machine/cards/common/machine_laser_attack.tres" id="2_bukog"]
-[ext_resource type="Resource" uid="uid://bivd0gsfass0" path="res://characters/machine/cards/common/machine_laser_barrage.tres" id="3_8q8h3"]
-[ext_resource type="Resource" uid="uid://073voiuhw5gi" path="res://characters/machine/cards/common/machine_missile_launcher.tres" id="4_hgqsj"]
-[ext_resource type="Resource" uid="uid://ypvdangpb04b" path="res://characters/machine/cards/common/machine_power_off.tres" id="5_sgavq"]
-[ext_resource type="Resource" uid="uid://ccjsu4qoghdrb" path="res://characters/machine/cards/common/machine_power_strike.tres" id="6_tkkud"]
-[ext_resource type="Resource" uid="uid://c6ffdh3cljhno" path="res://characters/machine/cards/common/machine_repurposing.tres" id="7_oi5vj"]
+[ext_resource type="Resource" uid="uid://dprpiekopnhe0" path="res://characters/machine/cards/common/shields.tres" id="1_ows0m"]
+[ext_resource type="Resource" uid="uid://brs0hub03o0k0" path="res://characters/machine/cards/common/laser.tres" id="2_bukog"]
+[ext_resource type="Resource" uid="uid://bivd0gsfass0" path="res://characters/machine/cards/common/laser_barrage.tres" id="3_8q8h3"]
+[ext_resource type="Resource" uid="uid://073voiuhw5gi" path="res://characters/machine/cards/common/missile_launcher.tres" id="4_hgqsj"]
+[ext_resource type="Resource" uid="uid://ypvdangpb04b" path="res://characters/machine/cards/common/power_off.tres" id="5_sgavq"]
+[ext_resource type="Resource" uid="uid://ccjsu4qoghdrb" path="res://characters/machine/cards/common/power_strike.tres" id="6_tkkud"]
+[ext_resource type="Resource" uid="uid://c6ffdh3cljhno" path="res://characters/machine/cards/common/repurposing.tres" id="7_oi5vj"]
 [ext_resource type="Resource" uid="uid://toyyjwcg0fob" path="res://characters/machine/cards/temp/placeholder_uncommon_card.tres" id="8_aadp1"]
 [ext_resource type="Script" path="res://custom_resources/card_pile.gd" id="8_cd2e0"]
 [ext_resource type="Resource" uid="uid://dxoxah522fws" path="res://characters/machine/cards/temp/placeholder_rare_card.tres" id="9_xe3po"]
+
 
 
 [resource]

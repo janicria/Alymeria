@@ -18,7 +18,7 @@ const HOVER_STYLEBOX := preload("res://scences/card_ui/card_hover_stylebox.tres"
 @onready var desc : Label = $Desc
 @onready var _name: Label = $Name
 @onready var drop_point_detector : Area2D = $DropPointDetector
-@onready var card_state_machine : CardSateMachine = $CardStateMachine
+@onready var card_state_machine : CardSateMachine = %CardStateMachine
 @onready var targets: Array[Node] = []
 
 # These seemingly random member vars cannot be removed as they're referenced in various other scripts
@@ -53,6 +53,12 @@ func animate_to_position(new_position : Vector2, duration : float) -> void:
 func play() -> void:
 	if !card:
 		return
+	
+	# Prevents playing single target cards for an enemy during its death animation
+	if card.is_single_targeted() && targets.any(func(target: Node)-> bool: return target is Enemy):
+		if targets.any(func(target: Enemy)-> bool: return !target.is_alive):
+			card_state_machine._on_transition_requested(card_state_machine.current_state, CardState.State.BASE)
+			return
 	
 	if targets:
 		card.play(targets, char_stats)

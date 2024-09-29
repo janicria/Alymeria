@@ -1,8 +1,9 @@
 [gd_resource type="Resource" load_steps=4 format=3 uid="uid://br4oagodrodkj"]
 
 [ext_resource type="Texture2D" uid="uid://oe7v35ii8vrs" path="res://assets/art/objects/tile_0102.png" id="1_schh8"]
-[ext_resource type="Script" path="res://characters/machine/cards/common/machine_barrier.gd" id="2_p66ge"]
+[ext_resource type="Script" path="res://characters/machine/cards/common/shields.gd" id="2_p66ge"]
 [ext_resource type="AudioStream" uid="uid://df64e7qat73gs" path="res://assets/SFX/block.ogg" id="3_qrp7a"]
+
 
 
 

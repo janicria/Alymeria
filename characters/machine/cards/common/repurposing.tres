@@ -1,7 +1,8 @@
 [gd_resource type="Resource" load_steps=3 format=3 uid="uid://c6ffdh3cljhno"]
 
-[ext_resource type="Script" path="res://characters/machine/cards/common/machine_repurposing.gd" id="2_ngu3b"]
+[ext_resource type="Script" path="res://characters/machine/cards/common/repurposing.gd" id="2_ngu3b"]
 [ext_resource type="AudioStream" uid="uid://dixklg6g4jnsq" path="res://assets/SFX/slash.ogg" id="3_8os66"]
+
 
 [resource]
 script = ExtResource("2_ngu3b")

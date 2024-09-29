@@ -16,6 +16,7 @@ const ARROW_OFFSET := 19
 var pool: Array[EnemyCard]
 var mana: int
 var active := false
+var is_alive := true
 
 func _setup_stats(value: EnemyStats) -> void:
 	stats = value.create_instance()
@@ -111,6 +112,7 @@ func take_damage(damage : int) -> void:
 	)
 
 func death_animation(repeats := 3) -> void:
+	is_alive = false
 	var death_tween := create_tween()
 	death_tween.tween_callback(Shaker.shake.bind(self, 10, 0.15))
 	death_tween.tween_interval(0.2)

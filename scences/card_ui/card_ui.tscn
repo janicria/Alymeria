@@ -116,6 +116,7 @@ position = Vector2(22.5, 28.5)
 shape = SubResource("RectangleShape2D_245v2")
 
 [node name="CardStateMachine" type="Node" parent="." node_paths=PackedStringArray("inital_state")]
+unique_name_in_owner = true
 script = ExtResource("3_f5274")
 inital_state = NodePath("CardBaseState")
 

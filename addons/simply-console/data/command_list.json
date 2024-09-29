@@ -121,7 +121,7 @@
 				"optional": true
 			}
 		],
-		"description": "Edit or check cards in your deck\nOptions for action:\nadd - adds a card with the matching rarity and id\nEx: deck add common machine_power_strike\nremove - removes a card with the matching id\nhas - checks if your deck contains a card with the matching id"
+		"description": "Edit or check cards in your deck\nOptions for action:\nadd - adds a card with the matching rarity and id\nremove - removes a card with the matching rarity and id\nhas - checks if your deck contains a card with thematching rarity and id\nEx: deck add common power_off"
 	},
 	"act": {
 		"target": "",

@@ -1,7 +1,8 @@
 [gd_resource type="Resource" load_steps=3 format=3 uid="uid://brs0hub03o0k0"]
 
-[ext_resource type="Script" path="res://characters/machine/cards/common/machine_laser_attack.gd" id="2_ouqcu"]
+[ext_resource type="Script" path="res://characters/machine/cards/common/laser.gd" id="2_ouqcu"]
 [ext_resource type="AudioStream" uid="uid://b1vpjjmi5cj3n" path="res://assets/SFX/axe.ogg" id="3_8mdsh"]
+
 
 [resource]
 script = ExtResource("2_ouqcu")

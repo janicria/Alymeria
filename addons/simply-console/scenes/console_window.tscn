@@ -232,23 +232,19 @@ func heal(amount: int) -> String:
 
 
 func deck(action: String, rarity: String, id: String = \"\") -> String:
+	# Checks if the card exists
+	var wr: WeakRef = weakref(load(\"res://characters/%s/cards/%s/%s.tres\" % [GameManager.character.id, rarity, id]))
+	if !wr.get_ref() or wr.get_ref() is not Card: return \"Card %s with rarity %s does not exist\" % [id, rarity]
 	match action:
 		\"add\":
-			# Checking if card exists
-			var wr: WeakRef = weakref(load(\"res://characters/%s/cards/%s/%s.tres\" % [GameManager.character.id, rarity, id]))
-			if !wr.get_ref() or wr.get_ref() is not Card: return \"Card %s with rarity %s does not exist\" % [id, rarity]
-			# Adding card to deck
-			var card := load(\"res://characters/%s/cards/%s/%s.tres\" % [GameManager.character.id, rarity, id])
-			GameManager.character.deck.add_card(card)
+			GameManager.character.deck.add_card(wr.get_ref())
 			return \"Added card %s with rarity %s\" % [id, rarity]
-		\"remove\": # TODO: Add card removal here
-			return \"Removing cards is not available in the current version of the game\"
+		\"remove\":
+			GameManager.character.deck.remove_card(wr.get_ref())
+			return \"Removed card %s with rarity %s\" % [id, rarity]
 		\"has\":
-			var response := \"\"
 			for card in GameManager.character.deck.cards:
-				# Rarity is 2nd arg
-				if card.id == rarity: return \"true\"
-			return \"false\"
+				return \"You %s have card %s in your deck\" % [\"DO\" if card == wr.get_ref() else \"DON'T\", id]
 	
 	return \"%s is not an action for command deck, possible actions: add, remove, has\" % action
 
