@@ -12,6 +12,7 @@ const ARROW_OFFSET := 19
 @onready var sprite_2d : Sprite2D = $Sprite2D
 @onready var arrow : Sprite2D = $Arrow
 @onready var stats_ui : StatsUI = $StatsUI
+@onready var mana_counter: RichTextLabel = %ManaCounter
 
 var pool: Array[EnemyCard]
 var mana: int
@@ -21,20 +22,11 @@ var is_alive := true
 func _setup_stats(value: EnemyStats) -> void:
 	stats = value.create_instance()
 	
-	if !Events.play_infinite_enemy_cards.is_connected(play_infinite_cards):
-		Events.play_infinite_enemy_cards.connect(play_infinite_cards)
 	if !stats.stats_changed.is_connected(update_stats):
 		stats.stats_changed.connect(update_stats)
 	
 	mana = stats.max_mana
 	update_enemy()
-
-
-func play_infinite_cards() -> void:
-	do_turn()
-	draw_cards(2)
-	await get_parent().finished_drawing
-	play_infinite_cards()
 
 
 func draw_cards(amount: int) -> void:
@@ -49,7 +41,7 @@ func draw_cards(amount: int) -> void:
 		# Rolling the cards
 		for i in ai.actions.size():
 			cumulative_weight += ai.actions[i].weight
-			# Health check is prevent health cards from being added as they have 0 weight
+			# Health check is prevent health cards from being, added as they have 0 weight
 			if roll < cumulative_weight && !ai.actions[i].health: add_card(ai.actions[i])
 
 
@@ -64,11 +56,11 @@ func add_card(card: EnemyCard) -> void:
 	# Prevents old enemies from adding cards right before they're freed
 	if !active: return
 	
-	# Adds a new card using damage taken
+	# Adds a health card
 	if !card.cost and !card.weight and card.health > stats.health:
 		get_parent().add_card_to_hand.emit(card, self)
 	
-	# Adds a new card using mana
+	# Adds a regular card using mana
 	elif mana:
 		mana -= card.cost
 		get_parent().add_card_to_hand.emit(card, self)
@@ -92,7 +84,10 @@ func update_enemy() -> void:
 
 func do_turn() -> void:
 	stats.barrier = clamp(stats.barrier -10, 0, 999)
-	mana = stats.max_mana
+
+
+func update_mana_counter(value: int) -> void:
+	mana_counter.text = "[center][color=4DA3FF] %s [/color][/center]" % mana
 
 
 func take_damage(damage : int) -> void:

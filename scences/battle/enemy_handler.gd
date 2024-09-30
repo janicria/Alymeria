@@ -35,8 +35,9 @@ func draw_cards() -> void:
 	Events.update_player_dmg_counter.emit(0, true)
 	# Filter prevents EnemyHand from being assigned
 	for enemy: Enemy in get_children().filter(func(child: Node)->bool: return child is Enemy):
-		enemy.draw_cards(enemy.stats.max_turn_draw)
-	
+		enemy.mana = enemy.stats.max_mana
+		enemy.update_mana_counter(enemy.mana)
+		enemy.draw_cards(randi_range(1, 3))
 
 
 func start_turn() -> void:

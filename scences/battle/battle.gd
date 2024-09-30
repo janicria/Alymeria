@@ -59,11 +59,11 @@ func _on_battle_state_updated(new_state : BattleState) -> void:
 		
 		3: # Player drawing & playing cards
 			player_handeler.start_turn()
-			enemy_handler.start_turn()
 		
-		4: # Enemy playing cards
+		4: # Enemy starting turn then playing cards
 			player_handeler.end_turn()
 			await Events.player_hand_discarded
+			enemy_handler.start_turn()
 			enemy_handler.play_next_card()
 		
 		5: # Victory

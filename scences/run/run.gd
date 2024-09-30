@@ -24,7 +24,6 @@ func _ready() -> void:
 		return
 	
 	color_rect.visible = true
-	#console_window.close_requested.emit()
 	scence_transition.play("fade_in")
 	
 	match run_startup.type:

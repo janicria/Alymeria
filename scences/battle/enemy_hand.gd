@@ -30,9 +30,11 @@ func cardToGui(card: EnemyCard, enemy: Enemy) -> void:
 	var tween := create_tween().set_trans(Tween.TRANS_BACK)
 	tween.tween_property(card_ui, "global_position", target_pos, 0.6)
 	
-	# Updating player damage counter
-	tween.finished.connect(func()->void: if card.type == EnemyCard.Type.ATTACK:
-		Events.update_player_dmg_counter.emit(card.amount * card.repeats, false))
+	# Updating enemy mana and player damage counters
+	tween.finished.connect(func()->void: 
+		enemy.update_mana_counter(enemy.mana)
+		if card.type == EnemyCard.Type.ATTACK: 
+			Events.update_player_dmg_counter.emit(card.amount * card.repeats, false))
 	
 	# Starting player draw
 	if card_ui == get_child(-1):

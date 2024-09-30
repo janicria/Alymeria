@@ -32,6 +32,14 @@ offset_top = 8.0
 offset_bottom = 24.0
 metadata/_edit_use_anchors_ = true
 
+[node name="ManaCounter" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+offset_left = -19.0
+offset_top = -16.0
+offset_right = 21.0
+offset_bottom = -10.0
+bbcode_enabled = true
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
