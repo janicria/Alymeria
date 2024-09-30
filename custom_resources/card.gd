@@ -12,7 +12,7 @@ enum Target {SELF, SINGLE_ENEMY, ALL_ENEMIES, RANDOM, EVERYONE}
 @export var rarity: Rarity
 @export var target: Target
 @export var repeats:= 1
-@export var cost : int
+@export var cost : int : set = set_cost
 
 @export_group("Card Visuals")
 @export var sound : AudioStream
@@ -20,6 +20,10 @@ enum Target {SELF, SINGLE_ENEMY, ALL_ENEMIES, RANDOM, EVERYONE}
 @export_multiline var effect_description : String
 
 var fully_played := false
+
+
+func set_cost(value: int) -> void:
+	cost = clampi(value, 0, 99)
 
 
 func is_single_targeted() -> bool:
@@ -40,8 +44,7 @@ func _get_targets(targets: Array[Node]) -> Array[Node]:
 			return tree.get_nodes_in_group("enemies")
 		Target.EVERYONE:
 			return tree.get_nodes_in_group("player") + tree.get_nodes_in_group("enemies") + tree.get_nodes_in_group("summons")
-		_:
-			return []
+		_: return []
 
 
 func play(targets : Array[Node], char_stats: CharacterStats) -> void:
@@ -49,9 +52,9 @@ func play(targets : Array[Node], char_stats: CharacterStats) -> void:
 	Events.card_played.emit(self) 
 	char_stats.mana -= cost
 	
-	if is_single_targeted():
+	if is_single_targeted(): 
 		apply_effects(targets)
-	else:
+	else: 
 		apply_effects(_get_targets(targets))
 
 

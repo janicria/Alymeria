@@ -30,6 +30,7 @@ var historyPosition: int = 0
 
 
 func _ready() -> void:
+	Events.open_debug_console.connect(show)
 	output_comment(
 		\"To see a list of available commands use the 'help' command (most are locked behind the cheats command)\"
 	)
@@ -63,6 +64,10 @@ func _input(event: InputEvent) -> void:
 			and event.keycode == KEY_DOWN
 			and not commandHistory_.is_empty()
 		):
+			# FIXME: \"Temp\" hotfix
+			# Spamming down key at the bottom of the console if historyPosition
+			# is < 0 causes an error ONLY in release builds
+			if !OS.has_feature(\"release\"): return
 			if historyPosition != commandHistory_.size() - 1:
 				historyPosition += 1
 			InputFieldRef.set_text(commandHistory_[historyPosition])
@@ -196,6 +201,7 @@ func toggle_cheats(state: bool = cheatsEnabled) -> String:
 		return \"Cheats are currently \" + (\"enabled.\" if state else \"disabled.\")
 	
 	cheatsEnabled = state
+	print(\"[CMD] Cheats %s\" % cheatsEnabled)
 	return \"Cheats are now \" + (\"enabled (try running help with cheats on)\" if state else \"disabled.\")
 
 
@@ -205,6 +211,7 @@ func echo(text: String) -> String:
 
 func gold(amount: int) -> String:
 	GameManager.gold += amount
+	print(\"[CMD] Added %s gold\" % amount)
 	return \"Added %s gold\" % amount
 
 
@@ -213,11 +220,14 @@ func kill(who: String) -> String:
 		var player := get_tree().get_first_node_in_group(\"player\") as Player
 		# In case the player scene hasn't been instanced yet
 		var wr: WeakRef = weakref(player)
-		if !wr.get_ref(): return \"Not in a battle!\"
+		if !wr.get_ref(): 
+			print(\"[CMD] Failed to kill %s\" % who)
+			return \"Not in a battle!\"
 		player.damage_counter.hide()
 		Events.player_died.emit()
 		player.death_animation()
 		hide()
+		print(\"[CMD] Killed %s\" % who)
 		return \"Killed %s\" % who
 	
 	for target in get_tree().get_nodes_in_group(who):
@@ -228,32 +238,40 @@ func kill(who: String) -> String:
 func heal(amount: int) -> String:
 	GameManager.character.heal(amount)
 	if GameManager.character.health < 1: kill(\"self\")
+	print(\"[CMD] Healed %s health\" % amount)
 	return \"Healed %s health\" % amount
 
 
 func deck(action: String, rarity: String, id: String = \"\") -> String:
-	# Checks if the card exists
-	var wr: WeakRef = weakref(load(\"res://characters/%s/cards/%s/%s.tres\" % [GameManager.character.id, rarity, id]))
-	if !wr.get_ref() or wr.get_ref() is not Card: return \"Card %s with rarity %s does not exist\" % [id, rarity]
+	# Checks if the card exists (can't use WeakRef bc it returns null if object hasn't been loaded into memory yet)
+	# Secret cards: deck add ../../secret placeholder_rare_card
+	# Witch cards: deck add ../../witch/cards/common flame
+	var loaded_card: Resource = load((\"res://characters/%s/cards/%s/%s.tres\" % [GameManager.character.id, rarity, id]))
+	if loaded_card is not Card: return \"Card %s with rarity %s does not exist\" % [id, rarity]
+
 	match action:
 		\"add\":
-			GameManager.character.deck.add_card(wr.get_ref())
+			GameManager.character.deck.add_card(loaded_card)
+			print(\"[CMD] Added card %s\" % id)
 			return \"Added card %s with rarity %s\" % [id, rarity]
 		\"remove\":
-			GameManager.character.deck.remove_card(wr.get_ref())
+			GameManager.character.deck.remove_card(loaded_card)
+			print(\"[CMD] Removed card %s\" % id)
 			return \"Removed card %s with rarity %s\" % [id, rarity]
 		\"has\":
 			for card in GameManager.character.deck.cards:
-				return \"You %s have card %s in your deck\" % [\"DO\" if card == wr.get_ref() else \"DON'T\", id]
+				return \"You %s have card %s in your deck\" % [\"DO\" if card == loaded_card else \"DON'T\", id]
 	
 	return \"%s is not an action for command deck, possible actions: add, remove, has\" % action
 
 
-# Mainly used to test of gold / card rewards scale properly with the current biome
-func act(number: int) -> String:
+# Mainly used to test of gold / card rewards scaling properly with the current biome
+func act(number: int = -1) -> String:
+	if number == -1: return \"Current act is %s(%s)\" % [GameManager.Biome.keys()[GameManager.current_biome], GameManager.current_biome]
 	var old_number := GameManager.current_biome
 	GameManager.current_biome = number
-	return \"Changed act number from %s(%s) to %s(%s)\" % [GameManager.Biome.keys()[old_number], old_number, GameManager.Biome.keys()[GameManager.current_biome], number]
+	print(\"[CMD] Changed act number from %s to %s\" % [old_number, GameManager.current_biome])
+	return \"Changed act number from %s(%s) to %s(%s)\" % [GameManager.Biome.keys()[old_number], old_number, GameManager.Biome.keys()[GameManager.current_biome], GameManager.current_biome]
 
 
 #endregion

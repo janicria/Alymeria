@@ -13,6 +13,7 @@ signal open_card_pile(card_pile : Array[Node])
 signal update_deck_buttons(amount : int, returning : bool)
 signal update_deck_counter
 signal update_card_stats
+signal update_card_variant(variant: String, value: int, where: String)
 
 ## Player-related events
 signal player_draw_cards(amount : int)
@@ -35,6 +36,7 @@ signal play_infinite_enemy_cards()
 
 ## UI-related events
 signal update_settings_visibility(state: bool)
+signal open_debug_console()
 
 ## Summon-related events
 signal summon_do_attack(id : String, amount : int, is_ability : bool)

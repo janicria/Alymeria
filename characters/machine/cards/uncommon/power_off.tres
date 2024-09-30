@@ -1,18 +1,17 @@
 [gd_resource type="Resource" load_steps=3 format=3 uid="uid://ypvdangpb04b"]
 
-[ext_resource type="Script" path="res://characters/machine/cards/common/power_off.gd" id="1_flyex"]
-[ext_resource type="AudioStream" uid="uid://b1vpjjmi5cj3n" path="res://assets/SFX/axe.ogg" id="2_i4tq1"]
+[ext_resource type="Script" path="res://characters/machine/cards/uncommon/power_off.gd" id="1_ojfs3"]
+[ext_resource type="AudioStream" uid="uid://b1vpjjmi5cj3n" path="res://assets/SFX/axe.ogg" id="2_6e1md"]
 
 [resource]
-script = ExtResource("1_flyex")
-id = "machine_power_off"
+script = ExtResource("1_ojfs3")
 name = "Power off"
 type = 1
-rarity = 0
+rarity = 1
 target = 1
 repeats = 1
 cost = 1
-sound = ExtResource("2_i4tq1")
+sound = ExtResource("2_6e1md")
 tooltip_text = "ATK X
 X = DRAW
 Cancel 2"

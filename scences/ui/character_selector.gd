@@ -27,6 +27,9 @@ func set_current_character(new_character: CharacterStats) -> void:
 
 
 func _on_start_button_pressed() -> void:
+	if current_character == WITCH_STATS:
+		OS.alert("This character isn't available in the current version of the game", "Oopsie daisy")
+		return
 	run_startup.type = RunStartup.Type.NEW_RUN
 	run_startup.picked_character = current_character
 	difficulty_loading_started = true

@@ -125,7 +125,7 @@ func _on_card_reward_taken(card: Card) -> void:
 	if !character_stats or !card:
 		return
 	
-	print("Drafted %s" % card.id)
+	print("Drafted %s" % card.name)
 	GameManager.character.deck.add_card(card)
 
 

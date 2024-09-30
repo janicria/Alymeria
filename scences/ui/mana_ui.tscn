@@ -3,7 +3,6 @@
 [ext_resource type="Theme" uid="uid://bhs76hnulf3s4" path="res://assets/misc/main_theme.tres" id="1_a0213"]
 [ext_resource type="Script" path="res://scences/ui/mana_ui.gd" id="2_qjgcm"]
 
-
 [node name="ManaUI" type="Panel"]
 anchors_preset = 2
 anchor_top = 1.0

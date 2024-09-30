@@ -5,7 +5,7 @@
 ## Demo
 Please note that this game is currently in it's pre-release 'Pre-alpha' phase, meaning that many sprites have misplaced textures and menus may have some unusable buttons
 
-This also means that you can also find experimental builds at the path /Releases/'Experimental'/ (Updated 1-4 times a week) There is also a README file explaining what experimental features each build contains (not guaranteed to run ~smoothly~ at all).
+This also means that you can also find experimental builds at the path /Releases/Experimental/ (Updated 1-4 times a week) There is also a README file explaining what experimental features each build contains (not guaranteed to run ~smoothly~ at all).
 
 ## Releases
 

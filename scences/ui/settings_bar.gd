@@ -166,3 +166,7 @@ func _on_exit_button_pressed() -> void:
 
 func hide_tooltip() -> void:
 	Events.tooltip_hide_requested.emit()
+
+
+func _on_console_button_pressed() -> void:
+	Events.open_debug_console.emit()

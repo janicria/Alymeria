@@ -13,7 +13,7 @@ enum Biome {FOREST, TOWN, CAVES, CITY, TRAIN, STORM, FINAL}
 # Settings-related variables
 var true_draw_amount := false
 var true_deck_size := false
-var card_pile_above_mana := false
+var card_pile_above_mana := true
 var gameplay_tips := true
 
 # Bestiary-related variables
@@ -27,7 +27,7 @@ var common_weight := BASE_COMMON_WEIGHT
 var uncommon_weight := BASE_UNCOMMON_WEIGHT
 var rare_weight := BASE_RARE_WEIGHT
 var character: CharacterStats
-var current_biome := Biome.FOREST
+var current_biome := Biome.FOREST : set = set_current_biome
 
 # Dictionary-related variables
 var biome_floors := {
@@ -60,6 +60,10 @@ var dev := false
 var card_pile_open := false : set = set_card_pile
 
 
+func set_current_biome(value: Biome) -> void:
+	current_biome = clampi(value, Biome.FOREST, (Biome.size()) -1)
+
+
 # Prevents settings from opening the same frame a card pile closes
 func set_card_pile(value: bool) -> void:
 	await get_tree().process_frame
@@ -69,6 +73,7 @@ func set_card_pile(value: bool) -> void:
 func _init() -> void:
 	process_mode = PROCESS_MODE_ALWAYS
 	
+	# Logging
 	print("Successful launch")
 	var platform := "Unknown"
 	if OS.has_feature("release"): platform = "Release ("
@@ -82,7 +87,7 @@ func _init() -> void:
 func notify(text: String, error := false) -> void:
 	if error: printerr("[ERROR] " + text)
 	else: printerr("[FAIL] " + text)
-	OS.alert("Janicria did an oopsie and asks for you to send the file 'info.log' at the path '%s'. (Dw you can still play the game)" % ProjectSettings.globalize_path("user://logs/info.log"), "Oopsie daisey")
+	OS.alert("Janicria did an oopsie and asks for you to send the file 'info.log' at the path '%s'. (Dw you can still play the game)" % ProjectSettings.globalize_path("user://logs/info.log"), "Oopsie daisy")
 
 
 # TODO: lmao
