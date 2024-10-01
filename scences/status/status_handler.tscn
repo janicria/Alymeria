@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dy5kejm171f3a"]
+
+[ext_resource type="Script" path="res://scences/status/status_handler.gd" id="1_nrtig"]
+
+[node name="StatusHandler" type="GridContainer"]
+columns = 4
+script = ExtResource("1_nrtig")

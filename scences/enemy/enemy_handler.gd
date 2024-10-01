@@ -8,9 +8,8 @@ signal finished_drawing()
 signal show_cards_owned_by_enemy(enemy: Enemy)
 signal hide_enemy_card_arrows()
 
+
 func _ready() -> void:
-	Events.battle_find_enemies.connect(_on_battle_find_enemies)
-	Events.enemy_find_enemies.connect(_on_enemy_find_enemies)
 	Events.enemy_card_played.connect(play_next_card)
 
 
@@ -39,6 +38,12 @@ func draw_cards() -> void:
 		enemy.mana = enemy.stats.max_mana
 		enemy.update_mana_counter()
 		enemy.draw_cards(randi_range(1, 3))
+
+
+func apply_start_of_turn_statuses() -> void:
+	# Filter prevents EnemyHand from being assigned
+	for enemy: Enemy in get_children().filter(func(child: Node)->bool: return child is Enemy):
+		enemy.status_handler.apply_statuses_by_type(Status.Type.START_OF_TURN)
 
 
 func start_turn() -> void:
@@ -70,13 +75,3 @@ func play_next_card() -> void:
 	enemy_hand.remove_child(card)
 	card.queue_free()
 	enemy_hand.organise_cards()
-
-
-func _on_battle_find_enemies() -> void:
-	await get_tree().create_timer(0.2, false).timeout
-	Events.battle_give_enemies.emit(get_children())
-
-
-func _on_enemy_find_enemies(original_id : String, damage : int, repeats : int) -> void:
-	await get_tree().create_timer(0.2, false).timeout
-	Events.enemy_give_enemies.emit(get_children(), original_id, damage, repeats)

@@ -13,10 +13,11 @@ extends Stats
 @export var max_mana : int
 @export var mana_type : String
 
-var mana : int : set = set_mana
-@export var deck : CardPile
-var discard : CardPile
-var draw_pile : CardPile
+var mana: int : set = set_mana
+var deck: CardPile
+var discard: CardPile
+var draw_pile: CardPile
+var exhaust_pile: CardPile
 
 
 func set_mana(value : int) -> void:
@@ -47,4 +48,5 @@ func create_instance() -> Resource:
 	instance.deck = instance.starting_deck.duplicate()
 	instance.draw_pile = CardPile.new()
 	instance.discard = CardPile.new()
+	instance.exhaust_pile = CardPile.new()
 	return instance

@@ -6,15 +6,16 @@ enum Rarity {COMMON, UNCOMMON, RARE, STATUS}
 enum Target {SELF, SINGLE_ENEMY, ALL_ENEMIES, RANDOM, EVERYONE}
 
 
-@export_group("Card Attributes")
+@export_group("Attributes")
 @export var name: String
 @export var type: Type
 @export var rarity: Rarity
 @export var target: Target
 @export var repeats:= 1
 @export var cost : int : set = set_cost
+@export var exhausts := false
 
-@export_group("Card Visuals")
+@export_group("Visuals")
 @export var sound : AudioStream
 @export_multiline var tooltip_text : String
 @export_multiline var effect_description : String

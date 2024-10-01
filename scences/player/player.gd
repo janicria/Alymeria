@@ -6,6 +6,7 @@ extends Node2D
 @onready var sprite_2d : Sprite2D = %Sprite2D
 @onready var stats_ui : StatsUI = %StatsUI
 @onready var damage_counter: RichTextLabel = %DamageCounter
+@onready var status_handler: StatusHandler = %StatusHandler
 
 var damage_count: int
 
@@ -20,6 +21,8 @@ func set_character_stats(value : CharacterStats) -> void:
 		stats.stats_changed.connect(update_stats)
 	
 	update_player()
+	if !is_node_ready(): await ready
+	status_handler.owner = self
 
 
 func update_player() -> void:

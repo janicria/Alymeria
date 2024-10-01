@@ -22,7 +22,7 @@ func kms() -> void:
 	# Prevents method from spamming
 	if !is_dead:
 		cost.text = "X"
-		icon.texture = preload("res://assets/ui/enemies/cross.png")
+		icon.texture = preload("res://assets/ui/cross.png")
 		attack_desc.text = "X"
 		is_dead = true
 		if card_stats.type == card_stats.Type.ATTACK:

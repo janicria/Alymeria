@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Suboptimal" load_steps=3 format=3 uid="uid://cnal7kyq8tqrv"]
+
+[ext_resource type="Texture2D" uid="uid://pgj8vfpj6tc5" path="res://assets/art/objects/tile_0130.png" id="1_7fdrm"]
+[ext_resource type="Script" path="res://effects/status/suboptimal.gd" id="2_xgxyy"]
+
+[resource]
+script = ExtResource("2_xgxyy")
+id = "suboptimal"
+type = 0
+stack_type = 0
+duration = 0
+stacks = 0
+icon = ExtResource("1_7fdrm")
+tooltip = "tooltip text"

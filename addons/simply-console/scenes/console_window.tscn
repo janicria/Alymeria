@@ -250,7 +250,7 @@ func deck(action: String, rarity: String, id: String = \"\") -> String:
 	# Checks if the card exists (can't use WeakRef bc it returns null if object hasn't been loaded into memory yet)
 	# Secret cards: deck add ../../secret placeholder_rare_card
 	# Witch cards: deck add ../../witch/cards/common flame
-	var loaded_card: Resource = load((\"res://characters/%s/cards/%s/%s.tres\" % [GameManager.character.id, rarity, id]))
+	var loaded_card: Resource = load((\"res://characters/machine/cards/%s/%s.tres\" % [rarity, id]))
 	if loaded_card is not Card: return \"Card %s with rarity %s does not exist\" % [id, rarity]
 
 	match action:

@@ -5,8 +5,6 @@
 
 [resource]
 script = ExtResource("1_5jcuf")
-max_turn_draw = 0
 max_mana = 0
 max_health = 20
 art = ExtResource("1_uoru7")
-id = "AttackSentry"

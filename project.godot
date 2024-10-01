@@ -17,7 +17,7 @@ config/use_custom_user_dir=true
 config/custom_user_dir_name="Alymeria"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 run/max_fps=60
-config/icon="res://assets/misc/icon.svg"
+config/icon="res://assets/art/characters/tile_0122.png"
 
 [audio]
 

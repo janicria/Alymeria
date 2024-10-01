@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dkpw6tsw7i7y0"]
+[gd_scene load_steps=9 format=3 uid="uid://dkpw6tsw7i7y0"]
 
 [ext_resource type="Texture2D" uid="uid://ukld5o613i0a" path="res://assets/art/characters/tile_0122.png" id="1_4apox"]
 [ext_resource type="Script" path="res://scences/enemy/enemy.gd" id="1_c8d2x"]
@@ -6,6 +6,7 @@
 [ext_resource type="Resource" uid="uid://bx5d8snag76bf" path="res://enemies/spider/spider_ai.tres" id="2_pceij"]
 [ext_resource type="Resource" uid="uid://ck1uqa7fwc6me" path="res://enemies/spider/spider_stats.tres" id="3_aow6t"]
 [ext_resource type="PackedScene" uid="uid://b21bh1sh66gbd" path="res://scences/ui/battle/stats_ui.tscn" id="3_jwf45"]
+[ext_resource type="PackedScene" uid="uid://dy5kejm171f3a" path="res://scences/status/status_handler.tscn" id="7_tpe2t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5jego"]
 
@@ -39,6 +40,13 @@ offset_top = -16.0
 offset_right = 21.0
 offset_bottom = -10.0
 bbcode_enabled = true
+
+[node name="StatusHandler" parent="." node_paths=PackedStringArray("status_owner") instance=ExtResource("7_tpe2t")]
+offset_left = -24.0
+offset_top = 23.0
+offset_right = -24.0
+offset_bottom = 23.0
+status_owner = NodePath("..")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]

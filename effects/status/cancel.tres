@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Status" load_steps=3 format=3 uid="uid://gpljfnwcvcw8"]
+
+[ext_resource type="Script" path="res://custom_resources/status.gd" id="1_e0g7i"]
+[ext_resource type="Texture2D" uid="uid://d048113h6rjjh" path="res://assets/ui/cards/exhaust.png" id="1_t4lgj"]
+
+[resource]
+script = ExtResource("1_e0g7i")
+id = "cancel"
+type = 1
+stack_type = 2
+duration = 1
+stacks = 0
+icon = ExtResource("1_t4lgj")
+tooltip = "tooltip text"

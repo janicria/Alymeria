@@ -13,6 +13,7 @@ const ARROW_OFFSET := 19
 @onready var arrow : Sprite2D = $Arrow
 @onready var stats_ui : StatsUI = $StatsUI
 @onready var mana_counter: RichTextLabel = %ManaCounter
+@onready var status_handler: StatusHandler = $StatusHandler
 
 var pool: Array[EnemyCard]
 var mana: int
@@ -30,6 +31,9 @@ func _setup_stats(value: EnemyStats) -> void:
 	mana = stats.max_mana
 	update_enemy()
 	_setup_card_weights()
+	
+	if !is_node_ready(): await ready
+	status_handler.status_owner = self
 
 
 func _setup_card_weights() -> void:
@@ -90,7 +94,7 @@ func update_enemy() -> void:
 
 func do_turn() -> void:
 	stats.barrier = clamp((stats.barrier -10), 0, 999)
-	# Status effects end of turn effects will be applied here
+	status_handler.apply_statuses_by_type(Status.Type.END_OF_TURN)
 
 
 # Doesn't work as setter from mana var (mana decreases before cards are actually drawn)

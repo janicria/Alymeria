@@ -13,10 +13,7 @@ func set_card_pile(new_value : CardPile) -> void:
 	card_pile = new_value
 	
 	Events.update_deck_buttons.connect(update_ui)
-	Events.update_deck_counter.connect(
-		func()->void:
-			update_ui(exhausts_in_deck, true)
-	)
+	Events.update_deck_counter.connect(func()->void: update_ui(exhausts_in_deck, true))
 	
 	if !card_pile.card_pile_size_changed.is_connected(_on_card_pile_size_changed):
 		card_pile.card_pile_size_changed.connect(_on_card_pile_size_changed)
@@ -33,25 +30,27 @@ func _on_card_pile_size_changed(cards_amount : int) -> void:
 
 
 func update_ui(amount : int, returning : bool) -> void:
-	if returning:
-		exhausts_in_deck = amount
+	if returning: exhausts_in_deck = amount
 	
 	if GameManager.true_deck_size and get_name() == "DeckButton":
-		counter.text = str(deck_size) + " (" + str(deck_size - exhausts_in_deck) + ")"
-	else:
-		counter.text = str(deck_size)
+		counter.text = "%s(%s)" % [deck_size, (deck_size - exhausts_in_deck)]
+	else: counter.text = str(deck_size)
+	
+	if get_name() == "DiscardPileButton":
+		if GameManager.card_pile_above_mana:
+			position = Vector2(58, 145)
+		else: position = Vector2(80, 170)
 	
 	if get_name() == "DrawPileButton":
 		if GameManager.card_pile_above_mana:
-			position = Vector2(58, 145)
-		else:
-			position = Vector2(80, 170)
-	if get_name() == "DiscardPileButton":
-		if GameManager.card_pile_above_mana:
 			position = Vector2(38, 145)
-		else:
-			position = Vector2(317, 170)
-
+		else: position = Vector2(317, 170)
+	
+	if get_name() == "ExhaustPileButton":
+		if GameManager.card_pile_above_mana:
+			position = Vector2(18, 145)
+		else: position = Vector2(317, 145)
+	
 
 func _on_mouse_entered() -> void:
 	color_rect.color.a = 0.18

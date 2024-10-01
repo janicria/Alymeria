@@ -1,0 +1,20 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://b3k1qnuqi4oeu"]
+
+[ext_resource type="Script" path="res://characters/machine/cards/uncommon/suboptimal_learning.gd" id="1_grm5f"]
+
+[resource]
+script = ExtResource("1_grm5f")
+name = "Suboptimal learning"
+type = 2
+rarity = 1
+target = 0
+repeats = 1
+cost = 1
+exhausts = true
+tooltip_text = "X=enemies
+DMG UP X
+Health -X
+Exhaust"
+effect_description = "[center]Damage up - [color=ff0000]Attacks[/color] deal X more damage
+X - Applies effects for each enemy
+Exhaust - Cannot be played for the rest of the combat[/center]"

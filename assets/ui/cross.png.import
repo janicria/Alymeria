@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bmuj5in6okgaq"
-path="res://.godot/imported/cross.png-c682366a64944ae0f06fc3db9ef48a9f.ctex"
+path="res://.godot/imported/cross.png-a6af3d9607b590aba8ffe780eff19ecc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/enemies/cross.png"
-dest_files=["res://.godot/imported/cross.png-c682366a64944ae0f06fc3db9ef48a9f.ctex"]
+source_file="res://assets/ui/cross.png"
+dest_files=["res://.godot/imported/cross.png-a6af3d9607b590aba8ffe780eff19ecc.ctex"]
 
 [params]
 

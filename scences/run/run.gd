@@ -80,9 +80,9 @@ func _setup_event_connections() -> void:
 
 
 func _input(_event: InputEvent) -> void:
-	if _event.is_action_pressed("~_pressed"):
+	if _event.is_action_pressed("~_pressed"): 
 		console_window.visible = !console_window.visible
-	elif _event.is_action_pressed("ui_cancel"):
+	elif _event.is_action_pressed("ui_cancel"): 
 		Events.update_settings_visibility.emit()
 
 

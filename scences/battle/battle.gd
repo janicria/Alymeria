@@ -49,7 +49,8 @@ func _on_battle_state_updated(new_state : BattleState) -> void:
 		1: # Loops
 			Events.battle_state_updated.emit(2)
 		
-		2: # Enemy drawing cards
+		2: # Enemy drawing & applying statuses cards
+			enemy_handler.apply_start_of_turn_statuses()
 			enemy_handler.draw_cards()
 			# First wait in case an enemy draws a card by itself
 			# Second is simply to smooth out animations / UX

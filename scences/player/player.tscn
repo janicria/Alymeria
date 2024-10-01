@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bgoevwf8o3b04"]
+[gd_scene load_steps=5 format=3 uid="uid://bgoevwf8o3b04"]
 
 [ext_resource type="Texture2D" uid="uid://dpfqok8tuy4r7" path="res://assets/art/characters/tile_0084.png" id="1_f7p4x"]
 [ext_resource type="Script" path="res://scences/player/player.gd" id="1_u6pjk"]
 [ext_resource type="PackedScene" uid="uid://b21bh1sh66gbd" path="res://scences/ui/battle/stats_ui.tscn" id="2_qygbq"]
+[ext_resource type="PackedScene" uid="uid://dy5kejm171f3a" path="res://scences/status/status_handler.tscn" id="4_vvspa"]
 
 [node name="Player" type="Node2D" groups=["player"]]
 script = ExtResource("1_u6pjk")
@@ -23,3 +24,11 @@ offset_top = -16.0
 offset_right = 21.0
 offset_bottom = -10.0
 bbcode_enabled = true
+
+[node name="StatusHandler" parent="." node_paths=PackedStringArray("status_owner") instance=ExtResource("4_vvspa")]
+unique_name_in_owner = true
+offset_left = -22.0
+offset_top = 22.0
+offset_right = -22.0
+offset_bottom = 22.0
+status_owner = NodePath("..")
