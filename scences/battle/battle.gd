@@ -51,7 +51,7 @@ func _on_battle_state_updated(new_state : BattleState) -> void:
 		
 		2: # Enemy drawing cards
 			enemy_handler.draw_cards()
-			# First wait incase an enemy draws a card by itself
+			# First wait in case an enemy draws a card by itself
 			# Second is simply to smooth out animations / UX
 			await enemy_handler.finished_drawing
 			await get_tree().create_timer(0.2).timeout

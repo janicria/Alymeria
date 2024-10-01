@@ -1,6 +1,6 @@
 extends Control
 
-const CHAR_SELECTOR_SCENCE := preload("res://scences/ui/character_selector.tscn")
+const CHAR_SELECTOR_SCENCE := preload("res://scences/ui/menus/character_selector.tscn")
 
 @onready var continue_button: Button = %Continue
 @onready var scence_transition: AnimationPlayer = %ScenceTransition

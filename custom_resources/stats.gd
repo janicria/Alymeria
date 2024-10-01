@@ -5,7 +5,6 @@ signal stats_changed
 
 @export var max_health := 1 : set = set_max_health
 @export var art : Texture
-@export var id : String
 
 var health : int : set = set_health
 var barrier : int : set = set_barrier

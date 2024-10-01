@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://n3v1mvmtakc"]
 
-[ext_resource type="Script" path="res://scences/ui/card_tooltip.gd" id="1_lg5lu"]
+[ext_resource type="Script" path="res://scences/ui/player_card/card_tooltip.gd" id="1_lg5lu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_anma6"]
 size = Vector2(40, 50)

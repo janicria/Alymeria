@@ -105,17 +105,16 @@ func _on_battle_won() -> void:
 
 
 func _on_reward_exited() -> void:
-	var event_chance := randi_range(0, 4)
-	if !event_chance:
-		print("Rolled event scence %s (1/5)" % event_chance)
+	if !randi_range(0, 4):
+		print("Rolled event scence (1/5)")
 		_change_view(EVENT_SCENCE)
 	else:
-		print("Rolled map scence %s (4/5)" % event_chance)
+		print("Rolled map scence (4/5)")
 		_show_map()
 
 
 func _on_map_exited(room: Room) -> void:
-	print("Floor %s: %s (column/type)" % [map.floors_climbed, room])
+	print("Floor %s: %s%s (column/type/tier)" % [map.floors_climbed, room, str(map.last_room.battle_stats.battle_tier) if map.last_room.battle_stats else "X"])
 	match room.type:
 		Room.Type.MONSTER:
 			_on_battle_room_entered(room)

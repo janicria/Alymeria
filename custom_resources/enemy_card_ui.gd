@@ -5,6 +5,7 @@ extends Node2D
 @onready var icon: TextureRect = %Icon
 @onready var attack_icon: TextureRect = %AttackIcon
 @onready var attack_desc: Label = %AttackDesc
+@onready var arrow: Sprite2D = %Arrow
 
 var card_stats: EnemyCard
 var enemy_stats: Enemy
@@ -103,7 +104,7 @@ func get_targets() -> Array[Node]:
 	
 	var targets: Array[Node] = []
 	
-	# Incase enemy has been freed (only a warning is thrown but ¯\_(ツ)_/¯ )
+	# In case enemy has been freed (only a warning is thrown but ¯\_(ツ)_/¯ )
 	var wr: WeakRef = weakref(enemy_stats)
 	if !wr.get_ref(): return []
 	
@@ -139,4 +140,4 @@ func apply_effects(targets: Array[Node]) -> void:
 		effect.amount = card_stats.amount
 		effect.sound = card_stats.SFX_dict.get(card_stats.type)
 		effect.execute(targets)
-		await get_tree().create_timer(0.15).timeout
+		await get_tree().create_timer(0.1).timeout

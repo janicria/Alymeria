@@ -1,7 +1,7 @@
 class_name EnemyHand
 extends HBoxContainer
 
-const ENEMY_CARD_SCENE = preload("res://custom_resources/enemy_card.tscn")
+const ENEMY_CARD_SCENE = preload("res://scences/enemy/enemy_card.tscn")
 
 @export var time_before_next_card := 0.0
 
@@ -10,6 +10,8 @@ var organiser_target_pos := position - Vector2(30, -5)
 
 func _ready() -> void:
 	get_parent().add_card_to_hand.connect(cardToGui)
+	get_parent().show_cards_owned_by_enemy.connect(show_cards_owned_by_enemy)
+	get_parent().hide_enemy_card_arrows.connect(hide_enemy_card_arrows)
 
 
 func cardToGui(card: EnemyCard, enemy: Enemy) -> void:
@@ -32,7 +34,7 @@ func cardToGui(card: EnemyCard, enemy: Enemy) -> void:
 	
 	# Updating enemy mana and player damage counters
 	tween.finished.connect(func()->void: 
-		enemy.update_mana_counter(enemy.mana)
+		enemy.update_mana_counter()
 		if card.type == EnemyCard.Type.ATTACK: 
 			Events.update_player_dmg_counter.emit(card.amount * card.repeats, false))
 	
@@ -56,3 +58,13 @@ func organise_cards(draw_next_card := true) -> void:
 	
 	# Scheduling the next card to be played by enemy_handler
 	if draw_next_card: Events.enemy_card_played.emit()
+
+
+func show_cards_owned_by_enemy(enemy: Enemy) -> void:
+	for cardui: EnemyCardUI in get_children():
+		if cardui.enemy_stats == enemy: cardui.arrow.show()
+
+
+func hide_enemy_card_arrows() -> void:
+	for cardui: EnemyCardUI in get_children():
+		cardui.arrow.hide()

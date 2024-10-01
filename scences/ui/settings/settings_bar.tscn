@@ -1,14 +1,14 @@
 [gd_scene load_steps=13 format=3 uid="uid://bwuexw3t61b0h"]
 
-[ext_resource type="Script" path="res://scences/ui/settings_bar.gd" id="1_gqwvr"]
+[ext_resource type="Script" path="res://scences/ui/settings/settings_bar.gd" id="1_gqwvr"]
 [ext_resource type="AudioStream" uid="uid://b1vpjjmi5cj3n" path="res://assets/SFX/axe.ogg" id="2_mu1su"]
 [ext_resource type="Texture2D" uid="uid://do1aa6n7ws33d" path="res://assets/ui/cog.png" id="3_xk6qw"]
-[ext_resource type="PackedScene" uid="uid://cmrvm435qcold" path="res://scences/ui/card_pile_button.tscn" id="4_hmjjb"]
+[ext_resource type="PackedScene" uid="uid://cmrvm435qcold" path="res://scences/ui/player_card/card_pile/card_pile_button.tscn" id="4_hmjjb"]
 [ext_resource type="Texture2D" uid="uid://7p8kjadn847c" path="res://assets/ui/cards/deck.png" id="5_ye2i7"]
-[ext_resource type="PackedScene" uid="uid://dn8ooj6qia3x8" path="res://scences/ui/health_ui.tscn" id="6_5u5dc"]
-[ext_resource type="PackedScene" uid="uid://da7tuwoqikc3r" path="res://scences/ui/gold_ui.tscn" id="6_qme55"]
-[ext_resource type="PackedScene" uid="uid://bijq7mf8h0j85" path="res://scences/ui/tooltip.tscn" id="7_w5c4v"]
-[ext_resource type="PackedScene" uid="uid://hqt3nv2gge3l" path="res://scences/ui/card_pile_view.tscn" id="8_4kgy7"]
+[ext_resource type="PackedScene" uid="uid://dn8ooj6qia3x8" path="res://scences/ui/settings/health_ui.tscn" id="6_5u5dc"]
+[ext_resource type="PackedScene" uid="uid://da7tuwoqikc3r" path="res://scences/ui/settings/gold_ui.tscn" id="6_qme55"]
+[ext_resource type="PackedScene" uid="uid://bijq7mf8h0j85" path="res://scences/ui/settings/tooltip.tscn" id="7_w5c4v"]
+[ext_resource type="PackedScene" uid="uid://hqt3nv2gge3l" path="res://scences/ui/player_card/card_pile/card_pile_view.tscn" id="8_4kgy7"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_dr0uj"]
 

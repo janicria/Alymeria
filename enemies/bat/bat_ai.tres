@@ -9,3 +9,4 @@
 [resource]
 script = ExtResource("1_euor7")
 actions = Array[ExtResource("4_w4tc4")]([ExtResource("1_bq27e"), ExtResource("2_k81ok"), ExtResource("3_iudyt")])
+health_cards = Array[ExtResource("4_w4tc4")]([])

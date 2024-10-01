@@ -1,7 +1,8 @@
 [gd_scene load_steps=3 format=3 uid="uid://da7tuwoqikc3r"]
 
 [ext_resource type="Texture2D" uid="uid://b0npnkt128wpy" path="res://assets/ui/gold.png" id="1_goxp1"]
-[ext_resource type="Script" path="res://scences/ui/gold_ui.gd" id="1_u81n4"]
+[ext_resource type="Script" path="res://scences/ui/settings/gold_ui.gd" id="1_u81n4"]
+
 
 
 [node name="GoldUI" type="HBoxContainer"]

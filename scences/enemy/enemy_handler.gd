@@ -5,7 +5,8 @@ extends Node2D
 
 signal add_card_to_hand(card: EnemyCard, sender: Node2D)
 signal finished_drawing()
-
+signal show_cards_owned_by_enemy(enemy: Enemy)
+signal hide_enemy_card_arrows()
 
 func _ready() -> void:
 	Events.battle_find_enemies.connect(_on_battle_find_enemies)
@@ -18,7 +19,7 @@ func setup_enemies(battle_stats: BattleStats) -> void:
 		return
 	
 	# Removes old enemies
-	for enemy: Node in get_children():
+	for enemy in get_children():
 		if enemy is Enemy: enemy.queue_free()
 	
 	var new_enemies := battle_stats.enemies.instantiate()
@@ -36,7 +37,7 @@ func draw_cards() -> void:
 	# Filter prevents EnemyHand from being assigned
 	for enemy: Enemy in get_children().filter(func(child: Node)->bool: return child is Enemy):
 		enemy.mana = enemy.stats.max_mana
-		enemy.update_mana_counter(enemy.mana)
+		enemy.update_mana_counter()
 		enemy.draw_cards(randi_range(1, 3))
 
 
@@ -54,7 +55,7 @@ func play_next_card() -> void:
 		Events.battle_state_updated.emit(1)
 		return
 	
-	await get_tree().create_timer(enemy_hand.time_before_next_card + 0.35).timeout
+	await get_tree().create_timer(enemy_hand.time_before_next_card + 0.25).timeout
 	
 	var card := enemy_hand.get_child(0) as EnemyCardUI
 	

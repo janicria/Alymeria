@@ -1,7 +1,7 @@
 class_name CardPileView
 extends Control
 
-const CARD_MENU_UI_SCENCE := preload("res://scences/ui/card_menu_ui.tscn")
+const CARD_MENU_UI_SCENCE := preload("res://scences/ui/player_card/card_menu_ui.tscn")
 
 @export var card_pile : CardPile
 

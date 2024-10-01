@@ -11,9 +11,8 @@ enum Targets {SINGLE, SELF, ENEMIES, ALLIES, EVERYONE}
 @export var weight :int
 @export var targets: Targets
 @export var health: int = 0
-@export var optional_desc: String
-@export var optional_icon: Texture
 
+var cumulative_weight := 0
 
 var icon_dict := {
 	Type.ATTACK: preload("res://assets/art/objects/tile_0103.png"),

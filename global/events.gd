@@ -35,7 +35,7 @@ signal enemy_add_card(stats: EnemyCard)
 
 ## UI-related events
 signal update_settings_visibility(state: bool)
-signal open_debug_console()
+signal toggle_console_visible()
 
 ## Summon-related events
 signal summon_do_attack(id : String, amount : int, is_ability : bool)

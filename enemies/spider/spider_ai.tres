@@ -8,4 +8,5 @@
 
 [resource]
 script = ExtResource("1_34fr1")
-actions = Array[ExtResource("4_myx2d")]([ExtResource("2_l3bqa"), ExtResource("1_uwx3v"), ExtResource("3_rpipw")])
+actions = Array[ExtResource("4_myx2d")]([ExtResource("2_l3bqa"), ExtResource("1_uwx3v")])
+health_cards = Array[ExtResource("4_myx2d")]([ExtResource("3_rpipw")])

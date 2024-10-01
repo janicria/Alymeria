@@ -1,9 +1,10 @@
 [gd_scene load_steps=5 format=3 uid="uid://b21bh1sh66gbd"]
 
-[ext_resource type="Script" path="res://scences/ui/stats_ui.gd" id="1_vpltm"]
+[ext_resource type="Script" path="res://scences/ui/battle/stats_ui.gd" id="1_vpltm"]
 [ext_resource type="Texture2D" uid="uid://oe7v35ii8vrs" path="res://assets/art/objects/tile_0102.png" id="2_rgk6s"]
 [ext_resource type="Theme" uid="uid://bhs76hnulf3s4" path="res://assets/misc/main_theme.tres" id="3_g2v77"]
-[ext_resource type="PackedScene" uid="uid://dn8ooj6qia3x8" path="res://scences/ui/health_ui.tscn" id="4_a1wiv"]
+[ext_resource type="PackedScene" uid="uid://dn8ooj6qia3x8" path="res://scences/ui/settings/health_ui.tscn" id="4_a1wiv"]
+
 
 [node name="StatsUI" type="HBoxContainer"]
 anchors_preset = 5

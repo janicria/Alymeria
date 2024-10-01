@@ -30,7 +30,7 @@ var historyPosition: int = 0
 
 
 func _ready() -> void:
-	Events.open_debug_console.connect(show)
+	Events.toggle_console_visible.connect(func()->void: visible = !visible)
 	output_comment(
 		\"To see a list of available commands use the 'help' command (most are locked behind the cheats command)\"
 	)
@@ -216,13 +216,14 @@ func gold(amount: int) -> String:
 
 
 func kill(who: String) -> String:
-	if who == \"self\" or who == \"player\":
-		var player := get_tree().get_first_node_in_group(\"player\") as Player
-		# In case the player scene hasn't been instanced yet
-		var wr: WeakRef = weakref(player)
-		if !wr.get_ref(): 
-			print(\"[CMD] Failed to kill %s\" % who)
-			return \"Not in a battle!\"
+	var player := get_tree().get_first_node_in_group(\"player\") as Player
+	# In case the player scene hasn't been instanced yet
+	var wr: WeakRef = weakref(player)
+	if !wr.get_ref(): 
+		print(\"[CMD] Failed to kill %s\" % who)
+		return \"Not in a battle!\"
+	
+	if who == \"self\":
 		player.damage_counter.hide()
 		Events.player_died.emit()
 		player.death_animation()
@@ -232,10 +233,13 @@ func kill(who: String) -> String:
 	
 	for target in get_tree().get_nodes_in_group(who):
 		target.death_animation()
+	print(\"[CMD] Killed %s\" % who)
 	return \"Killed %s\" % who
 
 
-func heal(amount: int) -> String:
+func heal(amount: int, max_health := false) -> String:
+	if max_health: 
+		GameManager.character.max_health = amount
 	GameManager.character.heal(amount)
 	if GameManager.character.health < 1: kill(\"self\")
 	print(\"[CMD] Healed %s health\" % amount)

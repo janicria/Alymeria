@@ -169,4 +169,4 @@ func hide_tooltip() -> void:
 
 
 func _on_console_button_pressed() -> void:
-	Events.open_debug_console.emit()
+	Events.toggle_console_visible.emit()

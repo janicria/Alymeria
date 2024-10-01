@@ -18,6 +18,8 @@ var pool: Array[EnemyCard]
 var mana: int
 var active := false
 var is_alive := true
+var total_card_weight := 0
+
 
 func _setup_stats(value: EnemyStats) -> void:
 	stats = value.create_instance()
@@ -27,29 +29,33 @@ func _setup_stats(value: EnemyStats) -> void:
 	
 	mana = stats.max_mana
 	update_enemy()
+	_setup_card_weights()
+
+
+func _setup_card_weights() -> void:
+	total_card_weight = 0 # Not needed but is nice for safety
+	for card: EnemyCard in ai.actions:
+		total_card_weight += card.weight
+		card.cumulative_weight = total_card_weight
 
 
 func draw_cards(amount: int) -> void:
+	# DO NOT REMOVE THIS LINE UNLESS YOU WANT TO SPEND HOURS TRYING TO DEBUG SOMETHING THAT DOESN'T EXIST
+	if !active: return
+	
 	for card in amount:
-		# Setting up the weights
-		var total_card_weight := 0
-		var cumulative_weight := 0
-		for i in ai.actions.size(): 
-			total_card_weight += ai.actions[i].weight
 		var roll := randi_range(0, total_card_weight)
 		
-		# Rolling the cards
 		for i in ai.actions.size():
-			cumulative_weight += ai.actions[i].weight
-			# Health check is prevent health cards from being, added as they have 0 weight
-			if roll < cumulative_weight && !ai.actions[i].health: add_card(ai.actions[i])
+			if ai.actions[i].cumulative_weight >= roll:
+				add_card(ai.actions[i])
 
 
 # Health cards are drawn whenever the enemy takes damage and health is <= the cards health stat
 func check_health_cards() -> void:
-	for i in ai.actions.size(): 
-		if ai.actions[i].health and stats.health <= ai.actions[i].health:
-			add_card(ai.actions[i])
+	for i in ai.health_cards.size(): 
+		if stats.health <= ai.health_cards[i].health:
+			add_card(ai.health_cards[i])
 
 
 func add_card(card: EnemyCard) -> void:
@@ -78,16 +84,18 @@ func update_enemy() -> void:
 		await ready
 	
 	sprite_2d.texture = stats.art
-	arrow.position = (Vector2.UP * (sprite_2d.get_rect().size.y / 2 + ARROW_OFFSET)) + Vector2(0, 8)
+	arrow.position = (Vector2.UP * (sprite_2d.get_rect().size.y / 2 + ARROW_OFFSET)) + Vector2(0, 4)
 	update_stats()
 
 
 func do_turn() -> void:
-	stats.barrier = clamp(stats.barrier -10, 0, 999)
+	stats.barrier = clamp((stats.barrier -10), 0, 999)
+	# Status effects end of turn effects will be applied here
 
 
-func update_mana_counter(value: int) -> void:
-	mana_counter.text = "[center][color=4DA3FF] %s [/color][/center]" % mana
+# Doesn't work as setter from mana var (mana decreases before cards are actually drawn)
+func update_mana_counter() -> void:
+	mana_counter.text = "[center][color=3D7BFF] %s [/color][/center]" % mana
 
 
 func take_damage(damage : int) -> void:
@@ -106,6 +114,7 @@ func take_damage(damage : int) -> void:
 				death_animation()
 	)
 
+
 func death_animation(repeats := 3) -> void:
 	is_alive = false
 	var death_tween := create_tween()
@@ -114,8 +123,8 @@ func death_animation(repeats := 3) -> void:
 	
 	death_tween.finished.connect(
 		func()->void:
-			for i in repeats: #Repeats damage anim for more effect
-				death_animation(repeats - 1)
+			#Repeats damage anim for more effect
+			for i in repeats: death_animation(repeats - 1)
 			if !repeats:
 				# Await prevents death anim from ending early
 				await get_tree().create_timer(0.2, false).timeout
@@ -131,3 +140,11 @@ func _on_area_entered(_area: Node) -> void:
 
 func _on_area_exited(_area: Node) -> void:
 	arrow.hide()
+
+
+func _on_mouse_entered() -> void:
+	get_parent().show_cards_owned_by_enemy.emit(self)
+
+
+func _on_mouse_exited() -> void:
+	get_parent().hide_enemy_card_arrows.emit()

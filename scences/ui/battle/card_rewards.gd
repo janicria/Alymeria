@@ -3,7 +3,7 @@ extends ColorRect
 
 signal card_reward_selected(card: Card)
 
-const CARD_MENU_UI := preload("res://scences/ui/card_menu_ui.tscn")
+const CARD_MENU_UI := preload("res://scences/ui/player_card/card_menu_ui.tscn")
 
 @export var rewards: Array[Card] : set = set_rewards
 
@@ -62,7 +62,7 @@ func set_rewards(new_cards: Array[Card]) -> void:
 	_clear_rewards()
 	
 	for card: Card in rewards:
-		var new_card :=CARD_MENU_UI.instantiate() as CardMenuUI
+		var new_card := CARD_MENU_UI.instantiate() as CardMenuUI
 		cards.add_child(new_card)
 		new_card.card = card
 		new_card.card_tooltip_requested.connect(_show_tooltip)

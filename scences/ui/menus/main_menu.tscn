@@ -1,12 +1,12 @@
 [gd_scene load_steps=14 format=3 uid="uid://v7wgn4m7a0er"]
 
-[ext_resource type="Script" path="res://scences/ui/main_menu.gd" id="1_oaw6j"]
+[ext_resource type="Script" path="res://scences/ui/menus/main_menu.gd" id="1_oaw6j"]
 [ext_resource type="Texture2D" uid="uid://con6y7mc74c5a" path="res://assets/art/characters/tile_0120.png" id="2_4gpks"]
 [ext_resource type="Texture2D" uid="uid://dwwohw571cr2a" path="res://assets/art/objects/tile_0092.png" id="3_lae7v"]
 [ext_resource type="Texture2D" uid="uid://chtnrxmaowwkd" path="res://assets/art/characters/tile_0111.png" id="4_xsa1l"]
 [ext_resource type="Texture2D" uid="uid://cgopx2ponr1qi" path="res://assets/art/characters/tile_0121.png" id="5_av3ul"]
 [ext_resource type="Texture2D" uid="uid://1u3b3hwqd8yh" path="res://assets/art/characters/tile_0110.png" id="6_nmdkm"]
-[ext_resource type="PackedScene" uid="uid://bwuexw3t61b0h" path="res://scences/ui/settings_bar.tscn" id="7_jvmsa"]
+[ext_resource type="PackedScene" uid="uid://bwuexw3t61b0h" path="res://scences/ui/settings/settings_bar.tscn" id="7_jvmsa"]
 
 [sub_resource type="Gradient" id="Gradient_mtqjb"]
 colors = PackedColorArray(0.2, 0.117647, 0.0509804, 1, 0.054902, 0, 0.0588235, 1)

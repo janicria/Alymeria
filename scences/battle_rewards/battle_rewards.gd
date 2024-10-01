@@ -1,8 +1,8 @@
 class_name BattleReward
 extends Control
 
-const CARD_REWARDS := preload("res://scences/ui/card_rewards.tscn")
-const REWARD_BUTTON := preload("res://scences/ui/reward_button.tscn")
+const CARD_REWARDS := preload("res://scences/ui/battle/card_rewards.tscn")
+const REWARD_BUTTON := preload("res://scences/ui/battle/reward_button.tscn")
 const GOLD_ICON := preload("res://assets/ui/gold.png")
 const GOLD_TEXT := "%s gold"
 const CARD_ICON := preload("res://assets/ui/rarity.png")
@@ -90,16 +90,16 @@ func setup_card_rarity_chances() -> void:
 # Increments rare weights over time (reuse for pot chances)
 func _modify_weights(rarity_rolled: Card.Rarity) -> void:
 	if rarity_rolled == Card.Rarity.UNCOMMON:
-		GameManager.common_weight = RunStats.BASE_COMMON_WEIGHT - GameManager.rare_weight
+		GameManager.common_weight = GameManager.BASE_COMMON_WEIGHT - GameManager.rare_weight
 		GameManager.uncommon_weight = GameManager.BASE_UNCOMMON_WEIGHT
 	else: # Increases uncommon chances
 		GameManager.uncommon_weight = clampf(GameManager.uncommon_weight + 8.0, GameManager.BASE_UNCOMMON_WEIGHT, 80.0)
 		GameManager.common_weight = GameManager.BASE_COMMON_WEIGHT - GameManager.uncommon_weight
 	
 	if rarity_rolled == Card.Rarity.RARE:
-		GameManager.rare_weight = RunStats.BASE_RARE_WEIGHT
-		GameManager.common_weight = RunStats.BASE_COMMON_WEIGHT
-		GameManager.uncommon_weight = RunStats.BASE_UNCOMMON_WEIGHT
+		GameManager.rare_weight = GameManager.BASE_RARE_WEIGHT
+		GameManager.common_weight = GameManager.BASE_COMMON_WEIGHT
+		GameManager.uncommon_weight = GameManager.BASE_UNCOMMON_WEIGHT
 	else: # Increases rare chances
 		GameManager.rare_weight = clampf(GameManager.rare_weight + 4.0, GameManager.BASE_RARE_WEIGHT, 50.0)
 		GameManager.common_weight = GameManager.BASE_COMMON_WEIGHT - GameManager.rare_weight
@@ -112,12 +112,12 @@ func _modify_weights(rarity_rolled: Card.Rarity) -> void:
 		setup_card_rarity_chances()
 
 
-# Ensures that you get a card that has the rarity which was rolled by _show_card_rewards()
+# Ensures that you get a card with the rarity rolled by _show_card_rewards()
 func _get_random_available_card(available_cards: Array[Card], with_rarity: Card.Rarity) -> Card:
 	var all_possible_cards := available_cards.filter(
 		func(card: Card)-> int:
-			return card.rarity == with_rarity
-	)
+			return card.rarity == with_rarity)
+	
 	return all_possible_cards.pick_random()
 
 

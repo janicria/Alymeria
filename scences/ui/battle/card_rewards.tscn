@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://xryyxhv5ib3h"]
 
-[ext_resource type="PackedScene" uid="uid://4lwv2ug5j5j6" path="res://scences/ui/card_menu_ui.tscn" id="1_jl4mf"]
-[ext_resource type="Script" path="res://scences/ui/card_rewards.gd" id="1_vmbv4"]
+[ext_resource type="PackedScene" uid="uid://4lwv2ug5j5j6" path="res://scences/ui/player_card/card_menu_ui.tscn" id="1_jl4mf"]
+[ext_resource type="Script" path="res://scences/ui/battle/card_rewards.gd" id="1_vmbv4"]
 [ext_resource type="Resource" uid="uid://ccjsu4qoghdrb" path="res://characters/machine/cards/common/power_strike.tres" id="2_bax7w"]
 [ext_resource type="Script" path="res://custom_resources/card.gd" id="2_exbs0"]
-[ext_resource type="PackedScene" uid="uid://n3v1mvmtakc" path="res://scences/ui/card_tooltip.tscn" id="2_k2vqf"]
+[ext_resource type="PackedScene" uid="uid://n3v1mvmtakc" path="res://scences/ui/player_card/card_tooltip.tscn" id="2_k2vqf"]
 [ext_resource type="Resource" uid="uid://073voiuhw5gi" path="res://characters/machine/cards/common/missile_launcher.tres" id="3_kg0bk"]
 [ext_resource type="Resource" uid="uid://dprpiekopnhe0" path="res://characters/machine/cards/common/shields.tres" id="4_p1fof"]
 [ext_resource type="Resource" uid="uid://brs0hub03o0k0" path="res://characters/machine/cards/common/laser.tres" id="5_7yg2y"]

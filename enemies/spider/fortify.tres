@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" path="res://custom_resources/enemy_card.gd" id="1_omfms"]
 
-
 [resource]
 script = ExtResource("1_omfms")
 type = 2
@@ -12,4 +11,4 @@ cost = 0
 weight = 0
 targets = 3
 health = 9
-optional_desc = "fort"
+optional_desc = ""

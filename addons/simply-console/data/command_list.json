@@ -81,7 +81,7 @@
 				"optional": false
 			}
 		],
-		"description": "Kills a group in the current combat\nOptions for who: self, enemies, summons"
+		"description": "Kills a group in the current combat\nOptions for who: self, enemies"
 	},
 	"heal": {
 		"target": "",
@@ -94,9 +94,14 @@
 				"name": "amount",
 				"type": 2,
 				"optional": false
+			},
+			{
+				"name": "max",
+				"type": 1,
+				"optional": true
 			}
 		],
-		"description": "Increases health by a set amount\n(can be negative and cannot go above max health)"
+		"description": "Increases health by a set amount (can be negative)\nSetting max to true also changes max health"
 	},
 	"deck": {
 		"target": "",

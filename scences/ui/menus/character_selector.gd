@@ -1,6 +1,6 @@
 extends Control
 
-const DIFFICULTY_SCREEN := preload("res://scences/ui/difficulty_screen.tscn")
+const DIFFICULTY_SCREEN := preload("res://scences/ui/menus/difficulty_screen.tscn")
 const MACHINE_STATS := preload("res://characters/machine/machine.tres")
 const WITCH_STATS := preload("res://characters/witch/witch.tres")
 

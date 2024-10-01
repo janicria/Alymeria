@@ -30,7 +30,7 @@ func get_random_battle_from_tier(tier: int) -> BattleStats:
 	var battles := _get_all_battles_from_tier(tier)
 	
 	for battle: BattleStats in battles:
-		if battle.accumulated_weight > roll:
+		if battle.accumulated_weight >= roll:
 			return battle
 	
 	# Remember to update battle_stats_pool export var in MapGenerator with new battles
