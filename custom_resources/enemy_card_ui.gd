@@ -14,7 +14,7 @@ var is_dead := false
 
 
 func _ready() -> void:
-	Events.enemy_died.connect(func(enemy:Enemy)->void: 
+	Events.enemy_died.connect(func(enemy: Enemy)->void: 
 		if enemy == enemy_stats: kms())
 
 
@@ -126,17 +126,13 @@ func get_targets() -> Array[Node]:
 
 func apply_effects(targets: Array[Node]) -> void:
 	if is_dead: return
-	for i:int in card_stats.repeats:
-		var effect: Effect # Indentation moment (cannot be declared in switch below then refrenced below)
+	for i in card_stats.repeats:
+		# Indentation moment (cannot be declared in switch below then refrenced below)
+		var effect: Effect 
 		match card_stats.type:
-			EnemyCard.Type.ATTACK:
-				effect = DamageEffect.new()
-				
-			EnemyCard.Type.BARRIER :
-				effect = BarrierEffect.new()
-				# Game crashes if combined in an or statement with Type.Barrier ¯\_(ツ)_/¯
-			EnemyCard.Type.LARGE_BARRIER:
-				effect = BarrierEffect.new()
+			EnemyCard.Type.ATTACK: effect = DamageEffect.new()
+			EnemyCard.Type.BARRIER: effect = BarrierEffect.new()
+			EnemyCard.Type.LARGE_BARRIER: effect = BarrierEffect.new()
 		effect.amount = card_stats.amount
 		effect.sound = card_stats.SFX_dict.get(card_stats.type)
 		effect.execute(targets)

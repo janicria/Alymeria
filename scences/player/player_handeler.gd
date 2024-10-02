@@ -9,7 +9,6 @@ const HAND_DISCARD_INTERVAL := 0.25
 
 var character : CharacterStats
 
-
 func _ready() -> void:
 	Events.card_played.connect(_on_card_played)
 	Events.player_draw_cards.connect(draw_cards)
@@ -54,8 +53,7 @@ func draw_cards(amount: int) -> void:
 				# Prevents cards from being placed after being draw in between updating mana
 				character.set_mana(character.mana)
 				Events.player_hand_drawn.emit()
-				Events.update_card_stats.emit()
-		)
+				Events.update_card_stats.emit())
 
 
 func discard_cards() -> void:

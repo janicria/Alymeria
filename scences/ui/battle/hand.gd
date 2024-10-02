@@ -10,10 +10,11 @@ func _ready() -> void:
 	child_order_changed.connect(update_card_seperation)
 
 func add_card(card : Card) -> void:
-	var new_card_ui := card_ui.instantiate()
+	var new_card_ui := card_ui.instantiate() as CardUI
 	add_child(new_card_ui)
 	new_card_ui.reparent_requested.connect(_on_card_ui_reparent_requested)
 	new_card_ui.card = card
+	new_card_ui.playable = GameManager.character.can_play_card(new_card_ui.card)
 	new_card_ui.parent = self
 	new_card_ui.char_stats = char_stats
 
@@ -30,10 +31,11 @@ func disable_hand() -> void:
 func update_card_variant(variant: String, value: int, where: String) -> void:
 	if where != "hand": return
 	
-	for card: CardUI in get_children():
-		var old_value: int = card.card.get(variant)
-		card.card.set(variant, (old_value + value))
-		card.set_card(card.card)
+	for cardui: CardUI in get_children():
+		var old_value: int = cardui.card.get(variant)
+		cardui.card.set(variant, (old_value + value))
+		cardui.set_card(cardui.card)
+		cardui.playable = GameManager.character.can_play_card(cardui.card)
 
 
 func update_card_seperation() -> void:

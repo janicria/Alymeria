@@ -149,7 +149,13 @@
 		"minPermission": 0,
 		"cheats": true,
 		"method": "debug",
-		"argumentList": [],
+		"argumentList": [
+			{
+				"name": "additional_option",
+				"type": 4,
+				"optional": true
+			}
+		],
 		"description": "Helps make debugging more efficient (no undo)"
 	}
 }

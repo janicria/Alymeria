@@ -70,7 +70,7 @@ func play_next_card() -> void:
 	if card.card_stats.repeats != 1: 
 		card.visible = false
 		# Approx time taken for a card to be played
-		await get_tree().create_timer((card.card_stats.repeats-1)*1.5).timeout
+		await get_tree().create_timer(card.card_stats.repeats-1).timeout
 	
 	enemy_hand.remove_child(card)
 	card.queue_free()

@@ -52,10 +52,6 @@ var multipliers := {
 	"RARE_CARD_RARITY": 0.0
 }
 
-# Console-related variables
-var cheats := false
-var dev := false
-
 # Global variables
 var card_pile_open := false : set = set_card_pile
 
@@ -68,6 +64,12 @@ func set_current_biome(value: Biome) -> void:
 func set_card_pile(value: bool) -> void:
 	await get_tree().process_frame
 	card_pile_open = value
+
+
+func reset_stats() -> void:
+	gold = STARTING_GOLD
+	reset_weights()
+	
 
 
 func _init() -> void:

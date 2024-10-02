@@ -160,7 +160,7 @@ func _on_hbox_mouse_entered(text: String) -> void:
 func _on_exit_button_pressed() -> void:
 	print("Save & exit selected")
 	if GameManager.save_to_file():
-		print("Quitting...")
+		print("Quitting...\nBelow is not actually a memory leak (trust)")
 		get_tree().quit()
 
 

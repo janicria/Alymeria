@@ -36,6 +36,7 @@ ConsoleDataManager="*res://addons/simply-console/singletons/console_data_manager
 
 file_logging/enable_file_logging=true
 file_logging/log_path="user://logs/info.log"
+file_logging/max_log_files=4
 gdscript/warnings/unused_signal=0
 gdscript/warnings/shadowed_variable_base_class=0
 gdscript/warnings/shadowed_global_identifier=0
@@ -57,10 +58,6 @@ mouse_cursor/custom_image="res://assets/ui/cursor.png"
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg", "res://addons/script-ide/plugin.cfg", "res://addons/simply-console/plugin.cfg")
-
-[godot_idea_board]
-
-directory_path="res://addons/godot-idea-board/savedata/"
 
 [gui]
 

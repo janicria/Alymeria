@@ -24,6 +24,7 @@ func _on_new_run_pressed() -> void:
 
 
 func _on_exit_pressed() -> void:
+	print("Below is not actually a memory leak (trust)")
 	get_tree().quit()
 
 
