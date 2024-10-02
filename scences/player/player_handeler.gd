@@ -36,6 +36,7 @@ func end_turn() -> void:
 
 func draw_card() -> void:
 	reshuffle_deck_from_discard()
+	if !character.draw_pile.cards: return
 	hand.add_card(character.draw_pile.draw_card())
 	reshuffle_deck_from_discard()
 	Events.update_card_stats.emit()

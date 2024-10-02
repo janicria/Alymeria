@@ -11,6 +11,7 @@ rarity = 0
 target = 0
 repeats = 1
 cost = 1
+exhausts = false
 sound = ExtResource("3_xer4h")
 tooltip_text = "Barrier 4"
 effect_description = "[center]Barrier - [color=\"0044ff\"]Prevents[/color] [color=\"ff0000\"]damage[/color] from enemy attacks[/center]"

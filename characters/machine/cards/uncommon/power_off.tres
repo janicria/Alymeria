@@ -11,6 +11,7 @@ rarity = 1
 target = 1
 repeats = 1
 cost = 1
+exhausts = false
 sound = ExtResource("2_6e1md")
 tooltip_text = "ATK X
 X = DRAW

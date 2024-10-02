@@ -32,11 +32,13 @@ func apply_statuses_by_type(type: Status.Type) -> void:
 func add_status(status: Status) -> void:
 	# Adds a new status if owner doesn't already have it
 	if !_has_status(status.id):
-		var new_status_ui := STATUS_UI.instantiate() as StatusUI
-		add_child(new_status_ui)
-		new_status_ui.status = status
-		new_status_ui.status.status_applied.connect(_on_status_applied)
-		new_status_ui.status.initalise_target(status_owner)
+		var status_ui := STATUS_UI.instantiate() as StatusUI
+		add_child(status_ui)
+		status_ui.status = status
+		status_ui.status.status_applied.connect(_on_status_applied)
+		status_ui.status.initalise_target(status_owner)
+		if status_ui.status.stack_type == Status.StackType.NONE: status_ui.custom_minimum_size.x -= 3
+		else: status_ui.custom_minimum_size.x = 10
 		return
 	
 	# No need to do anything to the status if it can't stack

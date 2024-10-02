@@ -11,6 +11,7 @@ rarity = 2
 target = 0
 repeats = 1
 cost = 3
+exhausts = false
 sound = ExtResource("2_04thg")
 tooltip_text = "Exhaust. For hand Card cost -1"
 effect_description = "[center]For - The below affects are applied to each [color=0044ff]card[/color] in your [color=ffff00]hand[/color].

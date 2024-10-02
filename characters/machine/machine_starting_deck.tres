@@ -8,7 +8,6 @@
 [ext_resource type="Resource" uid="uid://c6ffdh3cljhno" path="res://characters/machine/cards/common/repurposing.tres" id="4_cagwk"]
 [ext_resource type="Resource" uid="uid://ccjsu4qoghdrb" path="res://characters/machine/cards/common/power_strike.tres" id="5_gv5xw"]
 
-
 [resource]
 script = ExtResource("1_tawcb")
 cards = Array[ExtResource("1_x2twj")]([ExtResource("1_twjgt"), ExtResource("1_twjgt"), ExtResource("1_twjgt"), ExtResource("1_twjgt"), ExtResource("2_f3phy"), ExtResource("2_f3phy"), ExtResource("2_f3phy"), ExtResource("2_f3phy"), ExtResource("3_n5ee0"), ExtResource("4_cagwk"), ExtResource("5_gv5xw")])

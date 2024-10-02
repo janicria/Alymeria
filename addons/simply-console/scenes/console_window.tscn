@@ -278,6 +278,31 @@ func act(number: int = -1) -> String:
 	return \"Changed act number from %s(%s) to %s(%s)\" % [GameManager.Biome.keys()[old_number], old_number, GameManager.Biome.keys()[GameManager.current_biome], GameManager.current_biome]
 
 
+func debug() -> String:
+	# Deck
+	print(\"[CMD] Debug start\")
+	deck(\"remove\", \"common\", \"laser\")
+	deck(\"remove\", \"common\", \"laser\")
+	deck(\"remove\", \"common\", \"laser\")
+	deck(\"remove\", \"common\", \"shields\")
+	deck(\"remove\", \"common\", \"shields\")
+	deck(\"remove\", \"common\", \"shields\")
+	deck(\"remove\", \"common\", \"shields\")
+	deck(\"add\", \"common\", \"missile_launcher\")
+	deck(\"add\", \"uncommon\", \"power_off\")
+	deck(\"add\", \"uncommon\", \"suboptimal_learning\")
+	deck(\"add\", \"rare\", \"advanced_rerouting\")
+	# Character
+	heal(999, true)
+	GameManager.character.max_mana = 99
+	GameManager.character.cards_per_turn = 99
+	# Misc
+	for child:AudioStreamPlayer in MusicPlayer.get_children(): 
+		child.volume_db = -INF
+	print(\"[CMD] Debug end\")
+	return 'Have \"fun\" debugging!'
+
+
 #endregion
 "
 

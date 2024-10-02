@@ -11,6 +11,7 @@ rarity = 0
 target = 4
 repeats = 1
 cost = 1
+exhausts = false
 sound = ExtResource("2_qcqyc")
 tooltip_text = "ATK 6
 EVERYONE"
