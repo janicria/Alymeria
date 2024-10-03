@@ -81,10 +81,9 @@ func setup_card_rarity_chances() -> void:
 	card_rarity_weights[Card.Rarity.COMMON] = GameManager.common_weight
 	card_rarity_weights[Card.Rarity.UNCOMMON] = GameManager.uncommon_weight + GameManager.multipliers.get("UNCOMMON_CARD_RARITY")
 	card_rarity_weights[Card.Rarity.RARE] = GameManager.rare_weight + GameManager.multipliers.get("RARE_CARD_RARITY")
-	var biome := GameManager.current_biome
-	if biome:
-		card_rarity_weights[Card.Rarity.UNCOMMON] *= (biome * 2)
-		card_rarity_weights[Card.Rarity.RARE] += biome
+	if  GameManager.current_biome:
+		card_rarity_weights[Card.Rarity.UNCOMMON] *= 1+(GameManager.current_biome / 2)
+		card_rarity_weights[Card.Rarity.RARE] +=  1+(GameManager.current_biome / 5)
 
 
 # Increments rare weights over time (reuse for pot chances)
@@ -101,7 +100,7 @@ func _modify_weights(rarity_rolled: Card.Rarity) -> void:
 		GameManager.common_weight = GameManager.BASE_COMMON_WEIGHT
 		GameManager.uncommon_weight = GameManager.BASE_UNCOMMON_WEIGHT
 	else: # Increases rare chances
-		GameManager.rare_weight = clampf(GameManager.rare_weight + 4.0, GameManager.BASE_RARE_WEIGHT, 50.0)
+		GameManager.rare_weight = clampf(GameManager.rare_weight + 2.0, GameManager.BASE_RARE_WEIGHT, 50.0)
 		GameManager.common_weight = GameManager.BASE_COMMON_WEIGHT - GameManager.rare_weight
 	
 	while card_reward_total_weight > 100:

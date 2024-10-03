@@ -22,16 +22,11 @@ func _ready() -> void:
 		func(input: InputEvent)-> void:
 			if input.is_action_pressed("left_mouse_pressed"):
 				card_reward_selected.emit(selected_card)
-				# Prevents the game from crashing without giving a warning
-				get_parent().remove_child(self)
-				queue_free()
-	)
+				queue_free())
 	
-	skip_button.pressed.connect(
-		func() -> void:
+	skip_button.pressed.connect(func() -> void:
 			card_reward_selected.emit(null)
-			queue_free()
-	)
+			queue_free())
 
 
 func _input(event: InputEvent) -> void:

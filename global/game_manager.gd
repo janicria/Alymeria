@@ -7,7 +7,7 @@ const STARTING_GOLD := 50
 const BASE_CARD_REWARDS := 4
 const BASE_COMMON_WEIGHT := 85.0
 const BASE_UNCOMMON_WEIGHT := 10.0
-const BASE_RARE_WEIGHT := 5.0  # Trust they have to be a floats
+const BASE_RARE_WEIGHT := 5.0
 enum Biome {FOREST, TOWN, CAVES, CITY, TRAIN, STORM, FINAL}
 
 # Settings-related variables
@@ -69,7 +69,6 @@ func set_card_pile(value: bool) -> void:
 func reset_stats() -> void:
 	gold = STARTING_GOLD
 	reset_weights()
-	
 
 
 func _init() -> void:

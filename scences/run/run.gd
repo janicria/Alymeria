@@ -41,6 +41,7 @@ func _start_run() -> void:
 	Events.update_card_pile.emit(GameManager.character.deck)
 	map.generate_new_map()
 	map.unlock_floor(0)
+	GameManager.reset_stats()
 
 
 func _change_view(scence : PackedScene) -> Node:

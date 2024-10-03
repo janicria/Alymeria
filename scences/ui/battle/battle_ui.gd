@@ -15,7 +15,7 @@ extends CanvasLayer
 
 
 func _ready() -> void:
-	Events.player_hand_drawn.connect(_on_player_hand_drawn)
+	Events.player_hand_drawn.connect(func()->void: end_turn_button.disabled = false)
 	end_turn_button.pressed.connect(_on_end_turn_button_pressed)
 	draw_pile_button.pressed.connect(draw_pile_view.show_current_view.bind("Draw pile", true))
 	discard_pile_button.pressed.connect(discard_pile_view.show_current_view.bind("Discard pile"))
@@ -35,10 +35,6 @@ func _set_char_stats(value : CharacterStats) -> void:
 	char_stats = value
 	mana_ui.char_stats = char_stats
 	hand.char_stats = char_stats
-
-
-func _on_player_hand_drawn() -> void:
-	end_turn_button.disabled = false
 
 
 func _on_end_turn_button_pressed() -> void:

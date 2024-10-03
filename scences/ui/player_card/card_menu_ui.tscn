@@ -6,7 +6,6 @@
 [ext_resource type="StyleBox" uid="uid://ck3105wj7dcrn" path="res://scences/card_ui/card_base_stylebox.tres" id="3_2kfhu"]
 [ext_resource type="Texture2D" uid="uid://bfvi02kojsa00" path="res://assets/art/objects/tile_0103.png" id="4_64408"]
 
-
 [node name="CardMenuUI" type="CenterContainer"]
 offset_right = 40.0
 offset_bottom = 50.4

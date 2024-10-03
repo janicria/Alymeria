@@ -9,7 +9,6 @@
 [ext_resource type="Resource" uid="uid://dprpiekopnhe0" path="res://characters/machine/cards/common/shields.tres" id="4_p1fof"]
 [ext_resource type="Resource" uid="uid://brs0hub03o0k0" path="res://characters/machine/cards/common/laser.tres" id="5_7yg2y"]
 
-
 [node name="CardRewards" type="ColorRect"]
 anchors_preset = 15
 anchor_right = 1.0
