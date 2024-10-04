@@ -303,8 +303,9 @@ func debug(additional_option: String = \"\") -> String:
 	GameManager.character.max_mana = 99
 	GameManager.character.cards_per_turn = GameManager.character.deck.cards.size()
 	# Misc
-	for child:AudioStreamPlayer in MusicPlayer.get_children(): child.volume_db = -INF
-	for child:AudioStreamPlayer in SFXPlayer.get_children(): child.volume_db = -INF
+	if additional_option != \"music\":
+		for child:AudioStreamPlayer in MusicPlayer.get_children(): child.volume_db = -INF
+		for child:AudioStreamPlayer in SFXPlayer.get_children(): child.volume_db = -INF
 	print(\"[CMD] Debug w/ args %s end!\" % additional_option)
 	return 'Have \"fun\" debugging!'
 

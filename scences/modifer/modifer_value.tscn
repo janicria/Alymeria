@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://iscfhmckihep"]
+
+[ext_resource type="Script" path="res://scences/modifer/modifer_value.gd" id="1_p4dd7"]
+
+[node name="ModiferValue" type="Node"]
+script = ExtResource("1_p4dd7")

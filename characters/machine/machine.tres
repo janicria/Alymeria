@@ -17,4 +17,3 @@ max_mana = 4
 mana_type = "memory"
 max_health = 40
 art = ExtResource("1_53el5")
-id = "machine"

@@ -1,14 +1,14 @@
 extends Card
 
-var draw_amount := 2
+var base_amount := 2
 
 # Using _init() is fine since Events is ready long before this is initialised
 func _init() -> void:
 	Events.update_card_stats.connect(func() -> void:
-		if GameManager.true_draw_amount: tooltip_text = "Draw %s(%s)" % [draw_amount, draw_amount - 1]
-		else: tooltip_text = "Draw %s" % draw_amount)
+		if GameManager.true_draw_amount: tooltip_text = "Draw %s(%s)" % [base_amount, base_amount - 1]
+		else: tooltip_text = "Draw %s" % base_amount)
 
 
-func apply_effects(_targets : Array[Node]) -> void:
+func apply_effects(_otargets: Array[Node], _modifiers: ModifierHandler) -> void:
 	SFXPlayer.play(sound)
-	Events.player_draw_cards.emit(draw_amount)
+	Events.player_draw_cards.emit(base_amount)

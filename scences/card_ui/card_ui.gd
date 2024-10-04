@@ -1,7 +1,7 @@
 class_name  CardUI
 extends Control
 
-signal reparent_requested(which_card_ui: CardUI)
+signal reparent_requested(card_ui: CardUI)
 signal transition_requested(from: CardState, to: CardState.State)
 
 const BASE_STYLEBOX := preload("res://scences/card_ui/card_base_stylebox.tres")
@@ -9,7 +9,7 @@ const DRAG_STYLEBOX := preload("res://scences/card_ui/card_dragging_stylebox.tre
 const HOVER_STYLEBOX := preload("res://scences/card_ui/card_hover_stylebox.tres")
 
 @export var card: Card : set = set_card
-@export var char_stats : CharacterStats : set = _set_char_stats
+@export var player_modifiers: ModifierHandler
 
 @onready var panel : Panel = $Panel
 @onready var cost : Label = $Cost
@@ -51,8 +51,7 @@ func animate_to_position(new_position : Vector2, duration : float) -> void:
 
 
 func play() -> void:
-	if !card:
-		return
+	if !card: return
 	
 	# Prevents playing single target cards for an enemy during its death animation
 	if card.is_single_targeted() && targets.any(func(target: Node)-> bool: return target is Enemy):
@@ -61,7 +60,7 @@ func play() -> void:
 			return
 	
 	if targets:
-		card.play(targets, char_stats)
+		card.play(targets, player_modifiers)
 		queue_free()
 
 
@@ -127,11 +126,6 @@ func _set_playable(value : bool) -> void:
 		cost.modulate.a = 1
 
 
-func _set_char_stats(value : CharacterStats) -> void:
-	char_stats = value
-	char_stats.stats_changed.connect(_on_char_stats_changed)
-
-
 func _on_drop_point_detector_area_entered(area : Area2D) -> void:
 	if !targets.has(area):
 		targets.append(area)
@@ -150,8 +144,8 @@ func _on_card_drag_or_aiming_started(used_card : CardUI) -> void:
 
 func _on_card_drag_or_aiming_ended(_card : CardUI) -> void:
 	disabled = false
-	playable = char_stats.can_play_card(card)
+	playable = GameManager.character.can_play_card(card)
 
 
 func _on_char_stats_changed() -> void:
-	playable = char_stats.can_play_card(card)
+	playable = GameManager.character.can_play_card(card)

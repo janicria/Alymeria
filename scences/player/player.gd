@@ -7,6 +7,7 @@ extends Node2D
 @onready var stats_ui : StatsUI = %StatsUI
 @onready var damage_counter: RichTextLabel = %DamageCounter
 @onready var status_handler: StatusHandler = %StatusHandler
+@onready var modifier_handler: ModifierHandler = %ModifierHandler
 
 var damage_count: int
 

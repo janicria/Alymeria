@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://j47d0nutw0m"]
+
+[ext_resource type="Script" path="res://scences/modifer/modifier_handler.gd" id="1_5x4vx"]
+
+[node name="ModifierHandler" type="Node"]
+script = ExtResource("1_5x4vx")

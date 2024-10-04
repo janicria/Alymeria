@@ -47,6 +47,7 @@ func _setup(card_pile : CardPile) -> void:
 	deck_button.card_pile = card_pile
 	deck_view.card_pile = card_pile
 	GameManager.character.deck = card_pile
+	print(GameManager.character.deck.cards)
 	deck_button.pressed.connect(deck_view.show_current_view.bind("Deck"))
 	GameManager.character.stats_changed.connect(health_ui.update_stats.bind(GameManager.character))
 	health_ui.update_stats(GameManager.character)

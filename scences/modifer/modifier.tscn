@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1572o2e6qr8n"]
+
+[ext_resource type="Script" path="res://scences/modifer/modifier.gd" id="1_psiyw"]
+
+[node name="Modifier" type="Node"]
+script = ExtResource("1_psiyw")
