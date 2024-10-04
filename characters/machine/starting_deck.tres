@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CardPile" load_steps=8 format=3 uid="uid://ke1cmnfj0lc2"]
+
+[ext_resource type="Script" path="res://custom_resources/card.gd" id="1_0e624"]
+[ext_resource type="Resource" uid="uid://brs0hub03o0k0" path="res://characters/machine/cards/common/laser.tres" id="2_unlqm"]
+[ext_resource type="Resource" uid="uid://dprpiekopnhe0" path="res://characters/machine/cards/common/shields.tres" id="3_de4pn"]
+[ext_resource type="Resource" uid="uid://c6ffdh3cljhno" path="res://characters/machine/cards/common/repurposing.tres" id="4_qpdy4"]
+[ext_resource type="Resource" uid="uid://ccjsu4qoghdrb" path="res://characters/machine/cards/common/power_strike.tres" id="5_xqdx4"]
+[ext_resource type="Resource" uid="uid://bivd0gsfass0" path="res://characters/machine/cards/common/laser_barrage.tres" id="6_exadg"]
+[ext_resource type="Script" path="res://custom_resources/card_pile.gd" id="7_di1pr"]
+
+[resource]
+script = ExtResource("7_di1pr")
+cards = Array[ExtResource("1_0e624")]([ExtResource("2_unlqm"), ExtResource("2_unlqm"), ExtResource("2_unlqm"), ExtResource("2_unlqm"), ExtResource("3_de4pn"), ExtResource("3_de4pn"), ExtResource("3_de4pn"), ExtResource("3_de4pn"), ExtResource("4_qpdy4"), ExtResource("5_xqdx4"), ExtResource("6_exadg")])

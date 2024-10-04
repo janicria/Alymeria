@@ -5,7 +5,6 @@ enum BattleState {BASE, LOOPS, ENEMY_DRAW, PLAYER, ENEMY_CARDS, WIN, LOSE}
 
 @export var battle_stats: BattleStats
 @export var music : AudioStream
-@export var char_stats: CharacterStats
 @export var state : BattleState
 
 @onready var enemy_handler: EnemyHandler = $EnemyHandler
@@ -26,10 +25,9 @@ func start_battle() -> void:
 	get_tree().paused = false
 	MusicPlayer.play(music, true)
 	
-	battle_ui.char_stats = char_stats
-	player.stats = char_stats
+	player.stats = GameManager.character
 	enemy_handler.setup_enemies(battle_stats)
-	player_handeler.start_battle(char_stats)
+	player_handeler.start_battle(GameManager.character)
 	battle_ui.initialise_card_pile_ui()
 	
 	Events.battle_state_updated.emit(0)

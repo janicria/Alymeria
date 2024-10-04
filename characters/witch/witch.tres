@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dxg7y1wlh86kj" path="res://assets/art/characters/tile_0100.png" id="1_g5exg"]
 [ext_resource type="Script" path="res://custom_resources/character_stats.gd" id="1_r34vc"]
-[ext_resource type="Resource" uid="uid://ke1cmnfj0lc2" path="res://characters/machine/machine_starting_deck.tres" id="2_rlcnn"]
+[ext_resource type="Resource" uid="uid://ke1cmnfj0lc2" path="res://characters/machine/starting_deck.tres" id="2_rlcnn"]
 
 
 [resource]

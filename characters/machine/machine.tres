@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="CharacterStats" load_steps=5 format=3 uid="uid://ctbo0h42ed02e"]
 
 [ext_resource type="Texture2D" uid="uid://dpfqok8tuy4r7" path="res://assets/art/characters/tile_0084.png" id="1_53el5"]
-[ext_resource type="Resource" uid="uid://dgqbrh131722d" path="res://characters/machine/machine_card_pool.tres" id="2_aiumi"]
-[ext_resource type="Resource" uid="uid://ke1cmnfj0lc2" path="res://characters/machine/machine_starting_deck.tres" id="3_g07y5"]
+[ext_resource type="Resource" uid="uid://dgqbrh131722d" path="res://characters/machine/card_pool.tres" id="2_aiumi"]
+[ext_resource type="Resource" uid="uid://ke1cmnfj0lc2" path="res://characters/machine/starting_deck.tres" id="3_g07y5"]
 [ext_resource type="Script" path="res://custom_resources/character_stats.gd" id="3_ny11w"]
 
 [resource]

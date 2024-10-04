@@ -147,5 +147,5 @@ func _on_card_drag_or_aiming_ended(_card : CardUI) -> void:
 	playable = GameManager.character.can_play_card(card)
 
 
-func _on_char_stats_changed() -> void:
+func _on_GameManager_character_changed() -> void:
 	playable = GameManager.character.can_play_card(card)

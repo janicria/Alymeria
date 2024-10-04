@@ -1,7 +1,6 @@
 class_name BattleUI
 extends CanvasLayer
 
-@export var char_stats : CharacterStats : set = _set_char_stats
 
 @onready var hand: Hand = $Hand
 @onready var mana_ui: ManaUI = $ManaUI
@@ -23,18 +22,12 @@ func _ready() -> void:
 
 
 func initialise_card_pile_ui() -> void:
-	draw_pile_button.card_pile = char_stats.draw_pile
-	discard_pile_button.card_pile = char_stats.discard
-	exhaust_pile_button.card_pile = char_stats.exhaust_pile
-	discard_pile_view.card_pile = char_stats.discard
-	draw_pile_view.card_pile = char_stats.draw_pile
-	exhaust_pile_view.card_pile = char_stats.exhaust_pile
-
-
-func _set_char_stats(value : CharacterStats) -> void:
-	char_stats = value
-	mana_ui.char_stats = char_stats
-	hand.char_stats = char_stats
+	draw_pile_button.card_pile = GameManager.character.draw_pile
+	discard_pile_button.card_pile = GameManager.character.discard
+	exhaust_pile_button.card_pile = GameManager.character.exhaust_pile
+	discard_pile_view.card_pile = GameManager.character.discard
+	draw_pile_view.card_pile = GameManager.character.draw_pile
+	exhaust_pile_view.card_pile = GameManager.character.exhaust_pile
 
 
 func _on_end_turn_button_pressed() -> void:

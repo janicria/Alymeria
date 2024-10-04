@@ -3,7 +3,6 @@
 [ext_resource type="Script" path="res://custom_resources/run_startup.gd" id="1_i12pn"]
 [ext_resource type="Resource" uid="uid://ctbo0h42ed02e" path="res://characters/machine/machine.tres" id="1_thlbm"]
 
-
 [resource]
 script = ExtResource("1_i12pn")
 type = 0

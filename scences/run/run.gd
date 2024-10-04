@@ -20,8 +20,7 @@ var character: CharacterStats
 
 
 func _ready() -> void:
-	if !run_startup:
-		return
+	if !run_startup: return
 	
 	color_rect.visible = true
 	scence_transition.play("fade_in")
@@ -89,7 +88,6 @@ func _input(_event: InputEvent) -> void:
 
 func _on_battle_room_entered(room: Room) -> void:
 	var battle_scence: Battle = _change_view(BATTLE_SCENCE) as Battle
-	battle_scence.char_stats = GameManager.character
 	battle_scence.battle_stats = room.battle_stats
 	battle_scence.start_battle()
 

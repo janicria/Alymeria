@@ -10,8 +10,6 @@ const CARD_TEXT := "Add a New Card"
 const REGULAR_POTION_ICON := preload("res://assets/art/objects/tile_0114.png")
 #const POTION_TEXT := ""
 
-@export var character_stats: CharacterStats
-
 @onready var rewards: VBoxContainer = %Rewards
 
 var card_reward_total_weight := 0.0
@@ -23,9 +21,8 @@ var card_rarity_weights := {
 
 
 func _ready() -> void:
-	character_stats = GameManager.character
-	
-	for node: Node in rewards.get_children():
+	# Removes placeholder rewards
+	for node: Node in rewards.get_children(): 
 		node.queue_free()
 
 
@@ -51,7 +48,7 @@ func _show_card_rewards() -> void:
 	card_rewards.card_reward_selected.connect(_on_card_reward_taken)
 	
 	var card_reward_array: Array[Card] = []
-	var available_cards: Array[Card] = character_stats.card_pool.duplicate_cards()
+	var available_cards: Array[Card] = GameManager.character.card_pool.duplicate_cards()
 	
 	# RNG for selecting each card (dark magic)
 	for i in GameManager.card_rewards:
@@ -121,8 +118,7 @@ func _get_random_available_card(available_cards: Array[Card], with_rarity: Card.
 
 
 func _on_card_reward_taken(card: Card) -> void:
-	if !character_stats or !card:
-		return
+	if !card: return
 	
 	print("Drafted %s" % card.name)
 	GameManager.character.deck.add_card(card)
