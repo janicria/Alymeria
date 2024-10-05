@@ -24,7 +24,8 @@ func start_battle(character : CharacterStats) -> void:
 func start_turn() -> void:
 	GameManager.character.barrier = clamp(GameManager.character.barrier -10, 0, 999)
 	GameManager.character.reset_mana()
-	player.status_handler.apply_statuses_by_type(Status.Type.START_OF_TURN)
+	var wr: WeakRef = weakref(player) # In case player died
+	if wr.get_ref(): player.status_handler.apply_statuses_by_type(Status.Type.START_OF_TURN)
 
 
 func end_turn() -> void:

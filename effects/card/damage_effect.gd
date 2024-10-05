@@ -2,13 +2,11 @@ class_name DamageEffect
 extends Effect
 
 var amount := 0
-var new_targets : Array[Node]
 
 
 func execute(targets : Array[Node]) -> void:
+	targets.filter(func(target:Node)->bool: 
+		return target is Enemy or target is Player or target is Summon)
 	for target in targets:
-		var wr: WeakRef = weakref(target)
-		if wr.get_ref():
-			if target is Enemy or target is Player or target is Summon:
-				target.take_damage(amount)
-				SFXPlayer.play(sound)
+		SFXPlayer.play(sound)
+		if target: target.take_damage(amount)

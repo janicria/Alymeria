@@ -1,10 +1,8 @@
 extends Card
 
 
-func apply_effects(targets : Array[Node]) -> void:
-	for Object in targets:
-		if !Object is Summon:
-			targets.erase(Object)
+func apply_effects(targets: Array[Node], _modifiers: ModifierHandler) -> void:
+	targets.filter(func(target: Node)->bool: return target is Summon)
 	if targets:
 		var summon_attack := SummonAttack.new()
 		summon_attack.amount = 1

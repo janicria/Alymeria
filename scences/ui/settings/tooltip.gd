@@ -7,7 +7,7 @@ extends PanelContainer
 @onready var hide_timer: Timer = %HideTimer
 
 var tween : Tween
-var is_visible := false
+var is_showing := false # is_visible is a method from CanvasItem
 var is_playable := true
 
 
@@ -32,7 +32,7 @@ func show_settings(text : String) -> void:
 	if !get_name() == "SettingsTooltip":
 		return
 	
-	is_visible = true
+	is_showing = true
 	
 	if tween:
 		tween.kill()
@@ -47,7 +47,7 @@ func show_tooltop(text : String) -> void:
 	if get_name() == "SettingsTooltip":
 		return
 	
-	is_visible = true
+	is_showing = true
 
 	if tween:
 		tween.kill()
@@ -60,18 +60,19 @@ func show_tooltop(text : String) -> void:
 
 # Starts a the timer to hide the tooltip
 func hide_tooltip() -> void:
-	is_visible = false
+	is_showing = false
 	
 	if tween:
 		tween.kill()
 	
+	if hide_timer.get_parent() != self: add_child(hide_timer)
 	hide_timer.start(fade_seconds)
 	if !hide_timer.timeout.is_connected(hide_animation):
 		hide_timer.timeout.connect(hide_animation)
 
 
 func hide_animation() -> void:
-	if !is_visible:
+	if !is_showing:
 		tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 		tween.tween_property(self, "modulate", Color.TRANSPARENT, fade_seconds)
 		tween.tween_callback(hide)

@@ -10,7 +10,7 @@ signal update_card_pile(card_pile : CardPile) # Used by settings_bar
 signal update_deck_buttons(amount : int, returning : bool) # Used by card_pile_view, card_pile_button
 signal update_deck_counter # Used by card_pile_button
 signal update_card_stats # Used by repurposing
-signal update_card_variant(variant: String, value: int, where: String) # Used by hand
+signal update_card_variant(variant: String, value, set_cardui: bool) # Used by hand
 
 ## Player-related events
 signal player_draw_cards(amount : int) # Used by player_handler

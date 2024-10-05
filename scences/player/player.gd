@@ -49,11 +49,12 @@ func update_damage_counter(amount: int, reset: bool) -> void:
 	damage_counter.text = "[center][color=AB3321] %s [/color][/center]" % damage_count
 
 
-func take_damage(damage : int) -> void:
-	if stats.health <= 0:
-		return
+func take_damage(damage : int, modify_damage := true) -> void:
+	if stats.health <= 0: return
 	
-	stats.take_damage(damage)
+	var modified_damage := modifier_handler.get_modified_value(damage, Modifier.Type.DMG_TAKEN)
+	if !modify_damage: modified_damage = damage
+	stats.take_damage(modified_damage)
 	
 	if stats.health <= 0:
 		Events.player_died.emit()

@@ -28,16 +28,6 @@ func disable_hand() -> void:
 		card.disabled = true
 
 
-func update_card_variant(variant: String, value: int, where: String) -> void:
-	if where != "hand": return
-	
-	for cardui: CardUI in get_children():
-		var old_value: int = cardui.card.get(variant)
-		cardui.card.set(variant, (old_value + value))
-		cardui.set_card(cardui.card)
-		cardui.playable = GameManager.character.can_play_card(cardui.card)
-
-
 func update_card_seperation() -> void:
 	if get_child_count() < 6: add_theme_constant_override("separation", 8)
 	match get_child_count():
@@ -47,6 +37,19 @@ func update_card_seperation() -> void:
 		9: add_theme_constant_override("separation", -14)
 		10: add_theme_constant_override("separation", -18)
 
+
+func update_card_variant(variant: String, value, set_cardui: bool) -> void:
+	for cardui: CardUI in get_children():
+		if cardui:
+			var old_value = cardui.get(variant)
+			cardui.set(variant, (old_value + value))
+			cardui.set_card(cardui.card)
+			cardui.playable = GameManager.character.can_play_card(cardui.card)
+		else:
+			var old_value = cardui.card.get(variant)
+			cardui.card.set(variant, (old_value + value))
+			cardui.set_card(cardui.card)
+			cardui.playable = GameManager.character.can_play_card(cardui.card)
 
 
 func _on_card_ui_reparent_requested(child : CardUI) -> void:

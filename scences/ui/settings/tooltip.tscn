@@ -3,7 +3,6 @@
 [ext_resource type="Theme" uid="uid://bhs76hnulf3s4" path="res://assets/misc/main_theme.tres" id="1_j5lpm"]
 [ext_resource type="Script" path="res://scences/ui/settings/tooltip.gd" id="2_y0pru"]
 
-
 [node name="Tooltip" type="PanelContainer"]
 process_mode = 3
 anchors_preset = 5

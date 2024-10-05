@@ -13,7 +13,8 @@ const ARROW_OFFSET := 19
 @onready var arrow : Sprite2D = $Arrow
 @onready var stats_ui : StatsUI = $StatsUI
 @onready var mana_counter: RichTextLabel = %ManaCounter
-@onready var status_handler: StatusHandler = $StatusHandler
+@onready var status_handler: StatusHandler = %StatusHandler
+@onready var modifier_handler: ModifierHandler = %ModifierHandler
 
 var pool: Array[EnemyCard]
 var mana: int
@@ -102,13 +103,15 @@ func update_mana_counter() -> void:
 	mana_counter.text = "[center][color=3D7BFF] %s [/color][/center]" % mana
 
 
-func take_damage(damage : int) -> void:
-	if stats.health <= 0:
-		return
+func take_damage(damage : int, modify_damage := true) -> void:
+	if stats.health <= 0: return
+	
+	var modified_damage := modifier_handler.get_modified_value(damage, Modifier.Type.DMG_TAKEN)
+	if !modify_damage: modified_damage = damage
 	
 	var tween := create_tween()
 	tween.tween_callback(Shaker.shake.bind(self, 12, 0.15))
-	tween.tween_callback(stats.take_damage.bind(damage))
+	tween.tween_callback(stats.take_damage.bind(modified_damage))
 	tween.tween_interval(0.2)
 	
 	tween.finished.connect(

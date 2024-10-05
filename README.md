@@ -9,7 +9,7 @@ This also means that you can also find experimental builds at the path /Releases
 
 ## Releases
 
-Changelogs are stored at 'patch notes.md'
+Changelogs are stored at 'patch notes.txt'
 (I guess you could also look at the commit history if you wanted, though it's mainly internal stuff so ¯\\\_(ツ)\_/¯ )
 
 You can also find my planning doc at https://docs.google.com/document/d/1-JKUbbNwLlr0Cf3xtYCXf1nt2JtN55ohAl-p8EhhLDE
