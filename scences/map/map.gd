@@ -90,7 +90,7 @@ func _spawn_room(room: Room) -> void:
 	_connect_lines(room)
 	
 	# Checks if the room was visited earlier (from a previous session)
-	if room.selected and room.row < floors_climbed:
+	if room.selected && room.row < floors_climbed:
 		new_map_room.show_selected()
 
 

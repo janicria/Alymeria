@@ -32,16 +32,16 @@ func _on_card_pile_size_changed(cards_amount : int) -> void:
 func update_ui(amount : int, returning : bool) -> void:
 	if returning: exhausts_in_deck = amount
 	
-	if GameManager.true_deck_size and get_name() == "DeckButton":
+	if GameManager.true_deck_size && get_name() == "DeckButton":
 		counter.text = "%s(%s)" % [deck_size, (deck_size - exhausts_in_deck)]
 	else: counter.text = str(deck_size)
 	
-	if get_name() == "DiscardPileButton":
+	if get_name() == "DrawPileButton":
 		if GameManager.card_pile_above_mana:
 			position = Vector2(58, 145)
 		else: position = Vector2(80, 170)
 	
-	if get_name() == "DrawPileButton":
+	if get_name() == "DiscardPileButton":
 		if GameManager.card_pile_above_mana:
 			position = Vector2(38, 145)
 		else: position = Vector2(317, 170)

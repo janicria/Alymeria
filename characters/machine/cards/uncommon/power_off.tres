@@ -13,7 +13,7 @@ repeats = 1
 cost = 1
 exhausts = false
 sound = ExtResource("2_6e1md")
-tooltip_text = "ATK X
+tooltip_text = "ATK X + 3
 X = DRAW
 Cancel 2"
 effect_description = "[center]Attack - Deal [color=\"ff0000\"]damage[/color] to an enemy

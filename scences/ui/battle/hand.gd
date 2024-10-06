@@ -5,9 +5,13 @@ extends HBoxContainer
 
 @onready var card_ui := preload("res://scences/card_ui/card_ui.tscn")
 
+
 func _ready() -> void:
 	Events.update_card_variant.connect(update_card_variant)
-	child_order_changed.connect(update_card_seperation)
+	child_order_changed.connect(update_card_seperation) # Reuse the below lambda in future
+	Events.update_hand_state.connect(func()->void: for child: CardUI in get_children():
+		if player.status_handler._get_status("cancel"): child.canceled = true; child.playable = false)
+
 
 func add_card(card : Card) -> void:
 	var new_card_ui := card_ui.instantiate() as CardUI
@@ -17,6 +21,7 @@ func add_card(card : Card) -> void:
 	new_card_ui.playable = GameManager.character.can_play_card(new_card_ui.card)
 	new_card_ui.parent = self
 	new_card_ui.player_modifiers = player.modifier_handler
+	if player.status_handler._get_status("cancel"): new_card_ui.canceled = true; new_card_ui.playable = false
 
 
 func discard_card(card : CardUI) -> void:
@@ -24,8 +29,7 @@ func discard_card(card : CardUI) -> void:
 
 
 func disable_hand() -> void:
-	for card in get_children():
-		card.disabled = true
+	for card in get_children(): card.disabled = true
 
 
 func update_card_seperation() -> void:
@@ -38,20 +42,14 @@ func update_card_seperation() -> void:
 		10: add_theme_constant_override("separation", -18)
 
 
-func update_card_variant(variant: String, value, set_cardui: bool) -> void:
+func update_card_variant(variant: String, value: int) -> void:
 	for cardui: CardUI in get_children():
-		if cardui:
-			var old_value = cardui.get(variant)
-			cardui.set(variant, (old_value + value))
-			cardui.set_card(cardui.card)
-			cardui.playable = GameManager.character.can_play_card(cardui.card)
-		else:
-			var old_value = cardui.card.get(variant)
-			cardui.card.set(variant, (old_value + value))
-			cardui.set_card(cardui.card)
-			cardui.playable = GameManager.character.can_play_card(cardui.card)
+		cardui.card.set(variant, (cardui.card.get(variant) + value))
+		cardui.set_card(cardui.card)
+		cardui.playable = GameManager.character.can_play_card(cardui.card)
 
 
+# Called when a card is added back to hand from an aiming / dragging state
 func _on_card_ui_reparent_requested(child : CardUI) -> void:
 	child.disabled = true
 	child.reparent(self)

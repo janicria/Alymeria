@@ -3,11 +3,8 @@ extends Status
 
 
 func initalise_target(target: Node) -> void:
-	assert(target.get("modifier_handler"), "No mods on target %s" % target)
-	var damage_taken_modifier: Modifier = target.modifier_handler.get_modifier_of_type(Modifier.Type.DMG_TAKEN)
-	assert(damage_taken_modifier, "No dmg dealt mod on target %s" % target)
-	
 	# Getting / creating mod value
+	var damage_taken_modifier: Modifier = target.modifier_handler.get_modifier_of_type(Modifier.Type.DMG_TAKEN)
 	var injured_value: ModifierValue = damage_taken_modifier.get_value("injured")
 	if !injured_value:
 		injured_value = ModifierValue.create_modifier("injured", ModifierValue.Type.PERCENT)
@@ -20,5 +17,5 @@ func initalise_target(target: Node) -> void:
 
 
 func _on_status_changed(damage_taken_modifier: Modifier) -> void:
-	if duration <= 0 && damage_taken_modifier: 
+	if duration <= 0 && damage_taken_modifier:
 		damage_taken_modifier.remove_value("injured")

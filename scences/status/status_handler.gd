@@ -68,7 +68,6 @@ func _get_status(id: String) -> Status:
 		if status_ui.status.id == id:
 			return status_ui.status
 	
-	GameManager.notify("Unable to return status using id", true)
 	return null
 
 

@@ -2,14 +2,14 @@ extends Card
 
 const CANCEL := preload("res://effects/status/cancel.tres")
 
-var base_damage := 0
+var base_damage := 3
 
 
 func apply_effects(targets: Array[Node], modifiers: ModifierHandler) -> void:
 	var status_effect := StatusEffect.new()
 	var damage_effect := DamageEffect.new()
 	var cancel := CANCEL.duplicate()
-	base_damage = GameManager.character.draw_pile.cards.size()
+	base_damage = GameManager.character.draw_pile.cards.size() + base_damage
 	damage_effect.amount = modifiers.get_modified_value(base_damage, Modifier.Type.DMG_DEALT)
 	damage_effect.sound = sound
 	cancel.duration = 2

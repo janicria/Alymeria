@@ -106,16 +106,14 @@ func _would_cross_existing_path(i: int, j: int, room: Room) -> bool:
 		right_neighbour = map_data[i][j + 1]
 	
 	# can't cross right if right neighbour goes left
-	if right_neighbour and room.column > j:
+	if right_neighbour && room.column > j: 
 		for next_room: Room in right_neighbour.next_rooms:
-			if next_room.column < room.column:
-				return true
+			if next_room.column < room.column: return true
 	
 	# can't cross left if left neighbour goes right
-	if left_neighbour and room.column < j:
+	if left_neighbour && room.column < j:
 		for next_room: Room in left_neighbour.next_rooms:
-			if next_room.column > room.column:
-				return true
+			if next_room.column > room.column: return true
 	
 	return false
 
@@ -190,10 +188,10 @@ func _set_room_randomly(room: Room) -> void:
 		var is_elite := type_candidate == Room.Type.ELITE
 		
 		
-		haven_below_4 = is_haven and room.row < 3
-		elite_below_3 = is_elite and room.row < 2
-		consecutive_haven = is_haven and has_haven_parent
-		consecutive_shop = is_shop and has_shop_parent
+		haven_below_4 = is_haven && room.row < 3
+		elite_below_3 = is_elite && room.row < 2
+		consecutive_haven = is_haven && has_haven_parent
+		consecutive_shop = is_shop && has_shop_parent
 	
 	room.type = type_candidate
 	
@@ -210,7 +208,7 @@ func _room_has_parent_of_type(room: Room, type: Room.Type) -> bool:
 	var parents: Array[Room] = []
 	
 	# left parent (floor 0 rooms have no parents)
-	if room.column > 0 and room.row > 0:
+	if room.column > 0 && room.row > 0:
 		var parent_candiate := map_data[room.row - 1][room.column - 1] as Room
 		if parent_candiate.next_rooms.has(room):
 			parents.append(parent_candiate)
@@ -222,7 +220,7 @@ func _room_has_parent_of_type(room: Room, type: Room.Type) -> bool:
 			parents.append(parent_candiate)
 	
 	# right parent (floor 0 rooms have no parents)
-	if room.column < MAP_WIDTH - 1 and room.row > 0:
+	if room.column < MAP_WIDTH - 1 && room.row > 0:
 		var parent_candiate := map_data[room.row - 1][room.column + 1] as Room
 		if parent_candiate.next_rooms.has(room):
 			parents.append(parent_candiate)

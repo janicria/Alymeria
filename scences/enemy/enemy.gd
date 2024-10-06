@@ -68,7 +68,7 @@ func add_card(card: EnemyCard) -> void:
 	if !active: return
 	
 	# Adds a health card
-	if !card.cost and !card.weight and card.health > stats.health:
+	if !card.cost && !card.weight && card.health > stats.health:
 		get_parent().add_card_to_hand.emit(card, self)
 	
 	# Adds a regular card using mana

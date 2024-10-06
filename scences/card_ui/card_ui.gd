@@ -27,6 +27,8 @@ var parent : Control
 var tween : Tween
 var playable := true : set = _set_playable
 var disabled := false
+var canceled := false
+var ui_initialised := false
 
 
 func _ready() -> void:
@@ -73,9 +75,7 @@ func _on_mouse_exited() -> void:
 
 
 func set_card(value : Card) -> void:
-	if ! is_node_ready():
-		await ready
-	
+	if ! is_node_ready(): await ready
 	card = value
 	
 	match card.rarity:
@@ -93,18 +93,13 @@ func set_card(value : Card) -> void:
 	match card.type:
 		0: type.text = " -Physical" 
 		1: type.text = " -Internal"
-		2:
-			match GameManager.character.character_name:
-				"Machine": type.text = " -Looped"
-				"Witch": type.text = " -Summon"
+		2: type.text = " -Looped" if GameManager.character.character_name == "Machine" else " -Summon"
 		3: type.text = " -Status"
-		4:
-			match GameManager.character.character_name:
-				"Machine": type.text = " -Malware"
-				"Witch": type.text = " -Hex"
+		4: type.text = " -Malware" if GameManager.character.character_name == "Machine" else " -Hex"
 	
 	# Prevents card names from going out of its area/hitbox
-	if _name.get_line_count() > 1:
+	if _name.get_line_count() > 1 && !ui_initialised:
+		ui_initialised = true
 		cost.position.y = cost.position.y + (_name.get_line_count() * _name.get_line_height()) -5
 		type.position.y = cost.position.y
 		desc.position.y = desc.position.y + (_name.get_line_count() * _name.get_line_height()) -5
@@ -118,6 +113,7 @@ func _set_playable(value : bool) -> void:
 		type.modulate.a = 0.5
 		desc.modulate.a = 0.5
 		cost.modulate.a = 0.8
+	elif canceled: return
 	else:
 		cost.remove_theme_color_override("font_color")
 		_name.modulate.a = 1

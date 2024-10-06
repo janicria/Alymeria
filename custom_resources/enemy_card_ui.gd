@@ -29,31 +29,40 @@ func kms() -> void:
 			Events.update_player_dmg_counter.emit(card_stats.amount * card_stats.repeats * -1, false)
 
 
+func update_stats_from_status(_type: Status.Type) -> void:
+	update_stats(card_stats, enemy_stats)
+
+
 func update_stats(card: EnemyCard, enemy: Enemy) -> void:
-	if !is_node_ready():
-		await ready
-	
+	if !is_node_ready(): await ready
 	card_stats = card
 	enemy_stats = enemy
+	
+	if !enemy_stats.status_handler.statuses_applied.is_connected(update_stats_from_status):
+		enemy_stats.status_handler.statuses_applied.connect(update_stats_from_status)
 	
 	cost.text = str(card.cost)
 	icon.texture = enemy.stats.art
 	attack_icon.texture = card.icon_dict.get(card.type)
-	attack_desc.text = str(card.amount)
-	if card.repeats != 1:
-		attack_desc.text += "x" + str(card.repeats)
+	# Updates the UI to include player and enemy modifiers in its calculations
+	var player := get_targets()[0] as Player
+	if player && card.type == EnemyCard.Type.ATTACK:
+		var modified_damage := player.modifier_handler.get_modified_value(card_stats.amount, Modifier.Type.DMG_TAKEN)
+		modified_damage = enemy_stats.modifier_handler.get_modified_value(modified_damage, Modifier.Type.DMG_DEALT)
+		attack_desc.text = str(modified_damage)
+	else: attack_desc.text = str(enemy_stats.modifier_handler.get_modified_value(card_stats.amount, Modifier.Type.DMG_DEALT))
+	if card.repeats != 1: attack_desc.text += "x%s" % card_stats.repeats
 
 
 func _on_control_mouse_entered() -> void:
 	# Checks if enemy has been freed
-	var wr: WeakRef = weakref(enemy_stats)
-	if !wr.get_ref(): 
+	var wr: WeakRef = weakref(enemy_stats); if !wr.get_ref(): 
 		Events.card_tooltip_requested.emit("[center]This enemy died, but it's card is still here for some reason? \n [s](bad programming)[/s][/center]")
 		return
 	
 	var tooltip_text := "[center]This enemy is going to "
-
-	if card_stats.type == card_stats.Type.ATTACK and card_stats.repeats != 1:
+	
+	if card_stats.type == card_stats.Type.ATTACK && card_stats.repeats != 1:
 		tooltip_text += "[color=ff0000]attack for %sx%s[/color]" % [card_stats.amount, card_stats.repeats]
 	else: match card_stats.type:
 		card_stats.Type.ATTACK: tooltip_text += "[color=ff0000]attack for %s[/color]" % card_stats.amount
@@ -90,7 +99,7 @@ func _on_control_mouse_exited() -> void:
 
 
 func play() -> void:
-	if self.is_queued_for_deletion():
+	if self.is_queued_for_deletion(): 
 		return
 	
 	var targets := get_targets()
@@ -105,8 +114,7 @@ func get_targets() -> Array[Node]:
 	var targets: Array[Node] = []
 	
 	# In case enemy has been freed (only a warning is thrown but ¯\_(ツ)_/¯ )
-	var wr: WeakRef = weakref(enemy_stats)
-	if !wr.get_ref(): return []
+	var wr: WeakRef = weakref(enemy_stats); if !wr.get_ref(): return []
 	
 	match card_stats.targets:
 		card_stats.Targets.SINGLE: targets.append(target)

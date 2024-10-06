@@ -28,7 +28,7 @@ func on_input(event: InputEvent) -> void:
 	var cancel := event.is_action_pressed("right_mouse_pressed")
 	var confirm := event.is_action_released("left_mouse_pressed") or event.is_action_pressed("left_mouse_pressed")
 
-	if single_targeted and mouse_motion and card_ui.targets.size() > 0:
+	if single_targeted && mouse_motion && card_ui.targets.size() > 0:
 		transition_requested.emit(self, CardState.State.AIMING)
 		return
 
@@ -37,6 +37,6 @@ func on_input(event: InputEvent) -> void:
 
 	if cancel:
 		transition_requested.emit(self, CardState.State.BASE)
-	elif mininium_drag_time_elapsed and confirm:
+	elif mininium_drag_time_elapsed && confirm:
 		get_viewport().set_input_as_handled()
 		transition_requested.emit(self, CardState.State.RELEASED)
