@@ -68,11 +68,13 @@ layout_mode = 2
 texture_normal = ExtResource("5_ye2i7")
 counter = NodePath("../Counter")
 
-[node name="Counter" type="Label" parent="TopVbox/Layer1"]
+[node name="Counter" type="RichTextLabel" parent="TopVbox/Layer1"]
 unique_name_in_owner = true
 layout_mode = 2
+bbcode_enabled = true
 text = "99"
-horizontal_alignment = 1
+fit_content = true
+autowrap_mode = 0
 
 [node name="Layer2" type="HBoxContainer" parent="TopVbox"]
 layout_mode = 2

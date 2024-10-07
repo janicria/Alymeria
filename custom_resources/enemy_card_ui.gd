@@ -107,6 +107,11 @@ func play() -> void:
 
 
 func get_targets() -> Array[Node]:
+	# Last enemy card to be played in hand searches for targets a second time after
+	# being played, we can return anything since the card is amount to be freed
+	var tree_wr: WeakRef = weakref(get_tree())
+	if !tree_wr.get_ref(): return [Node.new()]
+	
 	var target := get_tree().get_first_node_in_group("player")
 	if get_tree().get_node_count_in_group("summons"):
 		target = get_tree().get_first_node_in_group("summons")

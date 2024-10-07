@@ -14,14 +14,21 @@ extends Stats
 @export var mana_type : String
 
 var mana: int : set = set_mana
+var cache_tokens: int : set = set_cache
 var deck: CardPile
 var discard: CardPile
 var draw_pile: CardPile
 var exhaust_pile: CardPile
+var cache_pile: CardPile
+
+
+func set_cache(value: int) -> void:
+	cache_tokens = clampi(value, 0, 99)
+	Events.update_deck_buttons.emit(0, false)
 
 
 func set_mana(value : int) -> void:
-	mana = clamp(value, 0, 99)
+	mana = clampi(value, 0, 99)
 	stats_changed.emit()
 
 
@@ -49,4 +56,5 @@ func create_instance() -> Resource:
 	instance.draw_pile = CardPile.new()
 	instance.discard = CardPile.new()
 	instance.exhaust_pile = CardPile.new()
+	instance.cache_pile = CardPile.new()
 	return instance

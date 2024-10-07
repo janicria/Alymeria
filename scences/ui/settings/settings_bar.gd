@@ -7,7 +7,7 @@ const DEFAULT_BUS_LAYOUT = preload("res://assets/misc/default_bus_layout.tres")
 
 # TopVbox
 @onready var gold_ui: GoldUI = %GoldUI
-@onready var counter: Label = %Counter
+@onready var counter: RichTextLabel = %Counter
 @onready var cog: TextureRect = %Cog
 @onready var health_ui: HealthUI = %HealthUI
 # Misc

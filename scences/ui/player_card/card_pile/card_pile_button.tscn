@@ -3,8 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://p6ayfwhw2vnj" path="res://assets/ui/cards/draw.png" id="1_xaofm"]
 [ext_resource type="Script" path="res://scences/ui/player_card/card_pile/card_pile_button.gd" id="2_hmt7m"]
 
-
-
 [node name="CardPileButton" type="TextureButton"]
 process_mode = 3
 offset_right = 12.0

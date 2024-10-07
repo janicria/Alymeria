@@ -141,14 +141,15 @@ grow_horizontal = 2
 grow_vertical = 0
 counter = NodePath("Counter")
 
-[node name="Counter" type="Label" parent="BattleUI/DrawPileButton"]
+[node name="Counter" type="RichTextLabel" parent="BattleUI/DrawPileButton"]
 layout_mode = 0
 offset_left = 2.0
 offset_top = -7.0
 offset_right = 12.0
 offset_bottom = -1.0
+bbcode_enabled = true
 text = "9"
-horizontal_alignment = 1
+fit_content = true
 
 [node name="DiscardPileButton" parent="BattleUI" node_paths=PackedStringArray("counter") instance=ExtResource("21_4q4vq")]
 unique_name_in_owner = true
@@ -166,14 +167,15 @@ grow_vertical = 0
 texture_normal = ExtResource("22_p100a")
 counter = NodePath("Counter")
 
-[node name="Counter" type="Label" parent="BattleUI/DiscardPileButton"]
+[node name="Counter" type="RichTextLabel" parent="BattleUI/DiscardPileButton"]
 layout_mode = 0
 offset_left = 2.0
 offset_top = -7.0
 offset_right = 12.0
 offset_bottom = -1.0
+bbcode_enabled = true
 text = "9"
-horizontal_alignment = 1
+fit_content = true
 
 [node name="ExhaustPileButton" parent="BattleUI" node_paths=PackedStringArray("counter") instance=ExtResource("21_4q4vq")]
 unique_name_in_owner = true
@@ -191,14 +193,42 @@ grow_vertical = 0
 texture_normal = ExtResource("21_6q5ah")
 counter = NodePath("Counter")
 
-[node name="Counter" type="Label" parent="BattleUI/ExhaustPileButton"]
+[node name="Counter" type="RichTextLabel" parent="BattleUI/ExhaustPileButton"]
 layout_mode = 0
 offset_left = 2.0
 offset_top = -7.0
 offset_right = 12.0
 offset_bottom = -1.0
+bbcode_enabled = true
 text = "9"
-horizontal_alignment = 1
+fit_content = true
+
+[node name="CachePileButton" parent="BattleUI" node_paths=PackedStringArray("counter") instance=ExtResource("21_4q4vq")]
+unique_name_in_owner = true
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 150.0
+offset_top = -41.0
+offset_right = 162.0
+offset_bottom = -27.0
+grow_horizontal = 2
+grow_vertical = 0
+texture_normal = ExtResource("21_6q5ah")
+counter = NodePath("Counter")
+
+[node name="Counter" type="RichTextLabel" parent="BattleUI/CachePileButton"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -7.0
+offset_right = 12.0
+offset_bottom = -1.0
+bbcode_enabled = true
+text = "9"
+fit_content = true
+autowrap_mode = 0
 
 [node name="RedFlash" type="CanvasLayer" parent="."]
 layer = 2
@@ -236,6 +266,10 @@ unique_name_in_owner = true
 visible = false
 
 [node name="ExhaustPileView" parent="CardPileViews" instance=ExtResource("25_e6li0")]
+unique_name_in_owner = true
+visible = false
+
+[node name="CachePileView" parent="CardPileViews" instance=ExtResource("25_e6li0")]
 unique_name_in_owner = true
 visible = false
 
