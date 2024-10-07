@@ -3,16 +3,15 @@
 [ext_resource type="Script" path="res://characters/machine/cards/common/laser.gd" id="2_ouqcu"]
 [ext_resource type="AudioStream" uid="uid://b1vpjjmi5cj3n" path="res://assets/SFX/axe.ogg" id="3_8mdsh"]
 
-
 [resource]
 script = ExtResource("2_ouqcu")
-id = "machine_laser_attack"
 name = "Laser"
 type = 0
 rarity = 0
 target = 1
 repeats = 1
 cost = 1
+exhausts = false
 sound = ExtResource("3_8mdsh")
 tooltip_text = "ATK 3"
 effect_description = "[center]Attack - Deal [color=\"ff0000\"]damage[/color] to an enemy[/center]"

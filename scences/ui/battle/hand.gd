@@ -24,8 +24,10 @@ func add_card(card : Card) -> void:
 	if player.status_handler._get_status("cancel"): new_card_ui.canceled = true; new_card_ui.playable = false
 
 
-func discard_card(card : CardUI) -> void:
-	card.queue_free()
+func discard_card(cardui : CardUI) -> void:
+	if !GameManager.character.cache_pile.cards.has(cardui.card): 
+		GameManager.character.cache_pile.add_card(cardui.card)
+	cardui.queue_free()
 
 
 func disable_hand() -> void:
@@ -39,7 +41,7 @@ func update_card_seperation() -> void:
 		7: add_theme_constant_override("separation", -5)
 		8: add_theme_constant_override("separation", -10)
 		9: add_theme_constant_override("separation", -14)
-		10: add_theme_constant_override("separation", -18)
+		10: add_theme_constant_override("separation", -17)
 
 
 func update_card_variant(variant: String, value: int) -> void:

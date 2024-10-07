@@ -98,7 +98,6 @@ func _on_battle_won() -> void:
 	if !wr.get_ref(): return
 	
 	var reward_scence := _change_view(BATTLE_REWARD_SCENCE) as BattleReward
-	
 	reward_scence.add_gold_reward(map.last_room.battle_stats.roll_gold_reward())
 	reward_scence.add_card_reward()
 
@@ -115,15 +114,9 @@ func _on_reward_exited() -> void:
 func _on_map_exited(room: Room) -> void:
 	print("Floor %s: %s%s (column/type/tier)" % [map.floors_climbed, room, str(map.last_room.battle_stats.battle_tier) if map.last_room.battle_stats else "X"])
 	match room.type:
-		Room.Type.MONSTER:
-			_on_battle_room_entered(room)
-		Room.Type.TREASURE:
-			_change_view(TREASURE_SCENCE)
-		Room.Type.HAVEN:
-			_change_view(HAVEN_SCENCE)
-		Room.Type.SHOP:
-			_change_view(SHOP_SCENCE)
-		Room.Type.ELITE:
-			_on_battle_room_entered(room)
-		Room.Type.BOSS:
-			_on_battle_room_entered(room)
+		Room.Type.MONSTER: _on_battle_room_entered(room)
+		Room.Type.TREASURE: _change_view(TREASURE_SCENCE)
+		Room.Type.HAVEN: _change_view(HAVEN_SCENCE)
+		Room.Type.SHOP: _change_view(SHOP_SCENCE)
+		Room.Type.ELITE: _on_battle_room_entered(room)
+		Room.Type.BOSS: _on_battle_room_entered(room)

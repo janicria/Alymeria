@@ -4,7 +4,7 @@ extends Resource
 enum Type {PHYSICAL, INTERNAL, CHAR, STATUS, CHAR_CURSE}
 enum Rarity {COMMON, UNCOMMON, RARE, STATUS}
 enum Target {SELF, SINGLE_ENEMY, ALL_ENEMIES, RANDOM, EVERYONE}
-
+enum Upgrade {NONE, REFINED, ENHANCED}
 
 @export_group("Attributes")
 @export var name: String
@@ -20,7 +20,18 @@ enum Target {SELF, SINGLE_ENEMY, ALL_ENEMIES, RANDOM, EVERYONE}
 @export_multiline var tooltip_text : String
 @export_multiline var effect_description : String
 
+var upgrade: Upgrade
 var fully_played := false
+var cache_cost: int : set = set_cache_cost
+
+
+func set_cache_cost(_value: int) -> void:
+	match rarity:
+		0: cache_cost = 10
+		1: cache_cost = 15
+		2: cache_cost = 30
+		3: cache_cost = 0
+	if upgrade != Upgrade.NONE: cache_cost += 5
 
 
 func set_cost(value: int) -> void:

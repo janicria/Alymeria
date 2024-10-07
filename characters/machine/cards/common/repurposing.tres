@@ -3,16 +3,18 @@
 [ext_resource type="Script" path="res://characters/machine/cards/common/repurposing.gd" id="2_ngu3b"]
 [ext_resource type="AudioStream" uid="uid://dixklg6g4jnsq" path="res://assets/SFX/slash.ogg" id="3_8os66"]
 
-
 [resource]
 script = ExtResource("2_ngu3b")
-id = "machine_repurposing"
 name = "Repurposing"
 type = 1
 rarity = 0
 target = 0
 repeats = 1
 cost = 1
+exhausts = false
 sound = ExtResource("3_8os66")
-tooltip_text = "Draw 2"
-effect_description = "[center]Draw - Add a card from your draw pile to your hand[/center]"
+tooltip_text = "Set in script
+Draw 2
+Uncache 1"
+effect_description = "[center]Draw - Add a card from your draw pile to your [color=ffff00]hand[/color]
+[color=D9BB26]Uncache[/color] - Choose a card from your [color=D9BB26]cache[/color] pile to add to your [color=ffff00]hand[/color], cost 0 and burn if you have enough [color=D9BB26]cache[/color] tokens [/center]"

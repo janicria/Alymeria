@@ -43,18 +43,17 @@ func show_current_view(new_title : String, randomized : bool = false) -> void:
 
 
 func _update_view(randomized : bool) -> void:
-	if ! card_pile:
-		return
+	if ! card_pile: return
 	
 	var all_cards := card_pile.cards.duplicate()
-	if randomized:
-		all_cards.shuffle()
+	if randomized: all_cards.shuffle()
 	
 	for card: Card in all_cards:
 		var new_card := CARD_MENU_UI_SCENCE.instantiate() as CardMenuUI
 		cards.add_child(new_card)
 		new_card.card = card
 		new_card.card_tooltip_requested.connect(card_tooltip.show_tooltip)
+		if get_name() == "CachePileView": new_card.show_cache_cost()
 	
 	show()
 

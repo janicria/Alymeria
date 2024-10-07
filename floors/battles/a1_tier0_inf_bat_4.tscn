@@ -7,21 +7,21 @@
 [node name="a1_tier1_inf_bat4" type="Node2D"]
 
 [node name="Enemy" parent="." instance=ExtResource("1_xu33x")]
-position = Vector2(213, 87)
+position = Vector2(213, 73)
 ai = ExtResource("2_joxae")
 stats = ExtResource("3_m7i7v")
 
 [node name="Enemy2" parent="." instance=ExtResource("1_xu33x")]
-position = Vector2(243, 89)
+position = Vector2(243, 75)
 ai = ExtResource("2_joxae")
 stats = ExtResource("3_m7i7v")
 
 [node name="Enemy3" parent="." instance=ExtResource("1_xu33x")]
-position = Vector2(273, 89)
+position = Vector2(273, 75)
 ai = ExtResource("2_joxae")
 stats = ExtResource("3_m7i7v")
 
 [node name="Enemy4" parent="." instance=ExtResource("1_xu33x")]
-position = Vector2(304, 82)
+position = Vector2(304, 68)
 ai = ExtResource("2_joxae")
 stats = ExtResource("3_m7i7v")

@@ -290,6 +290,8 @@ func debug(additional_option: String = \"\") -> String:
 	deck(\"add\", \"common\", \"laser_barrage\")
 	deck(\"add\", \"uncommon\", \"suboptimal_learning\")
 	deck(\"add\", \"uncommon\", \"power_off\")
+	deck(\"add\", \"uncommon\", \"gas_stores\")
+	deck(\"add\", \"uncommon\", \"implant_tracking\")
 	deck(\"add\", \"rare\", \"advanced_rerouting\")
 	if additional_option == \"infinite_test\":
 		GameManager.character.deck.cards.clear()
@@ -301,7 +303,7 @@ func debug(additional_option: String = \"\") -> String:
 	# Character
 	heal(999, true)
 	GameManager.character.max_mana = 99
-	GameManager.character.cards_per_turn = GameManager.character.deck.cards.size()
+	GameManager.character.cards_per_turn = 10
 	# Misc
 	if additional_option != \"music\":
 		for child:AudioStreamPlayer in MusicPlayer.get_children(): child.volume_db = -INF

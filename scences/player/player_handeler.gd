@@ -34,6 +34,7 @@ func end_turn() -> void:
 
 
 func draw_card() -> void:
+	if hand.get_child_count() >= 10: OS.alert("Max hand size is 10"); return
 	reshuffle_deck_from_discard()
 	if !GameManager.character.draw_pile.cards: return
 	hand.add_card(GameManager.character.draw_pile.draw_card())

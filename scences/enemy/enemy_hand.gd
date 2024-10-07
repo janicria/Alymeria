@@ -33,7 +33,10 @@ func cardToGui(card: EnemyCard, enemy: Enemy) -> void:
 	tween.tween_property(card_ui, "global_position", target_pos, 0.6)
 	
 	# Updating enemy mana and player damage counters
-	tween.finished.connect(func()->void: 
+	tween.finished.connect(func()->void:
+		# TODO: Add await for enemy statuses to apply before playing enemy cards (why this is needed)
+		var wr: WeakRef = weakref(enemy)
+		if !wr.get_ref(): return
 		enemy.update_mana_counter()
 		if card.type == EnemyCard.Type.ATTACK: 
 			Events.update_player_dmg_counter.emit(card.amount * card.repeats, false))

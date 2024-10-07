@@ -8,15 +8,23 @@ const HOVER_STYLEBOX := preload("res://scences/card_ui/card_hover_stylebox.tres"
 
 @export var card: Card : set = set_card
 
-@onready var panel: Panel = $Visuals/Panel
-@onready var cost: Label = $Visuals/Cost
-@onready var type: Label = $Visuals/Type
-@onready var icon: TextureRect = $Visuals/Icon
-@onready var desc: Label = $Visuals/Desc
-@onready var _name: Label = $Visuals/Name
-
+@onready var panel: Panel = %Panel
+@onready var cost: Label = %Cost
+@onready var type: Label = %Type
+@onready var icon: TextureRect = %Icon
+@onready var desc: Label = %Desc
+@onready var _name: Label = %Name
+@onready var cache_cost: RichTextLabel = %CacheCost
 
 var description := ''
+
+
+# It doesn't matter if cache cost can't hide as card menu uis are instanced whenever a card pile is opened
+func show_cache_cost() -> void:
+	card.set_cache_cost(0)
+	cache_cost.text = "[center][color=D9BB26]%s[/color][/center]" % card.cache_cost
+	cache_cost.show()
+
 
 # Not actually a copy from CardUI's method with the same name, the two just look very similar <- # HACK: yes it is wtf are you yapping about
 func set_card(value : Card) -> void:

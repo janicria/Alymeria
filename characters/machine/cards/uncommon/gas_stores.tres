@@ -1,0 +1,17 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://8o3q4wsrwdc8"]
+
+[ext_resource type="Script" path="res://characters/machine/cards/uncommon/gas_stores.gd" id="1_4vh52"]
+[ext_resource type="AudioStream" uid="uid://k8m4o3hlwm7l" path="res://assets/SFX/enemy_block.ogg" id="2_iixm5"]
+
+[resource]
+script = ExtResource("1_4vh52")
+name = "Gas stores"
+type = 0
+rarity = 1
+target = 1
+repeats = 1
+cost = 1
+exhausts = false
+sound = ExtResource("2_iixm5")
+tooltip_text = "Nano plague 4"
+effect_description = ":3"

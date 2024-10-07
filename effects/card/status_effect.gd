@@ -6,5 +6,5 @@ var status: Status
 func execute(targets : Array[Node]) -> void:
 	for target in targets:
 		if !target: continue
-		if target is Enemy or target is Player or target is Summon:
-			target.status_handler.add_status(status)
+		if target is Enemy or target is Player:
+			target.status_handler.add_status(status.duplicate())

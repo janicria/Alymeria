@@ -36,7 +36,7 @@ func update_ui(amount : int, returning : bool) -> void:
 	
 	if GameManager.true_deck_size && get_name() == "DeckButton":
 		counter.text = "%s(%s)" % [deck_size, (deck_size - exhausts_in_deck)]
-	else: counter.text = str(deck_size)
+	else: counter.text = "[center]%s[/center]" % deck_size
 	
 	match get_name():
 		"DrawPileButton":

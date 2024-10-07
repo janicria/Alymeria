@@ -1,0 +1,19 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://bl40vmtk5fsg5"]
+
+[ext_resource type="Script" path="res://characters/machine/cards/uncommon/implant_tracking.gd" id="1_se24y"]
+[ext_resource type="AudioStream" uid="uid://k8m4o3hlwm7l" path="res://assets/SFX/enemy_block.ogg" id="2_vdv2a"]
+
+[resource]
+script = ExtResource("1_se24y")
+name = "Implant tracking"
+type = 0
+rarity = 1
+target = 1
+repeats = 1
+cost = 1
+exhausts = false
+sound = ExtResource("2_vdv2a")
+tooltip_text = "ATK X
+X = enemy nanoplague"
+effect_description = "[center]Attack - Deal [color=\"ff0000\"]damage[/color] to an enemy[/center]
+:3"

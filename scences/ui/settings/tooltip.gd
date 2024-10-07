@@ -65,7 +65,7 @@ func hide_tooltip() -> void:
 	if tween:
 		tween.kill()
 	
-	if hide_timer.get_parent() != self: add_child(hide_timer)
+	#if hide_timer.get_parent() != self: add_child(hide_timer)
 	hide_timer.start(fade_seconds)
 	if !hide_timer.timeout.is_connected(hide_animation):
 		hide_timer.timeout.connect(hide_animation)
