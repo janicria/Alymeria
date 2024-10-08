@@ -49,6 +49,7 @@ func _on_battle_state_updated(new_state : BattleState) -> void:
 		
 		2: # Enemy drawing & applying statuses cards
 			enemy_handler.apply_start_of_turn_statuses()
+			#await enemy_handler.statuses_applied
 			enemy_handler.draw_cards()
 			# First wait in case an enemy draws a card by itself
 			# Second is simply to smooth out animations / UX
@@ -63,6 +64,7 @@ func _on_battle_state_updated(new_state : BattleState) -> void:
 			player_handeler.end_turn()
 			await Events.player_hand_discarded
 			enemy_handler.start_turn()
+			await enemy_handler.statuses_applied
 			enemy_handler.play_next_card()
 		
 		5: # Victory

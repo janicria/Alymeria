@@ -20,6 +20,7 @@ signal player_hand_discarded # Used by battle
 signal player_hit # Used by red_flash
 signal player_died # Used by battle
 signal update_player_dmg_counter(amount: int, reset :bool) # Used by player
+signal player_card_played
 
 ## Enemy-related events
 signal enemy_card_played # Used by enemy_hand

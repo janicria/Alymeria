@@ -1,0 +1,18 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://bnr7kyt6arc7i"]
+
+[ext_resource type="Script" path="res://characters/machine/cards/rare/file_corruption.gd" id="1_fnycr"]
+[ext_resource type="AudioStream" uid="uid://k8m4o3hlwm7l" path="res://assets/SFX/enemy_block.ogg" id="2_rgqdt"]
+
+[resource]
+script = ExtResource("1_fnycr")
+name = "File corruption"
+type = 1
+rarity = 2
+target = 0
+repeats = 1
+cost = 1
+exhausts = true
+sound = ExtResource("2_rgqdt")
+tooltip_text = "File corruption 1
+Exhaust"
+effect_description = "File corruption - Whenever you play a card apply 1 nano plague everyone"

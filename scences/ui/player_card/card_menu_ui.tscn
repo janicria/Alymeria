@@ -109,6 +109,7 @@ autowrap_mode = 3
 
 [node name="CacheCost" type="RichTextLabel" parent="Visuals"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 offset_left = 2.0
 offset_top = 50.0

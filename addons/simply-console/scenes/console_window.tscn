@@ -293,6 +293,8 @@ func debug(additional_option: String = \"\") -> String:
 	deck(\"add\", \"uncommon\", \"gas_stores\")
 	deck(\"add\", \"uncommon\", \"implant_tracking\")
 	deck(\"add\", \"rare\", \"advanced_rerouting\")
+	deck(\"add\", \"rare\", \"file_corruption\")
+	deck(\"add\", \"../../secret\", \"injured_test\")
 	if additional_option == \"infinite_test\":
 		GameManager.character.deck.cards.clear()
 		deck(\"add\", \"rare\", \"advanced_rerouting\")

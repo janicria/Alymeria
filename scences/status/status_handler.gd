@@ -10,8 +10,7 @@ const STATUS_UI := preload("res://scences/status/status_ui.tscn")
 
 
 func apply_statuses_by_type(type: Status.Type) -> void:
-	if type == Status.Type.EVENT: 
-		return
+	if type == Status.Type.EVENT: return
 	
 	var status_queue: Array[Status] = _get_all_statuses().filter(
 		func(status: Status) -> bool: 
@@ -60,6 +59,11 @@ func _has_status(id: String) -> bool:
 		if status_ui.status.id == id:
 			return true
 	
+	return false
+
+
+func has_any_statuses() -> bool:
+	if get_child_count() >= 1: return true
 	return false
 
 

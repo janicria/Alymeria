@@ -1,7 +1,6 @@
 class_name Enemy
 extends Area2D
 
-
 const ARROW_OFFSET := 19
 
 @export var ai: EnemyAI

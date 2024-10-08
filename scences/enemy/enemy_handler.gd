@@ -7,9 +7,9 @@ signal add_card_to_hand(card: EnemyCard, sender: Node2D)
 signal finished_drawing()
 signal show_cards_owned_by_enemy(enemy: Enemy)
 signal hide_enemy_card_arrows()
+signal statuses_applied
 
-
-func _ready() -> void:
+func _ready() -> void: 
 	Events.enemy_card_played.connect(play_next_card)
 
 
@@ -44,15 +44,24 @@ func apply_start_of_turn_statuses() -> void:
 	# Filter prevents EnemyHand from being assigned
 	for enemy: Enemy in get_children().filter(func(child: Node)->bool: return child is Enemy):
 		enemy.status_handler.apply_statuses_by_type(Status.Type.START_OF_TURN)
+		if (enemy.get_index() != get_child_count() - 2) && enemy.status_handler.has_any_statuses(): 
+			await get_tree().create_timer(0.2).timeout
+	stauses_finished()
 
 
 func start_turn() -> void:
-	if get_child_count() == 0:
-		return
-	
+	#if get_child_count() == 0: return
 	# Filter prevents EnemyHand from being assigned
-	for enemy: Enemy in get_children().filter(func(child: Node)->bool: return child is Enemy):
+	for enemy: Enemy in get_children().filter(func(child:Node)->bool: return child is Enemy):
 		enemy.do_turn()
+		if (enemy.get_index() != get_child_count() - 2) && enemy.status_handler.has_any_statuses(): 
+			await get_tree().create_timer(0.4).timeout
+	stauses_finished()
+
+
+func stauses_finished() -> void:
+	await get_tree().process_frame
+	statuses_applied.emit()
 
 
 func play_next_card() -> void:

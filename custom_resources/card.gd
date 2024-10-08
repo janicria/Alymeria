@@ -6,6 +6,8 @@ enum Rarity {COMMON, UNCOMMON, RARE, STATUS}
 enum Target {SELF, SINGLE_ENEMY, ALL_ENEMIES, RANDOM, EVERYONE}
 enum Upgrade {NONE, REFINED, ENHANCED}
 
+# TODO: Ability description const dict (i.e: tooltip_text += DICT["ATTACK"])
+
 @export_group("Attributes")
 @export var name: String
 @export var type: Type

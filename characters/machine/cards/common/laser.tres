@@ -14,4 +14,4 @@ cost = 1
 exhausts = false
 sound = ExtResource("3_8mdsh")
 tooltip_text = "ATK 3"
-effect_description = "[center]Attack - Deal [color=\"ff0000\"]damage[/color] to an enemy[/center]"
+effect_description = ""
