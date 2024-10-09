@@ -87,6 +87,15 @@ hand = NodePath("../BattleUI/Hand")
 [node name="BattleUI" type="CanvasLayer" parent="." groups=["ui_layer"]]
 script = ExtResource("7_pjj3c")
 
+[node name="TurnCounter" type="Label" parent="BattleUI"]
+unique_name_in_owner = true
+offset_left = 43.0
+offset_top = 9.0
+offset_right = 71.0
+offset_bottom = 17.0
+text = "0"
+horizontal_alignment = 2
+
 [node name="Hand" type="HBoxContainer" parent="BattleUI" node_paths=PackedStringArray("player")]
 anchors_preset = 7
 anchor_left = 0.5

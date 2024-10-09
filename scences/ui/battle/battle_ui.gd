@@ -13,10 +13,12 @@ extends CanvasLayer
 @onready var discard_pile_view: CardPileView = %DiscardPileView
 @onready var exhaust_pile_view: CardPileView = %ExhaustPileView
 @onready var cache_pile_view: CardPileView = %CachePileView
+@onready var turn_counter: Label = %TurnCounter
 
 
 func _ready() -> void:
 	Events.player_hand_drawn.connect(func()->void: end_turn_button.disabled = false)
+	Events.update_turn_number.connect(func(number:int)->void: turn_counter.text = str(number))
 	end_turn_button.pressed.connect(_on_end_turn_button_pressed)
 	draw_pile_button.pressed.connect(draw_pile_view.show_current_view.bind("Draw pile", true))
 	discard_pile_button.pressed.connect(discard_pile_view.show_current_view.bind("Discard pile"))

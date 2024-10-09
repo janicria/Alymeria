@@ -23,21 +23,6 @@
 		"argumentList": [],
 		"description": "Clears the console's text"
 	},
-	"cheats": {
-		"target": "",
-		"type": 1,
-		"minPermission": 0,
-		"cheats": false,
-		"method": "toggle_cheats",
-		"argumentList": [
-			{
-				"name": "enabled",
-				"type": 1,
-				"optional": true
-			}
-		],
-		"description": "Enables cheat commands. Leaving no argument displays whether or not checks are enabled\n(running 'cheats true' disables achievements)"
-	},
 	"echo": {
 		"target": "",
 		"type": 1,
@@ -57,7 +42,7 @@
 		"target": "",
 		"type": 1,
 		"minPermission": 0,
-		"cheats": true,
+		"cheats": false,
 		"method": "gold",
 		"argumentList": [
 			{
@@ -72,7 +57,7 @@
 		"target": "",
 		"type": 1,
 		"minPermission": 0,
-		"cheats": true,
+		"cheats": false,
 		"method": "kill",
 		"argumentList": [
 			{
@@ -87,7 +72,7 @@
 		"target": "",
 		"type": 1,
 		"minPermission": 0,
-		"cheats": true,
+		"cheats": false,
 		"method": "heal",
 		"argumentList": [
 			{
@@ -107,7 +92,7 @@
 		"target": "",
 		"type": 1,
 		"minPermission": 0,
-		"cheats": true,
+		"cheats": false,
 		"method": "deck",
 		"argumentList": [
 			{
@@ -132,7 +117,7 @@
 		"target": "",
 		"type": 1,
 		"minPermission": 0,
-		"cheats": true,
+		"cheats": false,
 		"method": "act",
 		"argumentList": [
 			{
@@ -147,7 +132,7 @@
 		"target": "",
 		"type": 1,
 		"minPermission": 0,
-		"cheats": true,
+		"cheats": false,
 		"method": "debug",
 		"argumentList": [
 			{
@@ -157,5 +142,20 @@
 			}
 		],
 		"description": "Helps make debugging more efficient (no undo)"
+	},
+	"turn": {
+		"target": "",
+		"type": 1,
+		"minPermission": 0,
+		"cheats": false,
+		"method": "turn",
+		"argumentList": [
+			{
+				"name": "number",
+				"type": 2,
+				"optional": false
+			}
+		],
+		"description": "Changes the turn number"
 	}
 }

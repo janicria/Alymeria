@@ -45,7 +45,7 @@ func add_status(status: Status) -> void:
 		return
 	
 	# Increases status duration
-	if status.stack_type == Status.StackType.DURATION or status.stack_type == Status.StackType.INTENSE_DURATION:
+	if status.stack_type == Status.StackType.DURATION:
 		_get_status(status.id).duration += status.duration
 		return
 	
@@ -83,5 +83,5 @@ func _get_all_statuses() -> Array[Status]:
 
 
 func _on_status_applied(status: Status) -> void:
-	if status.stack_type == Status.StackType.DURATION or status.stack_type == Status.StackType.INTENSE_DURATION:
+	if status.stack_type == Status.StackType.DURATION:
 		status.duration -= 1

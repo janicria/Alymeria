@@ -26,14 +26,14 @@ func set_status(value: Status) -> void:
 func status_changed() -> void:
 	if !status: return
 	
-	if status.duration <= 0 && (status.stack_type == Status.StackType.DURATION or status.stack_type == Status.StackType.INTENSE_DURATION):
+	if status.duration <= 0 && status.stack_type == Status.StackType.DURATION:
 		queue_free()
 	
 	# Allows negative stacks
-	if status.stacks == 0 && (status.stack_type == Status.StackType.INTENSITY or status.stack_type == Status.StackType.INTENSE_DURATION):
+	if status.stacks == 0 && status.stack_type == Status.StackType.INTENSITY:
 		queue_free()
 	
-	if status.stack_type == Status.StackType.DURATION or status.stack_type == Status.StackType.INTENSE_DURATION:
+	if status.stack_type == Status.StackType.DURATION:
 		label.text = str(status.duration)
 	elif status.stack_type == Status.StackType.INTENSITY:
 		label.text = str(status.stacks)

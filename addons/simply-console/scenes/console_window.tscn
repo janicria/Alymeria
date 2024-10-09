@@ -32,7 +32,7 @@ var historyPosition: int = 0
 func _ready() -> void:
 	Events.toggle_console_visible.connect(func()->void: visible = !visible)
 	output_comment(
-		\"To see a list of available commands use the 'help' command (most are locked behind the cheats command)\"
+		\"To see a list of available commands use the 'help' command)\"
 	)
 	output_comment(
 		\"Optionally, use 'help (command)' to get more information about a specific command.\"
@@ -196,15 +196,6 @@ func clear_console() -> void:
 	OutputFieldRef.clear()
 
 
-func toggle_cheats(state: bool = cheatsEnabled) -> String:
-	if state == cheatsEnabled:
-		return \"Cheats are currently \" + (\"enabled.\" if state else \"disabled.\")
-	
-	cheatsEnabled = state
-	print(\"[CMD] Cheats %s\" % cheatsEnabled)
-	return \"Cheats are now \" + (\"enabled (try running help with cheats on)\" if state else \"disabled.\")
-
-
 func echo(text: String) -> String:
 	return text
 
@@ -313,6 +304,15 @@ func debug(additional_option: String = \"\") -> String:
 	print(\"[CMD] Debug w/ args %s end!\" % additional_option)
 	return 'Have \"fun\" debugging!'
 
+
+func turn(number: int) -> String:
+	var wr: WeakRef = weakref(get_tree().get_first_node_in_group(\"player\"))
+	if !wr.get_ref(): return \"Not in a battle!\"
+	elif number < 0: return \"Not a valid turn number!\"
+	elif number == 0 && !GameManager.combat_is_evenodd: return \"Not a valid turn number! (though maybe it is in another combat?)\"
+	var old_value := GameManager.turn_number
+	Events.update_turn_number.emit(number)
+	return \"Changed the turn number from %s to %s\" % [old_value, GameManager.turn_number]
 
 #endregion
 "

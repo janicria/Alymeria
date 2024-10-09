@@ -25,7 +25,6 @@ const DEFAULT_BUS_LAYOUT = preload("res://assets/misc/default_bus_layout.tres")
 @onready var fullscreen_button: Button = %FullscreenButton
 @onready var pile_button: Button = %CardPilePosButton
 
-
 var cog_speed_boost := 0.0
 
 
@@ -41,6 +40,9 @@ func _ready() -> void:
 		counter.queue_free()
 		gold_ui.queue_free()
 		health_ui.queue_free()
+		master_volume.editable = false
+		sfx_volume.editable = false
+		music_volume.editable = false
 
 
 func _setup(card_pile : CardPile) -> void:
@@ -105,7 +107,7 @@ func _on_toggled_button_toggled(toggled_on: bool, button_string: String) -> void
 		"true_deck": 
 			button = %TrueDeckButton
 			GameManager.true_deck_size = toggled_on
-			Events.update_deck_buttons.emit(0, false)
+			Events.update_deck_buttons.emit()
 		"hints": 
 			button = %HintsButton
 			GameManager.gameplay_tips = toggled_on
@@ -120,7 +122,7 @@ func _on_toggled_button_toggled(toggled_on: bool, button_string: String) -> void
 			if toggled_on: pile_button.text = "Inside"
 			else: pile_button.text = "Outside"
 			GameManager.card_pile_above_mana = toggled_on
-			Events.update_deck_buttons.emit(0, false)
+			Events.update_deck_buttons.emit()
 	
 	# We don't want to override the inside/outside text
 	if button == %CardPilePosButton: return

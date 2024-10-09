@@ -13,7 +13,6 @@ const CARD_MENU_UI_SCENCE := preload("res://scences/ui/player_card/card_menu_ui.
 
 func _ready() -> void:
 	Events.update_card_tooltip_position.connect(_on_update_card_tooltip_position)
-	Events.update_deck_buttons.connect(_on_update_deck_buttons)
 	
 	return_button.pressed.connect(func()->void:
 		hide()
@@ -64,10 +63,3 @@ func _on_update_card_tooltip_position(card : CardMenuUI) -> void:
 	if card_tooltip.position.x > 260:
 		card_tooltip.position.x = 150
 		card_tooltip.hitbox.position.x = 120
-
-
-func _on_update_deck_buttons(_amount : int, returning : bool) -> void:
-	if returning:
-		return
-	
-	Events.update_deck_buttons.emit(cards.get_child_count(), true)

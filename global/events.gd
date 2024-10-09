@@ -7,7 +7,7 @@ signal card_aim_started(card_ui: CardUI) # Used by card_ui, card_target_selector
 signal card_aim_ended(card_ui: CardUI) # Used by card_ui, card_target_selector, tooltip
 signal card_played(card : Card) # Used by player_handler
 signal update_card_pile(card_pile : CardPile) # Used by settings_bar
-signal update_deck_buttons(amount : int, returning : bool) # Used by card_pile_view, card_pile_button
+signal update_deck_buttons() # Used by card_pile_button
 signal update_deck_counter # Used by card_pile_button
 signal update_card_stats # Used by repurposing
 signal update_card_variant(variant: String, value: int) # Used by hand
@@ -34,6 +34,7 @@ signal toggle_console_visible() # Used by console (not visible via search)
 signal battle_state_updated(state : Battle.BattleState) # Used by battle, battle_over_panel
 signal battle_won # Used by run
 signal battle_request_player_turn # Used by battle
+signal update_turn_number(number: int) # Used by battle_ui, gamemanager
 
 ## Tooltip-related events
 signal settings_tooltip_requested(text : String) # Used by tooltp (makes visible)
@@ -51,3 +52,6 @@ signal haven_exited # Used by run
 signal battle_reward_exited # Used by run
 signal treasure_room_exited # Used by run
 signal events_extied # Used by run
+
+
+func _init() -> void: process_mode = PROCESS_MODE_ALWAYS

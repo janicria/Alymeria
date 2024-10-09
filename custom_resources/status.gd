@@ -5,7 +5,7 @@ signal status_applied(status: Status)
 signal status_changed
 
 enum Type {START_OF_TURN, END_OF_TURN, EVENT}
-enum StackType {NONE, INTENSITY, DURATION, INTENSE_DURATION}
+enum StackType {NONE, INTENSITY, DURATION}
 
 @export_group("Data")
 @export var id: String

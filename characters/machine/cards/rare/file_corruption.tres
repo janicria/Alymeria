@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=3 format=3 uid="uid://bnr7kyt6arc7i"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://ci5jbp8mo1sj4"]
 
 [ext_resource type="Script" path="res://characters/machine/cards/rare/file_corruption.gd" id="1_fnycr"]
 [ext_resource type="AudioStream" uid="uid://k8m4o3hlwm7l" path="res://assets/SFX/enemy_block.ogg" id="2_rgqdt"]
@@ -10,7 +10,7 @@ type = 1
 rarity = 2
 target = 0
 repeats = 1
-cost = 1
+cost = 2
 exhausts = true
 sound = ExtResource("2_rgqdt")
 tooltip_text = "File corruption 1

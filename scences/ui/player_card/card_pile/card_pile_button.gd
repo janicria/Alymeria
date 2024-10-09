@@ -14,13 +14,13 @@ func set_card_pile(new_value : CardPile) -> void:
 	card_pile = new_value
 	
 	Events.update_deck_buttons.connect(update_ui)
-	Events.update_deck_counter.connect(func()->void: update_ui(exhausts_in_deck, true))
+	Events.update_deck_counter.connect(update_ui)
 	
 	if !card_pile.card_pile_size_changed.is_connected(_on_card_pile_size_changed):
 		card_pile.card_pile_size_changed.connect(_on_card_pile_size_changed)
 		_on_card_pile_size_changed(card_pile.cards.size())
 	
-	update_ui(deck_size, true)
+	update_ui()
 	_on_card_pile_size_changed(deck_size)
 
 
@@ -28,14 +28,14 @@ func _on_card_pile_size_changed(amount : int) -> void:
 	deck_size = amount
 	if get_name() == "CachePileButton": counter.text = "[center][color=D9BB26]%s[/color] %s[/center]" % [GameManager.character.cache_tokens, deck_size]
 	else: counter.text = "[center]%s[/center]" % deck_size
-	if GameManager.true_deck_size: Events.update_deck_buttons.emit(0, false)
+	if GameManager.true_deck_size: Events.update_deck_buttons.emit()
 
 
-func update_ui(amount : int, returning : bool) -> void:
-	if returning: exhausts_in_deck = amount
-	
+func update_ui() -> void:
+	# True deck size
 	if GameManager.true_deck_size && get_name() == "DeckButton":
-		counter.text = "%s(%s)" % [deck_size, (deck_size - exhausts_in_deck)]
+		counter.text = "%s(%s)" % [deck_size, (deck_size - GameManager.character.deck.cards.filter(
+			func(card: Card)->bool: return card.exhausts).size())]
 	else: counter.text = "[center]%s[/center]" % deck_size
 	
 	match get_name():

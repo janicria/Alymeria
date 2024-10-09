@@ -24,7 +24,7 @@ var cache_pile: CardPile
 
 func set_cache(value: int) -> void:
 	cache_tokens = clampi(value, 0, 99)
-	Events.update_deck_buttons.emit(0, false)
+	Events.update_deck_buttons.emit()
 
 
 func set_mana(value : int) -> void:

@@ -65,7 +65,7 @@ func play() -> void:
 		card.play(targets, player_modifiers)
 		Events.player_card_played.emit()
 		GameManager.character.cache_tokens += 1
-		Events.update_deck_buttons.emit(0, false)
+		Events.update_deck_buttons.emit()
 		queue_free()
 
 

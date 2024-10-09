@@ -42,9 +42,11 @@ func _on_battle_state_updated(new_state : BattleState) -> void:
 	state = new_state
 	match state:
 		0: # Base
+			GameManager.turn_number = 0
 			Events.battle_state_updated.emit(1)
 		
 		1: # Loops
+			Events.update_turn_number.emit(GameManager.turn_number + 1)
 			Events.battle_state_updated.emit(2)
 		
 		2: # Enemy drawing & applying statuses cards

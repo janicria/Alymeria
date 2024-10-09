@@ -28,7 +28,10 @@ var uncommon_weight := BASE_UNCOMMON_WEIGHT
 var rare_weight := BASE_RARE_WEIGHT
 var character: CharacterStats
 var current_biome := Biome.FOREST : set = set_current_biome
-
+var card_pile_open := false : set = set_card_pile
+var console_banned := false
+var turn_number := 0
+var combat_is_evenodd := false
 # Dictionary-related variables
 var biome_floors := {
 	Biome.FOREST: 12,
@@ -52,9 +55,6 @@ var multipliers := {
 	"RARE_CARD_RARITY": 0.0
 }
 
-# Global variables
-var card_pile_open := false : set = set_card_pile
-
 
 func set_current_biome(value: Biome) -> void:
 	current_biome = clampi(value, Biome.FOREST, (Biome.size()) -1)
@@ -73,6 +73,7 @@ func reset_stats() -> void:
 
 func _init() -> void:
 	process_mode = PROCESS_MODE_ALWAYS
+	Events.update_turn_number.connect(func(number:int)->void:turn_number = number)
 	
 	# Logging
 	print("Successful launch")
