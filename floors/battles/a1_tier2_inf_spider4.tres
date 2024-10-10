@@ -6,6 +6,6 @@
 [resource]
 script = ExtResource("1_nob1t")
 battle_tier = 2
-weight = 40
+weight = 4
 pure = false
 enemies = ExtResource("1_jopfo")

@@ -8,6 +8,11 @@ extends Resource
 
 var accumulated_weight := 0.0
 
+
+func _init() -> void:
+	GameManager.combat_is_evenodd = false
+
+
 #TODO: Check for infected enemy combats
 func roll_gold_reward() -> int:
 	match battle_tier: # Translation: (10 to 15) * ((biome + 1) / 2) with biome rounded up
@@ -17,3 +22,7 @@ func roll_gold_reward() -> int:
 		3: return randi_range(15, 25 * (GameManager.current_biome+2)) # Boss pool
 	GameManager.notify("Unable to return gold reward")
 	return (randi_range(5, 25)*(GameManager.current_biome+1)) /2
+
+
+func turn_effects() -> void:
+	pass

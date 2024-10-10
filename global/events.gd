@@ -25,6 +25,7 @@ signal player_card_played
 ## Enemy-related events
 signal enemy_card_played # Used by enemy_hand
 signal enemy_died(enemy: Enemy) # Used by enemy_card_ui
+signal update_battle_stats()
 
 ## UI-related events
 signal update_settings_visibility(state: bool) # Used by run

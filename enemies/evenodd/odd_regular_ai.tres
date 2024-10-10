@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="EnemyAI" load_steps=3 format=3 uid="uid://xhkhjtq0um5k"]
+
+[ext_resource type="Script" path="res://custom_resources/enemy_card.gd" id="1_ctery"]
+[ext_resource type="Script" path="res://custom_resources/enemy_ai.gd" id="2_76rbq"]
+
+[resource]
+script = ExtResource("2_76rbq")
+actions = Array[ExtResource("1_ctery")]([])
+health_cards = Array[ExtResource("1_ctery")]([])

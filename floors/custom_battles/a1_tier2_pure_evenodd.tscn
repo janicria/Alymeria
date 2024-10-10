@@ -1,0 +1,19 @@
+[gd_scene load_steps=6 format=3 uid="uid://bgu8o43fxdy3e"]
+
+[ext_resource type="PackedScene" uid="uid://dkpw6tsw7i7y0" path="res://scences/enemy/enemy.tscn" id="1_6igyu"]
+[ext_resource type="Resource" uid="uid://0kgiwhh0l0mt" path="res://enemies/evenodd/even_regular_ai.tres" id="2_imj4m"]
+[ext_resource type="Resource" uid="uid://cusx3epp0cgxw" path="res://enemies/evenodd/even_stats.tres" id="3_dbei6"]
+[ext_resource type="Resource" uid="uid://xhkhjtq0um5k" path="res://enemies/evenodd/odd_regular_ai.tres" id="4_i5uaw"]
+[ext_resource type="Resource" uid="uid://bfvam8oif8iwy" path="res://enemies/evenodd/odd_stats.tres" id="5_gm7nj"]
+
+[node name="a1_tier1_inf_bat4" type="Node2D"]
+
+[node name="Enemy" parent="." instance=ExtResource("1_6igyu")]
+position = Vector2(237, 83)
+ai = ExtResource("2_imj4m")
+stats = ExtResource("3_dbei6")
+
+[node name="Enemy2" parent="." instance=ExtResource("1_6igyu")]
+position = Vector2(267, 85)
+ai = ExtResource("4_i5uaw")
+stats = ExtResource("5_gm7nj")

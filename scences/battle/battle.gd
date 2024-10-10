@@ -17,7 +17,6 @@ func _ready() -> void:
 	Events.player_died.connect(_on_player_died)
 	Events.battle_state_updated.connect(_on_battle_state_updated)
 	Events.battle_request_player_turn.connect(_on_battle_request_player_turn)
-	
 	Events.player_hand_discarded.connect(enemy_handler.start_turn)
 
 
@@ -47,6 +46,7 @@ func _on_battle_state_updated(new_state : BattleState) -> void:
 		
 		1: # Loops
 			Events.update_turn_number.emit(GameManager.turn_number + 1)
+			battle_stats.turn_effects()
 			Events.battle_state_updated.emit(2)
 		
 		2: # Enemy drawing & applying statuses cards

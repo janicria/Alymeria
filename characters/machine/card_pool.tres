@@ -9,7 +9,7 @@
 [ext_resource type="Resource" uid="uid://8o3q4wsrwdc8" path="res://characters/machine/cards/uncommon/gas_stores.tres" id="7_d7cwr"]
 [ext_resource type="Resource" uid="uid://dxoxah522fws" path="res://characters/secret/placeholder_rare_card.tres" id="8_tyksy"]
 [ext_resource type="Resource" uid="uid://bl40vmtk5fsg5" path="res://characters/machine/cards/uncommon/implant_tracking.tres" id="8_xcrab"]
-[ext_resource type="Resource" path="res://characters/machine/cards/rare/file_corruption.tres" id="9_fb7dr"]
+[ext_resource type="Resource" uid="uid://ci5jbp8mo1sj4" path="res://characters/machine/cards/rare/file_corruption.tres" id="9_fb7dr"]
 [ext_resource type="Resource" uid="uid://yeeykayldugs" path="res://characters/machine/cards/rare/advanced_rerouting.tres" id="9_s54w8"]
 [ext_resource type="Resource" uid="uid://b3k1qnuqi4oeu" path="res://characters/machine/cards/uncommon/suboptimal_learning.tres" id="10_lgcoy"]
 [ext_resource type="Script" path="res://custom_resources/card_pile.gd" id="11_3oava"]

@@ -139,13 +139,20 @@ func get_targets() -> Array[Node]:
 
 func apply_effects(targets: Array[Node]) -> void:
 	if is_dead: return
+	if card_stats.custom_amount != "": card_stats.custom_play(); return
 	for i in card_stats.repeats:
-		# Indentation moment (cannot be declared in switch below then refrenced below)
+		# Indentation moment <- ikr it sucks
 		var effect: Effect 
 		match card_stats.type:
 			EnemyCard.Type.ATTACK: effect = DamageEffect.new()
 			EnemyCard.Type.BARRIER: effect = BarrierEffect.new()
 			EnemyCard.Type.LARGE_BARRIER: effect = BarrierEffect.new()
+			EnemyCard.Type.DRAW: enemy_stats.draw_cards(card_stats.amount); return
+			EnemyCard.Type.ENERGY: enemy_stats.mana += card_stats.amount; return
+			EnemyCard.Type.BUFF: card_stats.custom_play(); return
+			EnemyCard.Type.DEBUFF: card_stats.custom_play(); return
+			EnemyCard.Type.SPAWN: card_stats.custom_play(); return
+			EnemyCard.Type.UNKNOWN: card_stats.custom_play(); return
 		effect.amount = card_stats.amount
 		effect.sound = card_stats.SFX_dict.get(card_stats.type)
 		effect.execute(targets)

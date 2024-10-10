@@ -312,6 +312,10 @@ func turn(number: int) -> String:
 	elif number == 0 && !GameManager.combat_is_evenodd: return \"Not a valid turn number! (though maybe it is in another combat?)\"
 	var old_value := GameManager.turn_number
 	Events.update_turn_number.emit(number)
+	Events.battle_state_updated.emit(1)
+	# Battle increases turn number by 1 when battle state is set to 1
+	Events.update_turn_number.emit(GameManager.turn_number - 1)
+	Events.update_battle_stats.emit()
 	return \"Changed the turn number from %s to %s\" % [old_value, GameManager.turn_number]
 
 #endregion
