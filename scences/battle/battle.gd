@@ -29,6 +29,10 @@ func start_battle() -> void:
 	player_handeler.start_battle(GameManager.character)
 	battle_ui.initialise_card_pile_ui()
 	
+	await get_tree().process_frame # Godot doesn't detect filters when checking array types
+	for enemy: Enemy in enemy_handler.get_children().filter(func(child:Node)->bool: return child is Enemy):
+		battle_stats.live_enemies.append(enemy) 
+	
 	Events.battle_state_updated.emit(0)
 
 

@@ -11,14 +11,6 @@ signal statuses_applied
 
 func _ready() -> void: 
 	Events.enemy_card_played.connect(play_next_card)
-	Events.update_battle_stats.connect(update_enemies)
-
-
-func update_enemies() -> void:
-	if GameManager.combat_is_evenodd == true:
-		get_child(1).stats.health = 999
-		get_child(2).stats.health = 666
-
 
 
 func setup_enemies(battle_stats: BattleStats) -> void:

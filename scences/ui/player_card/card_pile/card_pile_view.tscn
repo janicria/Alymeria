@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://4lwv2ug5j5j6" path="res://scences/ui/player_card/card_menu_ui.tscn" id="1_w5x5h"]
 [ext_resource type="PackedScene" uid="uid://n3v1mvmtakc" path="res://scences/ui/player_card/card_tooltip.tscn" id="2_ldoqi"]
 
-
 [sub_resource type="LabelSettings" id="LabelSettings_dc7mx"]
 font_size = 12
 

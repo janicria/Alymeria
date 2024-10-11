@@ -213,6 +213,7 @@ func kill(who: String) -> String:
 	if !wr.get_ref(): 
 		print(\"[CMD] Failed to kill %s\" % who)
 		return \"Not in a battle!\"
+	GameManager.cheats = true
 	
 	if who == \"self\":
 		player.damage_counter.hide()
@@ -229,8 +230,8 @@ func kill(who: String) -> String:
 
 
 func heal(amount: int, max_health := false) -> String:
-	if max_health: 
-		GameManager.character.max_health = amount
+	GameManager.cheats = true
+	if max_health: GameManager.character.max_health = amount
 	GameManager.character.heal(amount)
 	if GameManager.character.health < 1: kill(\"self\")
 	print(\"[CMD] Healed %s health\" % amount)
@@ -243,7 +244,8 @@ func deck(action: String, rarity: String, id: String = \"\") -> String:
 	# Witch cards: deck add ../../witch/cards/common flame
 	var loaded_card: Resource = load((\"res://characters/machine/cards/%s/%s.tres\" % [rarity, id]))
 	if loaded_card is not Card: return \"Card %s with rarity %s does not exist\" % [id, rarity]
-
+	GameManager.cheats = true
+	
 	match action:
 		\"add\":
 			GameManager.character.deck.add_card(loaded_card)
@@ -255,7 +257,8 @@ func deck(action: String, rarity: String, id: String = \"\") -> String:
 			return \"Removed card %s with rarity %s\" % [id, rarity]
 		\"has\":
 			for card in GameManager.character.deck.cards:
-				return \"You %s have card %s in your deck\" % [\"DO\" if card == loaded_card else \"DON'T\", id]
+				if card == loaded_card or card == GameManager.character.deck.cards[-1]:
+					return \"You %s have card %s in your deck\" % [\"DO\" if card == loaded_card else \"DON'T\", id]
 	
 	return \"%s is not an action for command deck, possible actions: add, remove, has\" % action
 
@@ -265,6 +268,7 @@ func act(number: int = -1) -> String:
 	if number == -1: return \"Current act is %s(%s)\" % [GameManager.Biome.keys()[GameManager.current_biome], GameManager.current_biome]
 	var old_number := GameManager.current_biome
 	GameManager.current_biome = number
+	GameManager.cheats = true
 	print(\"[CMD] Changed act number from %s to %s\" % [old_number, GameManager.current_biome])
 	return \"Changed act number from %s(%s) to %s(%s)\" % [GameManager.Biome.keys()[old_number], old_number, GameManager.Biome.keys()[GameManager.current_biome], GameManager.current_biome]
 
@@ -302,6 +306,7 @@ func debug(additional_option: String = \"\") -> String:
 		for child:AudioStreamPlayer in MusicPlayer.get_children(): child.volume_db = -INF
 		for child:AudioStreamPlayer in SFXPlayer.get_children(): child.volume_db = -INF
 	print(\"[CMD] Debug w/ args %s end!\" % additional_option)
+	GameManager.cheats = true
 	return 'Have \"fun\" debugging!'
 
 
@@ -309,14 +314,19 @@ func turn(number: int) -> String:
 	var wr: WeakRef = weakref(get_tree().get_first_node_in_group(\"player\"))
 	if !wr.get_ref(): return \"Not in a battle!\"
 	elif number < 0: return \"Not a valid turn number!\"
-	elif number == 0 && !GameManager.combat_is_evenodd: return \"Not a valid turn number! (though maybe it is in another combat?)\"
 	var old_value := GameManager.turn_number
 	Events.update_turn_number.emit(number)
 	Events.battle_state_updated.emit(1)
 	# Battle increases turn number by 1 when battle state is set to 1
 	Events.update_turn_number.emit(GameManager.turn_number - 1)
 	Events.update_battle_stats.emit()
+	GameManager.cheats = true
 	return \"Changed the turn number from %s to %s\" % [old_value, GameManager.turn_number]
+
+
+func stats() -> String:
+	return \"Damage dealt - %s\\nDamage taken - %s\\nHealth healed - %s\\nCheats - %s\" % [GameManager.damage_dealt, GameManager.damage_taken, GameManager.health_healed, GameManager.cheats]
+
 
 #endregion
 "

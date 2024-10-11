@@ -30,8 +30,7 @@ func on_mouse_entered() -> void:
 
 
 func on_mouse_exited() -> void:
-	if !card_ui.playable or card_ui.disabled:
-		return
+	if !card_ui.playable or card_ui.disabled: return
 	
 	card_ui.panel.set("theme_override_styles/panel", card_ui.BASE_STYLEBOX)
 	Events.tooltip_hide_requested.emit()

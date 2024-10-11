@@ -157,5 +157,14 @@
 			}
 		],
 		"description": "Changes the turn number"
+	},
+	"stats": {
+		"target": "",
+		"type": 1,
+		"minPermission": 0,
+		"cheats": false,
+		"method": "stats",
+		"argumentList": [],
+		"description": "Displays stats about your run"
 	}
 }

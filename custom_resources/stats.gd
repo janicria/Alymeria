@@ -8,6 +8,7 @@ signal stats_changed
 
 var health : int : set = set_health
 var barrier : int : set = set_barrier
+var player := false
 
 
 func set_max_health(value: int) -> void:
@@ -25,8 +26,7 @@ func set_barrier(value : int) -> void:
 
 
 func take_damage(damage: int) -> void:
-	if damage <= 0:
-		return
+	if damage <= 0: return
 	var initial_damage := damage
 	damage = clampi(damage - barrier, 0, damage)
 	barrier = clampi(barrier - initial_damage, 0, barrier)
@@ -35,6 +35,7 @@ func take_damage(damage: int) -> void:
 
 func heal(amount : int) -> void:
 	health += amount
+	if player: GameManager.health_healed += amount
 
 
 func create_instance() -> Resource:

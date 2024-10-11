@@ -58,14 +58,12 @@ func show_tooltop(text : String) -> void:
 	tween.tween_property(self, "modulate", Color.WHITE, fade_seconds)
 
 
-# Starts a the timer to hide the tooltip
+# Starts a the timer before hiding
 func hide_tooltip() -> void:
 	is_showing = false
+	if tween: tween.kill()
+	if !is_inside_tree(): return
 	
-	if tween:
-		tween.kill()
-	
-	#if hide_timer.get_parent() != self: add_child(hide_timer)
 	hide_timer.start(fade_seconds)
 	if !hide_timer.timeout.is_connected(hide_animation):
 		hide_timer.timeout.connect(hide_animation)

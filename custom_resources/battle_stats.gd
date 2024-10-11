@@ -7,10 +7,11 @@ extends Resource
 @export var enemies: PackedScene
 
 var accumulated_weight := 0.0
+var live_enemies: Array[Enemy]
 
 
 func _init() -> void:
-	GameManager.combat_is_evenodd = false
+	Events.update_battle_stats.connect(update_battle)
 
 
 #TODO: Check for infected enemy combats
@@ -25,4 +26,8 @@ func roll_gold_reward() -> int:
 
 
 func turn_effects() -> void:
+	pass
+
+
+func update_battle() -> void:
 	pass

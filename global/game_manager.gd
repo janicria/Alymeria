@@ -2,7 +2,7 @@ extends Node
 
 signal gold_changed
 
-#Constant-related variables
+# Constants 
 const STARTING_GOLD := 50
 const BASE_CARD_REWARDS := 4
 const BASE_COMMON_WEIGHT := 85.0
@@ -10,17 +10,24 @@ const BASE_UNCOMMON_WEIGHT := 10.0
 const BASE_RARE_WEIGHT := 5.0
 enum Biome {FOREST, TOWN, CAVES, CITY, TRAIN, STORM, FINAL}
 
-# Settings-related variables
+# Settings variables
 var true_draw_amount := false
 var true_deck_size := false
 var card_pile_above_mana := true
 var gameplay_tips := true
 
-# Bestiary-related variables
+# Stats variables
+var damage_taken := 0
+var blocked_damage := 0
+var damage_dealt := 0
+var health_healed := 0
+var cheats := false
+
+# Bestiary variables
 var spider_bestiary_entry := false
 var bat_bestiary_entry := false
 
-# Misc-related variables
+# Misc variables
 var gold := STARTING_GOLD : set = set_gold
 var card_rewards := BASE_CARD_REWARDS
 var common_weight := BASE_COMMON_WEIGHT
@@ -31,8 +38,6 @@ var current_biome := Biome.FOREST : set = set_current_biome
 var card_pile_open := false : set = set_card_pile
 var console_banned := false
 var turn_number := 0
-var combat_is_evenodd := false
-# Dictionary-related variables
 var biome_floors := {
 	Biome.FOREST: 12,
 	Biome.TOWN: 16,
@@ -40,8 +45,7 @@ var biome_floors := {
 	Biome.CITY: 16,
 	Biome.TRAIN: 8,
 	Biome.STORM: 8,
-	Biome.FINAL: INF
-}
+	Biome.FINAL: INF}
 var multipliers := {
 	"WEATHER": 1,
 	"ENEMY_DAMAGE": 1,
@@ -52,8 +56,7 @@ var multipliers := {
 	"BOSS_MOVESET": 0,
 	"WEATHER_MOVESET": 0,
 	"UNCOMMON_CARD_RARITY": 0.0,
-	"RARE_CARD_RARITY": 0.0
-}
+	"RARE_CARD_RARITY": 0.0}
 
 
 func set_current_biome(value: Biome) -> void:
@@ -68,6 +71,11 @@ func set_card_pile(value: bool) -> void:
 
 func reset_stats() -> void:
 	gold = STARTING_GOLD
+	damage_dealt = 0
+	damage_taken = 0
+	blocked_damage = 0
+	health_healed = 0
+	cheats = false
 	reset_weights()
 
 

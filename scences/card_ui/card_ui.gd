@@ -78,6 +78,7 @@ func _on_mouse_exited() -> void:
 	card_state_machine.on_mouse_exited()
 	z_index = 0
 
+
 func set_card(value : Card) -> void:
 	if ! is_node_ready(): await ready
 	card = value

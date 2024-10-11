@@ -28,12 +28,11 @@ func on_gui_input(event: InputEvent) -> void:
 		current_state.on_gui_input(event)
 
 func on_mouse_entered() -> void:
-	if current_state:
-		current_state.on_mouse_entered()
+	if current_state: current_state.on_mouse_entered()
+
 
 func on_mouse_exited() -> void:
-	if current_state:
-		current_state.on_mouse_exited()
+	if current_state: current_state.on_mouse_exited()
 
 
 func _on_transition_requested(from: CardState, to: CardState.State) -> void:

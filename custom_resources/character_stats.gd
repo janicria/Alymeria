@@ -41,6 +41,7 @@ func take_damage(damage : int) -> void:
 	super.take_damage(damage)
 	if initial_health > health: 
 		cache_tokens -= damage
+		GameManager.damage_taken += damage
 		Events.player_hit.emit()
 
 
@@ -58,4 +59,5 @@ func create_instance() -> Resource:
 	instance.discard = CardPile.new()
 	instance.exhaust_pile = CardPile.new()
 	instance.cache_pile = CardPile.new()
+	instance.player = true
 	return instance
