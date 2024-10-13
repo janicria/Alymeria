@@ -284,6 +284,7 @@ func debug(additional_option: String = \"\") -> String:
 	deck(\"add\", \"common\", \"shields\")
 	deck(\"add\", \"common\", \"power_strike\")
 	deck(\"add\", \"common\", \"laser_barrage\")
+	deck(\"add\", \"common\", \"miniature_randomizer\")
 	deck(\"add\", \"uncommon\", \"suboptimal_learning\")
 	deck(\"add\", \"uncommon\", \"power_off\")
 	deck(\"add\", \"uncommon\", \"gas_stores\")

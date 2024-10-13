@@ -12,4 +12,3 @@ duration = 1
 stacks = 0
 icon = ExtResource("1_65srr")
 tooltip = "Injured - Recive 30% more damage from attacks. Decreases by 1 at the END of each turn"
-magic_tooltip_numbers = false

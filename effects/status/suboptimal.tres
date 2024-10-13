@@ -13,4 +13,3 @@ stacks = 0
 icon = ExtResource("1_7fdrm")
 tooltip = "Suboptimal - At the start of each turn lose X health and gain X damage up
 [center]Damage up - [color=ff0000]Attacks[/color] deal %s more damage"
-magic_tooltip_numbers = true

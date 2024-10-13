@@ -36,6 +36,7 @@ func _ready() -> void:
 	Events.card_drag_started.connect(_on_card_drag_or_aiming_started)
 	Events.card_drag_ended.connect(_on_card_drag_or_aiming_ended)
 	Events.card_aim_ended.connect(_on_card_drag_or_aiming_ended)
+	GameManager.character.stats_changed.connect(_on_character_changed)
 	card_state_machine.init(self)
 
 
@@ -146,5 +147,5 @@ func _on_card_drag_or_aiming_ended(_card : CardUI) -> void:
 	playable = GameManager.character.can_play_card(card)
 
 
-func _on_GameManager_character_changed() -> void:
+func _on_character_changed() -> void:
 	playable = GameManager.character.can_play_card(card)

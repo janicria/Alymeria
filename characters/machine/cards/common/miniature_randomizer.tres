@@ -1,0 +1,20 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://bwd23qw8dqmb1"]
+
+[ext_resource type="Script" path="res://characters/machine/cards/common/miniature_randomizer.gd" id="1_prx7t"]
+[ext_resource type="AudioStream" uid="uid://k8m4o3hlwm7l" path="res://assets/SFX/enemy_block.ogg" id="2_rav3k"]
+
+[resource]
+script = ExtResource("1_prx7t")
+name = "Miniature randomizer"
+type = 1
+rarity = 0
+target = 0
+repeats = 1
+cost = 1
+exhausts = true
+sound = ExtResource("2_rav3k")
+tooltip_text = "Either buff 2 OR debuff 1
+Exhaust"
+effect_description = "Buff - Apply a random buff
+Debuff - Apply a random debuff
+OR - Only one of the two effects will be applied"
