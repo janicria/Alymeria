@@ -2,11 +2,8 @@ extends Node
 
 
 func play(audio : AudioStream, single := false) -> void:
-	if !audio:
-		return
-	
-	if single:
-		stop()
+	if !audio: return
+	if single: stop()
 	
 	for player in get_children():
 		player = player

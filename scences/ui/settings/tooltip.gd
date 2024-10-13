@@ -44,15 +44,14 @@ func show_settings(text : String) -> void:
 
 
 func show_tooltop(text : String) -> void:
-	if get_name() == "SettingsTooltip":
-		return
+	if get_name() == "SettingsTooltip": return
 	
 	is_showing = true
-
+	
 	if tween:
 		tween.kill()
 	
-	tooltip_text_label.text = text
+	tooltip_text_label.text = "[center]%s[/center]" % text
 	tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	tween.tween_callback(show)
 	tween.tween_property(self, "modulate", Color.WHITE, fade_seconds)

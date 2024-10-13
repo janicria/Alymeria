@@ -34,12 +34,12 @@ func cardToGui(card: EnemyCard, enemy: Enemy) -> void:
 	
 	# Updating enemy mana and player damage counters
 	tween.finished.connect(func()->void:
-		# TODO: Add await for enemy statuses to apply before playing enemy cards (why this is needed)
+		# TODO: Add await for enemy statuses to apply before playing enemy cards (why .finished is needed)
 		var wr: WeakRef = weakref(enemy)
 		if !wr.get_ref(): return
 		enemy.update_mana_counter()
-		if card.type == EnemyCard.Type.ATTACK: 
-			Events.update_player_dmg_counter.emit(card.amount * card.repeats, false))
+		if card.type == EnemyCard.Type.ATTACK:
+			Events.update_player_dmg_counter.emit((card_ui.modified_damage if card_ui.modified_damage else card.amount) * card.repeats, false))
 	
 	# Starting player draw
 	if card_ui == get_child(-1):

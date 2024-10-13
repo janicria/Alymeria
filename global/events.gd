@@ -42,7 +42,7 @@ signal settings_tooltip_requested(text : String) # Used by tooltp (makes visible
 signal tooltip_hide_requested # Used by tooltip
 
 # Makes Tooltip in Battle scence visible then edits its size and position
-signal card_tooltip_requested(card : Card) # Used by card_rewards, card_pile_view, card_tooltip, tooltip
+signal card_tooltip_requested(text: String) # Used by card_rewards, card_pile_view, card_tooltip, tooltip
 
 signal update_card_tooltip_position(card : CardMenuUI) # Used by card_pile_View (Moves it to not go offscreen)
 

@@ -11,4 +11,4 @@ stack_type = 1
 duration = 0
 stacks = 1
 icon = ExtResource("1_fwccx")
-tooltip = "nano plaaaague"
+tooltip = "nano plaaaague %s"

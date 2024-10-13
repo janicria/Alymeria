@@ -11,4 +11,4 @@ stack_type = 1
 duration = 0
 stacks = 1
 icon = ExtResource("1_lmdx7")
-tooltip = "tooltip text"
+tooltip = "[center]Damage up - [color=ff0000]Attacks[/color] deal %s more damage"

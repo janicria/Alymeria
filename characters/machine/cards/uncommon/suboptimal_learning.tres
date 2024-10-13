@@ -11,10 +11,11 @@ target = 0
 repeats = 1
 cost = 1
 exhausts = true
-tooltip_text = "X=enemies
-DMG UP X
+tooltip_text = "DMG UP X
 Health -X
-Exhaust"
+X=enemies
+Exhaust
+"
 effect_description = "[center]Damage up - [color=ff0000]Attacks[/color] deal X more damage
 X - Applies effects for each enemy
 Exhaust - Cannot be played for the rest of the combat[/center]"

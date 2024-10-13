@@ -37,3 +37,15 @@ func status_changed() -> void:
 		label.text = str(status.duration)
 	elif status.stack_type == Status.StackType.INTENSITY:
 		label.text = str(status.stacks)
+
+
+func _on_mouse_entered() -> void:
+	if status.stack_type == Status.StackType.INTENSITY:
+		Events.card_tooltip_requested.emit(status.tooltip % status.stacks)
+	else: Events.card_tooltip_requested.emit(status.tooltip)
+	z_index = 2 # Infront of carduis
+
+
+func _on_mouse_exited() -> void:
+	Events.tooltip_hide_requested.emit()
+	z_index = 0

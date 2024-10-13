@@ -8,7 +8,7 @@ extends HBoxContainer
 
 func _ready() -> void:
 	Events.update_card_variant.connect(update_card_variant)
-	child_order_changed.connect(update_card_seperation) # Reuse the below lambda in future
+	child_order_changed.connect(update_card_seperation) # Reuse the below lambda in future <- uhh, why?
 	Events.update_hand_state.connect(func()->void: for child: CardUI in get_children():
 		if player.status_handler._get_status("cancel"): child.canceled = true; child.playable = false)
 
@@ -17,12 +17,12 @@ func add_card(card : Card) -> void:
 	var new_card_ui := card_ui.instantiate() as CardUI
 	add_child(new_card_ui)
 	new_card_ui.reparent_requested.connect(_on_card_ui_reparent_requested)
-	new_card_ui.card = card
-	new_card_ui.playable = GameManager.character.can_play_card(new_card_ui.card)
 	new_card_ui.parent = self
 	# In case the player dies whilst drawing cards
-	var wr: WeakRef = weakref(player); if !wr.get_ref(): return
+	var wr: WeakRef = weakref(player); if !wr.get_ref(): OS.alert("whoops"); return
 	new_card_ui.player_modifiers = player.modifier_handler
+	new_card_ui.card = card
+	new_card_ui.playable = GameManager.character.can_play_card(new_card_ui.card)
 	if player.status_handler._get_status("cancel"): new_card_ui.canceled = true; new_card_ui.playable = false
 
 

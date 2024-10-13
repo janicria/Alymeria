@@ -15,4 +15,4 @@ exhausts = true
 sound = ExtResource("2_rgqdt")
 tooltip_text = "File corruption 1
 Exhaust"
-effect_description = "File corruption - Whenever you play a card apply 1 nano plague everyone"
+effect_description = "File corruption - Whenever you play a card apply 1 nano plague to everyone"

@@ -1,7 +1,7 @@
 class_name Modifier
 extends Node
 
-enum Type {DMG_DEALT, DMG_TAKEN, CARD_COST, SHOP_COST, NULL}
+enum Type {DMG_DEALT, BARRIER_GAINED, DMG_TAKEN ,CARD_COST, SHOP_COST, NULL}
 
 @export var type: Type
 
@@ -10,7 +10,7 @@ func get_value(source_id: String) -> ModifierValue:
 	for modifier_value: ModifierValue in get_children():
 		if modifier_value.soucre_id == source_id: return modifier_value
 	
-	return null # Deliberate no GameMan.notify()
+	return null
 
 
 func add_new_value(new_value: ModifierValue) -> void:
@@ -38,5 +38,5 @@ func get_modified_value(base: int) -> int:
 		elif modifier_value.type == ModifierValue.Type.PERCENT:
 			percent_result += modifier_value.percent_value
 	
-	# TODO: Reference mods rounding up
+	# TODO: Reference mods rounding up to players
 	return ceili(flat_result * percent_result)

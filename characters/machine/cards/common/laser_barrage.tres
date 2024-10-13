@@ -1,20 +1,19 @@
-[gd_resource type="Resource" script_class="RandomEnemyAttackDouble" load_steps=3 format=3 uid="uid://bivd0gsfass0"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://bivd0gsfass0"]
 
 [ext_resource type="Script" path="res://characters/machine/cards/common/laser_barrage.gd" id="2_yroj3"]
 [ext_resource type="AudioStream" uid="uid://b1vpjjmi5cj3n" path="res://assets/SFX/axe.ogg" id="3_w7sy2"]
 
-
 [resource]
 script = ExtResource("2_yroj3")
-id = "machine_laser_barrage"
 name = "Laser barrage"
 type = 0
 rarity = 0
 target = 3
 repeats = 2
 cost = 2
+exhausts = false
 sound = ExtResource("3_w7sy2")
-tooltip_text = "ATK 4 twice.
+tooltip_text = "ATK %s twice.
 Chaotic"
 effect_description = "[center]Attack - Deal [color=\"ff0000\"]damage[/color] to an enemy
 Chaotic - Affects a random [color=\"008000\"]target[/color][/center]"

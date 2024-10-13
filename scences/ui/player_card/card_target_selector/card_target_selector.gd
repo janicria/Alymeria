@@ -15,8 +15,7 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	if !targeting:
-		return
+	if !targeting: return
 	
 	area_2d.position = get_local_mouse_position()
 	card_arc.points = _get_points()
@@ -66,15 +65,15 @@ func _on_card_aim_ended(_card : CardUI) -> void:
 
 # Assigns card's targets
 func _on_area_2d_area_entered(area : Area2D) -> void:
-	if !current_card or !targeting:
-		return
+	if !current_card or !targeting: return
 	
 	if !current_card.targets.has(area):
 		current_card.targets.append(area)
+		current_card.desc.text = current_card.card.get_tooltip_text(current_card.player_modifiers, area.modifier_handler)
 
 
 func _on_area_2d_area_exited(area : Area2D) -> void:
-	if !current_card or !targeting:
-		return
+	if !current_card or !targeting: return
 	
 	current_card.targets.erase(area)
+	current_card.desc.text = current_card.card.get_tooltip_text(current_card.player_modifiers, null)

@@ -6,8 +6,6 @@ enum Rarity {COMMON, UNCOMMON, RARE, STATUS}
 enum Target {SELF, SINGLE_ENEMY, ALL_ENEMIES, RANDOM, EVERYONE}
 enum Upgrade {NONE, REFINED, ENHANCED}
 
-# TODO: Ability description const dict (i.e: tooltip_text += DICT["ATTACK"])
-
 @export_group("Attributes")
 @export var name: String
 @export var type: Type
@@ -74,3 +72,7 @@ func play(targets : Array[Node], modifiers: ModifierHandler) -> void:
 
 func apply_effects(_targets: Array[Node], _modifiers: ModifierHandler) -> void:
 	pass
+
+
+func get_tooltip_text(_player_mods: ModifierHandler, _enemy_mods: ModifierHandler) -> String:
+	return tooltip_text

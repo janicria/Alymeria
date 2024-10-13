@@ -275,7 +275,8 @@ func act(number: int = -1) -> String:
 
 func debug(additional_option: String = \"\") -> String:
 	# Deck
-	print(\"[CMD] Debug w/ args %s start\" % additional_option)
+	print(\"[CMD] Debug w/%s start\" % [(\" %s\" % additional_option) if additional_option != \"\" else \"o any :c\"])
+	# Note: Running cards.clear() messes up card pile views to show 180-338 cards which is really funny
 	GameManager.character.deck.cards.clear()
 	deck(\"add\", \"common\", \"repurposing\")
 	deck(\"add\", \"common\", \"missile_launcher\")
@@ -305,7 +306,7 @@ func debug(additional_option: String = \"\") -> String:
 	if additional_option != \"music\":
 		for child:AudioStreamPlayer in MusicPlayer.get_children(): child.volume_db = -INF
 		for child:AudioStreamPlayer in SFXPlayer.get_children(): child.volume_db = -INF
-	print(\"[CMD] Debug w/ args %s end!\" % additional_option)
+	print(\"[CMD] Debug w/%s end!\" % [(\" %s\" % additional_option) if additional_option != \"\" else \"o any :c\"])
 	GameManager.cheats = true
 	return 'Have \"fun\" debugging!'
 

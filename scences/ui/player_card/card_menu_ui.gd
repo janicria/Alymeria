@@ -16,8 +16,6 @@ const HOVER_STYLEBOX := preload("res://scences/card_ui/card_hover_stylebox.tres"
 @onready var _name: Label = %Name
 @onready var cache_cost: RichTextLabel = %CacheCost
 
-var description := ''
-
 
 # It doesn't matter if cache cost can't hide as card menu uis are instanced whenever a card pile is opened
 func show_cache_cost() -> void:
@@ -26,7 +24,7 @@ func show_cache_cost() -> void:
 	cache_cost.show()
 
 
-# Not actually a copy from CardUI's method with the same name, the two just look very similar <- # HACK: yes it is wtf are you yapping about
+# TODO: Connect with CardUI
 func set_card(value : Card) -> void:
 	if ! is_node_ready():
 		await ready
@@ -41,7 +39,7 @@ func set_card(value : Card) -> void:
 	
 	_name.modulate = type.modulate
 	cost.text = str(card.cost)
-	desc.text = card.tooltip_text
+	desc.text = card.get_tooltip_text(null, null)
 	_name.text = card.name
 	
 	

@@ -2,6 +2,7 @@ class_name StatusHandler
 extends GridContainer
 
 signal statuses_applied(type: Status.Type)
+signal status_added()
 
 const STATUS_INTERVAL_SECONDS := 0.25
 const STATUS_UI := preload("res://scences/status/status_ui.tscn")
@@ -29,6 +30,7 @@ func apply_statuses_by_type(type: Status.Type) -> void:
 
 
 func add_status(status: Status) -> void:
+	status_added.emit()
 	# Adds a new status if owner doesn't already have it
 	if !_has_status(status.id):
 		var status_ui := STATUS_UI.instantiate() as StatusUI

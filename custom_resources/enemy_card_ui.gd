@@ -11,6 +11,7 @@ var card_stats: EnemyCard
 var enemy_stats: Enemy
 var final_targets: Array[Node]
 var is_dead := false
+var modified_damage: int
 
 
 func _ready() -> void:
@@ -30,16 +31,18 @@ func kms() -> void:
 
 
 func update_stats_from_status(_type: Status.Type) -> void:
-	update_stats(card_stats, enemy_stats)
+	update_stats(card_stats, enemy_stats, true)
 
 
-func update_stats(card: EnemyCard, enemy: Enemy) -> void:
+func update_stats(card: EnemyCard, enemy: Enemy, from_status := false) -> void:
 	if !is_node_ready(): await ready
 	card_stats = card
 	enemy_stats = enemy
 	
 	if !enemy_stats.status_handler.statuses_applied.is_connected(update_stats_from_status):
 		enemy_stats.status_handler.statuses_applied.connect(update_stats_from_status)
+	if !enemy_stats.status_handler.status_added.is_connected(update_stats_from_status):
+		enemy_stats.status_handler.status_added.connect(update_stats_from_status.bind(Status.Type.EVENT))
 	
 	cost.text = str(card.cost)
 	icon.texture = enemy.stats.art
@@ -47,10 +50,13 @@ func update_stats(card: EnemyCard, enemy: Enemy) -> void:
 	# Updates the UI to include player and enemy modifiers in its calculations
 	var player := get_targets()[0] as Player
 	if player && card.type == EnemyCard.Type.ATTACK:
-		var modified_damage := player.modifier_handler.get_modified_value(card_stats.amount, Modifier.Type.DMG_TAKEN)
+		# Updating damage counter with the correct values requires removing the old values first
+		if from_status: Events.update_player_dmg_counter.emit(modified_damage * card.repeats * -1, false)
+		modified_damage = player.modifier_handler.get_modified_value(card_stats.amount, Modifier.Type.DMG_TAKEN)
 		modified_damage = enemy_stats.modifier_handler.get_modified_value(modified_damage, Modifier.Type.DMG_DEALT)
+		if from_status: Events.update_player_dmg_counter.emit(modified_damage * card.repeats, false)
 		attack_desc.text = str(modified_damage)
-	else: attack_desc.text = str(enemy_stats.modifier_handler.get_modified_value(card_stats.amount, Modifier.Type.DMG_DEALT))
+	else: attack_desc.text = str(card.amount)
 	if card.repeats != 1: attack_desc.text += "x%s" % card_stats.repeats
 
 

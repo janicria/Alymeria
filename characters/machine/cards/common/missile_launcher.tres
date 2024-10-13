@@ -13,6 +13,6 @@ repeats = 1
 cost = 1
 exhausts = false
 sound = ExtResource("2_qcqyc")
-tooltip_text = "ATK 6
+tooltip_text = "ATK %s
 EVERYONE"
 effect_description = "[center]Attack - Deal [color=\"ff0000\"]damage[/color] to an enemy[/center]"
