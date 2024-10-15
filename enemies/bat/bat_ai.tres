@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="EnemyAI" load_steps=6 format=3 uid="uid://cw32ms5tgh2o3"]
 
-[ext_resource type="Resource" uid="uid://dwu2pidsfaovs" path="res://enemies/bat/swoop.tres" id="1_bq27e"]
+[ext_resource type="Resource" uid="uid://dwu2pidsfaovs" path="res://enemies/bat/cards/swoop.tres" id="1_bq27e"]
 [ext_resource type="Script" path="res://custom_resources/enemy_ai.gd" id="1_euor7"]
-[ext_resource type="Resource" uid="uid://criifnnvfhxgt" path="res://enemies/bat/shriek.tres" id="2_k81ok"]
-[ext_resource type="Resource" uid="uid://c6cwgq0y0a8d0" path="res://enemies/bat/bite.tres" id="3_iudyt"]
+[ext_resource type="Resource" uid="uid://criifnnvfhxgt" path="res://enemies/bat/cards/shriek.tres" id="2_k81ok"]
+[ext_resource type="Resource" uid="uid://c6cwgq0y0a8d0" path="res://enemies/bat/cards/bite.tres" id="3_iudyt"]
 [ext_resource type="Script" path="res://custom_resources/enemy_card.gd" id="4_w4tc4"]
 
 [resource]

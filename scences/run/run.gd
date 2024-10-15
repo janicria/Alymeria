@@ -86,7 +86,8 @@ func _input(_event: InputEvent) -> void:
 
 func _on_battle_room_entered(room: Room) -> void:
 	var battle_scence: Battle = _change_view(BATTLE_SCENCE)
-	battle_scence.battle_stats = room.battle_stats
+	battle_scence.battle_stats = room.battle_stats # Translation: (8 * biome * InfectedMultipliers)% hopefully
+	GameManager.floor_is_infected = !room.battle_stats.pure && ((float((8)*(GameManager.current_biome+1)*GameManager.multipliers["INFECTION"])/100)>randf())
 	battle_scence.start_battle()
 
 
@@ -110,7 +111,6 @@ func _on_reward_exited() -> void:
 
 
 func _on_map_exited(room: Room) -> void:
-	print("Floor %s: %s%s (column/type/tier)" % [map.floors_climbed, room, str(map.last_room.battle_stats.battle_tier) if map.last_room.battle_stats else "X"])
 	match room.type:
 		Room.Type.MONSTER: _on_battle_room_entered(room)
 		Room.Type.TREASURE: _change_view(TREASURE_SCENCE)
@@ -118,3 +118,4 @@ func _on_map_exited(room: Room) -> void:
 		Room.Type.SHOP: _change_view(SHOP_SCENCE)
 		Room.Type.ELITE: _on_battle_room_entered(room)
 		Room.Type.BOSS: _on_battle_room_entered(room)
+	print("Floor %s: %s%s %s (column/type/tier/infected)" % [map.floors_climbed, room, str(map.last_room.battle_stats.battle_tier) if map.last_room.battle_stats else "X", GameManager.floor_is_infected])

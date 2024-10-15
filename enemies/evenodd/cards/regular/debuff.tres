@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cegvackxib523"]
+
+[ext_resource type="Script" path="res://enemies/evenodd/cards/regular/debuff.gd" id="1_n7lek"]
+
+[resource]
+script = ExtResource("1_n7lek")
+type = 6
+amount = 2
+repeats = 1
+custom_amount = ""
+cost = 1
+weight = 1
+targets = 0
+health = 0

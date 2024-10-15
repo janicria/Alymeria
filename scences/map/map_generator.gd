@@ -150,7 +150,6 @@ func _setup_room_types() -> void:
 			room.type = Room.Type.MONSTER
 			room.battle_stats = battle_stats_pool.get_random_battle_from_tier(0)
 	
-	
 	# 5th last floor is always treasure
 	for room: Room in map_data[floors - 5]:
 		if room.next_rooms.size() > 0:
@@ -202,6 +201,13 @@ func _set_room_randomly(room: Room) -> void:
 		room.battle_stats = battle_stats_pool.get_random_battle_from_tier(tier)
 	elif type_candidate == Room.Type.ELITE:
 		room.battle_stats = battle_stats_pool.get_random_battle_from_tier(2)
+	# HACK: Pool fights to not fight specific battle_stats again unless you have to
+	# Something like this in run when you select a pool
+	# if !battle_stats_pool.pool.has(battle_stats):
+	#	battle_stats_pool.restock_pool_by_tier(battle_stats.tier)
+	#	battle_stats = battle_stats_pool.get_battle_from_tier(battle_stats.tier)
+	# battle_stats_pool.pool.erase(battle_stats)
+	#battle_stats_pool.pool.erase(room.battle_stats)
 
 
 func _room_has_parent_of_type(room: Room, type: Room.Type) -> bool:

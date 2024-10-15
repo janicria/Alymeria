@@ -30,6 +30,7 @@ func start_battle() -> void:
 	battle_ui.initialise_card_pile_ui()
 	
 	await get_tree().process_frame # Godot doesn't detect filters when checking array types
+	battle_stats.live_enemies.clear()
 	for enemy: Enemy in enemy_handler.get_children().filter(func(child:Node)->bool: return child is Enemy):
 		battle_stats.live_enemies.append(enemy) 
 	
@@ -50,6 +51,7 @@ func _on_battle_state_updated(new_state : BattleState) -> void:
 		
 		1: # Loops
 			Events.update_turn_number.emit(GameManager.turn_number + 1)
+			enemy_handler.start_mana()
 			battle_stats.turn_effects()
 			Events.battle_state_updated.emit(2)
 		

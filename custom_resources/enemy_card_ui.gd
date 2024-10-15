@@ -66,6 +66,10 @@ func _on_control_mouse_entered() -> void:
 		Events.card_tooltip_requested.emit("[center]This enemy died, but it's card is still here for some reason? \n [s](bad programming)[/s][/center]")
 		return
 	
+	if card_stats.custom_amount != "":
+		Events.card_tooltip_requested.emit(card_stats.get_tooltip())
+		return
+	
 	var tooltip_text := "[center]This enemy is going to "
 	
 	if card_stats.type == card_stats.Type.ATTACK && card_stats.repeats != 1:
@@ -76,16 +80,16 @@ func _on_control_mouse_entered() -> void:
 		card_stats.Type.LARGE_BARRIER: tooltip_text +=  "apply a large amount of [color=0044ff]barrier[/color]"
 		card_stats.Type.DRAW: tooltip_text += "draw %s cards" % card_stats.amount
 		card_stats.Type.ENERGY: tooltip_text += "replenish %s mana" % card_stats.amount
-		card_stats.Type.BUFF: tooltip_text += "apply a buff"
-		card_stats.Type.DEBUFF: tooltip_text += "apply a debuff"
+		card_stats.Type.BUFF: tooltip_text += "[color=1AD12C]apply a buff[/color]"
+		card_stats.Type.DEBUFF: tooltip_text += "[color=AB3321]apply a debuff[/color]"
 		card_stats.Type.SPAWN: tooltip_text += "spawn an ally"
 		card_stats.Type.UNKNOWN: tooltip_text += "do something unknown"
 	
 	if card_stats.type != card_stats.Type.ATTACK: match card_stats.targets:
 		card_stats.Targets.SINGLE: tooltip_text += " to you"
 		card_stats.Targets.SELF: tooltip_text += " to itself"
-		card_stats.Targets.ENEMIES: tooltip_text += "to you and your summons"
-		card_stats.Targets.ALLIES: tooltip_text += "to all enemies"
+		card_stats.Targets.ENEMIES: tooltip_text += " to you and your summons"
+		card_stats.Targets.ALLIES: tooltip_text += " to all enemies"
 		card_stats.Targets.EVERYONE: tooltip_text += "to everyone"
 	
 	tooltip_text += " when this card is played[/center]"
@@ -145,7 +149,7 @@ func get_targets() -> Array[Node]:
 
 func apply_effects(targets: Array[Node]) -> void:
 	if is_dead: return
-	if card_stats.custom_amount != "": card_stats.custom_play(); return
+	if card_stats.custom_amount != "": card_stats.custom_play(get_targets()); return
 	for i in card_stats.repeats:
 		# Indentation moment <- ikr it sucks
 		var effect: Effect 
@@ -155,10 +159,10 @@ func apply_effects(targets: Array[Node]) -> void:
 			EnemyCard.Type.LARGE_BARRIER: effect = BarrierEffect.new()
 			EnemyCard.Type.DRAW: enemy_stats.draw_cards(card_stats.amount); return
 			EnemyCard.Type.ENERGY: enemy_stats.mana += card_stats.amount; return
-			EnemyCard.Type.BUFF: card_stats.custom_play(); return
-			EnemyCard.Type.DEBUFF: card_stats.custom_play(); return
-			EnemyCard.Type.SPAWN: card_stats.custom_play(); return
-			EnemyCard.Type.UNKNOWN: card_stats.custom_play(); return
+			EnemyCard.Type.BUFF: card_stats.custom_play(get_targets()); return
+			EnemyCard.Type.DEBUFF: card_stats.custom_play(get_targets()); return
+			EnemyCard.Type.SPAWN: card_stats.custom_play(get_targets()); return
+			EnemyCard.Type.UNKNOWN: card_stats.custom_play(get_targets()); return
 		effect.amount = card_stats.amount
 		effect.sound = card_stats.SFX_dict.get(card_stats.type)
 		effect.execute(targets)

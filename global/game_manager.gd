@@ -35,6 +35,7 @@ var uncommon_weight := BASE_UNCOMMON_WEIGHT
 var rare_weight := BASE_RARE_WEIGHT
 var character: CharacterStats
 var current_biome := Biome.FOREST : set = set_current_biome
+var floor_is_infected := false
 var card_pile_open := false : set = set_card_pile
 var console_banned := false
 var turn_number := 0

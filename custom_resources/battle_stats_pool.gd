@@ -7,6 +7,10 @@ var total_weights_by_tier := [0.0, 0.0, 0.0, 0.0]
 
 
 func _get_all_battles_from_tier(tier: int) -> Array[BattleStats]:
+	if pool.filter(func(battle: BattleStats) -> bool: return battle.battle_tier == tier).is_empty():
+		# TODO: Restock pool here
+		pass
+	
 	return pool.filter(func(battle: BattleStats) -> bool:
 		return battle.battle_tier == tier)
 

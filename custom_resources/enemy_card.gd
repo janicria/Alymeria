@@ -41,5 +41,9 @@ const SFX_dict := {
 }
 
 
-func custom_play() -> void:
+func custom_play(_final_targets: Array[Node]) -> void:
 	pass
+
+
+func get_tooltip() -> String:
+	return "Pls give me a tooltip"

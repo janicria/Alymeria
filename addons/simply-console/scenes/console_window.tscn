@@ -223,6 +223,9 @@ func kill(who: String) -> String:
 		print(\"[CMD] Killed %s\" % who)
 		return \"Killed %s\" % who
 	
+	elif who == \"e\": for target in get_tree().get_nodes_in_group(\"enemies\"): 
+		target.death_animation()
+	
 	for target in get_tree().get_nodes_in_group(who):
 		target.death_animation()
 	print(\"[CMD] Killed %s\" % who)
@@ -316,14 +319,14 @@ func turn(number: int) -> String:
 	var wr: WeakRef = weakref(get_tree().get_first_node_in_group(\"player\"))
 	if !wr.get_ref(): return \"Not in a battle!\"
 	elif number < 0: return \"Not a valid turn number!\"
-	var old_value := GameManager.turn_number
 	Events.update_turn_number.emit(number)
+	print(1)
 	Events.battle_state_updated.emit(1)
 	# Battle increases turn number by 1 when battle state is set to 1
 	Events.update_turn_number.emit(GameManager.turn_number - 1)
 	Events.update_battle_stats.emit()
 	GameManager.cheats = true
-	return \"Changed the turn number from %s to %s\" % [old_value, GameManager.turn_number]
+	return \"Changed the turn number from %s to %s\" % [GameManager.turn_number, GameManager.turn_number]
 
 
 func stats() -> String:
