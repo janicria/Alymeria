@@ -76,12 +76,14 @@ func _on_battle_state_updated(new_state : BattleState) -> void:
 			enemy_handler.play_next_card()
 		
 		5: # Victory
-			Events.battle_won.emit() 
-			print("Victory!")
 			# When the game is exiting all enemies are freed causing 
 			# it to think the battle is won and try to save the game
 			var wr: WeakRef = weakref(get_tree())
-			if wr.get_ref(): GameManager.save_to_file()
+			if !wr.get_ref(): return 
+			
+			Events.battle_won.emit() 
+			print("Victory!")
+			GameManager.save_to_file()
 		
 		6: # Defeat
 			pass

@@ -12,6 +12,8 @@ var enemy_stats: Enemy
 var final_targets: Array[Node]
 var is_dead := false
 var modified_damage: int
+# Needed bc of damage counter reading from modified_damage
+var modified_barrier: int
 
 
 func _ready() -> void:
@@ -27,7 +29,7 @@ func kms() -> void:
 		attack_desc.text = "X"
 		is_dead = true
 		if card_stats.type == card_stats.Type.ATTACK:
-			Events.update_player_dmg_counter.emit(card_stats.amount * card_stats.repeats * -1, false)
+			Events.update_player_dmg_counter.emit((modified_damage if modified_damage else card_stats.amount) * card_stats.repeats * -1, false)
 
 
 func update_stats_from_status(_type: Status.Type) -> void:
@@ -47,15 +49,24 @@ func update_stats(card: EnemyCard, enemy: Enemy, from_status := false) -> void:
 	cost.text = str(card.cost)
 	icon.texture = enemy.stats.art
 	attack_icon.texture = card.icon_dict.get(card.type)
+	
+	# FIXME: Doesn't work for player debuffs (injured) (and barrier???) after the card has already been played huh?????
+	# FIXME: It's from the modified_type = enemy.get(modified_type) (could be from 'from_status')
+	
 	# Updates the UI to include player and enemy modifiers in its calculations
 	var player := get_targets()[0] as Player
 	if player && card.type == EnemyCard.Type.ATTACK:
 		# Updating damage counter with the correct values requires removing the old values first
 		if from_status: Events.update_player_dmg_counter.emit(modified_damage * card.repeats * -1, false)
 		modified_damage = player.modifier_handler.get_modified_value(card_stats.amount, Modifier.Type.DMG_TAKEN)
+		print(modified_damage)
 		modified_damage = enemy_stats.modifier_handler.get_modified_value(modified_damage, Modifier.Type.DMG_DEALT)
+		print(modified_damage, "\n\n")
 		if from_status: Events.update_player_dmg_counter.emit(modified_damage * card.repeats, false)
 		attack_desc.text = str(modified_damage)
+	elif card.type == EnemyCard.Type.BARRIER or card.type == EnemyCard.Type.LARGE_BARRIER:
+		modified_barrier = enemy_stats.modifier_handler.get_modified_value(card_stats.amount, Modifier.Type.BARRIER_GAINED)
+		attack_desc.text = str(modified_barrier)
 	else: attack_desc.text = str(card.amount)
 	if card.repeats != 1: attack_desc.text += "x%s" % card_stats.repeats
 
@@ -152,18 +163,26 @@ func apply_effects(targets: Array[Node]) -> void:
 	if card_stats.custom_amount != "": card_stats.custom_play(get_targets()); return
 	for i in card_stats.repeats:
 		# Indentation moment <- ikr it sucks
-		var effect: Effect 
+		var effect: Effect
 		match card_stats.type:
-			EnemyCard.Type.ATTACK: effect = DamageEffect.new()
-			EnemyCard.Type.BARRIER: effect = BarrierEffect.new()
-			EnemyCard.Type.LARGE_BARRIER: effect = BarrierEffect.new()
-			EnemyCard.Type.DRAW: enemy_stats.draw_cards(card_stats.amount); return
+			EnemyCard.Type.ATTACK: 
+				effect = DamageEffect.new()
+				effect.amount = modified_damage
+			EnemyCard.Type.BARRIER: 
+				effect = BarrierEffect.new()
+				effect.amount = modified_barrier
+			EnemyCard.Type.LARGE_BARRIER: 
+				effect = BarrierEffect.new()
+				effect.amount = modified_barrier
+			EnemyCard.Type.DRAW: 
+				enemy_stats.draw_cards(card_stats.amount); return
 			EnemyCard.Type.ENERGY: enemy_stats.mana += card_stats.amount; return
 			EnemyCard.Type.BUFF: card_stats.custom_play(get_targets()); return
 			EnemyCard.Type.DEBUFF: card_stats.custom_play(get_targets()); return
 			EnemyCard.Type.SPAWN: card_stats.custom_play(get_targets()); return
-			EnemyCard.Type.UNKNOWN: card_stats.custom_play(get_targets()); return
-		effect.amount = card_stats.amount
+			EnemyCard.Type.UNKNOWN: card_stats.custom_play(get_targets()); return 
+		# If effect hasn't been changed by any modifiers
+		if !effect.amount: effect.amount = card_stats.amount
 		effect.sound = card_stats.SFX_dict.get(card_stats.type)
 		effect.execute(targets)
 		await get_tree().create_timer(0.1).timeout

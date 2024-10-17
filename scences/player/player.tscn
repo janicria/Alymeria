@@ -41,10 +41,10 @@ unique_name_in_owner = true
 [node name="DamageDealt" parent="ModifierHandler" instance=ExtResource("6_xycbr")]
 
 [node name="BarrierGained" parent="ModifierHandler" instance=ExtResource("6_xycbr")]
-type = 2
-
-[node name="DamageTaken" parent="ModifierHandler" instance=ExtResource("6_xycbr")]
 type = 1
 
-[node name="CardCost" parent="ModifierHandler" instance=ExtResource("6_xycbr")]
+[node name="DamageTaken" parent="ModifierHandler" instance=ExtResource("6_xycbr")]
 type = 2
+
+[node name="CardCost" parent="ModifierHandler" instance=ExtResource("6_xycbr")]
+type = 3

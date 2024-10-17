@@ -56,11 +56,14 @@ unique_name_in_owner = true
 
 [node name="DamageDealt" parent="ModifierHandler" instance=ExtResource("9_gubij")]
 
-[node name="DamageTaken" parent="ModifierHandler" instance=ExtResource("9_gubij")]
+[node name="BarrierGained" parent="ModifierHandler" instance=ExtResource("9_gubij")]
 type = 1
 
-[node name="CardCost" parent="ModifierHandler" instance=ExtResource("9_gubij")]
+[node name="DamageTaken" parent="ModifierHandler" instance=ExtResource("9_gubij")]
 type = 2
+
+[node name="CardCost" parent="ModifierHandler" instance=ExtResource("9_gubij")]
+type = 3
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]

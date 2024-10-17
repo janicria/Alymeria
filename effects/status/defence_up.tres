@@ -5,10 +5,10 @@
 
 [resource]
 script = ExtResource("2_lg55t")
-id = "damage_up"
+id = "defence_up"
 type = 2
 stack_type = 1
 duration = 0
 stacks = 1
 icon = ExtResource("1_j2vdn")
-tooltip = "[center]Damage up - [color=ff0000]Attacks[/color] deal %s more damage"
+tooltip = "[center]Defence up - [color=0044ff]Gain[/color] %s more barrier"
