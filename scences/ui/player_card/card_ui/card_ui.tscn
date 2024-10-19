@@ -1,15 +1,16 @@
-[gd_scene load_steps=12 format=3 uid="uid://d0ausrmh8y0is"]
+[gd_scene load_steps=13 format=3 uid="uid://d0ausrmh8y0is"]
 
 [ext_resource type="Theme" uid="uid://bhs76hnulf3s4" path="res://assets/misc/main_theme.tres" id="1_a00vs"]
-[ext_resource type="Script" path="res://scences/card_ui/card_ui.gd" id="2_wujgf"]
-[ext_resource type="Script" path="res://scences/card_ui/card_state_machine.gd" id="3_f5274"]
-[ext_resource type="StyleBox" uid="uid://ck3105wj7dcrn" path="res://scences/card_ui/card_base_stylebox.tres" id="3_fe3uj"]
+[ext_resource type="Script" path="res://scences/ui/player_card/card_ui/card_ui.gd" id="2_wujgf"]
+[ext_resource type="Script" path="res://scences/ui/player_card/card_ui/card_state_machine.gd" id="3_f5274"]
+[ext_resource type="StyleBox" uid="uid://ck3105wj7dcrn" path="res://scences/ui/player_card/card_ui/card_base_stylebox.tres" id="3_fe3uj"]
 [ext_resource type="Texture2D" uid="uid://bfvi02kojsa00" path="res://assets/art/objects/tile_0103.png" id="3_yjm4a"]
-[ext_resource type="Script" path="res://scences/card_ui/card_states/card_base_state.gd" id="4_b02p2"]
-[ext_resource type="Script" path="res://scences/card_ui/card_states/card_clicked_state.gd" id="5_pbn7t"]
-[ext_resource type="Script" path="res://scences/card_ui/card_states/card_dragging_state.gd" id="6_iqna7"]
-[ext_resource type="Script" path="res://scences/card_ui/card_states/card_released_state.gd" id="7_0dqht"]
-[ext_resource type="Script" path="res://scences/card_ui/card_states/card_aiming_state.gd" id="8_hu8b7"]
+[ext_resource type="Script" path="res://scences/ui/player_card/card_ui/card_states/card_base_state.gd" id="4_b02p2"]
+[ext_resource type="PackedScene" uid="uid://cwbv5wdfsjpac" path="res://scences/ui/player_card/card_status/card_status_handler.tscn" id="5_0abyt"]
+[ext_resource type="Script" path="res://scences/ui/player_card/card_ui/card_states/card_clicked_state.gd" id="5_pbn7t"]
+[ext_resource type="Script" path="res://scences/ui/player_card/card_ui/card_states/card_dragging_state.gd" id="6_iqna7"]
+[ext_resource type="Script" path="res://scences/ui/player_card/card_ui/card_states/card_released_state.gd" id="7_0dqht"]
+[ext_resource type="Script" path="res://scences/ui/player_card/card_ui/card_states/card_aiming_state.gd" id="8_hu8b7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_245v2"]
 size = Vector2(45, 57)
@@ -105,6 +106,14 @@ theme_override_font_sizes/font_size = 6
 text = "Repurposing hiya"
 horizontal_alignment = 1
 autowrap_mode = 3
+
+[node name="CardStatusHandler" parent="." instance=ExtResource("5_0abyt")]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 33.0
+offset_top = 31.0
+offset_right = 43.0
+offset_bottom = 55.0
 
 [node name="DropPointDetector" type="Area2D" parent="."]
 collision_mask = 2

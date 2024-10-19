@@ -7,4 +7,3 @@ Created the game with;
 X enemies,
 X cards,
 and X lines of code
-

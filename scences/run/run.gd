@@ -1,12 +1,12 @@
 class_name Run
 extends Node
 
-const BATTLE_SCENCE := preload("res://scences/battle/battle.tscn")
-const SHOP_SCENCE := preload("res://scences/shop/shop.tscn")
-const TREASURE_SCENCE := preload("res://scences/treasure/treasure.tscn")
-const BATTLE_REWARD_SCENCE := preload("res://scences/battle_rewards/battle_rewards.tscn")
+const BATTLE_SCENCE := preload("res://scences/views/battle/battle.tscn")
+const SHOP_SCENCE := preload("res://scences/views/shop/shop.tscn")
+const TREASURE_SCENCE := preload("res://scences/views/treasure/treasure.tscn")
+const BATTLE_REWARD_SCENCE := preload("res://scences/views/battle_rewards/battle_rewards.tscn")
 const HAVEN_SCENCE := preload("res://scences/haven/haven.tscn")
-const EVENT_SCENCE := preload("res://scences/events/event.tscn")
+const EVENT_SCENCE := preload("res://scences/views/events/event.tscn")
 
 @export var run_startup: RunStartup
 
@@ -15,6 +15,7 @@ const EVENT_SCENCE := preload("res://scences/events/event.tscn")
 @onready var scence_transition: AnimationPlayer = %ScenceTransition
 @onready var color_rect: ColorRect = %ColorRect
 @onready var console_window: Window = %ConsoleWindow
+@onready var version_number: Label = %VersionNumber
 
 var character: CharacterStats
 
@@ -22,7 +23,8 @@ var character: CharacterStats
 func _ready() -> void:
 	color_rect.visible = true
 	scence_transition.play("fade_in")
-	
+	version_number.text = ProjectSettings.get_setting("application/config/version")
+
 	match run_startup.type:
 		RunStartup.Type.NEW_RUN:
 			GameManager.character = run_startup.picked_character.create_instance()

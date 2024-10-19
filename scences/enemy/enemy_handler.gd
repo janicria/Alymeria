@@ -10,7 +10,7 @@ signal hide_enemy_card_arrows()
 signal statuses_applied
 
 func _ready() -> void: 
-	Events.enemy_card_played.connect(play_next_card)
+	enemy_hand.enemy_card_played.connect(play_next_card)
 
 
 func setup_enemies(battle_stats: BattleStats) -> void:
@@ -73,17 +73,14 @@ func play_next_card() -> void:
 		Events.battle_state_updated.emit(1)
 		return
 	
-	await get_tree().create_timer(enemy_hand.time_before_next_card + 0.25).timeout
+	if !GameManager.speedy_cards:
+		await get_tree().create_timer(enemy_hand.time_before_next_card + 0.1).timeout
 	
 	var card := enemy_hand.get_child(0) as EnemyCardUI
-	
 	card.play()
 	
-	# So it doesn't get shadowrealmed from memory right away
-	if card.card_stats.repeats != 1: 
-		card.visible = false
-		# Approx time taken for a card to be played
-		await get_tree().create_timer(card.card_stats.repeats-1).timeout
+	# So the card multi attack cards don't get shadowrealmed from memory before they have time to finish
+	if card.card_stats.repeats != 1: await get_tree().create_timer(0.1 * (card.card_stats.repeats)).timeout
 	
 	enemy_hand.remove_child(card)
 	card.queue_free()

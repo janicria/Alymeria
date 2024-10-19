@@ -24,6 +24,7 @@ const DEFAULT_BUS_LAYOUT = preload("res://assets/misc/default_bus_layout.tres")
 @onready var master_volume: HSlider = %MasterVolumeSlider
 @onready var fullscreen_button: Button = %FullscreenButton
 @onready var pile_button: Button = %CardPilePosButton
+@onready var speedy_cards_button: Button = %SpeedyCardsButton
 
 var cog_speed_boost := 0.0
 
@@ -53,12 +54,13 @@ func _setup(card_pile : CardPile) -> void:
 	GameManager.character.stats_changed.connect(health_ui.update_stats.bind(GameManager.character))
 	health_ui.update_stats(GameManager.character)
 	
-	# Updates buttons from MainMenu / restarting run
+	# Updates buttons changed in MainMenu
 	_on_toggled_button_toggled(GameManager.true_draw_amount, "true_draw")
 	_on_toggled_button_toggled(GameManager.true_deck_size, "true_deck")
 	_on_toggled_button_toggled(GameManager.gameplay_tips, "hints")
 	if DisplayServer.window_get_mode() == 3: _on_toggled_button_toggled(true, "fullscreen")
 	_on_toggled_button_toggled(GameManager.card_pile_above_mana, "card_pile_pos")
+	_on_toggled_button_toggled(GameManager.speedy_cards, "speedy_cards")
 
 
 func _on_cog_gui_input(event: InputEvent) -> void:
@@ -123,10 +125,12 @@ func _on_toggled_button_toggled(toggled_on: bool, button_string: String) -> void
 			else: pile_button.text = "Outside"
 			GameManager.card_pile_above_mana = toggled_on
 			Events.update_deck_buttons.emit()
+		"speedy_cards":
+			button = %SpeedyCardsButton
+			GameManager.speedy_cards = toggled_on
 	
 	# We don't want to override the inside/outside text
 	if button == %CardPilePosButton: return
-	
 	if toggled_on: button.text = "Enabled"
 	else: button.text = "Disabled"
 

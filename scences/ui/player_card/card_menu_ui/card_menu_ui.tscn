@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://4lwv2ug5j5j6"]
 
 [ext_resource type="Theme" uid="uid://bhs76hnulf3s4" path="res://assets/misc/main_theme.tres" id="1_21628"]
-[ext_resource type="Script" path="res://scences/ui/player_card/card_menu_ui.gd" id="1_udd6g"]
+[ext_resource type="Script" path="res://scences/ui/player_card/card_menu_ui/card_menu_ui.gd" id="1_udd6g"]
 [ext_resource type="Resource" uid="uid://brs0hub03o0k0" path="res://characters/machine/cards/common/laser.tres" id="2_k6r6l"]
-[ext_resource type="StyleBox" uid="uid://ck3105wj7dcrn" path="res://scences/card_ui/card_base_stylebox.tres" id="3_2kfhu"]
+[ext_resource type="StyleBox" uid="uid://ck3105wj7dcrn" path="res://scences/ui/player_card/card_ui/card_base_stylebox.tres" id="3_2kfhu"]
 [ext_resource type="Texture2D" uid="uid://bfvi02kojsa00" path="res://assets/art/objects/tile_0103.png" id="4_64408"]
-[ext_resource type="PackedScene" uid="uid://n3v1mvmtakc" path="res://scences/ui/player_card/card_tooltip.tscn" id="6_opbhk"]
+[ext_resource type="PackedScene" uid="uid://n3v1mvmtakc" path="res://scences/ui/player_card/card_menu_ui/card_tooltip.tscn" id="6_opbhk"]
 
 [node name="CardMenuUI" type="CenterContainer"]
 offset_right = 40.0

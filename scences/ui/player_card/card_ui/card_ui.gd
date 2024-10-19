@@ -4,9 +4,9 @@ extends Control
 signal reparent_requested(card_ui: CardUI)
 signal transition_requested(from: CardState, to: CardState.State)
 
-const BASE_STYLEBOX := preload("res://scences/card_ui/card_base_stylebox.tres")
-const DRAG_STYLEBOX := preload("res://scences/card_ui/card_dragging_stylebox.tres")
-const HOVER_STYLEBOX := preload("res://scences/card_ui/card_hover_stylebox.tres")
+const BASE_STYLEBOX := preload("res://scences/ui/player_card/card_ui/card_base_stylebox.tres")
+const DRAG_STYLEBOX := preload("res://scences/ui/player_card/card_ui/card_dragging_stylebox.tres")
+const HOVER_STYLEBOX := preload("res://scences/ui/player_card/card_ui/card_hover_stylebox.tres")
 
 @export var card: Card : set = set_card
 
@@ -18,9 +18,10 @@ const HOVER_STYLEBOX := preload("res://scences/card_ui/card_hover_stylebox.tres"
 @onready var _name: Label = $Name
 @onready var drop_point_detector : Area2D = $DropPointDetector
 @onready var card_state_machine : CardSateMachine = %CardStateMachine
+@onready var card_status_handler: CardStatusHandler = %CardStatusHandler
 @onready var targets: Array[Node] = []
 
-# These seemingly random member vars cannot be removed as they're referenced in various other scripts
+# Members below are referenced in various other scripts
 var player_modifiers: ModifierHandler
 var original_index := 0
 var parent: Control
@@ -84,6 +85,11 @@ func set_card(value : Card) -> void:
 	if ! is_node_ready(): await ready
 	card = value
 	
+	# Card statuses (needs to be at stop to clear starter statuses)
+	for status in card.statuses:
+		card_status_handler.add_status(status)
+	card_status_handler.update_ui()
+
 	# Card coloring and text
 	match card.rarity:
 		0: type.modulate = Color(Color.GRAY)

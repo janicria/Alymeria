@@ -18,6 +18,8 @@ func start_battle(character : CharacterStats) -> void:
 	GameManager.character.draw_pile = GameManager.character.deck.duplicate(true)
 	GameManager.character.draw_pile.shuffle()
 	GameManager.character.discard = CardPile.new()
+	GameManager.character.cache_pile = CardPile.new()
+	GameManager.character.cache_tokens = 0
 	player.status_handler.statuses_applied.connect(_on_statuses_applied)
 
 

@@ -3,7 +3,7 @@ extends HBoxContainer
 
 @export var player: Player
 
-@onready var card_ui := preload("res://scences/card_ui/card_ui.tscn")
+@onready var card_ui := preload("res://scences/ui/player_card/card_ui/card_ui.tscn")
 
 
 func _ready() -> void:

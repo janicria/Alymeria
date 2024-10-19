@@ -3,7 +3,7 @@ extends ColorRect
 
 signal card_reward_selected(card: Card)
 
-const CARD_MENU_UI := preload("res://scences/ui/player_card/card_menu_ui.tscn")
+const CARD_MENU_UI := preload("res://scences/ui/player_card/card_menu_ui/card_menu_ui.tscn")
 
 @export var rewards: Array[Card] : set = set_rewards
 

@@ -1,7 +1,7 @@
 [gd_resource type="Theme" load_steps=6 format=3 uid="uid://bhs76hnulf3s4"]
 
-[ext_resource type="StyleBox" uid="uid://ck3105wj7dcrn" path="res://scences/card_ui/card_base_stylebox.tres" id="1_bl0es"]
-[ext_resource type="StyleBox" uid="uid://r3x12h2yjbk0" path="res://scences/card_ui/card_hover_stylebox.tres" id="1_qfdbm"]
+[ext_resource type="StyleBox" uid="uid://ck3105wj7dcrn" path="res://scences/ui/player_card/card_ui/card_base_stylebox.tres" id="1_bl0es"]
+[ext_resource type="StyleBox" uid="uid://r3x12h2yjbk0" path="res://scences/ui/player_card/card_ui/card_hover_stylebox.tres" id="1_qfdbm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g6cw0"]
 bg_color = Color(0.117647, 0.105882, 0.180392, 0.588235)

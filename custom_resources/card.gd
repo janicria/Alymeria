@@ -13,6 +13,7 @@ enum Upgrade {NONE, REFINED, ENHANCED}
 @export var target: Target
 @export var repeats:= 1
 @export var cost : int : set = set_cost
+@export var statuses: Array[CardStatus]
 @export var exhausts := false
 
 @export_group("Visuals")

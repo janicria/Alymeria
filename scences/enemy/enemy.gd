@@ -28,7 +28,6 @@ func _setup_stats(value: EnemyStats) -> void:
 	if !stats.stats_changed.is_connected(update_stats):
 		stats.stats_changed.connect(update_stats)
 	
-	mana = stats.max_mana
 	update_enemy()
 	_setup_card_weights()
 	

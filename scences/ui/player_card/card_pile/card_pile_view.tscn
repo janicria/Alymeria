@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://hqt3nv2gge3l"]
 
 [ext_resource type="Script" path="res://scences/ui/player_card/card_pile/card_pile_view.gd" id="1_0x2r8"]
-[ext_resource type="PackedScene" uid="uid://4lwv2ug5j5j6" path="res://scences/ui/player_card/card_menu_ui.tscn" id="1_w5x5h"]
+[ext_resource type="PackedScene" uid="uid://4lwv2ug5j5j6" path="res://scences/ui/player_card/card_menu_ui/card_menu_ui.tscn" id="1_w5x5h"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_dc7mx"]
 font_size = 12

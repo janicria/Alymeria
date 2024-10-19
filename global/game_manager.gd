@@ -15,6 +15,7 @@ var true_draw_amount := false
 var true_deck_size := false
 var card_pile_above_mana := true
 var gameplay_tips := true
+var speedy_cards := false
 
 # Stats variables
 var damage_taken := 0

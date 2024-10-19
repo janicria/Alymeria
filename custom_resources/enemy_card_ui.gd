@@ -1,6 +1,7 @@
 class_name EnemyCardUI
 extends Node2D
 
+
 @onready var cost: Label = %Cost
 @onready var icon: TextureRect = %Icon
 @onready var attack_icon: TextureRect = %AttackIcon

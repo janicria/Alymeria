@@ -50,6 +50,7 @@ func _on_battle_state_updated(new_state : BattleState) -> void:
 			Events.battle_state_updated.emit(1)
 		
 		1: # Loops
+			GameManager.save_to_file()
 			Events.update_turn_number.emit(GameManager.turn_number + 1)
 			enemy_handler.start_mana()
 			battle_stats.turn_effects()

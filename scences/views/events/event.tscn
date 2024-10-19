@@ -1,6 +1,7 @@
 [gd_scene load_steps=2 format=3 uid="uid://batjvoai4fct1"]
 
-[ext_resource type="Script" path="res://scences/events/event.gd" id="1_ws7lm"]
+[ext_resource type="Script" path="res://scences/views/events/event.gd" id="1_ws7lm"]
+
 
 [node name="Event" type="Control"]
 layout_mode = 3

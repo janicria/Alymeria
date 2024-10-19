@@ -23,7 +23,6 @@ signal update_player_dmg_counter(amount: int, reset :bool) # Used by player
 signal player_card_played
 
 ## Enemy-related events
-signal enemy_card_played # Used by enemy_hand
 signal enemy_died(enemy: Enemy) # Used by enemy_card_ui
 signal update_battle_stats()
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://n3v1mvmtakc"]
 
-[ext_resource type="Script" path="res://scences/ui/player_card/card_tooltip.gd" id="1_lg5lu"]
+[ext_resource type="Script" path="res://scences/ui/player_card/card_menu_ui/card_tooltip.gd" id="1_lg5lu"]
 
 [node name="CardTooltip" type="Control"]
 layout_mode = 3

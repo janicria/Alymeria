@@ -3,7 +3,7 @@ extends Control
 
 signal card_selected(card: Card)
 
-const CARD_MENU_UI_SCENCE := preload("res://scences/ui/player_card/card_menu_ui.tscn")
+const CARD_MENU_UI_SCENCE := preload("res://scences/ui/player_card/card_menu_ui/card_menu_ui.tscn")
 
 @export var card_pile : CardPile : set = set_card_pile
 

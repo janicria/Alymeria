@@ -2,8 +2,8 @@ class_name Map
 extends Node2D
 
 const SCROLL_SPEED := 15
-const MAP_ROOM := preload("res://scences/map/map_room.tscn")
-const MAP_LINE := preload("res://scences/map/map_line.tscn")
+const MAP_ROOM := preload("res://scences/views/map/map_room.tscn")
+const MAP_LINE := preload("res://scences/views/map/map_line.tscn")
 
 @onready var visuals: Node2D = %Visuals
 @onready var lines: Node2D = %Lines
