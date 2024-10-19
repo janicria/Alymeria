@@ -110,7 +110,8 @@ func on_input_field_text_submitted(text: String) -> void:
 
 
 func escape_bbcode(text: String) -> String:
-	return text.replace(\"[\", \"[lb]\")
+	# Curse you I will have my bbcode
+	return text#.replace(\"[\", \"[lb]\")
 
 
 func update_command_history(text: String) -> void:
@@ -386,6 +387,7 @@ size_flags_vertical = 3
 focus_mode = 2
 theme_override_styles/focus = SubResource("StyleBoxEmpty_opm5p")
 theme_override_styles/normal = SubResource("StyleBoxFlat_6ctxl")
+bbcode_enabled = true
 scroll_following = true
 selection_enabled = true
 

@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://4lwv2ug5j5j6"]
+[gd_scene load_steps=7 format=3 uid="uid://4lwv2ug5j5j6"]
 
 [ext_resource type="Theme" uid="uid://bhs76hnulf3s4" path="res://assets/misc/main_theme.tres" id="1_21628"]
 [ext_resource type="Script" path="res://scences/ui/player_card/card_menu_ui.gd" id="1_udd6g"]
 [ext_resource type="Resource" uid="uid://brs0hub03o0k0" path="res://characters/machine/cards/common/laser.tres" id="2_k6r6l"]
 [ext_resource type="StyleBox" uid="uid://ck3105wj7dcrn" path="res://scences/card_ui/card_base_stylebox.tres" id="3_2kfhu"]
 [ext_resource type="Texture2D" uid="uid://bfvi02kojsa00" path="res://assets/art/objects/tile_0103.png" id="4_64408"]
+[ext_resource type="PackedScene" uid="uid://n3v1mvmtakc" path="res://scences/ui/player_card/card_tooltip.tscn" id="6_opbhk"]
 
 [node name="CardMenuUI" type="CenterContainer"]
 offset_right = 40.0
@@ -13,12 +14,12 @@ size_flags_horizontal = 3
 script = ExtResource("1_udd6g")
 card = ExtResource("2_k6r6l")
 
-[node name="Visuals" type="Control" parent="."]
+[node name="Elements" type="Control" parent="."]
 custom_minimum_size = Vector2(40, 50.4)
 layout_mode = 2
 theme = ExtResource("1_21628")
 
-[node name="Panel" type="Panel" parent="Visuals"]
+[node name="Panel" type="Panel" parent="Elements"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -31,7 +32,7 @@ grow_vertical = 2
 mouse_filter = 2
 theme_override_styles/panel = ExtResource("3_2kfhu")
 
-[node name="Cost" type="Label" parent="Visuals"]
+[node name="Cost" type="Label" parent="Elements"]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 3.0
@@ -41,7 +42,7 @@ offset_bottom = 17.0
 text = "2"
 vertical_alignment = 1
 
-[node name="Type" type="Label" parent="Visuals"]
+[node name="Type" type="Label" parent="Elements"]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 4.0
@@ -51,7 +52,7 @@ offset_bottom = 17.0
 text = "2"
 vertical_alignment = 1
 
-[node name="Icon" type="TextureRect" parent="Visuals"]
+[node name="Icon" type="TextureRect" parent="Elements"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
@@ -71,7 +72,7 @@ texture = ExtResource("4_64408")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Desc" type="Label" parent="Visuals"]
+[node name="Desc" type="Label" parent="Elements"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -89,7 +90,7 @@ Draw 12"
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="Name" type="Label" parent="Visuals"]
+[node name="Name" type="Label" parent="Elements"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -107,7 +108,7 @@ text = "Repurposing hiya"
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="CacheCost" type="RichTextLabel" parent="Visuals"]
+[node name="CacheCost" type="RichTextLabel" parent="Elements"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -124,5 +125,13 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[connection signal="mouse_entered" from="Visuals" to="." method="_on_visuals_mouse_entered"]
-[connection signal="mouse_exited" from="Visuals" to="." method="_on_visuals_mouse_exited"]
+[node name="CardTooltip" parent="Elements" instance=ExtResource("6_opbhk")]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+offset_left = 0.0
+offset_right = 5.0
+offset_bottom = 6.6
+
+[connection signal="mouse_entered" from="Elements/CardTooltip" to="." method="_on_tooltip_mouse_entered"]
+[connection signal="mouse_exited" from="Elements/CardTooltip" to="." method="_on_tooltip_mouse_exited"]

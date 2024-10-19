@@ -36,7 +36,7 @@
 				"optional": false
 			}
 		],
-		"description": "Prints a string of text"
+		"description": "Prints a string of text (works with bbcode)"
 	},
 	"gold": {
 		"target": "",

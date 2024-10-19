@@ -16,4 +16,4 @@ sound = ExtResource("3_w7sy2")
 tooltip_text = "ATK %s twice.
 Chaotic"
 effect_description = "[center]Attack - Deal [color=\"ff0000\"]damage[/color] to an enemy
-Chaotic - Affects a random [color=\"008000\"]target[/color][/center]"
+Chaotic - Affects a random [color=CD57FF]target[/color][/center]"

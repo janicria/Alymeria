@@ -15,6 +15,7 @@ const HOVER_STYLEBOX := preload("res://scences/card_ui/card_hover_stylebox.tres"
 @onready var desc: Label = %Desc
 @onready var _name: Label = %Name
 @onready var cache_cost: RichTextLabel = %CacheCost
+@onready var card_tooltip: CardTooltip = %CardTooltip
 
 
 # It doesn't matter if cache cost can't hide as card menu uis are instanced whenever a card pile is opened
@@ -65,11 +66,11 @@ func set_card(value : Card) -> void:
 		desc.position.y = desc.position.y + (_name.get_line_count() * _name.get_line_height()) -5
 
 
-func _on_visuals_mouse_entered() -> void:
+func _on_tooltip_mouse_entered() -> void:
 	panel.set("theme_override_styles/panel", HOVER_STYLEBOX)
-	card_tooltip_requested.emit(card)
-	Events.update_card_tooltip_position.emit(self)
+	card_tooltip.show_tooltip(card)
 
 
-func _on_visuals_mouse_exited() -> void:
+func _on_tooltip_mouse_exited() -> void:
 	panel.set("theme_override_styles/panel", BASE_STYLEBOX)
+	card_tooltip.modulate.a = 0

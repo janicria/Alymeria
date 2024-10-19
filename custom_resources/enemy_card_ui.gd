@@ -50,18 +50,13 @@ func update_stats(card: EnemyCard, enemy: Enemy, from_status := false) -> void:
 	icon.texture = enemy.stats.art
 	attack_icon.texture = card.icon_dict.get(card.type)
 	
-	# FIXME: Doesn't work for player debuffs (injured) (and barrier???) after the card has already been played huh?????
-	# FIXME: It's from the modified_type = enemy.get(modified_type) (could be from 'from_status')
-	
-	# Updates the UI to include player and enemy modifiers in its calculations
+	# Updates the UI to include player and enemy modifiers in its calculations (horribly unreadable)
 	var player := get_targets()[0] as Player
 	if player && card.type == EnemyCard.Type.ATTACK:
 		# Updating damage counter with the correct values requires removing the old values first
 		if from_status: Events.update_player_dmg_counter.emit(modified_damage * card.repeats * -1, false)
 		modified_damage = player.modifier_handler.get_modified_value(card_stats.amount, Modifier.Type.DMG_TAKEN)
-		print(modified_damage)
 		modified_damage = enemy_stats.modifier_handler.get_modified_value(modified_damage, Modifier.Type.DMG_DEALT)
-		print(modified_damage, "\n\n")
 		if from_status: Events.update_player_dmg_counter.emit(modified_damage * card.repeats, false)
 		attack_desc.text = str(modified_damage)
 	elif card.type == EnemyCard.Type.BARRIER or card.type == EnemyCard.Type.LARGE_BARRIER:
@@ -72,9 +67,9 @@ func update_stats(card: EnemyCard, enemy: Enemy, from_status := false) -> void:
 
 
 func _on_control_mouse_entered() -> void:
-	# Checks if enemy has been freed
 	var wr: WeakRef = weakref(enemy_stats); if !wr.get_ref(): 
-		Events.card_tooltip_requested.emit("[center]This enemy died, but it's card is still here for some reason? \n [s](bad programming)[/s][/center]")
+		Events.card_tooltip_requested.emit(
+		"[center]This enemy died, but it's card is still here for some reason? \n [s](bad programming)[/s][/center]")
 		return
 	
 	if card_stats.custom_amount != "":
@@ -130,8 +125,7 @@ func play() -> void:
 func get_targets() -> Array[Node]:
 	# Last enemy card to be played in hand searches for targets a second time after
 	# being played, therefore we can return anything since the card is about to be freed
-	var tree_wr: WeakRef = weakref(get_tree())
-	if !tree_wr.get_ref(): return [Node.new()]
+	if !is_inside_tree(): return [Node.new()]
 	
 	var target := get_tree().get_first_node_in_group("player")
 	if get_tree().get_node_count_in_group("summons"):
