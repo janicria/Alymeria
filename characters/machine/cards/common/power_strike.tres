@@ -13,7 +13,6 @@ target = 1
 repeats = 1
 cost = 2
 statuses = Array[ExtResource("3_4bxfu")]([])
-exhausts = false
 sound = ExtResource("3_ldjk2")
 tooltip_text = "ATK %s"
 effect_description = "[center]Attack - Deal [color=\"ff0000\"]damage[/color] to an enemy[/center]"

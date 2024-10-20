@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cp4iq5fd6j8be"
-path="res://.godot/imported/sand_nobox.png-8b420f30aba5e2b51ea2bd345c4fb943.ctex"
+uid="uid://clyr2ry2xry0f"
+path="res://.godot/imported/small_heart.png-fc17125437e83ed211dff0711b53df4a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/backgrounds/sand_nobox.png"
-dest_files=["res://.godot/imported/sand_nobox.png-8b420f30aba5e2b51ea2bd345c4fb943.ctex"]
+source_file="res://assets/ui/small_heart.png"
+dest_files=["res://.godot/imported/small_heart.png-fc17125437e83ed211dff0711b53df4a.ctex"]
 
 [params]
 

@@ -13,7 +13,6 @@ target = 1
 repeats = 1
 cost = 1
 statuses = Array[ExtResource("3_i3dg2")]([])
-exhausts = false
 sound = ExtResource("2_6e1md")
 tooltip_text = "ATK X + 3
 X = DRAW

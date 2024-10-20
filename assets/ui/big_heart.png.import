@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dfvgm8xob4mow"
-path="res://.godot/imported/rarity.png-3c9433c2c5368eec9a895a1cd0201a8a.ctex"
+uid="uid://dmnh5xxe2xne0"
+path="res://.godot/imported/big_heart.png-4d14c924d3dfdefd91bca2e717672bff.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/rarity.png"
-dest_files=["res://.godot/imported/rarity.png-3c9433c2c5368eec9a895a1cd0201a8a.ctex"]
+source_file="res://assets/ui/big_heart.png"
+dest_files=["res://.godot/imported/big_heart.png-4d14c924d3dfdefd91bca2e717672bff.ctex"]
 
 [params]
 

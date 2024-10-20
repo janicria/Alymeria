@@ -25,7 +25,7 @@ const icon_dict := {
 	Type.BUFF: preload("res://assets/art/objects/tile_0126.png"),
 	Type.DEBUFF: preload("res://assets/art/objects/tile_0127.png"),
 	Type.SPAWN: preload("res://assets/art/characters/tile_0122.png"),
-	Type.UNKNOWN: preload("res://assets/ui/rarity.png")
+	Type.UNKNOWN: preload("res://assets/ui/orb.png")
 }
 
 const SFX_dict := {

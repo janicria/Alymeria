@@ -70,8 +70,8 @@ func _on_update_battle_state(new_state : BattleState) -> void:
 			enemy_handler.play_next_card()
 		
 		BattleState.WIN:
-			# When the game is exiting all enemies are freed causing 
-			# it to think the battle is won and try to save the game
+			# When the game is exiting all enemies are freed causing
+			# the game to think that the battle is won and try to save
 			var wr: WeakRef = weakref(get_tree())
 			if !wr.get_ref(): return 
 			

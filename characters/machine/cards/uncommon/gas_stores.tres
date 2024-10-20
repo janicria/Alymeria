@@ -13,7 +13,6 @@ target = 1
 repeats = 1
 cost = 1
 statuses = Array[ExtResource("3_84rcc")]([])
-exhausts = false
 sound = ExtResource("2_iixm5")
 tooltip_text = "Nano plague 4"
 effect_description = ":3"

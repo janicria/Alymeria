@@ -209,11 +209,13 @@ func gold(amount: int) -> String:
 
 func kill(who: String) -> String:
 	var player := get_tree().get_first_node_in_group(\"player\") as Player
-	# In case the player scene hasn't been instanced yet
-	var wr: WeakRef = weakref(player)
-	if !wr.get_ref(): 
+	var wr: WeakRef = weakref(player); if !wr.get_ref(): 
 		print(\"[CMD] Failed to kill %s\" % who)
 		return \"Not in a battle!\"
+	
+	if who != \"self\" && who != \"enemies\":
+		return \"%s is not a valid group!\" % who
+	
 	GameManager.cheats = true
 	
 	if who == \"self\":
@@ -223,9 +225,6 @@ func kill(who: String) -> String:
 		hide()
 		print(\"[CMD] Killed %s\" % who)
 		return \"Killed %s\" % who
-	
-	elif who == \"e\": for target in get_tree().get_nodes_in_group(\"enemies\"): 
-		target.death_animation()
 	
 	for target in get_tree().get_nodes_in_group(who):
 		target.death_animation()

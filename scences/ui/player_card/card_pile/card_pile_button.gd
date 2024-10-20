@@ -27,7 +27,7 @@ func _on_card_pile_size_changed(amount : int) -> void:
 	deck_size = amount
 	if get_name() == "CachePileButton": counter.text = "[center][color=D9BB26]%s[/color] %s[/center]" % [GameManager.character.cache_tokens, deck_size]
 	else: counter.text = "[center]%s[/center]" % deck_size
-	if GameManager.true_deck_size: Events.update_deck_button_ui.emit()
+	if GameManager.true_deck_size: update_ui() #Events.update_deck_button_ui.emit()
 
 
 func update_ui() -> void:

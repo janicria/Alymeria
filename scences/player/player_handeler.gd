@@ -1,6 +1,7 @@
 class_name PlayerHandeler
 extends Node
 
+
 const HAND_DRAW_INTERVAL := 0.25
 const HAND_DISCARD_INTERVAL := 0.25
 
@@ -37,14 +38,13 @@ func end_turn() -> void:
 
 func draw_card() -> void:
 	if hand.get_child_count() >= 10: OS.alert("Max hand size is 10"); return
-	reshuffle_deck_from_discard()
+	reshuffle_draw_from_discard()
 	if !GameManager.character.draw_pile.cards: return
 	hand.add_card(GameManager.character.draw_pile.draw_card())
-	reshuffle_deck_from_discard()
+	reshuffle_draw_from_discard()
 	Events.update_draw_card_ui.emit()
 
 
-# TODO Add tween animation for reshuffling discard into draw
 func draw_cards(amount: int) -> void:
 	var tween := create_tween()
 	for i in amount:
@@ -74,12 +74,19 @@ func discard_cards() -> void:
 	tween.finished.connect(func()->void: Events.player_hand_discarded.emit())
 
 
-func reshuffle_deck_from_discard() -> void:
-	if !GameManager.character.draw_pile.empty():
-		return
+func reshuffle_draw_from_discard() -> void:
+	if !GameManager.character.draw_pile.empty(): return
 	
 	while !GameManager.character.discard.empty():
 		GameManager.character.draw_pile.add_card(GameManager.character.discard.draw_card())
+		# Discard to draw pile animation
+		var orb := TextureRect.new()
+		orb.texture = preload("res://assets/ui/orb.png")
+		orb.global_position = get_parent().battle_ui.discard_pile_button.position
+		orb.global_position.y += 1; add_child(orb)
+		var tween := create_tween().set_trans(Tween.TRANS_QUART)
+		tween.tween_property(orb, "global_position", Vector2(get_parent().battle_ui.draw_pile_button.position.x, orb.global_position.y), 0.4)
+		await get_tree().create_timer(0.4).timeout
 	
 	GameManager.character.draw_pile.shuffle()
 

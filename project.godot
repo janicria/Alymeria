@@ -51,7 +51,7 @@ window/size/resizable=false
 window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="viewport"
-mouse_cursor/custom_image="res://assets/ui/cursor.png"
+mouse_cursor/custom_image="res://assets/misc/cursor.png"
 
 [editor_plugins]
 
@@ -60,7 +60,7 @@ enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg", "res://addons/
 [gui]
 
 theme/custom="res://assets/misc/main_theme.tres"
-theme/custom_font="res://assets/misc/pixel_rpg.ttf"
+theme/custom_font="res://assets/misc/pixel_font.ttf"
 
 [importer_defaults]
 

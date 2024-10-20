@@ -13,7 +13,6 @@ target = 3
 repeats = 2
 cost = 2
 statuses = Array[ExtResource("3_fly0h")]([])
-exhausts = false
 sound = ExtResource("3_w7sy2")
 tooltip_text = "ATK %s twice.
 Chaotic"

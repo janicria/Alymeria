@@ -86,7 +86,7 @@
 				"optional": true
 			}
 		],
-		"description": "Increases health by a set amount (can be negative)\nSetting max to true also changes max health"
+		"description": "Increases health by a set amount (can be negative)\nSetting max to true changes max health to amount instead"
 	},
 	"deck": {
 		"target": "",

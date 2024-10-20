@@ -13,7 +13,6 @@ target = 0
 repeats = 1
 cost = 1
 statuses = Array[ExtResource("3_rro5u")]([])
-exhausts = false
 sound = ExtResource("3_8os66")
 tooltip_text = "Set in script
 Draw 2

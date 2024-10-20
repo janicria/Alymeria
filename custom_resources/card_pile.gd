@@ -26,8 +26,15 @@ func remove_card(card: Card) -> void:
 	card_pile_size_changed.emit(cards.size())
 
 
-func shuffle() -> void:
+# Only called for draw pile
+func shuffle() -> Array[Card]:
 	cards.shuffle()
+	
+	for card in cards:
+		if card.has_status("heavy"):
+			cards.erase(card)
+			cards.append(card)
+	return cards
 
 
 func clear() -> void:

@@ -35,26 +35,10 @@ func parse_command(
 			return response
 		return ""
 	
-	if ARGUMENTS_.size() > METHOD_ARGUMENTS_.size():
-		return (
-			"Too many arguments for command '"
-			+ command
-			+ "'. Expected "
-			+ str(METHOD_ARGUMENTS_.size())
-			+ ", but got "
-			+ str(ARGUMENTS_.size())
-			+ "." 
-		)
 	
-	if not METHOD_ARGUMENTS_.is_empty() and ARGUMENTS_.is_empty():
-		return (
-			"Too few arguments for command '"
-			+ command
-			+ "'. Expected "
-			+ str(METHOD_ARGUMENTS_.size())
-			+ ", but got "
-			+ str(ARGUMENTS_.size())
-			+ "." 
+	if METHOD_ARGUMENTS_.size() != ARGUMENTS_.size():
+		return ( # Yes it looks worse now, but it saves repeating like 6 lines sooo...
+			"Too %s arguments for command %s. Expected %s, but got %s'" % [ ("few" if METHOD_ARGUMENTS_.size() > ARGUMENTS_.size() else "many"), command, METHOD_ARGUMENTS_.size(), ARGUMENTS_.size()]
 		)
 	
 	var PARSED_ARGUMENTS_: Dictionary =\

@@ -43,9 +43,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture1D_3aq4a")
+metadata/_edit_lock_ = true
 
-[node name="LeftBox" type="Sprite2D" parent="MapBackground"]
+[node name="LeftBox" type="TextureRect" parent="MapBackground"]
 modulate = Color(0.737193, 0.737193, 0.737193, 1)
 texture = ExtResource("3_qn01p")
-centered = false
 metadata/_edit_lock_ = true

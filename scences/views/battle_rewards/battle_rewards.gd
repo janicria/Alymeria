@@ -5,12 +5,13 @@ const CARD_REWARDS := preload("res://scences/ui/battle/card_rewards.tscn")
 const REWARD_BUTTON := preload("res://scences/ui/battle/reward_button.tscn")
 const GOLD_ICON := preload("res://assets/ui/gold.png")
 const GOLD_TEXT := "%s gold"
-const CARD_ICON := preload("res://assets/ui/rarity.png")
+const CARD_ICON := preload("res://assets/ui/orb.png")
 const CARD_TEXT := "Add a New Card"
 const REGULAR_POTION_ICON := preload("res://assets/art/objects/tile_0114.png")
 #const POTION_TEXT := ""
 
 @onready var rewards: VBoxContainer = %Rewards
+@onready var title: Label = %Title
 
 var card_reward_total_weight := 0.0
 var card_rarity_weights := {
@@ -24,6 +25,14 @@ func _ready() -> void:
 	# Removes placeholder rewards
 	for node: Node in rewards.get_children(): 
 		node.queue_free()
+	
+	match randi_range(0, 6):
+		0: title.text = "Victory"
+		1: title.text = "Not even a stratch"
+		2: title.text = "Rewards!"
+		3: title.text = "Reward text"
+		4: title.text = "Cool cards here"
+		5: title.text = "Better skip these"
 
 
 func add_card_reward() -> void:

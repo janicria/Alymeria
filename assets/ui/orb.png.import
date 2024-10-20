@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://j16iwp255gqv"
-path="res://.godot/imported/sand.png-4833105d98ab7356179ebd09aea2b94d.ctex"
+uid="uid://dfvgm8xob4mow"
+path="res://.godot/imported/orb.png-1b79cdd92d7fe985b361011cc7982f02.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/backgrounds/sand.png"
-dest_files=["res://.godot/imported/sand.png-4833105d98ab7356179ebd09aea2b94d.ctex"]
+source_file="res://assets/ui/orb.png"
+dest_files=["res://.godot/imported/orb.png-1b79cdd92d7fe985b361011cc7982f02.ctex"]
 
 [params]
 

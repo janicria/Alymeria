@@ -13,7 +13,6 @@ target = 0
 repeats = 1
 cost = 1
 statuses = Array[ExtResource("3_84iku")]([])
-exhausts = true
 sound = ExtResource("2_rav3k")
 tooltip_text = "Either buff 2 OR debuff 1
 Exhaust"
