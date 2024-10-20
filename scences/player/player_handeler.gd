@@ -41,7 +41,7 @@ func draw_card() -> void:
 	if !GameManager.character.draw_pile.cards: return
 	hand.add_card(GameManager.character.draw_pile.draw_card())
 	reshuffle_deck_from_discard()
-	Events.update_card_stats.emit()
+	Events.update_draw_card_ui.emit()
 
 
 # TODO Add tween animation for reshuffling discard into draw
@@ -56,7 +56,7 @@ func draw_cards(amount: int) -> void:
 				# Prevents cards from being placed after being draw in between updating mana
 				GameManager.character.set_mana(GameManager.character.mana)
 				Events.player_hand_drawn.emit()
-				Events.update_card_stats.emit())
+				Events.update_draw_card_ui.emit())
 
 
 func discard_cards() -> void:
@@ -85,7 +85,7 @@ func reshuffle_deck_from_discard() -> void:
 
 
 func _on_card_played(card : Card) -> void:
-	if card.exhausts: GameManager.character.exhaust_pile.add_card(card)
+	if card.has_status("exhaust"): GameManager.character.exhaust_pile.add_card(card)
 	else: GameManager.character.discard.add_card(card)
 
 

@@ -55,7 +55,7 @@ func take_damage(damage : int) -> void:
 	stats.take_damage(damage)
 	
 	if stats.health <= 0:
-		Events.player_died.emit()
+		Events.update_battle_state.emit(6)
 		damage_counter.hide()
 		death_animation()
 

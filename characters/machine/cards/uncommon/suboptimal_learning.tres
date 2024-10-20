@@ -1,6 +1,8 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://b3k1qnuqi4oeu"]
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://b3k1qnuqi4oeu"]
 
 [ext_resource type="Script" path="res://characters/machine/cards/uncommon/suboptimal_learning.gd" id="1_grm5f"]
+[ext_resource type="Script" path="res://custom_resources/card_status.gd" id="2_5nxbr"]
+[ext_resource type="Resource" uid="uid://whvjfg6gw8dw" path="res://effects/card_status/exhaust.tres" id="3_n6enk"]
 
 [resource]
 script = ExtResource("1_grm5f")
@@ -10,12 +12,11 @@ rarity = 1
 target = 0
 repeats = 1
 cost = 1
+statuses = Array[ExtResource("2_5nxbr")]([ExtResource("3_n6enk")])
 exhausts = true
 tooltip_text = "DMG UP X
 Health -X
 X=enemies
-Exhaust
 "
 effect_description = "[center]Damage up - [color=ff0000]Attacks[/color] deal X more damage
-X - Applies effects for each enemy
-Exhaust - Cannot be played for the rest of the combat[/center]"
+X - Applies effects for each enemy[/center]"

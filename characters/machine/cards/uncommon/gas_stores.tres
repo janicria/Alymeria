@@ -1,7 +1,8 @@
-[gd_resource type="Resource" load_steps=3 format=3 uid="uid://8o3q4wsrwdc8"]
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://8o3q4wsrwdc8"]
 
 [ext_resource type="Script" path="res://characters/machine/cards/uncommon/gas_stores.gd" id="1_4vh52"]
 [ext_resource type="AudioStream" uid="uid://k8m4o3hlwm7l" path="res://assets/SFX/enemy_block.ogg" id="2_iixm5"]
+[ext_resource type="Script" path="res://custom_resources/card_status.gd" id="3_84rcc"]
 
 [resource]
 script = ExtResource("1_4vh52")
@@ -11,6 +12,7 @@ rarity = 1
 target = 1
 repeats = 1
 cost = 1
+statuses = Array[ExtResource("3_84rcc")]([])
 exhausts = false
 sound = ExtResource("2_iixm5")
 tooltip_text = "Nano plague 4"

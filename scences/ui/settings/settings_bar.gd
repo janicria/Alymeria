@@ -46,6 +46,17 @@ func _ready() -> void:
 		music_volume.editable = false
 
 
+func _process(_delta: float) -> void:
+	if cog_speed_boost < 0.01: return
+	cog.rotation_degrees += cog_speed_boost * 1.5
+	cog_speed_boost -= 0.02
+
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel") && !GameManager.card_pile_open: 
+		toggle_settings()
+
+
 func _setup(card_pile : CardPile) -> void:
 	deck_button.card_pile = card_pile
 	deck_view.card_pile = card_pile
@@ -63,30 +74,6 @@ func _setup(card_pile : CardPile) -> void:
 	_on_toggled_button_toggled(GameManager.speedy_cards, "speedy_cards")
 
 
-func _on_cog_gui_input(event: InputEvent) -> void:
-	if event.is_action_released("left_mouse_pressed"):
-		toggle_settings()
-	
-	cog.rotation_degrees += 5 + cog_speed_boost
-	cog_speed_boost += 0.05
-
-
-func _process(_delta: float) -> void:
-	# Prevents camera from moving screen position
-	global_position.y = 0 - get_canvas_transform().origin.y
-	
-	if cog_speed_boost < 0.01: return
-	cog.rotation_degrees += cog_speed_boost * 1.5
-	cog_speed_boost -= 0.02
-
-
-func _on_color_rect_gui_input(event: InputEvent) -> void:
-	if event.is_action_released("left_mouse_pressed"): toggle_settings()
-
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_cancel") && !GameManager.card_pile_open: toggle_settings()
-
-
 func toggle_settings() -> void:
 	settings.visible = !settings.visible
 	if settings.visible :
@@ -95,8 +82,21 @@ func toggle_settings() -> void:
 	else:
 		color_rect.visible = false
 		get_tree().paused = false
-		Events.tooltip_hide_requested.emit()
-		Events.update_deck_counter.emit()
+		Events.hide_tooltip.emit()
+		Events.update_deck_button_ui.emit()
+
+
+func _on_cog_gui_input(event: InputEvent) -> void:
+	if event.is_action_released("left_mouse_pressed"):
+		toggle_settings()
+	
+	cog.rotation_degrees += 5 + cog_speed_boost
+	cog_speed_boost += 0.05
+
+
+func _on_color_rect_gui_input(event: InputEvent) -> void:
+	if event.is_action_released("left_mouse_pressed"): 
+		toggle_settings()
 
 
 func _on_toggled_button_toggled(toggled_on: bool, button_string: String) -> void:
@@ -105,11 +105,11 @@ func _on_toggled_button_toggled(toggled_on: bool, button_string: String) -> void
 		"true_draw": 
 			button = %TrueDrawButton
 			GameManager.true_draw_amount = toggled_on
-			Events.update_card_stats.emit()
+			Events.update_draw_card_ui.emit()
 		"true_deck": 
 			button = %TrueDeckButton
 			GameManager.true_deck_size = toggled_on
-			Events.update_deck_buttons.emit()
+			Events.update_deck_button_ui.emit()
 		"hints": 
 			button = %HintsButton
 			GameManager.gameplay_tips = toggled_on
@@ -124,7 +124,7 @@ func _on_toggled_button_toggled(toggled_on: bool, button_string: String) -> void
 			if toggled_on: pile_button.text = "Inside"
 			else: pile_button.text = "Outside"
 			GameManager.card_pile_above_mana = toggled_on
-			Events.update_deck_buttons.emit()
+			Events.update_deck_button_ui.emit()
 		"speedy_cards":
 			button = %SpeedyCardsButton
 			GameManager.speedy_cards = toggled_on
@@ -160,7 +160,7 @@ func _on_sfx_volume_drag_ended(_value_changed: bool) -> void:
 
 
 func _on_hbox_mouse_entered(text: String) -> void:
-	Events.settings_tooltip_requested.emit("[center]" + text + "[/center]")
+	Events.show_tooltip.emit("[center]%s[/center]" % text)
 
 
 func _on_exit_button_pressed() -> void:
@@ -170,8 +170,9 @@ func _on_exit_button_pressed() -> void:
 		get_tree().quit()
 
 
+# Yes this belongs here as it's connected by a signal
 func hide_tooltip() -> void:
-	Events.tooltip_hide_requested.emit()
+	Events.hide_tooltip.emit()
 
 
 func _on_console_button_pressed() -> void:

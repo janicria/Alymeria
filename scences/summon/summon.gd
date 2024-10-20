@@ -87,10 +87,10 @@ func _on_area_exited(_area: Node) -> void:
 
 func _on_mouse_entered() -> void:
 	if stats.id == "AttackSentry":
-		Events.card_tooltip_requested.emit("[center]Attack Sentry - When a [color=800080]Summon[/color][color=ff0000] Attack[/color] is played for it, it deals [color=ff0000]6 damage[/color] to a random enemey. When a [color=800080]Summon[/color][color=0044ff] Ability[/color] is played for it, all allies gain one damage up
+		Events.show_tooltip.emit("[center]Attack Sentry - When a [color=800080]Summon[/color][color=ff0000] Attack[/color] is played for it, it deals [color=ff0000]6 damage[/color] to a random enemey. When a [color=800080]Summon[/color][color=0044ff] Ability[/color] is played for it, all allies gain one damage up
 Damage up - Attacks or Cards deal one additional [color=ff0000]damage[/color][/center]")
 
 
 func _on_mouse_exited() -> void:
 	if stats.id == "AttackSentry":
-		Events.tooltip_hide_requested.emit()
+		Events.hide_tooltip.emit()

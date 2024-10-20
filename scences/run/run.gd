@@ -16,6 +16,7 @@ const EVENT_SCENCE := preload("res://scences/views/events/event.tscn")
 @onready var color_rect: ColorRect = %ColorRect
 @onready var console_window: Window = %ConsoleWindow
 @onready var version_number: Label = %VersionNumber
+@onready var settings_bar: TextureRect = %SettingsBar
 
 var character: CharacterStats
 
@@ -32,7 +33,18 @@ func _ready() -> void:
 		RunStartup.Type.CONTINUED_RUN:
 			print("Load contuined run")
 	
-	Events.update_deck_buttons.emit()
+	Events.update_deck_button_ui.emit()
+
+
+func _process(_delta: float) -> void:
+	# Prevents the map camera from moving screen elements
+	version_number.global_position.y = 2 - version_number.get_canvas_transform().origin.y
+	settings_bar.global_position.y = 0 - settings_bar.get_canvas_transform().origin.y
+
+
+func _input(_event: InputEvent) -> void:
+	if _event.is_action_pressed("~_pressed"): 
+		console_window.visible = !console_window.visible
 
 
 func _start_run() -> void:
@@ -70,20 +82,13 @@ func _show_map() -> void:
 
 
 func _setup_event_connections() -> void:
-	Events.battle_won.connect(_on_battle_won)
+	Events.update_battle_state.connect(_on_battle_state_updated)
 	Events.battle_reward_exited.connect(_on_reward_exited)
 	Events.haven_exited.connect(_show_map)
 	Events.map_exited.connect(_on_map_exited)
 	Events.shop_exited.connect(_show_map)
 	Events.treasure_room_exited.connect(_show_map)
 	Events.events_extied.connect(_show_map)
-
-
-func _input(_event: InputEvent) -> void:
-	if _event.is_action_pressed("~_pressed"): 
-		console_window.visible = !console_window.visible
-	elif _event.is_action_pressed("ui_cancel"): 
-		Events.update_settings_visibility.emit()
 
 
 func _on_battle_room_entered(room: Room) -> void:
@@ -93,7 +98,9 @@ func _on_battle_room_entered(room: Room) -> void:
 	battle_scence.start_battle()
 
 
-func _on_battle_won() -> void:
+func _on_battle_state_updated(state: Battle.BattleState) -> void:
+	if state != Battle.BattleState.WIN: return
+	
 	# Failsafe which runs while the game is exiting
 	var wr: WeakRef = weakref(get_tree())
 	if !wr.get_ref(): return

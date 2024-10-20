@@ -13,8 +13,7 @@ var exhausts_in_deck := 0
 func set_card_pile(new_value : CardPile) -> void:
 	card_pile = new_value
 	
-	Events.update_deck_buttons.connect(update_ui)
-	Events.update_deck_counter.connect(update_ui)
+	Events.update_deck_button_ui.connect(update_ui)
 	
 	if !card_pile.card_pile_size_changed.is_connected(_on_card_pile_size_changed):
 		card_pile.card_pile_size_changed.connect(_on_card_pile_size_changed)
@@ -28,17 +27,18 @@ func _on_card_pile_size_changed(amount : int) -> void:
 	deck_size = amount
 	if get_name() == "CachePileButton": counter.text = "[center][color=D9BB26]%s[/color] %s[/center]" % [GameManager.character.cache_tokens, deck_size]
 	else: counter.text = "[center]%s[/center]" % deck_size
-	if GameManager.true_deck_size: Events.update_deck_buttons.emit()
+	if GameManager.true_deck_size: Events.update_deck_button_ui.emit()
 
 
 func update_ui() -> void:
-	# True deck size
-	if GameManager.true_deck_size && get_name() == "DeckButton":
-		counter.text = "%s(%s)" % [deck_size, (deck_size - GameManager.character.deck.cards.filter(
-			func(card: Card)->bool: return card.exhausts).size())]
-	else: counter.text = "[center]%s[/center]" % deck_size
-	
 	match get_name():
+		"DeckButton":
+			if GameManager.true_deck_size: # Imagine putting this in a trenary
+				counter.text = "%s(%s)" % [deck_size, (deck_size - GameManager.character.deck.cards.filter(
+					func(card: Card)->bool: return card.exhausts).size())]
+			else: counter.text = "[center]%s[/center]" % deck_size
+		
+		
 		"DrawPileButton":
 			if GameManager.card_pile_above_mana: position = Vector2(58, 145)
 			else: position = Vector2(80, 170)

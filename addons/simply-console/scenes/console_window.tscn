@@ -218,7 +218,7 @@ func kill(who: String) -> String:
 	
 	if who == \"self\":
 		player.damage_counter.hide()
-		Events.player_died.emit()
+		Events.update_battle_state.emit(6)
 		player.death_animation()
 		hide()
 		print(\"[CMD] Killed %s\" % who)
@@ -279,6 +279,7 @@ func act(number: int = -1) -> String:
 
 func debug(additional_option: String = \"\") -> String:
 	# Deck
+	
 	print(\"[CMD] Debug w/%s start\" % [(\" %s\" % additional_option) if additional_option != \"\" else \"o any :c\"])
 	# Note: Running cards.clear() messes up card pile views to show 180-338 cards which is really funny
 	GameManager.character.deck.cards.clear()
@@ -297,21 +298,23 @@ func debug(additional_option: String = \"\") -> String:
 	deck(\"add\", \"rare\", \"file_corruption\")
 	deck(\"add\", \"../../secret\", \"injured_test\")
 	deck(\"add\", \"../../secret\", \"card_status_test\")
-	if additional_option == \"infinite_test\":
+	if additional_option == \"infinite\":
 		GameManager.character.deck.cards.clear()
 		deck(\"add\", \"rare\", \"advanced_rerouting\")
 		deck(\"add\", \"common\", \"repurposing\")
 		deck(\"add\", \"common\", \"repurposing\")
 		deck(\"add\", \"common\", \"laser\")
 		deck(\"add\", \"common\", \"shields\")
+	
 	# Character
 	heal(999, true)
 	GameManager.character.max_mana = 99
-	GameManager.character.cards_per_turn = 10
+	if additional_option != \"draw\":
+		GameManager.character.cards_per_turn = 10
+	
 	# Misc
 	if additional_option != \"music\":
 		for child:AudioStreamPlayer in MusicPlayer.get_children(): child.volume_db = -INF
-		for child:AudioStreamPlayer in SFXPlayer.get_children(): child.volume_db = -INF
 	print(\"[CMD] Debug w/%s end!\" % [(\" %s\" % additional_option) if additional_option != \"\" else \"o any :c\"])
 	GameManager.cheats = true
 	return 'Have \"fun\" debugging!'

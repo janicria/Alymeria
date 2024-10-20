@@ -1,6 +1,7 @@
-[gd_resource type="Resource" load_steps=3 format=3 uid="uid://dprpiekopnhe0"]
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://dprpiekopnhe0"]
 
 [ext_resource type="Script" path="res://characters/machine/cards/common/shields.gd" id="2_gvn0s"]
+[ext_resource type="Script" path="res://custom_resources/card_status.gd" id="3_pl30q"]
 [ext_resource type="AudioStream" uid="uid://df64e7qat73gs" path="res://assets/SFX/block.ogg" id="3_xer4h"]
 
 [resource]
@@ -11,6 +12,7 @@ rarity = 0
 target = 0
 repeats = 1
 cost = 1
+statuses = Array[ExtResource("3_pl30q")]([])
 exhausts = false
 sound = ExtResource("3_xer4h")
 tooltip_text = "Barrier %d"

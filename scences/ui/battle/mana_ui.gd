@@ -17,9 +17,9 @@ func _on_stats_changed() -> void:
 
 
 func _on_mouse_entered() -> void:
-	Events.card_tooltip_requested.emit("[center]Your [color=ffff00]memory[/color]
+	Events.show_tooltip.emit("[center]Your [color=ffff00]memory[/color]
 [color=ffff00]" + GameManager.character.mana_type + "[/color] decreases whenever you play cards and when looped card or summons are active[/center]")
 
 
 func _on_mouse_exited() -> void:
-	Events.tooltip_hide_requested.emit()
+	Events.hide_tooltip.emit()

@@ -14,7 +14,6 @@ enum Upgrade {NONE, REFINED, ENHANCED}
 @export var repeats:= 1
 @export var cost : int : set = set_cost
 @export var statuses: Array[CardStatus]
-@export var exhausts := false
 
 @export_group("Visuals")
 @export var sound : AudioStream
@@ -37,6 +36,26 @@ func set_cache_cost(_value: int) -> void:
 
 func set_cost(value: int) -> void:
 	cost = clampi(value, 0, 99)
+
+
+func get_tooltip_text(_player_mods: ModifierHandler, _enemy_mods: ModifierHandler) -> String:
+	return tooltip_text
+
+
+# Status should be part of the card not cardui
+func has_status(status_name: String) -> bool:
+	for status in statuses:
+		if status.name == status_name:
+			return true
+	return false
+
+func add_status(status: CardStatus) -> void:
+	if !statuses.has(status):
+		statuses.append(status)
+
+func remove_status(status: CardStatus) -> void:
+	if statuses.has(status):
+		statuses.erase(status)
 
 
 func is_single_targeted() -> bool:
@@ -73,7 +92,3 @@ func play(targets : Array[Node], modifiers: ModifierHandler) -> void:
 
 func apply_effects(_targets: Array[Node], _modifiers: ModifierHandler) -> void:
 	pass
-
-
-func get_tooltip_text(_player_mods: ModifierHandler, _enemy_mods: ModifierHandler) -> String:
-	return tooltip_text

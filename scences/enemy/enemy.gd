@@ -134,8 +134,7 @@ func death_animation(repeats := 3) -> void:
 				# Await prevents death anim from ending early
 				await get_tree().create_timer(0.2, false).timeout
 				Events.enemy_died.emit(self)
-				queue_free()
-	)
+				queue_free())
 
 
 func _on_area_entered(_area: Node) -> void:

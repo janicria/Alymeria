@@ -1,7 +1,7 @@
 class_name CardMenuUI
 extends CenterContainer
 
-signal card_tooltip_requested(card : Card)
+signal show_tooltip(card : Card)
 
 const BASE_STYLEBOX := preload("res://scences/ui/player_card/card_ui/card_base_stylebox.tres")
 const HOVER_STYLEBOX := preload("res://scences/ui/player_card/card_ui/card_hover_stylebox.tres")

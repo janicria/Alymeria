@@ -12,9 +12,8 @@ var is_playable := true
 
 
 func _ready() -> void:
-	Events.card_tooltip_requested.connect(show_tooltop)
-	Events.settings_tooltip_requested.connect(show_settings)
-	Events.tooltip_hide_requested.connect(hide_tooltip)
+	Events.show_tooltip.connect(show_tooltop)
+	Events.hide_tooltip.connect(hide_tooltip)
 	Events.card_aim_ended.connect(enable_tooltip)
 	Events.card_aim_started.connect(disable_tooltip)
 	Events.card_drag_started.connect(disable_tooltip)

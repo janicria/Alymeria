@@ -141,7 +141,7 @@
 				"optional": true
 			}
 		],
-		"description": "Helps make debugging more efficient (no undo)"
+		"description": "Helps make debugging more efficient (no undo)\nAdditional options:\nmusic draw infinite"
 	},
 	"turn": {
 		"target": "",

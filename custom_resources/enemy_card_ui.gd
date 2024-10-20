@@ -69,12 +69,12 @@ func update_stats(card: EnemyCard, enemy: Enemy, from_status := false) -> void:
 
 func _on_control_mouse_entered() -> void:
 	var wr: WeakRef = weakref(enemy_stats); if !wr.get_ref(): 
-		Events.card_tooltip_requested.emit(
+		Events.show_tooltip.emit(
 		"[center]This enemy died, but it's card is still here for some reason? \n [s](bad programming)[/s][/center]")
 		return
 	
 	if card_stats.custom_amount != "":
-		Events.card_tooltip_requested.emit(card_stats.get_tooltip())
+		Events.show_tooltip.emit(card_stats.get_tooltip())
 		return
 	
 	var tooltip_text := "[center]This enemy is going to "
@@ -100,13 +100,13 @@ func _on_control_mouse_entered() -> void:
 		card_stats.Targets.EVERYONE: tooltip_text += "to everyone"
 	
 	tooltip_text += " when this card is played[/center]"
-	Events.card_tooltip_requested.emit(tooltip_text)
+	Events.show_tooltip.emit(tooltip_text)
 	
 	enemy_stats.arrow.visible = !enemy_stats.arrow.visible
 
 
 func _on_control_mouse_exited() -> void:
-	Events.tooltip_hide_requested.emit()
+	Events.hide_tooltip.emit()
 	
 	# Safety for if enemy was freed
 	var wr: WeakRef = weakref(enemy_stats)

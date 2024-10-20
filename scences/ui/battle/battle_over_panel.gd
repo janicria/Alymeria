@@ -8,9 +8,8 @@ extends Panel
 
 
 func _ready() -> void:
-	continue_button.pressed.connect(func()->void: Events.battle_won.emit())
 	restart_button.pressed.connect(get_tree().reload_current_scene)
-	Events.battle_state_updated.connect(show_screen)
+	Events.update_battle_state.connect(show_screen)
 
 
 func show_screen(state : Battle.BattleState) -> void:

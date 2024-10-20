@@ -1,7 +1,9 @@
-[gd_resource type="Resource" load_steps=3 format=3 uid="uid://yeeykayldugs"]
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://yeeykayldugs"]
 
 [ext_resource type="Script" path="res://characters/machine/cards/rare/advanced_rerouting.gd" id="1_htorf"]
 [ext_resource type="AudioStream" uid="uid://df64e7qat73gs" path="res://assets/SFX/block.ogg" id="2_04thg"]
+[ext_resource type="Script" path="res://custom_resources/card_status.gd" id="3_q0e1p"]
+[ext_resource type="Resource" uid="uid://whvjfg6gw8dw" path="res://effects/card_status/exhaust.tres" id="4_dvu0b"]
 
 [resource]
 script = ExtResource("1_htorf")
@@ -11,7 +13,8 @@ rarity = 2
 target = 0
 repeats = 1
 cost = 3
+statuses = Array[ExtResource("3_q0e1p")]([ExtResource("4_dvu0b")])
 exhausts = true
 sound = ExtResource("2_04thg")
-tooltip_text = "Exhaust. For hand Cost -1"
+tooltip_text = "For hand Cost -1"
 effect_description = ":3"

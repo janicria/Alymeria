@@ -1,7 +1,8 @@
-[gd_resource type="Resource" load_steps=3 format=3 uid="uid://c6ffdh3cljhno"]
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://c6ffdh3cljhno"]
 
 [ext_resource type="Script" path="res://characters/machine/cards/common/repurposing.gd" id="2_ngu3b"]
 [ext_resource type="AudioStream" uid="uid://dixklg6g4jnsq" path="res://assets/SFX/slash.ogg" id="3_8os66"]
+[ext_resource type="Script" path="res://custom_resources/card_status.gd" id="3_rro5u"]
 
 [resource]
 script = ExtResource("2_ngu3b")
@@ -11,6 +12,7 @@ rarity = 0
 target = 0
 repeats = 1
 cost = 1
+statuses = Array[ExtResource("3_rro5u")]([])
 exhausts = false
 sound = ExtResource("3_8os66")
 tooltip_text = "Set in script

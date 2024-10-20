@@ -23,8 +23,7 @@ func _ready() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	# Prevents scrolling up whilst viewing a separate scene
-	if !visible:
-		return
+	if !visible: return
 	
 	if event.is_action_pressed("scroll_up"):
 		camera_2d.position.y -= SCROLL_SPEED

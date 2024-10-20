@@ -5,7 +5,6 @@
 [ext_resource type="Resource" uid="uid://chao0x4ettper" path="res://floors/battles/battle_stats_pool.tres" id="3_qmh5o"]
 [ext_resource type="Texture2D" uid="uid://dv4gtxwjv0yvi" path="res://assets/ui/left_box.png" id="3_qn01p"]
 
-
 [sub_resource type="Gradient" id="Gradient_gw1d3"]
 colors = PackedColorArray(0.215686, 0.215686, 0.215686, 1, 0.4, 0.219608, 0.203922, 1)
 

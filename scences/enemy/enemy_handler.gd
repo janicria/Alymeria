@@ -70,7 +70,7 @@ func stauses_finished() -> void:
 
 func play_next_card() -> void:
 	if !enemy_hand.get_children():
-		Events.battle_state_updated.emit(1)
+		Events.update_battle_state.emit(1)
 		return
 	
 	if !GameManager.speedy_cards:

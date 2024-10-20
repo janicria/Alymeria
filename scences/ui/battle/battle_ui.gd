@@ -39,4 +39,4 @@ func initialise_card_pile_ui() -> void:
 
 func _on_end_turn_button_pressed() -> void:
 	end_turn_button.disabled = true
-	Events.battle_state_updated.emit(4)
+	Events.update_battle_state.emit(4)

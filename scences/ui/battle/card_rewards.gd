@@ -51,7 +51,7 @@ func set_rewards(new_cards: Array[Card]) -> void:
 		var new_card := CARD_MENU_UI.instantiate() as CardMenuUI
 		cards.add_child(new_card)
 		new_card.card = card
-		new_card.card_tooltip_requested.connect(_show_tooltip)
+		new_card.show_tooltip.connect(_show_tooltip)
 	
 	for card: CardMenuUI in cards.get_children():
 		card.card_tooltip.gui_input.connect(

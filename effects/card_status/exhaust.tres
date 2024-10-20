@@ -5,5 +5,6 @@
 
 [resource]
 script = ExtResource("1_cx62s")
+name = "exhaust"
 icon = ExtResource("1_2ev3y")
-description = "Once played, cannot be played or uncached for the rest of the combat"
+description = "Exhaust - Once played, cannot be played or uncached for the rest of combat"
