@@ -3,7 +3,7 @@ extends HBoxContainer
 
 @export var player: Player
 
-@onready var card_ui := preload("res://scences/ui/player_card/card_ui/card_ui.tscn")
+@onready var card_ui := preload("res://scences/ui/player_card/card_ui/cardui.tscn")
 
 
 func _ready() -> void:
@@ -14,15 +14,18 @@ func _ready() -> void:
 
 
 func add_card(card : Card) -> void:
+	# Needed for uncaching cards
+	if get_child_count() >= 10: OS.alert("Max hand size is 10"); return
 	var new_card_ui := card_ui.instantiate() as CardUI
 	add_child(new_card_ui)
 	new_card_ui.reparent_requested.connect(_on_card_ui_reparent_requested)
 	new_card_ui.parent = self
 	# In case the player dies whilst drawing cards
-	var wr: WeakRef = weakref(player); if !wr.get_ref(): OS.alert("whoops"); return
+	var wr: WeakRef = weakref(player); if !wr.get_ref(): return
 	new_card_ui.player_modifiers = player.modifier_handler
 	new_card_ui.card = card
 	new_card_ui.playable = GameManager.character.can_play_card(new_card_ui.card)
+	Events.player_card_drawn.emit()
 	if player.status_handler._get_status("cancel"): new_card_ui.canceled = true; new_card_ui.playable = false
 
 

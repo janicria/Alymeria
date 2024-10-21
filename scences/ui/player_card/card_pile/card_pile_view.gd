@@ -43,6 +43,7 @@ func select_card() -> void:
 					card_selected.emit(cardmenu.card))
 
 
+# FIXME: Doesn't close if run by repurposing
 func _hide() -> void:
 	hide()
 	GameManager.card_pile_open = false

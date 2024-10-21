@@ -166,5 +166,20 @@
 		"method": "stats",
 		"argumentList": [],
 		"description": "Displays stats about your run"
+	},
+	"cache": {
+		"target": "",
+		"type": 1,
+		"minPermission": 0,
+		"cheats": false,
+		"method": "cache",
+		"argumentList": [
+			{
+				"name": "amount",
+				"type": 2,
+				"optional": false
+			}
+		],
+		"description": "Changes cache tokens to amount"
 	}
 }

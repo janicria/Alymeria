@@ -1,0 +1,26 @@
+[gd_resource type="Resource" load_steps=6 format=3 uid="uid://bhrkexs87u20t"]
+
+[ext_resource type="Script" path="res://characters/global/purple/godroll.gd" id="1_pexyu"]
+[ext_resource type="AudioStream" uid="uid://dixklg6g4jnsq" path="res://assets/SFX/slash.ogg" id="2_4lwbi"]
+[ext_resource type="Script" path="res://custom_resources/card_status.gd" id="3_ggqs4"]
+[ext_resource type="Resource" uid="uid://dlcvums0g7xyc" path="res://effects/card_status/luckydraw.tres" id="4_s7kkj"]
+[ext_resource type="Resource" uid="uid://whvjfg6gw8dw" path="res://effects/card_status/exhaust.tres" id="5_aedeo"]
+
+[resource]
+script = ExtResource("1_pexyu")
+name = "Godroll"
+type = 1
+rarity = 4
+target = 0
+repeats = 1
+cost = 0
+statuses = Array[ExtResource("3_ggqs4")]([ExtResource("4_s7kkj"), ExtResource("5_aedeo")])
+sound = ExtResource("2_4lwbi")
+tooltip_text = "Barrier %d
+DMG UP 20
+Card draw 3
+Heal 1"
+effect_description = "Barrier - [color=0044ff]Prevents[/color] [color=ff0000]damage[/color] from enemy attacks
+Damage up - [color=ff0000]Attacks[/color] deal X more damage
+Card draw - Draw X additional [color=0044ff]cards[/color] at the start of each turn
+Heal - Heal 1[color=ff0000]health[/color]"

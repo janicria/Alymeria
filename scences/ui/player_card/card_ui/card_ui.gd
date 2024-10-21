@@ -18,7 +18,7 @@ const HOVER_STYLEBOX := preload("res://scences/ui/player_card/card_ui/card_hover
 @onready var _name: Label = $Name
 @onready var drop_point_detector : Area2D = $DropPointDetector
 @onready var card_state_machine : CardSateMachine = %CardStateMachine
-@onready var card_status_ui: CardStatusUI = %CardStatusUI
+@onready var card_statuses: VBoxContainer = $CardStatuses
 @onready var targets: Array[Node] = []
 
 # Members below are referenced in various other scripts
@@ -29,7 +29,7 @@ var tween: Tween
 var playable := true : set = set_playable
 var disabled := false
 var canceled := false
-var ui_initialised := false
+var name_initialised := false
 
 
 func _ready() -> void:
@@ -39,7 +39,6 @@ func _ready() -> void:
 	Events.card_aim_ended.connect(_on_card_drag_or_aiming_ended)
 	GameManager.character.stats_changed.connect(_on_character_changed)
 	card_state_machine.init(self)
-	card_status_ui.cardui = self
 
 
 func  _input(event : InputEvent) -> void:
@@ -52,10 +51,11 @@ func set_card(value : Card) -> void:
 	
 	# Card coloring and text
 	match card.rarity:
-		0: type.modulate = Color(Color.GRAY)
-		1: type.modulate = Color(Color.CORNFLOWER_BLUE)
-		2: type.modulate = Color(Color.GOLD)
-		3: type.modulate = Color(Color.DARK_RED)
+		Card.Rarity.COMMON: type.modulate = Color(Color.GRAY)
+		Card.Rarity.UNCOMMON: type.modulate = Color(Color.CORNFLOWER_BLUE)
+		Card.Rarity.RARE: type.modulate = Color(Color.GOLD)
+		Card.Rarity.STATUS: type.modulate = Color(Color.DARK_RED)
+		Card.Rarity.PURPLE: type.modulate = Color(Color.PURPLE)
 	_name.modulate = type.modulate
 	cost.text = str(card.cost)
 	desc.text = "[center]%s[/center]" % card.get_tooltip_text(player_modifiers, null)
@@ -70,8 +70,8 @@ func set_card(value : Card) -> void:
 		4: type.text = " -Malware" if GameManager.character.character_name == "Machine" else " -Hex"
 	
 	# Card name (Prevents names from going out of the cardui's area/hitbox)
-	if _name.get_line_count() > 1 && !ui_initialised:
-		ui_initialised = true
+	if _name.get_line_count() > 1 && !name_initialised:
+		name_initialised = true
 		cost.position.y = cost.position.y + (_name.get_line_count() * _name.get_line_height()) -5
 		type.position.y = cost.position.y
 		desc.position.y = desc.position.y + (_name.get_line_count() * _name.get_line_height()) -5
@@ -79,7 +79,20 @@ func set_card(value : Card) -> void:
 	# Card statuses
 	for status in card.statuses:
 		card.add_status(status)
-	card_status_ui.update_ui()
+	
+	for child in card_statuses.get_children():
+		child.queue_free()
+	
+	for status in card.statuses:
+		var texture_rect := TextureRect.new()
+		texture_rect.texture = status.icon
+		texture_rect.expand_mode = TextureRect.EXPAND_FIT_WIDTH
+		texture_rect.custom_minimum_size.y = 10
+		if status.name == "lucky_draw": texture_rect.mouse_entered.connect(func()->void: 
+			Events.show_tooltip.emit(status.description % card.chance))
+		else: texture_rect.mouse_entered.connect(func()->void: Events.show_tooltip.emit(status.description))
+		texture_rect.mouse_exited.connect(func()->void: Events.hide_tooltip.emit())
+		card_statuses.add_child(texture_rect)
 
 
 func set_playable(value : bool) -> void:

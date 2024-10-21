@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CardStatus" load_steps=3 format=3 uid="uid://dlcvums0g7xyc"]
+
+[ext_resource type="Script" path="res://custom_resources/card_status.gd" id="1_etqqc"]
+[ext_resource type="Texture2D" uid="uid://bftp0i6vq6js2" path="res://assets/ui/dice.png" id="1_xytje"]
+
+[resource]
+script = ExtResource("1_etqqc")
+name = "lucky_draw"
+icon = ExtResource("1_xytje")
+description = "Lucky draw - There is a [color=9370db]%d%%[/color] chance for this [color=0044ff]card[/color] to fail to play, chance decreases by one whenever you draw a [color=0044ff]card[/color]"

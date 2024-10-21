@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CardStatus" load_steps=3 format=3 uid="uid://bk22odytwwilo"]
+
+[ext_resource type="Texture2D" uid="uid://bxa8pkakcodgw" path="res://assets/art/objects/tile_0082.png" id="1_0rp02"]
+[ext_resource type="Script" path="res://custom_resources/card_status.gd" id="1_phe17"]
+
+[resource]
+script = ExtResource("1_phe17")
+name = "singular"
+icon = ExtResource("1_0rp02")
+description = "Singular - Cost decreases one whenever you [color=D9BB26]uncache[/color] it. [color=D9BB26]Cache[/color] cost always equals 10"

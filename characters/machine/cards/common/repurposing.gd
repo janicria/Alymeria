@@ -18,6 +18,7 @@ func apply_effects(targets: Array[Node], _modifiers: ModifierHandler) -> void:
 	battle_ui.cache_pile_view.select_card()
 	battle_ui.cache_pile_view.card_selected.connect(func(card:Card)->void:
 		if GameManager.character.cache_tokens >= card.cache_cost:
+			card.cached()
 			GameManager.character.cache_tokens -= card.cache_cost
 			battle_ui.hand.add_card(card)
 			battle_ui.cache_pile_view.card_pile.remove_card(card)

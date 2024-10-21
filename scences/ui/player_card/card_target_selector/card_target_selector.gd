@@ -68,12 +68,14 @@ func _on_area_2d_area_entered(area : Area2D) -> void:
 	if !current_card or !targeting: return
 	
 	if !current_card.targets.has(area):
-		current_card.targets.append(area)
-		current_card.desc.text = current_card.card.get_tooltip_text(current_card.player_modifiers, area.modifier_handler)
+		current_card.targets.append(area) 
+		current_card.desc.text = "[center]%s[/center]" % current_card.card.get_tooltip_text(
+			current_card.player_modifiers, area.modifier_handler)
 
 
 func _on_area_2d_area_exited(area : Area2D) -> void:
 	if !current_card or !targeting: return
 	
 	current_card.targets.erase(area)
-	current_card.desc.text = current_card.card.get_tooltip_text(current_card.player_modifiers, null)
+	current_card.desc.text = "[center]%s[/center]" % current_card.card.get_tooltip_text(
+		current_card.player_modifiers, null)

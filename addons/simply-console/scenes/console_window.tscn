@@ -246,8 +246,11 @@ func deck(action: String, rarity: String, id: String = \"\") -> String:
 	# Secret cards: deck add ../../secret placeholder_rare_card
 	# Witch cards: deck add ../../witch/cards/common flame
 	var loaded_card: Resource = load((\"res://characters/machine/cards/%s/%s.tres\" % [rarity, id]))
+	if rarity == \"purple\": loaded_card = load(\"res://characters/global/purple/%s.tres\" % id)
+	elif rarity == \"status\": loaded_card = load(\"res://characters/global/status/%s.tres\" % id)
 	if loaded_card is not Card: return \"Card %s with rarity %s does not exist\" % [id, rarity]
 	GameManager.cheats = true
+	
 	
 	match action:
 		\"add\":
@@ -295,6 +298,8 @@ func debug(additional_option: String = \"\") -> String:
 	deck(\"add\", \"uncommon\", \"implant_tracking\")
 	deck(\"add\", \"rare\", \"advanced_rerouting\")
 	deck(\"add\", \"rare\", \"file_corruption\")
+	deck(\"add\", \"../../global/purple\", \"godroll\")
+	deck(\"add\", \"../../global/purple\", \"singularity\")
 	deck(\"add\", \"../../secret\", \"injured_test\")
 	deck(\"add\", \"../../secret\", \"card_status_test\")
 	if additional_option == \"infinite\":
@@ -335,6 +340,17 @@ func turn(number: int) -> String:
 
 func stats() -> String:
 	return \"Damage dealt - %s\\nDamage taken - %s\\nHealth healed - %s\\nCheats - %s\" % [GameManager.damage_dealt, GameManager.damage_taken, GameManager.health_healed, GameManager.cheats]
+
+
+func cache(amount: int) -> String:
+	var wr: WeakRef = weakref(get_tree().get_first_node_in_group(\"player\"))
+	if !wr.get_ref(): return \"Not in a battle!\"
+	var old_number := GameManager.character.cache_tokens
+	GameManager.character.cache_tokens = amount
+	print(\"[CMD] Changed cache tokens from %s to %s\" % [old_number, GameManager.character.cache_tokens])
+	return \"Changed cache tokens from %s to %s\" % [old_number, GameManager.character.cache_tokens]
+
+
 
 
 #endregion

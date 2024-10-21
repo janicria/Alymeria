@@ -2,7 +2,7 @@ class_name Card
 extends Resource
 
 enum Type {PHYSICAL, INTERNAL, CHAR, STATUS, CHAR_CURSE}
-enum Rarity {COMMON, UNCOMMON, RARE, STATUS}
+enum Rarity {COMMON, UNCOMMON, RARE, STATUS, PURPLE}
 enum Target {SELF, SINGLE_ENEMY, ALL_ENEMIES, RANDOM, EVERYONE}
 enum Upgrade {NONE, REFINED, ENHANCED}
 
@@ -27,11 +27,13 @@ var cache_cost: int : set = set_cache_cost
 
 func set_cache_cost(_value: int) -> void:
 	match rarity:
-		0: cache_cost = 10
-		1: cache_cost = 15
-		2: cache_cost = 30
-		3: cache_cost = 0
+		Card.Rarity.COMMON: cache_cost = 10
+		Card.Rarity.UNCOMMON: cache_cost = 15
+		Card.Rarity.RARE: cache_cost = 30
+		Card.Rarity.STATUS: cache_cost = 0
+		Card.Rarity.PURPLE: cache_cost = 50
 	if upgrade != Upgrade.NONE: cache_cost += 5
+	if has_status("singular"): cache_cost = 10
 
 
 func set_cost(value: int) -> void:
@@ -91,4 +93,8 @@ func play(targets : Array[Node], modifiers: ModifierHandler) -> void:
 
 
 func apply_effects(_targets: Array[Node], _modifiers: ModifierHandler) -> void:
+	pass
+
+
+func cached() -> void:
 	pass
