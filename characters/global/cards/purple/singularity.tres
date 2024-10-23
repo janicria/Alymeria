@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=4 format=3 uid="uid://k4hkbwis7pig"]
 
-[ext_resource type="Script" path="res://characters/global/purple/singularity.gd" id="1_mhvej"]
+[ext_resource type="Script" path="res://characters/global/cards/purple/singularity.gd" id="1_mhvej"]
 [ext_resource type="AudioStream" uid="uid://dixklg6g4jnsq" path="res://assets/sfx/slash.ogg" id="2_plcc7"]
 [ext_resource type="Script" path="res://custom_resources/card_status.gd" id="2_wsgfn"]
 

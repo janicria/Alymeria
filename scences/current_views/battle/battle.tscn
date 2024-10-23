@@ -1,6 +1,6 @@
 [gd_scene load_steps=26 format=3 uid="uid://hmurq7k0cm7y"]
 
-[ext_resource type="Script" path="res://scences/views/battle/battle.gd" id="1_aq6po"]
+[ext_resource type="Script" path="res://scences/current_views/battle/battle.gd" id="1_aq6po"]
 [ext_resource type="Texture2D" uid="uid://j16iwp255gqv" path="res://assets/backgrounds/sand.png" id="1_rkqh7"]
 [ext_resource type="PackedScene" uid="uid://dkpw6tsw7i7y0" path="res://scences/enemy/enemy.tscn" id="2_2gdxf"]
 [ext_resource type="Script" path="res://scences/ui/battle/hand.gd" id="2_jt18g"]

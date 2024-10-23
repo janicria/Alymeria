@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Core" load_steps=3 format=3 uid="uid://cux50kgw2tk70"]
+
+[ext_resource type="Texture2D" uid="uid://blkttehatvu04" path="res://assets/misc/icon.svg" id="1_6xxea"]
+[ext_resource type="Script" path="res://custom_resources/core.gd" id="1_jbgon"]
+
+[resource]
+script = ExtResource("1_jbgon")
+core_name = "Blindfold"
+icon = ExtResource("1_6xxea")
+type = 1
+rarity = 2
+slotted_tooltip = "Draw 2 additional cards at the start of each turn. You can no longer see health, statuses, or numbers on cards"
+dump_tooltip = "Draw 1 additional card at the start of each turn. You can no longer see health or statuses"
+flavour_text = "At least fog won’t be that bad"

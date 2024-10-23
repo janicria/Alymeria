@@ -118,6 +118,7 @@ func apply_effects(targets: Array[Node]) -> void:
 			EnemyCard.Type.ATTACK: 
 				effect = DamageEffect.new()
 				effect.amount = modified_damage
+				effect.sound = preload("res://assets/sfx/enemy_attack.ogg")
 			EnemyCard.Type.BARRIER: 
 				effect = BarrierEffect.new()
 				effect.amount = modified_barrier

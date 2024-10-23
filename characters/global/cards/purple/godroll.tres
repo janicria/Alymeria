@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=6 format=3 uid="uid://bhrkexs87u20t"]
 
-[ext_resource type="Script" path="res://characters/global/purple/godroll.gd" id="1_pexyu"]
+[ext_resource type="Script" path="res://characters/global/cards/purple/godroll.gd" id="1_pexyu"]
 [ext_resource type="AudioStream" uid="uid://dixklg6g4jnsq" path="res://assets/sfx/slash.ogg" id="2_4lwbi"]
 [ext_resource type="Script" path="res://custom_resources/card_status.gd" id="3_ggqs4"]
 [ext_resource type="Resource" uid="uid://dlcvums0g7xyc" path="res://effects/card_status/luckydraw.tres" id="4_s7kkj"]

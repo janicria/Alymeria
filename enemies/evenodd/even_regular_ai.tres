@@ -1,12 +1,9 @@
-[gd_resource type="Resource" script_class="EnemyAI" load_steps=6 format=3 uid="uid://0kgiwhh0l0mt"]
+[gd_resource type="Resource" script_class="EnemyAI" load_steps=3 format=3 uid="uid://0kgiwhh0l0mt"]
 
 [ext_resource type="Script" path="res://custom_resources/enemy_card.gd" id="1_jtav1"]
-[ext_resource type="Resource" uid="uid://pqxmfgwbm34p" path="res://enemies/evenodd/cards/regular/otherbuff(idkhowtonamecards).tres" id="2_mwf77"]
 [ext_resource type="Script" path="res://custom_resources/enemy_ai.gd" id="2_uwm8n"]
-[ext_resource type="Resource" uid="uid://y2t18s6xg76" path="res://enemies/evenodd/cards/regular/multislash.tres" id="3_ma8ae"]
-[ext_resource type="Resource" uid="uid://b7tr7cjr62pi8" path="res://enemies/evenodd/cards/regular/slash.tres" id="4_835qv"]
 
 [resource]
 script = ExtResource("2_uwm8n")
-actions = Array[ExtResource("1_jtav1")]([ExtResource("2_mwf77"), ExtResource("3_ma8ae"), ExtResource("4_835qv")])
+actions = Array[ExtResource("1_jtav1")]([])
 health_cards = Array[ExtResource("1_jtav1")]([])

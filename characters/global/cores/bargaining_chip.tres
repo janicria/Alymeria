@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Core" load_steps=2 format=3 uid="uid://3guwqalaemm"]
+
+[ext_resource type="Script" path="res://custom_resources/core.gd" id="1_qs448"]
+
+[resource]
+script = ExtResource("1_qs448")
+core_name = " Bargaining chip"
+type = 5
+rarity = 3
+slotted_tooltip = "The next shop you visit is discounted by 30% and has more lucrative items"
+dump_tooltip = "The next shop you visit is discounted by 20%"
+flavour_text = "Was it really worth the 50 gold though?"

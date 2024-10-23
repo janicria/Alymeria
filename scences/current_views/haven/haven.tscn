@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bl4yfegog1eay"]
 
-[ext_resource type="Script" path="res://scences/haven/haven.gd" id="1_6pdmf"]
+[ext_resource type="Script" path="res://scences/current_views/haven/haven.gd" id="1_6pdmf"]
 
 [node name="Haven" type="Control"]
 layout_mode = 3

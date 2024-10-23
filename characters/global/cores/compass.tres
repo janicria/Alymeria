@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Core" load_steps=3 format=3 uid="uid://byifiniaqaoxi"]
+
+[ext_resource type="Texture2D" uid="uid://blkttehatvu04" path="res://assets/misc/icon.svg" id="1_7kk72"]
+[ext_resource type="Script" path="res://custom_resources/core.gd" id="1_eyc15"]
+
+[resource]
+script = ExtResource("1_eyc15")
+core_name = "Compass"
+icon = ExtResource("1_7kk72")
+type = 5
+rarity = 0
+slotted_tooltip = "Events are 2.5 times as common and can appear after each other"
+dump_tooltip = "Events are 2 times as common"
+flavour_text = "Very flavoury text here"

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Core" load_steps=3 format=3 uid="uid://dcal00alsf3p5"]
+
+[ext_resource type="Script" path="res://custom_resources/core.gd" id="1_1lbga"]
+[ext_resource type="Texture2D" uid="uid://blkttehatvu04" path="res://assets/misc/icon.svg" id="1_6up0e"]
+
+[resource]
+script = ExtResource("1_1lbga")
+core_name = "Maths Textbook"
+icon = ExtResource("1_6up0e")
+type = 5
+rarity = 2
+slotted_tooltip = "At the start of each turn gain 1 memory. Whenever you play a card, draw a card then choose a card in your hand to discard"
+dump_tooltip = "At the start of each turn draw 2 cards and gain 1 memory. Whenever you play a card, choose a card in your hand to discard
+"
+flavour_text = "I knew there was a reason for me not liking maths in school"

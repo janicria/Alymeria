@@ -1,7 +1,9 @@
 [gd_resource type="Resource" script_class="DamageUp" load_steps=3 format=3 uid="uid://ctjdfjmu1ylau"]
 
-[ext_resource type="Texture2D" uid="uid://cn2c1psh561cc" path="res://assets/objects/tile_0127.png" id="1_lmdx7"]
 [ext_resource type="Script" path="res://effects/status/damage_up.gd" id="2_lxjgf"]
+
+[sub_resource type="Resource" id="Resource_wgjf5"]
+metadata/__load_path__ = "res://assets/objects/tile_0127.png"
 
 [resource]
 script = ExtResource("2_lxjgf")
@@ -10,5 +12,5 @@ type = 2
 stack_type = 1
 duration = 0
 stacks = 1
-icon = ExtResource("1_lmdx7")
+icon = SubResource("Resource_wgjf5")
 tooltip = "[center]Damage up - [color=ff0000]Attacks[/color] deal %s more damage"

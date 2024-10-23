@@ -1,12 +1,12 @@
 class_name Run
 extends Node
 
-const BATTLE_SCENCE := preload("res://scences/views/battle/battle.tscn")
-const SHOP_SCENCE := preload("res://scences/views/shop/shop.tscn")
-const TREASURE_SCENCE := preload("res://scences/views/treasure/treasure.tscn")
-const BATTLE_REWARD_SCENCE := preload("res://scences/views/battle_rewards/battle_rewards.tscn")
-const HAVEN_SCENCE := preload("res://scences/haven/haven.tscn")
-const EVENT_SCENCE := preload("res://scences/views/events/event.tscn")
+const BATTLE_SCENCE := preload("res://scences/current_views/battle/battle.tscn")
+const SHOP_SCENCE := preload("res://scences/current_views/shop/shop.tscn")
+const TREASURE_SCENCE := preload("res://scences/current_views/treasure/treasure.tscn")
+const BATTLE_REWARD_SCENCE := preload("res://scences/current_views/battle_rewards/battle_rewards.tscn")
+const HAVEN_SCENCE := preload("res://scences/current_views/haven/haven.tscn")
+const EVENT_SCENCE := preload("res://scences/current_views/events/event.tscn")
 
 @export var run_startup: RunStartup
 

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Core" load_steps=3 format=3 uid="uid://djydmjp1h2ye5"]
+
+[ext_resource type="Texture2D" uid="uid://blkttehatvu04" path="res://assets/misc/icon.svg" id="1_eaem2"]
+[ext_resource type="Script" path="res://custom_resources/core.gd" id="1_oiw2e"]
+
+[resource]
+script = ExtResource("1_oiw2e")
+core_name = "Finale"
+icon = ExtResource("1_eaem2")
+type = 5
+rarity = 2
+slotted_tooltip = "Play every card in your discard and exhaust pile twice chaotically. Activates right before you die"
+dump_tooltip = "Play every card in your exhaust pile twice chaotically. Activates right before you die"
+flavour_text = "Very flavoury text here"
