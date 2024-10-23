@@ -1,8 +1,8 @@
 [gd_resource type="Resource" load_steps=4 format=3 uid="uid://jons75tb2dli"]
 
-[ext_resource type="Texture2D" uid="uid://bfvi02kojsa00" path="res://assets/art/objects/tile_0103.png" id="1_siw5k"]
+[ext_resource type="Texture2D" uid="uid://bfvi02kojsa00" path="res://assets/objects/sword_size1.png" id="1_siw5k"]
 [ext_resource type="Script" path="res://characters/machine/cards/common/laser.gd" id="2_41c6l"]
-[ext_resource type="AudioStream" uid="uid://b1vpjjmi5cj3n" path="res://assets/SFX/axe.ogg" id="3_aaqmk"]
+[ext_resource type="AudioStream" uid="uid://b1vpjjmi5cj3n" path="res://assets/sfx/axe.ogg" id="3_aaqmk"]
 
 
 

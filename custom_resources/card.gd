@@ -83,7 +83,7 @@ func _get_targets(targets: Array[Node]) -> Array[Node]:
 
 func play(targets : Array[Node], modifiers: ModifierHandler) -> void:
 	fully_played = false
-	Events.card_played.emit(self) 
+	Events.player_card_played.emit(self) 
 	GameManager.character.mana -= cost
 	
 	if is_single_targeted(): 

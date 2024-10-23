@@ -35,11 +35,32 @@ func parse_command(
 			return response
 		return ""
 	
-	
-	if METHOD_ARGUMENTS_.size() != ARGUMENTS_.size():
-		return ( # Yes it looks worse now, but it saves repeating like 6 lines sooo...
-			"Too %s arguments for command %s. Expected %s, but got %s'" % [ ("few" if METHOD_ARGUMENTS_.size() > ARGUMENTS_.size() else "many"), command, METHOD_ARGUMENTS_.size(), ARGUMENTS_.size()]
+	if ARGUMENTS_.size() > METHOD_ARGUMENTS_.size():
+			return (
+				"Too many arguments for command '"
+			+ command
+			+ "'. Expected "
+			+ str(METHOD_ARGUMENTS_.size())
+			+ ", but got "
+			+ str(ARGUMENTS_.size())
+			+ "." 
 		)
+	
+	if ARGUMENTS_.is_empty():
+		return (
+			"Too few arguments for command '"
+			+ command
+			+ "'. Expected "
+			+ str(METHOD_ARGUMENTS_.size())
+			+ ", but got "
+			+ str(ARGUMENTS_.size())
+			+ "." 
+			)
+	
+	#if METHOD_ARGUMENTS_.size() != ARGUMENTS_.size():
+	#	return ( # Yes it looks worse now, but it saves repeating like 6 lines sooo...
+	#		"Too %s arguments for command %s. Expected %s, but got %s'" % [ ("few" if METHOD_ARGUMENTS_.size() > ARGUMENTS_.size() else "many"), command, METHOD_ARGUMENTS_.size(), ARGUMENTS_.size()]
+	#	)
 	
 	var PARSED_ARGUMENTS_: Dictionary =\
 		parse_argument_list(METHOD_ARGUMENTS_, ARGUMENTS_)
@@ -58,7 +79,15 @@ func parse_command(
 	response = TargetRef.callv(method, PARSED_ARGUMENTS_["argumentList"])
 	if response:
 		return response
-	return ""
+	return (
+		"Too few arguments for command '"
+		+ command
+		+ "'. Expected "
+		+ str(METHOD_ARGUMENTS_.size())
+		+ ", but got "
+		+ str(ARGUMENTS_.size())
+		+ "." 
+		)
 
 
 ## Gets the reference to the command's target node or returns null if it's not found.

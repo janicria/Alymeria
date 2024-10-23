@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://dpdenqqbovwfq"
-path="res://.godot/imported/8_bit_iced_village_lofi.mp3-33fe9af34aac2a2a92f1eea96f7552ec.mp3str"
+path="res://.godot/imported/8_bit_iced_village_lofi.mp3-8bea35fbee1f8ffc90ed4306ede87f8d.mp3str"
 
 [deps]
 
-source_file="res://assets/SFX/8_bit_iced_village_lofi.mp3"
-dest_files=["res://.godot/imported/8_bit_iced_village_lofi.mp3-33fe9af34aac2a2a92f1eea96f7552ec.mp3str"]
+source_file="res://assets/sfx/8_bit_iced_village_lofi.mp3"
+dest_files=["res://.godot/imported/8_bit_iced_village_lofi.mp3-8bea35fbee1f8ffc90ed4306ede87f8d.mp3str"]
 
 [params]
 

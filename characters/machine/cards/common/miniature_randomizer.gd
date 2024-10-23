@@ -1,6 +1,6 @@
 extends Card
 
-const BUFFS: Array[Status] = [preload("res://effects/status/damage_up.tres")]
+const BUFFS: Array[Status] = [preload("res://effects/status/damage_up.tres"), preload("res://effects/status/defence_up.tres")]
 const DEBUFFS: Array[Status] = [preload("res://effects/status/injured.tres"), preload("res://effects/status/nano_plague.tres")]
 
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://di7cqo1ujfv5n"]
 
-[ext_resource type="Texture2D" uid="uid://b0npnkt128wpy" path="res://assets/ui/gold.png" id="1_5uya7"]
+[ext_resource type="Texture2D" uid="uid://b0npnkt128wpy" path="res://assets/ui/universal/gold.png" id="1_5uya7"]
 [ext_resource type="Script" path="res://scences/ui/battle/reward_button.gd" id="1_c2gcw"]
 
 

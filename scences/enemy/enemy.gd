@@ -8,9 +8,9 @@ const ARROW_OFFSET := 19
 @export var active_cards: Array[EnemyCard]
 @export var cards: Array[EnemyCard]
 
-@onready var sprite_2d : Sprite2D = $Sprite2D
-@onready var arrow : Sprite2D = $Arrow
-@onready var stats_ui : StatsUI = $StatsUI
+@onready var sprite_2d : Sprite2D = %Sprite2D
+@onready var arrow : Sprite2D = %Arrow
+@onready var stats_ui : StatsUI = %StatsUI
 @onready var mana_counter: RichTextLabel = %ManaCounter
 @onready var status_handler: StatusHandler = %StatusHandler
 @onready var modifier_handler: ModifierHandler = %ModifierHandler
@@ -140,7 +140,6 @@ func death_animation(repeats := 3) -> void:
 func _on_area_entered(_area: Node) -> void:
 	if _area.get_parent().get_name() == "CardTargetSelector":
 		arrow.show()
-
 
 func _on_area_exited(_area: Node) -> void:
 	arrow.hide()

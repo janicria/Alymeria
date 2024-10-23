@@ -8,12 +8,13 @@ extends Node2D
 @onready var attack_desc: Label = %AttackDesc
 @onready var arrow: Sprite2D = %Arrow
 
+
 var card_stats: EnemyCard
 var enemy_stats: Enemy
 var final_targets: Array[Node]
 var is_dead := false
 var modified_damage: int
-# Needed bc of damage counter reading from modified_damage
+# Needed because of damage counter reading from modified_damage
 var modified_barrier: int
 
 
@@ -22,11 +23,42 @@ func _ready() -> void:
 		if enemy == enemy_stats: kms())
 
 
+func get_targets() -> Array[Node]:
+	# Last enemy card to be played in hand searches for targets a second time after
+	# being played, therefore we can return any node since the card is about to be freed,
+	# however this Node needs to be self to prevent orphans nodes being created
+	if !is_inside_tree(): return [self]
+	
+	var target := get_tree().get_first_node_in_group("player")
+	if get_tree().get_node_count_in_group("summons"):
+		target = get_tree().get_first_node_in_group("summons")
+	
+	var targets: Array[Node] = []
+	
+	# In case enemy has been freed (only a warning is thrown but ¯\_(ツ)_/¯ )
+	var wr: WeakRef = weakref(enemy_stats); if !wr.get_ref(): return []
+	
+	match card_stats.targets:
+		card_stats.Targets.SINGLE: targets.append(target)
+		card_stats.Targets.SELF: targets.append(enemy_stats)
+		card_stats.Targets.ENEMIES: 
+			targets.append_array(get_tree().get_nodes_in_group("player"))
+			targets.append_array(get_tree().get_nodes_in_group("summons"))
+		card_stats.Targets.ALLIES:
+			targets.append_array(get_tree().get_nodes_in_group("enemies"))
+		card_stats.Targets.EVERYONE:
+			targets.append_array(get_tree().get_nodes_in_group("player"))
+			targets.append_array(get_tree().get_nodes_in_group("summons"))
+			targets.append_array(get_tree().get_nodes_in_group("enemies"))
+	
+	return targets
+
+
 func kms() -> void:
 	# Prevents method from spamming
 	if !is_dead:
 		cost.text = "X"
-		icon.texture = preload("res://assets/ui/cross.png")
+		icon.texture = preload("res://assets/ui/universal/cross.png")
 		attack_desc.text = "X"
 		is_dead = true
 		if card_stats.type == card_stats.Type.ATTACK:
@@ -65,6 +97,45 @@ func update_stats(card: EnemyCard, enemy: Enemy, from_status := false) -> void:
 		attack_desc.text = str(modified_barrier)
 	else: attack_desc.text = str(card.amount)
 	if card.repeats != 1: attack_desc.text += "x%s" % card_stats.repeats
+
+
+func play() -> void:
+	if self.is_queued_for_deletion(): 
+		return
+	
+	var targets := get_targets()
+	apply_effects(targets)
+
+
+
+func apply_effects(targets: Array[Node]) -> void:
+	if is_dead: return
+	if card_stats.custom_amount != "": card_stats.custom_play(get_targets()); return
+	for i in card_stats.repeats:
+		# Indentation moment <- ikr it sucks
+		var effect: Effect
+		match card_stats.type:
+			EnemyCard.Type.ATTACK: 
+				effect = DamageEffect.new()
+				effect.amount = modified_damage
+			EnemyCard.Type.BARRIER: 
+				effect = BarrierEffect.new()
+				effect.amount = modified_barrier
+			EnemyCard.Type.LARGE_BARRIER: 
+				effect = BarrierEffect.new()
+				effect.amount = modified_barrier
+			EnemyCard.Type.DRAW: 
+				enemy_stats.draw_cards(card_stats.amount); return
+			EnemyCard.Type.ENERGY: enemy_stats.mana += card_stats.amount; return
+			EnemyCard.Type.BUFF: card_stats.custom_play(get_targets()); return
+			EnemyCard.Type.DEBUFF: card_stats.custom_play(get_targets()); return
+			EnemyCard.Type.SPAWN: card_stats.custom_play(get_targets()); return
+			EnemyCard.Type.UNKNOWN: card_stats.custom_play(get_targets()); return 
+		# If effect hasn't been changed by any modifiers
+		if !effect.amount: effect.amount = card_stats.amount
+		effect.sound = card_stats.SFX_dict.get(card_stats.type)
+		effect.execute(targets)
+		await get_tree().create_timer(0.1).timeout
 
 
 func _on_control_mouse_entered() -> void:
@@ -113,71 +184,3 @@ func _on_control_mouse_exited() -> void:
 	if !wr.get_ref(): return
 	
 	enemy_stats.arrow.visible = !enemy_stats.arrow.visible
-
-
-func play() -> void:
-	if self.is_queued_for_deletion(): 
-		return
-	
-	var targets := get_targets()
-	apply_effects(targets)
-
-
-func get_targets() -> Array[Node]:
-	# Last enemy card to be played in hand searches for targets a second time after
-	# being played, therefore we can return anything since the card is about to be freed
-	if !is_inside_tree(): return [Node.new()]
-	
-	var target := get_tree().get_first_node_in_group("player")
-	if get_tree().get_node_count_in_group("summons"):
-		target = get_tree().get_first_node_in_group("summons")
-	
-	var targets: Array[Node] = []
-	
-	# In case enemy has been freed (only a warning is thrown but ¯\_(ツ)_/¯ )
-	var wr: WeakRef = weakref(enemy_stats); if !wr.get_ref(): return []
-	
-	match card_stats.targets:
-		card_stats.Targets.SINGLE: targets.append(target)
-		card_stats.Targets.SELF: targets.append(enemy_stats)
-		card_stats.Targets.ENEMIES: 
-			targets.append_array(get_tree().get_nodes_in_group("player"))
-			targets.append_array(get_tree().get_nodes_in_group("summons"))
-		card_stats.Targets.ALLIES:
-			targets.append_array(get_tree().get_nodes_in_group("enemies"))
-		card_stats.Targets.EVERYONE:
-			targets.append_array(get_tree().get_nodes_in_group("player"))
-			targets.append_array(get_tree().get_nodes_in_group("summons"))
-			targets.append_array(get_tree().get_nodes_in_group("enemies"))
-	
-	return targets
-
-
-func apply_effects(targets: Array[Node]) -> void:
-	if is_dead: return
-	if card_stats.custom_amount != "": card_stats.custom_play(get_targets()); return
-	for i in card_stats.repeats:
-		# Indentation moment <- ikr it sucks
-		var effect: Effect
-		match card_stats.type:
-			EnemyCard.Type.ATTACK: 
-				effect = DamageEffect.new()
-				effect.amount = modified_damage
-			EnemyCard.Type.BARRIER: 
-				effect = BarrierEffect.new()
-				effect.amount = modified_barrier
-			EnemyCard.Type.LARGE_BARRIER: 
-				effect = BarrierEffect.new()
-				effect.amount = modified_barrier
-			EnemyCard.Type.DRAW: 
-				enemy_stats.draw_cards(card_stats.amount); return
-			EnemyCard.Type.ENERGY: enemy_stats.mana += card_stats.amount; return
-			EnemyCard.Type.BUFF: card_stats.custom_play(get_targets()); return
-			EnemyCard.Type.DEBUFF: card_stats.custom_play(get_targets()); return
-			EnemyCard.Type.SPAWN: card_stats.custom_play(get_targets()); return
-			EnemyCard.Type.UNKNOWN: card_stats.custom_play(get_targets()); return 
-		# If effect hasn't been changed by any modifiers
-		if !effect.amount: effect.amount = card_stats.amount
-		effect.sound = card_stats.SFX_dict.get(card_stats.type)
-		effect.execute(targets)
-		await get_tree().create_timer(0.1).timeout

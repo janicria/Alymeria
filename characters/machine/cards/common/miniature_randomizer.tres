@@ -1,7 +1,7 @@
 [gd_resource type="Resource" load_steps=4 format=3 uid="uid://bwd23qw8dqmb1"]
 
 [ext_resource type="Script" path="res://characters/machine/cards/common/miniature_randomizer.gd" id="1_prx7t"]
-[ext_resource type="AudioStream" uid="uid://k8m4o3hlwm7l" path="res://assets/SFX/enemy_block.ogg" id="2_rav3k"]
+[ext_resource type="AudioStream" uid="uid://k8m4o3hlwm7l" path="res://assets/sfx/enemy_block.ogg" id="2_rav3k"]
 [ext_resource type="Script" path="res://custom_resources/card_status.gd" id="3_84iku"]
 
 [resource]

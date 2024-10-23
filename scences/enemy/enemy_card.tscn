@@ -2,21 +2,13 @@
 
 [ext_resource type="StyleBox" uid="uid://ck3105wj7dcrn" path="res://scences/ui/player_card/card_ui/card_base_stylebox.tres" id="1_24aeo"]
 [ext_resource type="Script" path="res://custom_resources/enemy_card_ui.gd" id="1_maq84"]
-[ext_resource type="Texture2D" uid="uid://ukld5o613i0a" path="res://assets/art/characters/tile_0122.png" id="2_uf0hh"]
-[ext_resource type="Texture2D" uid="uid://bfvi02kojsa00" path="res://assets/art/objects/tile_0103.png" id="3_n08at"]
-[ext_resource type="Texture2D" uid="uid://bb3rcs5nqntir" path="res://assets/ui/arrow.png" id="5_cxkpc"]
+[ext_resource type="Texture2D" uid="uid://ukld5o613i0a" path="res://assets/characters/tile_0122.png" id="2_uf0hh"]
+[ext_resource type="Texture2D" uid="uid://bfvi02kojsa00" path="res://assets/objects/sword_size1.png" id="3_n08at"]
+[ext_resource type="Texture2D" uid="uid://bb3rcs5nqntir" path="res://assets/ui/misc/arrow.png" id="5_cxkpc"]
 
 [node name="EnemyCard" type="Node2D"]
 visible = false
 script = ExtResource("1_maq84")
-
-[node name="Arrow" type="Sprite2D" parent="."]
-unique_name_in_owner = true
-visible = false
-position = Vector2(18, 45)
-rotation = 3.14159
-texture = ExtResource("5_cxkpc")
-flip_v = true
 
 [node name="Panel" type="Panel" parent="."]
 anchors_preset = 15
@@ -47,7 +39,7 @@ offset_bottom = 18.0
 texture = ExtResource("2_uf0hh")
 stretch_mode = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="Actions" type="HBoxContainer" parent="."]
 offset_left = -5.0
 offset_top = 19.0
 offset_right = 37.0
@@ -55,7 +47,7 @@ offset_bottom = 34.0
 theme_override_constants/separation = 0
 alignment = 1
 
-[node name="AttackIcon" type="TextureRect" parent="HBoxContainer"]
+[node name="AttackIcon" type="TextureRect" parent="Actions"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(15, 15)
 layout_mode = 2
@@ -63,7 +55,7 @@ texture = ExtResource("3_n08at")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="AttackDesc" type="Label" parent="HBoxContainer"]
+[node name="AttackDesc" type="Label" parent="Actions"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 8)
 layout_mode = 2
@@ -82,6 +74,18 @@ offset_bottom = 36.0
 unique_name_in_owner = true
 wait_time = 0.15
 one_shot = true
+
+[node name="ArrowLayer" type="CanvasLayer" parent="."]
+layer = 2
+follow_viewport_enabled = true
+
+[node name="Arrow" type="Sprite2D" parent="ArrowLayer"]
+unique_name_in_owner = true
+visible = false
+position = Vector2(18, 45)
+rotation = 3.14159
+texture = ExtResource("5_cxkpc")
+flip_v = true
 
 [connection signal="mouse_entered" from="Control" to="." method="_on_control_mouse_entered"]
 [connection signal="mouse_exited" from="Control" to="." method="_on_control_mouse_exited"]

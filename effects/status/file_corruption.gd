@@ -5,7 +5,12 @@ const NANO_PLAGUE = preload("res://effects/status/nano_plague.tres")
 
 
 func initalise_target(target: Node) -> void:
-	Events.player_card_played.connect(apply_status.bind(target))
+	Events.player_card_played.connect(card_played.bind(target))
+
+
+# Used to throw away card from card_played away
+func card_played(_card: Card, target: Node) -> void:
+	apply_status(target)
 
 
 func apply_status(target: Node) -> void:

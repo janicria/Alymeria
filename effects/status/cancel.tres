@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Cancel" load_steps=3 format=3 uid="uid://gpljfnwcvcw8"]
 
-[ext_resource type="Texture2D" uid="uid://c4e7ovx16yfl1" path="res://assets/art/objects/tile_0113.png" id="1_d5puv"]
+[ext_resource type="Texture2D" uid="uid://c4e7ovx16yfl1" path="res://assets/objects/tile_0113.png" id="1_d5puv"]
 [ext_resource type="Script" path="res://effects/status/cancel.gd" id="2_4b3ro"]
 
 [resource]

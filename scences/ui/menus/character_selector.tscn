@@ -1,10 +1,10 @@
 [gd_scene load_steps=14 format=3 uid="uid://dnj0e3es7638e"]
 
 [ext_resource type="Script" path="res://scences/ui/menus/character_selector.gd" id="1_b7efs"]
-[ext_resource type="Texture2D" uid="uid://dpfqok8tuy4r7" path="res://assets/art/characters/tile_0084.png" id="1_gi0lx"]
-[ext_resource type="Texture2D" uid="uid://o6mhnfvroyvx" path="res://assets/art/objects/tile_0125.png" id="2_2nrd6"]
+[ext_resource type="Texture2D" uid="uid://dpfqok8tuy4r7" path="res://assets/characters/tile_0084.png" id="1_gi0lx"]
+[ext_resource type="Texture2D" uid="uid://o6mhnfvroyvx" path="res://assets/objects/tile_0125.png" id="2_2nrd6"]
 [ext_resource type="Resource" uid="uid://dk2sl2aapuwe7" path="res://scences/run/run_startup.tres" id="2_8jbpy"]
-[ext_resource type="Texture2D" uid="uid://clbji84e7ec6m" path="res://assets/art/objects/tile_0126.png" id="3_30xcd"]
+[ext_resource type="Texture2D" uid="uid://clbji84e7ec6m" path="res://assets/objects/tile_0126.png" id="3_30xcd"]
 
 
 

@@ -10,7 +10,7 @@ const HAND_DISCARD_INTERVAL := 0.25
 
 
 func _ready() -> void:
-	Events.card_played.connect(_on_card_played)
+	Events.player_card_played.connect(_on_card_played)
 	Events.player_draw_cards.connect(draw_cards)
 
 
@@ -81,7 +81,7 @@ func reshuffle_draw_from_discard() -> void:
 		GameManager.character.draw_pile.add_card(GameManager.character.discard.draw_card())
 		# Discard to draw pile animation
 		var orb := TextureRect.new()
-		orb.texture = preload("res://assets/ui/orb.png")
+		orb.texture = preload("res://assets/ui/cards/orb.png")
 		orb.global_position = get_parent().battle_ui.discard_pile_button.position
 		orb.global_position.y += 1; add_child(orb)
 		var tween := create_tween().set_trans(Tween.TRANS_QUART)

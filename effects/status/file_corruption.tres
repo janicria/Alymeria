@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="FileCorruption" load_steps=3 format=3 uid="uid://cyxy6nnu00kma"]
 
-[ext_resource type="Texture2D" uid="uid://o6mhnfvroyvx" path="res://assets/art/objects/tile_0125.png" id="1_ra5v2"]
+[ext_resource type="Texture2D" uid="uid://o6mhnfvroyvx" path="res://assets/objects/tile_0125.png" id="1_ra5v2"]
 [ext_resource type="Script" path="res://effects/status/file_corruption.gd" id="2_0kw1l"]
 
 [resource]

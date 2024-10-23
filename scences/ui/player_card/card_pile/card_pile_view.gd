@@ -45,7 +45,7 @@ func select_card() -> void:
 
 # FIXME: Doesn't close if run by repurposing
 func _hide() -> void:
-	hide()
+	super.hide()
 	GameManager.card_pile_open = false
 	open = false
 

@@ -1,13 +1,14 @@
 class_name EnemyHandler
 extends Node2D
 
-@onready var enemy_hand: EnemyHand = $EnemyHand
-
 signal add_card_to_hand(card: EnemyCard, sender: Node2D)
 signal finished_drawing()
 signal show_cards_owned_by_enemy(enemy: Enemy)
 signal hide_enemy_card_arrows()
 signal statuses_applied
+
+@onready var enemy_hand: EnemyHand = %EnemyHand
+
 
 func _ready() -> void: 
 	enemy_hand.enemy_card_played.connect(play_next_card)

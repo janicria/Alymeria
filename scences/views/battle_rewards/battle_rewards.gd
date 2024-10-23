@@ -3,11 +3,11 @@ extends Control
 
 const CARD_REWARDS := preload("res://scences/ui/battle/card_rewards.tscn")
 const REWARD_BUTTON := preload("res://scences/ui/battle/reward_button.tscn")
-const GOLD_ICON := preload("res://assets/ui/gold.png")
+const GOLD_ICON := preload("res://assets/ui/universal/gold.png")
 const GOLD_TEXT := "%s gold"
-const CARD_ICON := preload("res://assets/ui/orb.png")
+const CARD_ICON := preload("res://assets/ui/cards/orb.png")
 const CARD_TEXT := "Add a New Card"
-const REGULAR_POTION_ICON := preload("res://assets/art/objects/tile_0114.png")
+const REGULAR_POTION_ICON := preload("res://assets/objects/tile_0114.png")
 #const POTION_TEXT := ""
 
 @onready var rewards: VBoxContainer = %Rewards

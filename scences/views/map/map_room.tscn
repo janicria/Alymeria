@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://cvcecqn4jjhfd"]
 
-[ext_resource type="Texture2D" uid="uid://bfvi02kojsa00" path="res://assets/art/objects/tile_0103.png" id="1_ipt5o"]
+[ext_resource type="Texture2D" uid="uid://bfvi02kojsa00" path="res://assets/objects/sword_size1.png" id="1_ipt5o"]
 [ext_resource type="Script" path="res://scences/views/map/map_room.gd" id="1_w7qjy"]
 
 

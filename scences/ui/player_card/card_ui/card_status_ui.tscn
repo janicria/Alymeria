@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cwbv5wdfsjpac"]
 
 [ext_resource type="Script" path="res://scences/ui/player_card/card_ui/card_status_ui.gd" id="1_4wd54"]
-[ext_resource type="Texture2D" uid="uid://bmuj5in6okgaq" path="res://assets/ui/cross.png" id="2_yln70"]
+[ext_resource type="Texture2D" uid="uid://bmuj5in6okgaq" path="res://assets/ui/universal/cross.png" id="2_yln70"]
 
 [node name="CardStatusUI" type="VBoxContainer"]
 offset_right = 10.0

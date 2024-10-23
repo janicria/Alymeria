@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ManaDown" load_steps=3 format=3 uid="uid://d2kgqny54e0aj"]
 
-[ext_resource type="Texture2D" uid="uid://c2xhttrclo1r7" path="res://assets/art/objects/tile_0116.png" id="1_5em5f"]
+[ext_resource type="Texture2D" uid="uid://c2xhttrclo1r7" path="res://assets/objects/tile_0116.png" id="1_5em5f"]
 [ext_resource type="Script" path="res://effects/status/mana_down.gd" id="2_m7vx3"]
 
 [resource]

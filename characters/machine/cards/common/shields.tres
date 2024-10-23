@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://characters/machine/cards/common/shields.gd" id="2_gvn0s"]
 [ext_resource type="Script" path="res://custom_resources/card_status.gd" id="3_pl30q"]
-[ext_resource type="AudioStream" uid="uid://df64e7qat73gs" path="res://assets/SFX/block.ogg" id="3_xer4h"]
+[ext_resource type="AudioStream" uid="uid://df64e7qat73gs" path="res://assets/sfx/block.ogg" id="3_xer4h"]
 
 [resource]
 script = ExtResource("2_gvn0s")

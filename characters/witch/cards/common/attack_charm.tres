@@ -1,8 +1,8 @@
 [gd_resource type="Resource" load_steps=4 format=3 uid="uid://xltv1xd8ij3n"]
 
-[ext_resource type="Texture2D" uid="uid://o6mhnfvroyvx" path="res://assets/art/objects/tile_0125.png" id="1_fgw78"]
+[ext_resource type="Texture2D" uid="uid://o6mhnfvroyvx" path="res://assets/objects/tile_0125.png" id="1_fgw78"]
 [ext_resource type="Script" path="res://characters/secret/machine_attack_key.gd" id="2_283qv"]
-[ext_resource type="AudioStream" uid="uid://dixklg6g4jnsq" path="res://assets/SFX/slash.ogg" id="3_g2xsh"]
+[ext_resource type="AudioStream" uid="uid://dixklg6g4jnsq" path="res://assets/sfx/slash.ogg" id="3_g2xsh"]
 
 
 

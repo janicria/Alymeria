@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://2otf3vpdemyr"]
 
 [ext_resource type="Script" path="res://scences/status/status_ui.gd" id="1_7wl0e"]
-[ext_resource type="Texture2D" uid="uid://pgj8vfpj6tc5" path="res://assets/art/objects/tile_0130.png" id="1_nfrxt"]
+[ext_resource type="Texture2D" uid="uid://pgj8vfpj6tc5" path="res://assets/objects/tile_0130.png" id="1_nfrxt"]
 [ext_resource type="Resource" uid="uid://cnal7kyq8tqrv" path="res://effects/status/suboptimal.tres" id="2_yeso5"]
 
 [node name="StatusUI" type="Control"]

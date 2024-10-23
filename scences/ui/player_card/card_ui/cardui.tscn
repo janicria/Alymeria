@@ -1,9 +1,9 @@
 [gd_scene load_steps=12 format=3 uid="uid://d0ausrmh8y0is"]
 
 [ext_resource type="Theme" uid="uid://bhs76hnulf3s4" path="res://assets/misc/main_theme.tres" id="1_5mrf3"]
-[ext_resource type="Script" path="res://scences/ui/player_card/card_ui/card_ui.gd" id="2_6d5p7"]
+[ext_resource type="Script" path="res://scences/ui/player_card/card_ui/cardui.gd" id="2_6d5p7"]
 [ext_resource type="StyleBox" uid="uid://ck3105wj7dcrn" path="res://scences/ui/player_card/card_ui/card_base_stylebox.tres" id="3_postk"]
-[ext_resource type="Texture2D" uid="uid://bfvi02kojsa00" path="res://assets/art/objects/tile_0103.png" id="4_1wc2w"]
+[ext_resource type="Texture2D" uid="uid://bfvi02kojsa00" path="res://assets/objects/sword_size1.png" id="4_1wc2w"]
 [ext_resource type="Script" path="res://scences/ui/player_card/card_ui/card_states/card_state_machine.gd" id="5_xwwc7"]
 [ext_resource type="Script" path="res://scences/ui/player_card/card_ui/card_states/card_base_state.gd" id="6_2787a"]
 [ext_resource type="Script" path="res://scences/ui/player_card/card_ui/card_states/card_clicked_state.gd" id="7_6dbei"]

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://characters/machine/cards/common/laser_barrage.gd" id="2_yroj3"]
 [ext_resource type="Script" path="res://custom_resources/card_status.gd" id="3_fly0h"]
-[ext_resource type="AudioStream" uid="uid://b1vpjjmi5cj3n" path="res://assets/SFX/axe.ogg" id="3_w7sy2"]
+[ext_resource type="AudioStream" uid="uid://b1vpjjmi5cj3n" path="res://assets/sfx/axe.ogg" id="3_w7sy2"]
 
 [resource]
 script = ExtResource("2_yroj3")

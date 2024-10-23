@@ -17,27 +17,27 @@ enum Targets {SINGLE, SELF, ENEMIES, ALLIES, EVERYONE}
 var cumulative_weight := 0
 
 const icon_dict := {
-	Type.ATTACK: preload("res://assets/art/objects/tile_0103.png"),
-	Type.BARRIER: preload("res://assets/art/objects/tile_0101.png"),
-	Type.LARGE_BARRIER: preload("res://assets/art/objects/tile_0102.png"),
+	Type.ATTACK: preload("res://assets/objects/sword_size1.png"),
+	Type.BARRIER: preload("res://assets/objects/barrier_small.png"),
+	Type.LARGE_BARRIER: preload("res://assets/objects/barrier_large.png"),
 	Type.DRAW: preload("res://assets/ui/cards/deck.png"),
-	Type.ENERGY: preload("res://assets/art/objects/tile_0113.png"),
-	Type.BUFF: preload("res://assets/art/objects/tile_0126.png"),
-	Type.DEBUFF: preload("res://assets/art/objects/tile_0127.png"),
-	Type.SPAWN: preload("res://assets/art/characters/tile_0122.png"),
-	Type.UNKNOWN: preload("res://assets/ui/orb.png")
+	Type.ENERGY: preload("res://assets/objects/tile_0113.png"),
+	Type.BUFF: preload("res://assets/objects/tile_0126.png"),
+	Type.DEBUFF: preload("res://assets/objects/tile_0127.png"),
+	Type.SPAWN: preload("res://assets/characters/tile_0122.png"),
+	Type.UNKNOWN: preload("res://assets/ui/cards/orb.png")
 }
 
 const SFX_dict := {
-	Type.ATTACK: preload("res://assets/SFX/enemy_attack.ogg"),
-	Type.BARRIER: preload("res://assets/SFX/enemy_block.ogg"),
-	Type.LARGE_BARRIER: preload("res://assets/SFX/enemy_block.ogg"),
-	Type.DRAW: preload("res://assets/SFX/enemy_block.ogg"),
-	Type.ENERGY: preload("res://assets/SFX/enemy_block.ogg"),
-	Type.BUFF: preload("res://assets/SFX/slash.ogg"),
-	Type.DEBUFF: preload("res://assets/SFX/slash.ogg"),
-	Type.SPAWN: preload("res://assets/SFX/slash.ogg"),
-	Type.UNKNOWN: preload("res://assets/SFX/slash.ogg")
+	Type.ATTACK: preload("res://assets/sfx/enemy_attack.ogg"),
+	Type.BARRIER: preload("res://assets/sfx/enemy_block.ogg"),
+	Type.LARGE_BARRIER: preload("res://assets/sfx/enemy_block.ogg"),
+	Type.DRAW: preload("res://assets/sfx/enemy_block.ogg"),
+	Type.ENERGY: preload("res://assets/sfx/enemy_block.ogg"),
+	Type.BUFF: preload("res://assets/sfx/slash.ogg"),
+	Type.DEBUFF: preload("res://assets/sfx/slash.ogg"),
+	Type.SPAWN: preload("res://assets/sfx/slash.ogg"),
+	Type.UNKNOWN: preload("res://assets/sfx/slash.ogg")
 }
 
 

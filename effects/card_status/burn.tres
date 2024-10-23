@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CardStatus" load_steps=3 format=3 uid="uid://u6tdcoye3ec1"]
+
+[ext_resource type="Script" path="res://custom_resources/card_status.gd" id="1_bl7ej"]
+[ext_resource type="Texture2D" uid="uid://blkttehatvu04" path="res://assets/misc/icon.svg" id="1_wrwji"]
+
+[resource]
+script = ExtResource("1_bl7ej")
+name = "burn"
+icon = ExtResource("1_wrwji")
+description = "When this [color=0044ff]card[/color] is played, exhausted, or discarded if it is unplayable, remove a copy of it from your deck. If the [color=0044ff]card[/color] is [color=D9BB26]uncached[/color], add it back to your deck
+"

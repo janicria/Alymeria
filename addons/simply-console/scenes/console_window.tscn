@@ -30,17 +30,15 @@ var historyPosition: int = 0
 
 
 func _ready() -> void:
-	Events.toggle_console_visible.connect(func()->void: visible = !visible)
+	Events.toggle_console_visible.connect(func()->void: 
+		visible = !visible; if GameManager.console_banned: hide())
+	#close_requested.connect(hide)
 	output_comment(
 		\"To see a list of available commands use the 'help' command)\"
 	)
 	output_comment(
 		\"Optionally, use 'help (command)' to get more information about a specific command.\"
 	)
-
-
-func on_close_requested() -> void:
-	hide()
 
 
 func _input(event: InputEvent) -> void:
@@ -241,7 +239,9 @@ func heal(amount: int, max_health := false) -> String:
 	return \"Healed %s health\" % amount
 
 
-func deck(action: String, rarity: String, id: String = \"\") -> String:
+func deck(action: String, rarity: String, id: String) -> String:
+	#if !action: prin
+		
 	# Checks if the card exists (can't use WeakRef bc it returns null if object hasn't been loaded into memory yet)
 	# Secret cards: deck add ../../secret placeholder_rare_card
 	# Witch cards: deck add ../../witch/cards/common flame
@@ -415,6 +415,5 @@ unique_name_in_owner = true
 layout_mode = 2
 caret_blink = true
 
-[connection signal="close_requested" from="." to="." method="on_close_requested"]
 [connection signal="finished" from="ConsolePanel/MarginContainer/VBoxContainer/OutputField" to="." method="on_output_field_updated"]
 [connection signal="text_submitted" from="ConsolePanel/MarginContainer/VBoxContainer/InputField" to="." method="on_input_field_text_submitted"]

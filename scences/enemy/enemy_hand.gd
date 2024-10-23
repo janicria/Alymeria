@@ -36,7 +36,8 @@ func cardToGui(card: EnemyCard, enemy: Enemy) -> void:
 	
 	# Updating enemy mana and player damage counters
 	tween.finished.connect(func()->void:
-		# TODO: Add await for enemy statuses to apply before playing enemy cards (why .finished is needed)
+		card_ui.arrow.global_position = card_ui.global_position + card_ui.arrow.position
+		# TODO: Add await for enemy statuses to apply before playing enemy cards
 		var wr: WeakRef = weakref(enemy)
 		if !wr.get_ref(): return
 		enemy.update_mana_counter()
