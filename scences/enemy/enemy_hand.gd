@@ -1,13 +1,13 @@
 class_name EnemyHand
 extends HBoxContainer
 
-signal enemy_card_played
+signal cards_finished_moving
 
 const ENEMY_CARD_SCENE = preload("res://scences/enemy/enemy_card.tscn")
 
 var organiser_target_pos := position - Vector2(30, -5)
 # I honestly have no idea why this is needed but it stops enemy cards from ramping up in speed over time
-var time_before_next_card := 0.0
+#var time_before_next_card := 0.0
 
 
 func _ready() -> void:
@@ -49,21 +49,20 @@ func cardToGui(card: EnemyCard, enemy: Enemy) -> void:
 		get_parent().finished_drawing.emit()
 
 
-func organise_cards(draw_next_card := true) -> void:
+func organise_cards() -> void:
 	# Setup
 	organiser_target_pos = position - Vector2(30, -5) 
-	time_before_next_card = 0
 	
 	# Moving card
 	for card: EnemyCardUI in get_children():
 		organiser_target_pos.x += 38
 		var tween := create_tween().set_trans(Tween.TRANS_BACK)
 		tween.tween_property(card, "global_position", organiser_target_pos, 0.5)
+		# We want multiple cards to move at the same time
 		await get_tree().create_timer(0.1).timeout
-		time_before_next_card += 0.15
-	
-	# Scheduling the next card to be played by enemy_handler
-	if draw_next_card: enemy_card_played.emit()
+		# Scheduling the next card to be played after all cards have been moved
+		if card == get_child(-1): cards_finished_moving.emit(); printerr("\n\n\n\n\n\n\n\n")
+		print(1)
 
 
 func show_cards_owned_by_enemy(enemy: Enemy) -> void:

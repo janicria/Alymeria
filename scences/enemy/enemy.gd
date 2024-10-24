@@ -109,7 +109,7 @@ func take_damage(damage : int, modify_damage := true) -> void:
 	if !modify_damage: modified_damage = damage
 	
 	var tween := create_tween()
-	tween.tween_callback(Shaker.shake.bind(self, 12, 0.15))
+	tween.tween_callback(get_tree().current_scene.shaker.shake.bind(self, 12, 0.15))
 	tween.tween_callback(stats.take_damage.bind(modified_damage))
 	tween.tween_interval(0.2)
 	
@@ -123,7 +123,7 @@ func take_damage(damage : int, modify_damage := true) -> void:
 func death_animation(repeats := 3) -> void:
 	is_alive = false
 	var death_tween := create_tween()
-	death_tween.tween_callback(Shaker.shake.bind(self, 10, 0.15))
+	death_tween.tween_callback(get_tree().current_scene.shaker.shake.bind(self, 10, 0.15))
 	death_tween.tween_interval(0.2)
 	
 	death_tween.finished.connect(

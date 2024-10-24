@@ -181,5 +181,20 @@
 			}
 		],
 		"description": "Changes cache tokens to amount"
+	},
+	"battle": {
+		"target": "",
+		"type": 1,
+		"minPermission": 0,
+		"cheats": false,
+		"method": "battle",
+		"argumentList": [
+			{
+				"name": "id",
+				"type": 4,
+				"optional": false
+			},
+		],
+		"description": "Loads the specified battle\nA list of all battles can be viewed by running 'battle list'"
 	}
 }

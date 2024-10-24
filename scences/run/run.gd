@@ -17,6 +17,7 @@ const EVENT_SCENCE := preload("res://scences/current_views/events/event.tscn")
 @onready var console_window: Window = %ConsoleWindow
 @onready var version_number: Label = %VersionNumber
 @onready var settings_bar: TextureRect = %SettingsBar
+@onready var shaker: Node = %Shaker
 
 var character: CharacterStats
 
@@ -94,16 +95,18 @@ func _setup_event_connections() -> void:
 func _on_battle_room_entered(room: Room) -> void:
 	var battle_scence: Battle = _change_view(BATTLE_SCENCE)
 	battle_scence.battle_stats = room.battle_stats # Translation: (8 * biome * InfectedMultipliers)% hopefully
-	GameManager.floor_is_infected = !room.battle_stats.pure && ((float((8)*(GameManager.current_biome+1)*GameManager.multipliers["INFECTION"])/100)>randf())
+	GameManager.floor_is_infected = !room.battle_stats.pure && (
+		(float((8)*(GameManager.current_biome+1)*GameManager.multipliers["INFECTION"])/100)>randf())
 	battle_scence.start_battle()
 
 
 func _on_battle_state_updated(state: Battle.BattleState) -> void:
 	if state != Battle.BattleState.WIN: return
-	
 	# Failsafe which runs while the game is exiting
 	var wr: WeakRef = weakref(get_tree())
 	if !wr.get_ref(): return
+	# In case the battle was run using the battle command
+	if !map.last_room: return
 	
 	var reward_scence := _change_view(BATTLE_REWARD_SCENCE) as BattleReward
 	reward_scence.add_gold_reward(map.last_room.battle_stats.roll_gold_reward())

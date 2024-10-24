@@ -11,7 +11,7 @@ signal statuses_applied
 
 
 func _ready() -> void: 
-	enemy_hand.enemy_card_played.connect(play_next_card)
+	enemy_hand.cards_finished_moving.connect(play_next_card.bind(false))
 
 
 func setup_enemies(battle_stats: BattleStats) -> void:
@@ -55,7 +55,6 @@ func apply_start_of_turn_statuses() -> void:
 
 
 func start_turn() -> void:
-	#if get_child_count() == 0: return
 	# Filter prevents EnemyHand from being assigned
 	for enemy: Enemy in get_children().filter(func(child:Node)->bool: return child is Enemy):
 		enemy.do_turn()
@@ -64,25 +63,24 @@ func start_turn() -> void:
 	stauses_finished()
 
 
-func stauses_finished() -> void:
-	await get_tree().process_frame
-	statuses_applied.emit()
-
-
-func play_next_card() -> void:
+func play_next_card(first_card := true) -> void:
 	if !enemy_hand.get_children():
 		Events.update_battle_state.emit(1)
 		return
 	
-	if !GameManager.speedy_cards:
-		await get_tree().create_timer(enemy_hand.time_before_next_card + 0.1).timeout
-	
 	var card := enemy_hand.get_child(0) as EnemyCardUI
 	card.play()
 	
-	# So the card multi attack cards don't get shadowrealmed from memory before they have time to finish
-	if card.card_stats.repeats != 1: await get_tree().create_timer(0.1 * (card.card_stats.repeats)).timeout
+	await card.finished_playing
+	if !GameManager.speedy_cards && !first_card: # Somehow actually works (I think)
+		await get_tree().create_timer((enemy_hand.get_child_count()+1)*0.1).timeout
 	
+
 	enemy_hand.remove_child(card)
 	card.queue_free()
 	enemy_hand.organise_cards()
+
+
+func stauses_finished() -> void:
+	await get_tree().process_frame
+	statuses_applied.emit()

@@ -351,6 +351,27 @@ func cache(amount: int) -> String:
 	return \"Changed cache tokens from %s to %s\" % [old_number, GameManager.character.cache_tokens]
 
 
+func battle(id := \"\") -> String:
+	if id == \"list\":
+		var dir = DirAccess.open(\"res://floors/battles/\")
+		var battles: String
+		for file in dir.get_files():
+			if \"tier\" in file && !\"tscn\" in file:
+				battles += \"%s\\n\" % file.trim_suffix(\".tres\")
+		for file in dir.get_files_at(\"res://floors/custom_battles/\"):
+			if \"tier\" in file && !\"tscn\" in file:
+				battles += \"%s\\n\" % file.trim_suffix(\".tres\")
+		return battles
+
+	var room := Room.new()
+	var battle_stats: BattleStats = load(\"res://floors/battles/%s.tres\" % id)
+	if !battle_stats: battle_stats = load(\"res://floors/custom_battles/%s.tres\" % id)
+	if !battle_stats: return \"%s is not a valid battle, run 'battle list' to view a list of all battles\" % id
+	
+	room.battle_stats = battle_stats
+	get_parent()._on_battle_room_entered(room)
+	return \"Changed battle to %s\" % id
+
 
 
 #endregion

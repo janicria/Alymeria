@@ -52,17 +52,22 @@ func update_damage_counter(amount: int, reset: bool) -> void:
 func take_damage(damage : int) -> void:
 	if stats.health <= 0: return
 	
-	stats.take_damage(damage)
+	var tween := create_tween()
+	tween.tween_callback(get_tree().current_scene.shaker.shake.bind(self, 12, 0.15))
+	tween.tween_callback(stats.take_damage.bind(damage))
+	tween.tween_interval(0.2)
 	
-	if stats.health <= 0:
-		Events.update_battle_state.emit(6)
-		damage_counter.hide()
-		death_animation()
+	tween.finished.connect(
+		func()->void:
+			if stats.health <= 0:
+				Events.update_battle_state.emit(6)
+				damage_counter.hide()
+				death_animation())
 
 
 func death_animation(repeats := 3) -> void:
 	var death_tween := create_tween()
-	death_tween.tween_callback(Shaker.shake.bind(self, 10, 0.15))
+	death_tween.tween_callback(get_tree().current_scene.shaker.shake.bind(self, 10, 0.15))
 	death_tween.tween_interval(0.2)
 	
 	death_tween.finished.connect(

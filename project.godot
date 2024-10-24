@@ -26,7 +26,6 @@ buses/default_bus_layout="res://assets/misc/default_bus_layout.tres"
 [autoload]
 
 Events="*res://global/events.gd"
-Shaker="*res://global/shaker.gd"
 MusicPlayer="*res://global/music_player.tscn"
 SFXPlayer="*res://global/sfx_player.tscn"
 GameManager="*res://global/game_manager.gd"

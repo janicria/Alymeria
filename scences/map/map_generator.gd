@@ -245,5 +245,4 @@ func _get_random_room_type_by_weight() -> Room.Type:
 		if random_room_type_weights[type] > roll:
 			return type
 	
-	GameManager.notify("Unable to return room type")
 	return Room.Type.MONSTER

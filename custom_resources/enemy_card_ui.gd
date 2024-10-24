@@ -1,13 +1,13 @@
 class_name EnemyCardUI
 extends Node2D
 
+signal finished_playing
 
 @onready var cost: Label = %Cost
 @onready var icon: TextureRect = %Icon
 @onready var attack_icon: TextureRect = %AttackIcon
 @onready var attack_desc: Label = %AttackDesc
 @onready var arrow: Sprite2D = %Arrow
-
 
 var card_stats: EnemyCard
 var enemy_stats: Enemy
@@ -107,7 +107,6 @@ func play() -> void:
 	apply_effects(targets)
 
 
-
 func apply_effects(targets: Array[Node]) -> void:
 	if is_dead: return
 	if card_stats.custom_amount != "": card_stats.custom_play(get_targets()); return
@@ -137,6 +136,7 @@ func apply_effects(targets: Array[Node]) -> void:
 		effect.sound = card_stats.SFX_dict.get(card_stats.type)
 		effect.execute(targets)
 		await get_tree().create_timer(0.1).timeout
+	finished_playing.emit()
 
 
 func _on_control_mouse_entered() -> void:

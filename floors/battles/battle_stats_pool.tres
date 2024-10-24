@@ -2,12 +2,13 @@
 
 [ext_resource type="Script" path="res://custom_resources/battle_stats.gd" id="1_dd3t0"]
 [ext_resource type="Script" path="res://custom_resources/battle_stats_pool.gd" id="2_pu8rh"]
-[ext_resource type="Resource" uid="uid://cplocow423w7a" path="res://floors/battles/a1_tier0_pure_bat2.tres" id="2_v2jmk"]
-[ext_resource type="Resource" uid="uid://dliemj8rv8xjp" path="res://floors/battles/a1_tier0_inf_bat4.tres" id="3_rfm2q"]
-[ext_resource type="Resource" uid="uid://c6gs3s1ngmnlx" path="res://floors/battles/a1_tier1_inf_spider2+bat.tres" id="4_iivr4"]
-[ext_resource type="Resource" uid="uid://ysmn3rhrp6gu" path="res://floors/battles/a1_tier2_inf_spider4.tres" id="5_t5in1"]
-[ext_resource type="Resource" uid="uid://bgacl6ipmmm8h" path="res://floors/battles/a1_tier3_pure_bat2.tres" id="6_yu4ys"]
-[ext_resource type="Resource" uid="uid://dog4r7o48l47j" path="res://floors/custom_battles/a1_tier2_pure_evenodd.tres" id="7_dky2r"]
+[ext_resource type="Resource" uid="uid://cplocow423w7a" path="res://floors/battles/a1_tier0_bat2.tres" id="2_v2jmk"]
+[ext_resource type="Resource" uid="uid://dliemj8rv8xjp" path="res://floors/battles/a1_tier0_bat4.tres" id="3_rfm2q"]
+[ext_resource type="Resource" uid="uid://c6gs3s1ngmnlx" path="res://floors/battles/a1_tier1_spider2+bat.tres" id="4_iivr4"]
+[ext_resource type="Resource" uid="uid://ysmn3rhrp6gu" path="res://floors/battles/a1_tier2_spider4.tres" id="5_t5in1"]
+[ext_resource type="Resource" uid="uid://bgacl6ipmmm8h" path="res://floors/battles/a1_tier3_bat2.tres" id="6_yu4ys"]
+[ext_resource type="Resource" uid="uid://dog4r7o48l47j" path="res://floors/custom_battles/a1_tier2_evenodd.tres" id="7_dky2r"]
+
 
 [resource]
 script = ExtResource("2_pu8rh")

@@ -38,5 +38,4 @@ func get_random_battle_from_tier(tier: int) -> BattleStats:
 			return battle
 	
 	# Remember to update battle_stats_pool export var in MapGenerator with new battles
-	GameManager.notify("Failed to select BattleStats for tier %s" % tier, true)
 	return null

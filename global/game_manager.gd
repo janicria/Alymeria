@@ -61,6 +61,17 @@ var multipliers := {
 	"RARE_CARD_RARITY": 0.0}
 
 
+func _init() -> void:
+	process_mode = PROCESS_MODE_ALWAYS
+	Events.update_turn_number.connect(func(number:int)->void:turn_number = number)
+	
+	# Logging
+	print("Successful launch")
+	var platform := "Release (" if OS.has_feature("release") else "Debug ("
+	platform += "Linux)" if OS.has_feature("linux") else "Windows)"
+	print("Version: %s %s" % [platform, ProjectSettings.get_setting("application/config/version")])
+
+
 func set_current_biome(value: Biome) -> void:
 	current_biome = clampi(value, Biome.FOREST, (Biome.size()) -1)
 
@@ -71,6 +82,12 @@ func set_card_pile(value: bool) -> void:
 	card_pile_open = value
 
 
+
+func set_gold(new_amount : int) -> void:
+	gold = new_amount
+	gold_changed.emit()
+
+
 func reset_stats() -> void:
 	gold = STARTING_GOLD
 	damage_dealt = 0
@@ -78,47 +95,16 @@ func reset_stats() -> void:
 	blocked_damage = 0
 	health_healed = 0
 	cheats = false
-	reset_weights()
-
-
-func _init() -> void:
-	process_mode = PROCESS_MODE_ALWAYS
-	Events.update_turn_number.connect(func(number:int)->void:turn_number = number)
-	
-	# Logging
-	print("Successful launch")
-	var platform := "Unknown"
-	if OS.has_feature("release"): platform = "Release ("
-	else: platform = "Debug ("
-	if OS.has_feature("linux"): platform += "Linux)"
-	elif OS.has_feature("windows"): platform += "Windows)"
-	else: platform += "Unknown)"; notify("Unable to detect OS", true)
-	print("Version: %s %s" % [platform, ProjectSettings.get_setting("application/config/version")])
-
-
-func notify(text: String, error := false) -> void:
-	if error: printerr("[ERROR] " + text)
-	else: printerr("[FAIL] " + text)
-	OS.alert("Janicria did an oopsie and asks for you to send the file 'info.log' at the path '%s'. (Dw you can still play the game)" % ProjectSettings.globalize_path("user://logs/info.log"), "Oopsie daisy")
+	common_weight = BASE_COMMON_WEIGHT
+	uncommon_weight = BASE_UNCOMMON_WEIGHT
+	rare_weight = BASE_RARE_WEIGHT
 
 
 # TODO: lmao
 func save_to_file() -> bool:
 	var result: bool
-	
 	result = true
-	if result: print("Game saved! - %s" % get_tree().get_frame())
-	else: notify("Failed writing save file to path %s" % ProjectSettings.globalize_path("user://saves/save.exampleExtenstion"), true)
+	if result: print("Game saved! - %d" % (get_tree().get_frame()/60))
+	else: OS.alert("Failed writing save file to path %s" % ProjectSettings.globalize_path("user://saves/save.exampleExtenstion"))
 	
 	return result
-
-
-func set_gold(new_amount : int) -> void:
-	gold = new_amount
-	gold_changed.emit()
-
-
-func reset_weights() -> void:
-	common_weight = BASE_COMMON_WEIGHT
-	uncommon_weight = BASE_UNCOMMON_WEIGHT
-	rare_weight = BASE_RARE_WEIGHT

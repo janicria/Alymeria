@@ -1,7 +1,8 @@
 [gd_resource type="Resource" script_class="BattleStats" load_steps=3 format=3 uid="uid://bgacl6ipmmm8h"]
 
-[ext_resource type="PackedScene" uid="uid://bcatqa8cj2n5s" path="res://floors/battles/a1_tier0_pure_bat2.tscn" id="1_4hf0j"]
+[ext_resource type="PackedScene" uid="uid://bcatqa8cj2n5s" path="res://floors/battles/a1_tier0_bat2.tscn" id="1_4hf0j"]
 [ext_resource type="Script" path="res://custom_resources/battle_stats.gd" id="2_ajup4"]
+
 
 [resource]
 script = ExtResource("2_ajup4")
