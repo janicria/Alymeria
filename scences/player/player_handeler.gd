@@ -15,18 +15,18 @@ func _ready() -> void:
 
 
 func start_battle(character : CharacterStats) -> void:
-	GameManager.character = GameManager.character
-	GameManager.character.draw_pile = GameManager.character.deck.duplicate(true)
-	GameManager.character.draw_pile.shuffle()
-	GameManager.character.discard = CardPile.new()
-	GameManager.character.cache_pile = CardPile.new()
-	GameManager.character.cache_tokens = 0
+	Data.character = Data.character
+	Data.character.draw_pile = Data.character.deck.duplicate(true)
+	Data.character.draw_pile.shuffle()
+	Data.character.discard = CardPile.new()
+	Data.character.cache_pile = CardPile.new()
+	Data.character.cache_tokens = 0
 	player.status_handler.statuses_applied.connect(_on_statuses_applied)
 
 
 func start_turn() -> void:
-	GameManager.character.barrier = clamp(GameManager.character.barrier -10, 0, 999)
-	GameManager.character.reset_mana()
+	Data.character.barrier = clamp(Data.character.barrier -10, 0, 999)
+	Data.character.reset_mana()
 	var wr: WeakRef = weakref(player) # In case player died
 	if wr.get_ref(): player.status_handler.apply_statuses_by_type(Status.Type.START_OF_TURN)
 
@@ -39,8 +39,8 @@ func end_turn() -> void:
 func draw_card() -> void:
 	if hand.get_child_count() >= 10: OS.alert("Max hand size is 10"); return
 	reshuffle_draw_from_discard()
-	if !GameManager.character.draw_pile.cards: return
-	hand.add_card(GameManager.character.draw_pile.draw_card())
+	if !Data.character.draw_pile.cards: return
+	hand.add_card(Data.character.draw_pile.draw_card())
 	reshuffle_draw_from_discard()
 	Events.update_draw_card_ui.emit()
 
@@ -54,7 +54,7 @@ func draw_cards(amount: int) -> void:
 		tween.finished.connect(
 			func()->void:
 				# Prevents cards from being placed after being draw in between updating mana
-				GameManager.character.set_mana(GameManager.character.mana)
+				Data.character.set_mana(Data.character.mana)
 				Events.player_hand_drawn.emit()
 				Events.update_draw_card_ui.emit())
 
@@ -67,7 +67,7 @@ func discard_cards() -> void:
 	
 	var tween := create_tween()
 	for card_ui in hand.get_children():
-		tween.tween_callback(GameManager.character.discard.add_card.bind(card_ui.card))
+		tween.tween_callback(Data.character.discard.add_card.bind(card_ui.card))
 		tween.tween_callback(hand.discard_card.bind(card_ui))
 		tween.tween_interval(HAND_DISCARD_INTERVAL)
 	
@@ -75,10 +75,10 @@ func discard_cards() -> void:
 
 
 func reshuffle_draw_from_discard() -> void:
-	if !GameManager.character.draw_pile.empty(): return
+	if !Data.character.draw_pile.empty(): return
 	
-	while !GameManager.character.discard.empty():
-		GameManager.character.draw_pile.add_card(GameManager.character.discard.draw_card())
+	while !Data.character.discard.empty():
+		Data.character.draw_pile.add_card(Data.character.discard.draw_card())
 		# Discard to draw pile animation
 		var orb := TextureRect.new()
 		orb.texture = preload("res://assets/ui/cards/orb.png")
@@ -88,15 +88,15 @@ func reshuffle_draw_from_discard() -> void:
 		tween.tween_property(orb, "global_position", Vector2(get_parent().battle_ui.draw_pile_button.position.x, orb.global_position.y), 0.4)
 		await get_tree().create_timer(0.4).timeout
 	
-	GameManager.character.draw_pile.shuffle()
+	Data.character.draw_pile.shuffle()
 
 
 func _on_card_played(card : Card) -> void:
-	if card.has_status("exhaust"): GameManager.character.exhaust_pile.add_card(card)
-	else: GameManager.character.discard.add_card(card)
+	if card.has_status("exhaust"): Data.character.exhaust_pile.add_card(card)
+	else: Data.character.discard.add_card(card)
 
 
 func _on_statuses_applied(type: Status.Type) -> void:
 	match type:
-		Status.Type.START_OF_TURN: draw_cards(GameManager.character.cards_per_turn)
+		Status.Type.START_OF_TURN: draw_cards(Data.character.cards_per_turn)
 		Status.Type.END_OF_TURN: discard_cards()

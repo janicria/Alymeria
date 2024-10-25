@@ -30,9 +30,8 @@ var historyPosition: int = 0
 
 
 func _ready() -> void:
-	Events.toggle_console_visible.connect(func()->void: 
-		visible = !visible; if GameManager.console_banned: hide())
-	#close_requested.connect(hide)
+	Events.toggle_console_visible.connect(func()->void:
+		visible = !visible; if Data.console_banned: queue_free())
 	output_comment(
 		\"To see a list of available commands use the 'help' command)\"
 	)
@@ -200,7 +199,7 @@ func echo(text: String) -> String:
 
 
 func gold(amount: int) -> String:
-	GameManager.gold += amount
+	Data.gold += amount
 	print(\"[CMD] Added %s gold\" % amount)
 	return \"Added %s gold\" % amount
 
@@ -214,7 +213,7 @@ func kill(who: String) -> String:
 	if who != \"self\" && who != \"enemies\":
 		return \"%s is not a valid group!\" % who
 	
-	GameManager.cheats = true
+	Data.cheats = true
 	
 	if who == \"self\":
 		player.damage_counter.hide()
@@ -231,10 +230,10 @@ func kill(who: String) -> String:
 
 
 func heal(amount: int, max_health := false) -> String:
-	GameManager.cheats = true
-	if max_health: GameManager.character.max_health = amount
-	GameManager.character.heal(amount)
-	if GameManager.character.health < 1: kill(\"self\")
+	Data.cheats = true
+	if max_health: Data.character.max_health = amount
+	Data.character.heal(amount)
+	if Data.character.health < 1: kill(\"self\")
 	print(\"[CMD] Healed %s health\" % amount)
 	return \"Healed %s health\" % amount
 
@@ -249,21 +248,21 @@ func deck(action: String, rarity: String, id: String) -> String:
 	if rarity == \"purple\": loaded_card = load(\"res://characters/global/purple/%s.tres\" % id)
 	elif rarity == \"status\": loaded_card = load(\"res://characters/global/status/%s.tres\" % id)
 	if loaded_card is not Card: return \"Card %s with rarity %s does not exist\" % [id, rarity]
-	GameManager.cheats = true
+	Data.cheats = true
 	
 	
 	match action:
 		\"add\":
-			GameManager.character.deck.add_card(loaded_card)
+			Data.character.deck.add_card(loaded_card)
 			print(\"[CMD] Added card %s\" % id)
 			return \"Added card %s with rarity %s\" % [id, rarity]
 		\"remove\":
-			GameManager.character.deck.remove_card(loaded_card)
+			Data.character.deck.remove_card(loaded_card)
 			print(\"[CMD] Removed card %s\" % id)
 			return \"Removed card %s with rarity %s\" % [id, rarity]
 		\"has\":
-			for card in GameManager.character.deck.cards:
-				if card == loaded_card or card == GameManager.character.deck.cards[-1]:
+			for card in Data.character.deck.cards:
+				if card == loaded_card or card == Data.character.deck.cards[-1]:
 					return \"You %s have card %s in your deck\" % [\"DO\" if card == loaded_card else \"DON'T\", id]
 	
 	return \"%s is not an action for command deck, possible actions: add, remove, has\" % action
@@ -271,12 +270,12 @@ func deck(action: String, rarity: String, id: String) -> String:
 
 # Mainly used to test of gold / card rewards scaling properly with the current biome
 func act(number: int = -1) -> String:
-	if number == -1: return \"Current act is %s(%s)\" % [GameManager.Biome.keys()[GameManager.current_biome], GameManager.current_biome]
-	var old_number := GameManager.current_biome
-	GameManager.current_biome = number
-	GameManager.cheats = true
-	print(\"[CMD] Changed act number from %s to %s\" % [old_number, GameManager.current_biome])
-	return \"Changed act number from %s(%s) to %s(%s)\" % [GameManager.Biome.keys()[old_number], old_number, GameManager.Biome.keys()[GameManager.current_biome], GameManager.current_biome]
+	if number == -1: return \"Current act is %s(%s)\" % [Data.Biome.keys()[Data.current_biome], Data.current_biome]
+	var old_number := Data.current_biome
+	Data.current_biome = number
+	Data.cheats = true
+	print(\"[CMD] Changed act number from %s to %s\" % [old_number, Data.current_biome])
+	return \"Changed act number from %s(%s) to %s(%s)\" % [Data.Biome.keys()[old_number], old_number, Data.Biome.keys()[Data.current_biome], Data.current_biome]
 
 
 func debug(additional_option: String = \"\") -> String:
@@ -284,7 +283,7 @@ func debug(additional_option: String = \"\") -> String:
 	
 	print(\"[CMD] Debug w/%s start\" % [(\" %s\" % additional_option) if additional_option != \"\" else \"o any :c\"])
 	# Note: Running cards.clear() messes up card pile views to show 180-338 cards which is really funny
-	GameManager.character.deck.cards.clear()
+	Data.character.deck.cards.clear()
 	deck(\"add\", \"common\", \"repurposing\")
 	deck(\"add\", \"common\", \"missile_launcher\")
 	deck(\"add\", \"common\", \"laser\") 
@@ -303,7 +302,7 @@ func debug(additional_option: String = \"\") -> String:
 	deck(\"add\", \"../../secret\", \"injured_test\")
 	deck(\"add\", \"../../secret\", \"card_status_test\")
 	if additional_option == \"infinite\":
-		GameManager.character.deck.cards.clear()
+		Data.character.deck.cards.clear()
 		deck(\"add\", \"rare\", \"advanced_rerouting\")
 		deck(\"add\", \"common\", \"repurposing\")
 		deck(\"add\", \"common\", \"repurposing\")
@@ -312,15 +311,15 @@ func debug(additional_option: String = \"\") -> String:
 	
 	# Character
 	heal(999, true)
-	GameManager.character.max_mana = 99
+	Data.character.max_mana = 99
 	if additional_option != \"draw\":
-		GameManager.character.cards_per_turn = 10
+		Data.character.cards_per_turn = 10
 	
 	# Misc
 	if additional_option != \"music\":
 		for child:AudioStreamPlayer in MusicPlayer.get_children(): child.volume_db = -INF
 	print(\"[CMD] Debug w/%s end!\" % [(\" %s\" % additional_option) if additional_option != \"\" else \"o any :c\"])
-	GameManager.cheats = true
+	Data.cheats = true
 	return 'Have \"fun\" debugging!'
 
 
@@ -329,26 +328,26 @@ func turn(number: int) -> String:
 	if !wr.get_ref(): return \"Not in a battle!\"
 	elif number < 0: return \"Not a valid turn number!\"
 	Events.update_turn_number.emit(number)
-	print(1)
-	Events.battle_state_updated.emit(1)
+	Events.update_battle_state.emit(Battle.State.LOOPS)
 	# Battle increases turn number by 1 when battle state is set to 1
-	Events.update_turn_number.emit(GameManager.turn_number - 1)
+	Events.update_turn_number.emit(Data.turn_number - 1)
 	Events.update_battle_stats.emit()
-	GameManager.cheats = true
-	return \"Changed the turn number from %s to %s\" % [GameManager.turn_number, GameManager.turn_number]
+	Data.cheats = true
+	return \"Changed the turn number from %s to %s\" % [Data.turn_number, Data.turn_number]
 
 
 func stats() -> String:
-	return \"Damage dealt - %s\\nDamage taken - %s\\nHealth healed - %s\\nCheats - %s\" % [GameManager.damage_dealt, GameManager.damage_taken, GameManager.health_healed, GameManager.cheats]
+	return \"Damage dealt - %s\\nDamage taken - %s\\nHealth healed - %s\\nCheats - %s\" % [Data.damage_dealt, Data.damage_taken, Data.health_healed, Data.cheats]
 
 
 func cache(amount: int) -> String:
 	var wr: WeakRef = weakref(get_tree().get_first_node_in_group(\"player\"))
 	if !wr.get_ref(): return \"Not in a battle!\"
-	var old_number := GameManager.character.cache_tokens
-	GameManager.character.cache_tokens = amount
-	print(\"[CMD] Changed cache tokens from %s to %s\" % [old_number, GameManager.character.cache_tokens])
-	return \"Changed cache tokens from %s to %s\" % [old_number, GameManager.character.cache_tokens]
+	var old_number := Data.character.cache_tokens
+	Data.character.cache_tokens = amount
+	print(\"[CMD] Changed cache tokens from %s to %s\" % [old_number, Data.character.cache_tokens])
+	Data.cheats = true
+	return \"Changed cache tokens from %s to %s\" % [old_number, Data.character.cache_tokens]
 
 
 func battle(id := \"\") -> String:
@@ -370,6 +369,7 @@ func battle(id := \"\") -> String:
 	
 	room.battle_stats = battle_stats
 	get_parent()._on_battle_room_entered(room)
+	Data.cheats = true
 	return \"Changed battle to %s\" % id
 
 

@@ -9,7 +9,6 @@
 [ext_resource type="Resource" uid="uid://bgacl6ipmmm8h" path="res://floors/battles/a1_tier3_bat2.tres" id="6_yu4ys"]
 [ext_resource type="Resource" uid="uid://dog4r7o48l47j" path="res://floors/custom_battles/a1_tier2_evenodd.tres" id="7_dky2r"]
 
-
 [resource]
 script = ExtResource("2_pu8rh")
 pool = Array[ExtResource("1_dd3t0")]([ExtResource("2_v2jmk"), ExtResource("3_rfm2q"), ExtResource("4_iivr4"), ExtResource("6_yu4ys"), ExtResource("7_dky2r"), ExtResource("5_t5in1")])

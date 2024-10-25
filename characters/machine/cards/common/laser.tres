@@ -1,10 +1,8 @@
 [gd_resource type="Resource" load_steps=4 format=3 uid="uid://brs0hub03o0k0"]
 
+[ext_resource type="AudioStream" uid="uid://b1vpjjmi5cj3n" path="res://assets/sfx/axe.ogg" id="2_llmb8"]
 [ext_resource type="Script" path="res://characters/machine/cards/common/laser.gd" id="2_ouqcu"]
 [ext_resource type="Script" path="res://custom_resources/card_status.gd" id="3_jtbo0"]
-
-[sub_resource type="Resource" id="Resource_qkgxu"]
-metadata/__load_path__ = "res://assets/sfx/axe.ogg"
 
 [resource]
 script = ExtResource("2_ouqcu")
@@ -15,6 +13,6 @@ target = 1
 repeats = 1
 cost = 1
 statuses = Array[ExtResource("3_jtbo0")]([])
-sound = SubResource("Resource_qkgxu")
+sound = ExtResource("2_llmb8")
 tooltip_text = "ATK %s"
 effect_description = "[center]Attack - Deal [color=\"ff0000\"]damage[/color] to an enemy[/center]"

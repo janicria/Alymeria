@@ -1,14 +1,15 @@
-[gd_resource type="Resource" script_class="Core" load_steps=3 format=3 uid="uid://cu3ejirfp3hyg"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://cu3ejirfp3hyg"]
 
-[ext_resource type="Script" path="res://custom_resources/core.gd" id="1_qo545"]
 [ext_resource type="Texture2D" uid="uid://dytq0eumwvky6" path="res://assets/objects/anvil.png" id="1_yji7s"]
+[ext_resource type="Script" path="res://characters/global/cores/common/comically_large_anvil.gd" id="2_712bc"]
 
 [resource]
-script = ExtResource("1_qo545")
+script = ExtResource("2_712bc")
 core_name = "Comically Large Anvil"
 icon = ExtResource("1_yji7s")
 type = 2
 rarity = 0
+pool = 0
 slotted_tooltip = "At the end of each turn all enemies take 8 damage affected by statuses"
 dump_tooltip = "At the end of each turn all enemies take 5 damage"
 flavour_text = "But where did it come from?"

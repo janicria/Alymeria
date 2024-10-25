@@ -103,7 +103,7 @@ func update_mana_counter() -> void:
 
 func take_damage(damage : int, modify_damage := true) -> void:
 	if stats.health <= 0: return
-	GameManager.damage_dealt += damage
+	Data.damage_dealt += damage
 	
 	var modified_damage := modifier_handler.get_modified_value(damage, Modifier.Type.DMG_TAKEN)
 	if !modify_damage: modified_damage = damage

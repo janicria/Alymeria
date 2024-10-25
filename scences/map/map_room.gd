@@ -45,7 +45,7 @@ func show_selected() -> void:
 
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	# Safety for selecting unavailable rooms / right clicking rooms
-	if !available or !event.is_action_pressed("left_mouse_pressed"):
+	if !available or !event.is_action_pressed("left_mouse"):
 		return 
 	
 	room.selected = true

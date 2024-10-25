@@ -25,36 +25,36 @@ func set_card_pile(new_value : CardPile) -> void:
 
 func _on_card_pile_size_changed(amount : int) -> void:
 	deck_size = amount
-	if get_name() == "CachePileButton": counter.text = "[center][color=D9BB26]%s[/color] %s[/center]" % [GameManager.character.cache_tokens, deck_size]
+	if get_name() == "CachePileButton": counter.text = "[center][color=D9BB26]%s[/color] %s[/center]" % [Data.character.cache_tokens, deck_size]
 	else: counter.text = "[center]%s[/center]" % deck_size
-	if GameManager.true_deck_size: update_ui() #Events.update_deck_button_ui.emit()
+	if Data.true_deck_size: update_ui() #Events.update_deck_button_ui.emit()
 
 
 func update_ui() -> void:
 	match get_name():
 		"DeckButton":
-			if GameManager.true_deck_size: # Imagine putting this in a trenary
-				counter.text = "%s(%s)" % [deck_size, (deck_size - GameManager.character.deck.cards.filter(
+			if Data.true_deck_size: # Imagine putting this in a trenary
+				counter.text = "%s(%s)" % [deck_size, (deck_size - Data.character.deck.cards.filter(
 					func(card: Card)->bool: return card.exhausts).size())]
 			else: counter.text = "[center]%s[/center]" % deck_size
 		
 		
 		"DrawPileButton":
-			if GameManager.card_pile_above_mana: position = Vector2(58, 145)
+			if Data.card_pile_above_mana: position = Vector2(58, 145)
 			else: position = Vector2(80, 170)
 		
 		"DiscardPileButton":
-			if GameManager.card_pile_above_mana: position = Vector2(42, 145)
+			if Data.card_pile_above_mana: position = Vector2(42, 145)
 			else: position = Vector2(317, 170)
 		
 		"ExhaustPileButton":
-			if GameManager.card_pile_above_mana: position = Vector2(26, 145)
+			if Data.card_pile_above_mana: position = Vector2(26, 145)
 			else: position = Vector2(317, 145)
 		
 		"CachePileButton":
 			counter.position.x = -1
-			counter.text = "[center][color=D9BB26]%s[/color] %s[/center]" % [GameManager.character.cache_tokens, deck_size]
-			if GameManager.card_pile_above_mana: position = Vector2(10, 145)
+			counter.text = "[center][color=D9BB26]%s[/color] %s[/center]" % [Data.character.cache_tokens, deck_size]
+			if Data.card_pile_above_mana: position = Vector2(10, 145)
 			else: position = Vector2(80, 145)
 	
 

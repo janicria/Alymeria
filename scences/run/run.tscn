@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://da8s0fkwwmdle"]
+[gd_scene load_steps=11 format=3 uid="uid://da8s0fkwwmdle"]
 
 [ext_resource type="Script" path="res://scences/run/run.gd" id="1_327eg"]
 [ext_resource type="PackedScene" uid="uid://klm1dw58y8fj" path="res://scences/map/map.tscn" id="1_jorql"]
 [ext_resource type="Resource" uid="uid://dk2sl2aapuwe7" path="res://scences/run/run_startup.tres" id="2_ehyhl"]
 [ext_resource type="PackedScene" uid="uid://bwuexw3t61b0h" path="res://scences/ui/settings/settings_bar.tscn" id="4_xv74x"]
+[ext_resource type="PackedScene" uid="uid://iq0kljjd6vul" path="res://scences/cores/core_handler.tscn" id="5_24som"]
 [ext_resource type="PackedScene" uid="uid://cmrfdlp25wcby" path="res://addons/simply-console/scenes/console_window.tscn" id="5_p3j0y"]
 [ext_resource type="Script" path="res://scences/run/shaker.gd" id="6_n5mko"]
 
@@ -13,7 +14,7 @@ length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("UI/ScenceTransition/ColorRect:self_modulate")
+tracks/0/path = NodePath("ScenceTransition/ColorRect:self_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -25,7 +26,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("UI/ScenceTransition/ColorRect:visible")
+tracks/1/path = NodePath("ScenceTransition/ColorRect:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -41,7 +42,7 @@ length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("UI/ScenceTransition/ColorRect:self_modulate")
+tracks/0/path = NodePath("ScenceTransition/ColorRect:self_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -53,7 +54,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("UI/ScenceTransition/ColorRect:visible")
+tracks/1/path = NodePath("ScenceTransition/ColorRect:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -101,14 +102,21 @@ grow_horizontal = 0
 unique_name_in_owner = true
 layout_mode = 0
 
-[node name="ScenceTransition" type="AnimationPlayer" parent="UI"]
+[node name="CoreHandler" parent="UI" instance=ExtResource("5_24som")]
 unique_name_in_owner = true
-root_node = NodePath("../..")
+layout_mode = 0
+offset_left = 9.0
+offset_top = 39.0
+offset_right = 71.0
+offset_bottom = 95.0
+
+[node name="ScenceTransition" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_km6g1")
 }
 
-[node name="ColorRect" type="ColorRect" parent="UI/ScenceTransition"]
+[node name="ColorRect" type="ColorRect" parent="ScenceTransition"]
 unique_name_in_owner = true
 visible = false
 anchors_preset = 15

@@ -28,8 +28,8 @@ signal update_battle_stats() # Emitted by console window (not visible in Ctrl+sh
 signal toggle_console_visible() # Used by console (not visible via search)
 
 ## Battle-related events
-signal update_battle_state(state: Battle.BattleState) # Used by battle, battle_over_panel, run
-signal update_turn_number(number: int) # Used by battle_ui, gamemanager
+signal update_battle_state(state: Battle.State) # Used by battle, battle_over_panel, run
+signal update_turn_number(number: int) # Used by battle_ui, Data
 
 ## Tooltip-related events
 signal show_tooltip(text: String) # Used by tooltp

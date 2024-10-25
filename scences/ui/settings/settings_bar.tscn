@@ -315,6 +315,23 @@ value = 16.0
 rounded = true
 ticks_on_borders = true
 
+[node name="PipeHbox" type="HBoxContainer" parent="SettingsLayer/Settings/VBoxContainer/SettingsHbox/AudioVisual"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Label" type="Label" parent="SettingsLayer/Settings/VBoxContainer/SettingsHbox/AudioVisual/PipeHbox"]
+custom_minimum_size = Vector2(62, 0)
+layout_mode = 2
+text = "PIPE"
+label_settings = SubResource("LabelSettings_kiq6t")
+horizontal_alignment = 1
+
+[node name="PipeButton" type="Button" parent="SettingsLayer/Settings/VBoxContainer/SettingsHbox/AudioVisual/PipeHbox"]
+unique_name_in_owner = true
+layout_mode = 2
+toggle_mode = true
+text = "Disabled"
+
 [node name="FullscreenHbox" type="HBoxContainer" parent="SettingsLayer/Settings/VBoxContainer/SettingsHbox/AudioVisual"]
 layout_mode = 2
 size_flags_horizontal = 0
@@ -371,4 +388,5 @@ visible = false
 [connection signal="drag_ended" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/AudioVisual/SFXVolumeHbox/SFXVolumeSlider" to="." method="_on_sfx_volume_drag_ended"]
 [connection signal="value_changed" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/AudioVisual/SFXVolumeHbox/SFXVolumeSlider" to="." method="_on_volume_slider_value_changed" binds= ["sfx"]]
 [connection signal="value_changed" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/AudioVisual/MusicVolumeHbox/MusicVolumeSlider" to="." method="_on_volume_slider_value_changed" binds= ["music"]]
+[connection signal="toggled" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/AudioVisual/PipeHbox/PipeButton" to="." method="_on_toggled_button_toggled" binds= ["pipe"]]
 [connection signal="toggled" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/AudioVisual/FullscreenHbox/FullscreenButton" to="." method="_on_toggled_button_toggled" binds= ["fullscreen"]]

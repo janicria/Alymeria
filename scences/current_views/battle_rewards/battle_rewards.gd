@@ -57,10 +57,10 @@ func _show_card_rewards() -> void:
 	card_rewards.card_reward_selected.connect(_on_card_reward_taken)
 	
 	var card_reward_array: Array[Card] = []
-	var available_cards: Array[Card] = GameManager.character.card_pool.duplicate_cards()
+	var available_cards: Array[Card] = Data.character.card_pool.duplicate_cards()
 	
 	# RNG for selecting each card (dark magic)
-	for i in GameManager.card_rewards:
+	for i in Data.card_rewards:
 		setup_card_rarity_chances()
 		var roll := randf_range(0.0, card_reward_total_weight)
 		
@@ -83,37 +83,37 @@ func _show_card_rewards() -> void:
 
 
 func setup_card_rarity_chances() -> void:
-	card_reward_total_weight = GameManager.common_weight + GameManager.uncommon_weight + GameManager.rare_weight
-	card_rarity_weights[Card.Rarity.COMMON] = GameManager.common_weight
-	card_rarity_weights[Card.Rarity.UNCOMMON] = GameManager.uncommon_weight + GameManager.multipliers.get("UNCOMMON_CARD_RARITY")
-	card_rarity_weights[Card.Rarity.RARE] = GameManager.rare_weight + GameManager.multipliers.get("RARE_CARD_RARITY")
-	if  GameManager.current_biome:
-		card_rarity_weights[Card.Rarity.UNCOMMON] *= 1+(GameManager.current_biome / 2)
-		card_rarity_weights[Card.Rarity.RARE] +=  1+(GameManager.current_biome / 5)
+	card_reward_total_weight = Data.common_weight + Data.uncommon_weight + Data.rare_weight
+	card_rarity_weights[Card.Rarity.COMMON] = Data.common_weight
+	card_rarity_weights[Card.Rarity.UNCOMMON] = Data.uncommon_weight + Data.multipliers.get("UNCOMMON_CARD_RARITY")
+	card_rarity_weights[Card.Rarity.RARE] = Data.rare_weight + Data.multipliers.get("RARE_CARD_RARITY")
+	if  Data.current_biome:
+		card_rarity_weights[Card.Rarity.UNCOMMON] *= 1+(Data.current_biome / 2)
+		card_rarity_weights[Card.Rarity.RARE] +=  1+(Data.current_biome / 5)
 
 
 # Increments rare weights over time (reuse for pot chances)
 func _modify_weights(rarity_rolled: Card.Rarity) -> void:
 	if rarity_rolled == Card.Rarity.UNCOMMON:
-		GameManager.common_weight = GameManager.BASE_COMMON_WEIGHT - GameManager.rare_weight
-		GameManager.uncommon_weight = GameManager.BASE_UNCOMMON_WEIGHT
+		Data.common_weight = Data.BASE_COMMON_WEIGHT - Data.rare_weight
+		Data.uncommon_weight = Data.BASE_UNCOMMON_WEIGHT
 	else: # Increases uncommon chances
-		GameManager.uncommon_weight = clampf(GameManager.uncommon_weight + 8.0, GameManager.BASE_UNCOMMON_WEIGHT, 80.0)
-		GameManager.common_weight = GameManager.BASE_COMMON_WEIGHT - GameManager.uncommon_weight
+		Data.uncommon_weight = clampf(Data.uncommon_weight + 8.0, Data.BASE_UNCOMMON_WEIGHT, 80.0)
+		Data.common_weight = Data.BASE_COMMON_WEIGHT - Data.uncommon_weight
 	
 	if rarity_rolled == Card.Rarity.RARE:
-		GameManager.rare_weight = GameManager.BASE_RARE_WEIGHT
-		GameManager.common_weight = GameManager.BASE_COMMON_WEIGHT
-		GameManager.uncommon_weight = GameManager.BASE_UNCOMMON_WEIGHT
+		Data.rare_weight = Data.BASE_RARE_WEIGHT
+		Data.common_weight = Data.BASE_COMMON_WEIGHT
+		Data.uncommon_weight = Data.BASE_UNCOMMON_WEIGHT
 	else: # Increases rare chances
-		GameManager.rare_weight = clampf(GameManager.rare_weight + 2.0, GameManager.BASE_RARE_WEIGHT, 50.0)
-		GameManager.common_weight = GameManager.BASE_COMMON_WEIGHT - GameManager.rare_weight
+		Data.rare_weight = clampf(Data.rare_weight + 2.0, Data.BASE_RARE_WEIGHT, 50.0)
+		Data.common_weight = Data.BASE_COMMON_WEIGHT - Data.rare_weight
 	
 	while card_reward_total_weight > 100:
-		GameManager.common_weight -= 1
+		Data.common_weight -= 1
 		setup_card_rarity_chances()
 	while card_reward_total_weight < 100:
-		GameManager.common_weight += 1
+		Data.common_weight += 1
 		setup_card_rarity_chances()
 
 
@@ -130,14 +130,14 @@ func _on_card_reward_taken(card: Card) -> void:
 	if !card: return
 	
 	print("Drafted %s" % card.name)
-	GameManager.character.deck.add_card(card)
+	Data.character.deck.add_card(card)
 
 
 func _on_gold_reward_taken(amount: int) -> void:
-	if ! GameManager:
+	if ! Data:
 		return
 	
-	GameManager.gold += amount
+	Data.gold += amount
 
 
 func _on_back_button_pressed() -> void:

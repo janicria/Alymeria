@@ -1,12 +1,15 @@
-[gd_resource type="Resource" script_class="Core" load_steps=2 format=3 uid="uid://3guwqalaemm"]
+[gd_resource type="Resource" script_class="Core" load_steps=3 format=3 uid="uid://3guwqalaemm"]
 
 [ext_resource type="Script" path="res://custom_resources/core.gd" id="1_qs448"]
+[ext_resource type="Texture2D" uid="uid://con6y7mc74c5a" path="res://assets/characters/tile_0120.png" id="1_vwogt"]
 
 [resource]
 script = ExtResource("1_qs448")
 core_name = " Bargaining chip"
+icon = ExtResource("1_vwogt")
 type = 5
 rarity = 3
+pool = 0
 slotted_tooltip = "The next shop you visit is discounted by 30% and has more lucrative items"
 dump_tooltip = "The next shop you visit is discounted by 20%"
 flavour_text = "Was it really worth the 50 gold though?"

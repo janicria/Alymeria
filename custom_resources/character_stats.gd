@@ -7,7 +7,8 @@ extends Stats
 @export var portrait: Texture
 
 @export_group("Gameplay Data")
-@export var starting_deck : CardPile
+@export var starting_deck: CardPile
+@export var starting_core: Core
 @export var card_pool: CardPile
 @export var cards_per_turn : int
 @export var max_mana : int
@@ -41,7 +42,7 @@ func take_damage(damage : int) -> void:
 	super.take_damage(damage)
 	if initial_health > health: 
 		#cache_tokens -= damage
-		GameManager.damage_taken += damage
+		Data.damage_taken += damage
 		Events.player_hit.emit()
 
 

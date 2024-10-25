@@ -1,5 +1,4 @@
-class_name Run
-extends Node
+class_name Run extends Node
 
 const BATTLE_SCENCE := preload("res://scences/current_views/battle/battle.tscn")
 const SHOP_SCENCE := preload("res://scences/current_views/shop/shop.tscn")
@@ -12,12 +11,14 @@ const EVENT_SCENCE := preload("res://scences/current_views/events/event.tscn")
 
 @onready var map: Map = %Map
 @onready var current_view: Node = %CurrentView
+@onready var version_number: Label = %VersionNumber
+@onready var settings_bar: TextureRect = %SettingsBar
+@onready var core_handler: CoreHandler = %CoreHandler
 @onready var scence_transition: AnimationPlayer = %ScenceTransition
 @onready var color_rect: ColorRect = %ColorRect
 @onready var console_window: Window = %ConsoleWindow
-@onready var version_number: Label = %VersionNumber
-@onready var settings_bar: TextureRect = %SettingsBar
 @onready var shaker: Node = %Shaker
+
 
 var character: CharacterStats
 
@@ -26,10 +27,10 @@ func _ready() -> void:
 	color_rect.visible = true
 	scence_transition.play("fade_in")
 	version_number.text = ProjectSettings.get_setting("application/config/version")
-
+	
 	match run_startup.type:
 		RunStartup.Type.NEW_RUN:
-			GameManager.character = run_startup.picked_character.create_instance()
+			Data.character = run_startup.picked_character.create_instance()
 			_start_run()
 		RunStartup.Type.CONTINUED_RUN:
 			print("Load contuined run")
@@ -44,16 +45,17 @@ func _process(_delta: float) -> void:
 
 
 func _input(_event: InputEvent) -> void:
-	if _event.is_action_pressed("~_pressed"): 
+	if _event.is_action_pressed("~_pressed") && console_window != null: 
 		console_window.visible = !console_window.visible
 
 
 func _start_run() -> void:
 	_setup_event_connections()
-	Events.update_card_pile.emit(GameManager.character.deck)
+	Events.update_card_pile.emit(Data.character.deck)
 	map.generate_new_map()
 	map.unlock_floor(0)
-	GameManager.reset_stats()
+	Data.reset_stats()
+	core_handler.add_core(Data.character.starting_core)
 
 
 func _change_view(scence : PackedScene) -> Node:
@@ -95,16 +97,16 @@ func _setup_event_connections() -> void:
 func _on_battle_room_entered(room: Room) -> void:
 	var battle_scence: Battle = _change_view(BATTLE_SCENCE)
 	battle_scence.battle_stats = room.battle_stats # Translation: (8 * biome * InfectedMultipliers)% hopefully
-	GameManager.floor_is_infected = !room.battle_stats.pure && (
-		(float((8)*(GameManager.current_biome+1)*GameManager.multipliers["INFECTION"])/100)>randf())
+	Data.floor_is_infected = !room.battle_stats.pure && (
+		(float((8)*(Data.current_biome+1)*Data.multipliers["INFECTION"])/100)>randf())
+	battle_scence.core_handler = core_handler
 	battle_scence.start_battle()
 
 
-func _on_battle_state_updated(state: Battle.BattleState) -> void:
-	if state != Battle.BattleState.WIN: return
-	# Failsafe which runs while the game is exiting
-	var wr: WeakRef = weakref(get_tree())
-	if !wr.get_ref(): return
+func _on_battle_state_updated(state: Battle.State) -> void:
+	if state != Battle.State.WIN: return
+	# When the game is exiting enemies are freed ca
+	if !is_inside_tree(): return
 	# In case the battle was run using the battle command
 	if !map.last_room: return
 	
@@ -130,4 +132,4 @@ func _on_map_exited(room: Room) -> void:
 		Room.Type.SHOP: _change_view(SHOP_SCENCE)
 		Room.Type.ELITE: _on_battle_room_entered(room)
 		Room.Type.BOSS: _on_battle_room_entered(room)
-	print("Floor %s: %s%s %s (column/type/tier/infected)" % [map.floors_climbed, room, str(map.last_room.battle_stats.battle_tier) if map.last_room.battle_stats else "X", GameManager.floor_is_infected])
+	print("Floor %s: %s%s %s (column/type/tier/infected)" % [map.floors_climbed, room, str(map.last_room.battle_stats.battle_tier) if map.last_room.battle_stats else "X", Data.floor_is_infected])

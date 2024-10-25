@@ -17,11 +17,11 @@ func _init() -> void:
 func roll_gold_reward() -> int:
 	var gold: int 
 	match battle_tier: # Translation: (10 to 15) * ((biome + 1) / 2) with biome rounded up
-		0: gold = randi_range(10, 15) * (ceili(GameManager.current_biome+2)/2) # Easy pool 
-		1: gold = randi_range(10, 20) * (ceili(GameManager.current_biome+2)/2) # Regular pool
-		2: gold = randi_range(15 ,25) * (ceili(GameManager.current_biome+2)/2) # Elite pool
-		3: gold = randi_range(15, 25 * (GameManager.current_biome+2)) # Boss pool
-	if GameManager.floor_is_infected: gold = ceili(gold*1.2)
+		0: gold = randi_range(10, 15) * (ceili(Data.current_biome+2)/2) # Easy pool 
+		1: gold = randi_range(10, 20) * (ceili(Data.current_biome+2)/2) # Regular pool
+		2: gold = randi_range(15 ,25) * (ceili(Data.current_biome+2)/2) # Elite pool
+		3: gold = randi_range(15, 25 * (Data.current_biome+2)) # Boss pool
+	if Data.floor_is_infected: gold = ceili(gold*1.2)
 	return gold
 
 

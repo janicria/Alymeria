@@ -19,12 +19,13 @@ const DEFAULT_BUS_LAYOUT = preload("res://assets/misc/default_bus_layout.tres")
 @onready var true_draw_button: Button = %TrueDrawButton
 @onready var true_deck_button: Button = %TrueDeckButton
 @onready var hints_button: Button = %HintsButton
-@onready var sfx_volume: HSlider = %SFXVolumeSlider
-@onready var music_volume: HSlider = %MusicVolumeSlider
-@onready var master_volume: HSlider = %MasterVolumeSlider
-@onready var fullscreen_button: Button = %FullscreenButton
 @onready var pile_button: Button = %CardPilePosButton
 @onready var speedy_cards_button: Button = %SpeedyCardsButton
+@onready var master_volume: HSlider = %MasterVolumeSlider
+@onready var sfx_volume: HSlider = %SFXVolumeSlider
+@onready var music_volume: HSlider = %MusicVolumeSlider
+@onready var fullscreen_button: Button = %FullscreenButton
+@onready var pipe_button: Button = %PipeButton
 
 var cog_speed_boost := 0.0
 
@@ -53,25 +54,25 @@ func _process(_delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_cancel") && !GameManager.card_pile_open: 
+	if event.is_action_pressed("ui_cancel") && !Data.card_pile_open: 
 		toggle_settings()
 
 
 func _setup(card_pile : CardPile) -> void:
 	deck_button.card_pile = card_pile
 	deck_view.card_pile = card_pile
-	GameManager.character.deck = card_pile
+	Data.character.deck = card_pile
 	deck_button.pressed.connect(deck_view.show_current_view.bind("Deck"))
-	GameManager.character.stats_changed.connect(health_ui.update_stats.bind(GameManager.character))
-	health_ui.update_stats(GameManager.character)
+	Data.character.stats_changed.connect(health_ui.update_stats.bind(Data.character))
+	health_ui.update_stats(Data.character)
 	
 	# Updates buttons changed in MainMenu
-	_on_toggled_button_toggled(GameManager.true_draw_amount, "true_draw")
-	_on_toggled_button_toggled(GameManager.true_deck_size, "true_deck")
-	_on_toggled_button_toggled(GameManager.gameplay_tips, "hints")
+	_on_toggled_button_toggled(Data.true_draw_amount, "true_draw")
+	_on_toggled_button_toggled(Data.true_deck_size, "true_deck")
+	_on_toggled_button_toggled(Data.gameplay_tips, "hints")
 	if DisplayServer.window_get_mode() == 3: _on_toggled_button_toggled(true, "fullscreen")
-	_on_toggled_button_toggled(GameManager.card_pile_above_mana, "card_pile_pos")
-	_on_toggled_button_toggled(GameManager.speedy_cards, "speedy_cards")
+	_on_toggled_button_toggled(Data.card_pile_above_mana, "card_pile_pos")
+	_on_toggled_button_toggled(Data.speedy_cards, "speedy_cards")
 
 
 func toggle_settings() -> void:
@@ -87,7 +88,7 @@ func toggle_settings() -> void:
 
 
 func _on_cog_gui_input(event: InputEvent) -> void:
-	if event.is_action_released("left_mouse_pressed"):
+	if event.is_action_released("left_mouse"):
 		toggle_settings()
 	
 	cog.rotation_degrees += 5 + cog_speed_boost
@@ -95,7 +96,7 @@ func _on_cog_gui_input(event: InputEvent) -> void:
 
 
 func _on_color_rect_gui_input(event: InputEvent) -> void:
-	if event.is_action_released("left_mouse_pressed"): 
+	if event.is_action_released("left_mouse"): 
 		toggle_settings()
 
 
@@ -104,15 +105,15 @@ func _on_toggled_button_toggled(toggled_on: bool, button_string: String) -> void
 	match button_string:
 		"true_draw": 
 			button = %TrueDrawButton
-			GameManager.true_draw_amount = toggled_on
+			Data.true_draw_amount = toggled_on
 			Events.update_draw_card_ui.emit()
 		"true_deck": 
 			button = %TrueDeckButton
-			GameManager.true_deck_size = toggled_on
+			Data.true_deck_size = toggled_on
 			Events.update_deck_button_ui.emit()
 		"hints": 
 			button = %HintsButton
-			GameManager.gameplay_tips = toggled_on
+			Data.gameplay_tips = toggled_on
 		"fullscreen":
 			button = %FullscreenButton
 			if toggled_on: DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
@@ -123,11 +124,15 @@ func _on_toggled_button_toggled(toggled_on: bool, button_string: String) -> void
 			button = %CardPilePosButton
 			if toggled_on: pile_button.text = "Inside"
 			else: pile_button.text = "Outside"
-			GameManager.card_pile_above_mana = toggled_on
+			Data.card_pile_above_mana = toggled_on
 			Events.update_deck_button_ui.emit()
 		"speedy_cards":
 			button = %SpeedyCardsButton
-			GameManager.speedy_cards = toggled_on
+			Data.speedy_cards = toggled_on
+		"pipe":
+			button = %PipeButton
+			SFXPlayer.pipe = toggled_on
+			if toggled_on: SFXPlayer.play(AudioStream.new())
 	
 	# We don't want to override the inside/outside text
 	if button == %CardPilePosButton: return
@@ -165,7 +170,7 @@ func _on_hbox_mouse_entered(text: String) -> void:
 
 func _on_exit_button_pressed() -> void:
 	print("Save & exit selected")
-	if GameManager.save_to_file():
+	if Data.save_to_file():
 		print("Quitting...\nBelow is not actually a memory leak (trust)")
 		get_tree().quit()
 

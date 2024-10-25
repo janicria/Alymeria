@@ -18,7 +18,7 @@ var camera_edge_y: float
 
 
 func _ready() -> void:
-	camera_edge_y = MapGenerator.Y_DIST * (GameManager.biome_floors[GameManager.current_biome] - 2)
+	camera_edge_y = MapGenerator.Y_DIST * (Data.biome_floors[Data.current_biome] - 2)
 
 
 func _unhandled_input(event: InputEvent) -> void:

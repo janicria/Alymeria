@@ -22,8 +22,8 @@ func apply_effects(targets: Array[Node], modifiers: ModifierHandler) -> void:
 		status_effect.status = damage_up
 		barrier_effect.execute(targets)
 		status_effect.execute(targets)
-		GameManager.character.cards_per_turn += 3
-		GameManager.character.heal(1)
+		Data.character.cards_per_turn += 3
+		Data.character.heal(1)
 
 
 func get_tooltip_text(player_mods: ModifierHandler, _enemy_mods: ModifierHandler) -> String:

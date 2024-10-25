@@ -3,4 +3,4 @@ extends Status
 
 
 func apply_status(_target: Node) -> void:
-	GameManager.character.mana -= stacks
+	Data.character.mana -= stacks

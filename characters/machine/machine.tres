@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="CharacterStats" load_steps=5 format=3 uid="uid://ctbo0h42ed02e"]
+[gd_resource type="Resource" script_class="CharacterStats" load_steps=6 format=3 uid="uid://ctbo0h42ed02e"]
 
 [ext_resource type="Texture2D" uid="uid://dpfqok8tuy4r7" path="res://assets/characters/tile_0084.png" id="1_53el5"]
 [ext_resource type="Resource" uid="uid://dgqbrh131722d" path="res://characters/machine/card_pool.tres" id="2_aiumi"]
 [ext_resource type="Resource" uid="uid://ke1cmnfj0lc2" path="res://characters/machine/starting_deck.tres" id="3_g07y5"]
 [ext_resource type="Script" path="res://custom_resources/character_stats.gd" id="3_ny11w"]
+[ext_resource type="Resource" uid="uid://cu3ejirfp3hyg" path="res://characters/global/cores/common/comically_large_anvil.tres" id="4_d8kgm"]
 
 [resource]
 script = ExtResource("3_ny11w")
@@ -11,6 +12,7 @@ character_name = "Machine"
 description = "A rogue AI originally developed by Starfield Industries for military strategy purposes. Is able to loop its cards so it doesn't have to bother with any  physical combat."
 portrait = ExtResource("1_53el5")
 starting_deck = ExtResource("3_g07y5")
+starting_core = ExtResource("4_d8kgm")
 card_pool = ExtResource("2_aiumi")
 cards_per_turn = 5
 max_mana = 4

@@ -47,7 +47,7 @@ var biome_floors := {
 	Biome.CITY: 16,
 	Biome.TRAIN: 8,
 	Biome.STORM: 8,
-	Biome.FINAL: INF}
+	Biome.FINAL: -1}
 var multipliers := {
 	"WEATHER": 1,
 	"ENEMY_DAMAGE": 1,
@@ -65,11 +65,8 @@ func _init() -> void:
 	process_mode = PROCESS_MODE_ALWAYS
 	Events.update_turn_number.connect(func(number:int)->void:turn_number = number)
 	
-	# Logging
 	print("Successful launch")
-	var platform := "Release (" if OS.has_feature("release") else "Debug ("
-	platform += "Linux)" if OS.has_feature("linux") else "Windows)"
-	print("Version: %s %s" % [platform, ProjectSettings.get_setting("application/config/version")])
+	print("Version: %s (%s)" % [ProjectSettings.get_setting("application/config/version"), "Linux" if OS.has_feature("linux") else "Windows"])
 
 
 func set_current_biome(value: Biome) -> void:
@@ -80,7 +77,6 @@ func set_current_biome(value: Biome) -> void:
 func set_card_pile(value: bool) -> void:
 	await get_tree().process_frame
 	card_pile_open = value
-
 
 
 func set_gold(new_amount : int) -> void:

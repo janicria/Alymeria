@@ -39,19 +39,19 @@ func select_card() -> void:
 	for cardmenu: CardMenuUI in cards.get_children():
 		cardmenu.card_tooltip.gui_input.connect(
 			func(input: InputEvent)-> void:
-				if input.is_action_pressed("left_mouse_pressed"):
+				if input.is_action_pressed("left_mouse"):
 					card_selected.emit(cardmenu.card))
 
 
 # FIXME: Doesn't close if run by repurposing
 func _hide() -> void:
 	super.hide()
-	GameManager.card_pile_open = false
+	Data.card_pile_open = false
 	open = false
 
 
 func show_current_view(new_title : String, randomised := false) -> void:
-	GameManager.card_pile_open = true
+	Data.card_pile_open = true
 	open = true
 	
 	for card: Node in cards.get_children(): card.hide(); card.queue_free()

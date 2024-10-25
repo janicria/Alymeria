@@ -48,15 +48,15 @@ func set_card(value : Card) -> void:
 		0: type.text = " -Physical" 
 		1: type.text = " -Internal"
 		2:
-			if GameManager.character.character_name == "Machine":
+			if Data.character.character_name == "Machine":
 				type.text = "  -Looped"
-			elif GameManager.character.character_name == "Witch":
+			elif Data.character.character_name == "Witch":
 				type.text = " -Summon"
 		3: type.text = " -Status"
 		4:
-			if GameManager.character.character_name == "Machine":
+			if Data.character.character_name == "Machine":
 				type.text = " -Malware"
-			elif GameManager.character.character_name == "Witch":
+			elif Data.character.character_name == "Witch":
 				type.text = " -Hex"
 	
 	# Prevents card names from going out of its area/hitbox

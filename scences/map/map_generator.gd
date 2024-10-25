@@ -43,9 +43,9 @@ func generate_map() -> Array[Array]:
 
 func _generate_inital_grid() -> Array[Array]:
 	var result: Array[Array] = []
-	for biome: GameManager.Biome in GameManager.biome_floors:
-		if biome == GameManager.current_biome:
-			floors = GameManager.biome_floors[biome]
+	for biome: Data.Biome in Data.biome_floors:
+		if biome == Data.current_biome:
+			floors = Data.biome_floors[biome]
 	
 	for i in floors:
 		var adjacent_rooms: Array[Room] = []

@@ -35,7 +35,7 @@ func take_damage(damage: int) -> void:
 
 func heal(amount : int) -> void:
 	health += amount
-	if player: GameManager.health_healed += amount
+	if player: Data.health_healed += amount
 
 
 func create_instance() -> Resource:

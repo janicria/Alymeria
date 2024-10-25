@@ -18,6 +18,6 @@ func apply_status(target: Node) -> void:
 	damage_up.stacks = target.get_tree().get_node_count_in_group("enemies")
 	status_effect.status = damage_up
 	status_effect.execute([target])
-	GameManager.character.heal(-1 * target.get_tree().get_node_count_in_group("enemies"))
+	Data.character.heal(-1 * target.get_tree().get_node_count_in_group("enemies"))
 	
 	status_applied.emit(self)

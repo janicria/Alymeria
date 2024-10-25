@@ -60,7 +60,7 @@ func take_damage(damage : int) -> void:
 	tween.finished.connect(
 		func()->void:
 			if stats.health <= 0:
-				Events.update_battle_state.emit(6)
+				Events.update_battle_state.emit(Battle.State.LOSE)
 				damage_counter.hide()
 				death_animation())
 

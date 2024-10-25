@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3 uid="uid://iq0kljjd6vul"]
+
+[ext_resource type="Script" path="res://scences/cores/core_handler.gd" id="1_i7vc5"]
+
+[node name="CoreHandler" type="VBoxContainer"]
+offset_right = 80.0
+offset_bottom = 56.0
+theme_override_constants/separation = 4
+script = ExtResource("1_i7vc5")
+
+[node name="SlottedCores" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(62, 16)
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="RightClickableCores" type="GridContainer" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(62, 16)
+layout_mode = 2
+theme_override_constants/v_separation = 0
+columns = 6
+
+[node name="RemainingCores" type="GridContainer" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(62, 16)
+layout_mode = 2
+theme_override_constants/v_separation = 0
+columns = 6
+
+[connection signal="child_exiting_tree" from="SlottedCores" to="." method="_on_core_removed"]
+[connection signal="child_exiting_tree" from="RightClickableCores" to="." method="_on_core_removed"]
+[connection signal="child_exiting_tree" from="RemainingCores" to="." method="_on_core_removed"]

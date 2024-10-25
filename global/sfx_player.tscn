@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://global/sound_player.gd" id="1_iqmna"]
 
 [node name="SFXPlayer" type="Node"]
+process_mode = 3
 script = ExtResource("1_iqmna")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

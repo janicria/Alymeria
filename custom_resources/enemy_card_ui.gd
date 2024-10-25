@@ -100,7 +100,7 @@ func update_stats(card: EnemyCard, enemy: Enemy, from_status := false) -> void:
 
 
 func play() -> void:
-	if self.is_queued_for_deletion(): 
+	if is_queued_for_deletion(): 
 		return
 	
 	var targets := get_targets()
@@ -108,7 +108,8 @@ func play() -> void:
 
 
 func apply_effects(targets: Array[Node]) -> void:
-	if is_dead: return
+	# Await is needed because signals are slow (I think??)
+	if is_dead: await get_tree().process_frame; finished_playing.emit(); return
 	if card_stats.custom_amount != "": card_stats.custom_play(get_targets()); return
 	for i in card_stats.repeats:
 		# Indentation moment <- ikr it sucks

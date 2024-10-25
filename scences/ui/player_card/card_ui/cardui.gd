@@ -37,7 +37,7 @@ func _ready() -> void:
 	Events.card_drag_started.connect(_on_card_drag_or_aiming_started)
 	Events.card_drag_ended.connect(_on_card_drag_or_aiming_ended)
 	Events.card_aim_ended.connect(_on_card_drag_or_aiming_ended)
-	GameManager.character.stats_changed.connect(_on_character_changed)
+	Data.character.stats_changed.connect(_on_character_changed)
 	card_state_machine.init(self)
 
 
@@ -65,9 +65,9 @@ func set_card(value : Card) -> void:
 	match card.type:
 		0: type.text = " -Physical" 
 		1: type.text = " -Internal"
-		2: type.text = " -Looped" if GameManager.character.character_name == "Machine" else " -Summon"
+		2: type.text = " -Looped" if Data.character.character_name == "Machine" else " -Summon"
 		3: type.text = " -Status"
-		4: type.text = " -Malware" if GameManager.character.character_name == "Machine" else " -Hex"
+		4: type.text = " -Malware" if Data.character.character_name == "Machine" else " -Hex"
 	
 	# Card name (Prevents names from going out of the cardui's area/hitbox)
 	if _name.get_line_count() > 1 && !name_initialised:
@@ -128,7 +128,7 @@ func play() -> void:
 	
 	if targets:
 		card.play(targets, player_modifiers)
-		GameManager.character.cache_tokens += 1
+		Data.character.cache_tokens += 1
 		Events.update_deck_button_ui.emit()
 		queue_free()
 
@@ -164,8 +164,10 @@ func _on_card_drag_or_aiming_started(used_card : CardUI) -> void:
 
 func _on_card_drag_or_aiming_ended(_card : CardUI) -> void:
 	disabled = false
-	playable = GameManager.character.can_play_card(card)
+	playable = Data.character.can_play_card(card)
 
 
 func _on_character_changed() -> void:
-	playable = GameManager.character.can_play_card(card)
+	# In case the player dies before the cardui has finished loading
+	if !card: return
+	playable = Data.character.can_play_card(card)

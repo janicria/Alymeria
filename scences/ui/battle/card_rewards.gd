@@ -56,7 +56,7 @@ func set_rewards(new_cards: Array[Card]) -> void:
 	for card: CardMenuUI in cards.get_children():
 		card.card_tooltip.gui_input.connect(
 			func(input: InputEvent)-> void:
-				if input.is_action_pressed("left_mouse_pressed"):
+				if input.is_action_pressed("left_mouse"):
 					selected_card = card.card
 					card_reward_selected.emit(selected_card)
 					# Stops game from crashing without an error (idk why)

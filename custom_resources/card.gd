@@ -1,5 +1,4 @@
-class_name Card
-extends Resource
+class_name Card extends Resource
 
 enum Type {PHYSICAL, INTERNAL, CHAR, STATUS, CHAR_CURSE}
 enum Rarity {COMMON, UNCOMMON, RARE, STATUS, PURPLE}
@@ -84,7 +83,7 @@ func _get_targets(targets: Array[Node]) -> Array[Node]:
 func play(targets : Array[Node], modifiers: ModifierHandler) -> void:
 	fully_played = false
 	Events.player_card_played.emit(self) 
-	GameManager.character.mana -= cost
+	Data.character.mana -= cost
 	
 	if is_single_targeted(): 
 		apply_effects(targets, modifiers)

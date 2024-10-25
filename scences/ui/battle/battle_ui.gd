@@ -27,16 +27,16 @@ func _ready() -> void:
 
 
 func initialise_card_pile_ui() -> void:
-	draw_pile_button.card_pile = GameManager.character.draw_pile
-	discard_pile_button.card_pile = GameManager.character.discard
-	exhaust_pile_button.card_pile = GameManager.character.exhaust_pile
-	cache_pile_button.card_pile = GameManager.character.cache_pile
-	discard_pile_view.card_pile = GameManager.character.discard
-	draw_pile_view.card_pile = GameManager.character.draw_pile
-	exhaust_pile_view.card_pile = GameManager.character.exhaust_pile
-	cache_pile_view.card_pile = GameManager.character.cache_pile
+	draw_pile_button.card_pile = Data.character.draw_pile
+	discard_pile_button.card_pile = Data.character.discard
+	exhaust_pile_button.card_pile = Data.character.exhaust_pile
+	cache_pile_button.card_pile = Data.character.cache_pile
+	discard_pile_view.card_pile = Data.character.discard
+	draw_pile_view.card_pile = Data.character.draw_pile
+	exhaust_pile_view.card_pile = Data.character.exhaust_pile
+	cache_pile_view.card_pile = Data.character.cache_pile
 
 
 func _on_end_turn_button_pressed() -> void:
 	end_turn_button.disabled = true
-	Events.update_battle_state.emit(4)
+	Events.update_battle_state.emit(Battle.State.ENEMY_CARDS)

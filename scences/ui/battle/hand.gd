@@ -24,14 +24,14 @@ func add_card(card : Card) -> void:
 	var wr: WeakRef = weakref(player); if !wr.get_ref(): return
 	new_card_ui.player_modifiers = player.modifier_handler
 	new_card_ui.card = card
-	new_card_ui.playable = GameManager.character.can_play_card(new_card_ui.card)
+	new_card_ui.playable = Data.character.can_play_card(new_card_ui.card)
 	Events.player_card_drawn.emit()
 	if player.status_handler._get_status("cancel"): new_card_ui.canceled = true; new_card_ui.playable = false
 
 
 func discard_card(cardui : CardUI) -> void:
-	if !GameManager.character.cache_pile.cards.has(cardui.card): 
-		GameManager.character.cache_pile.add_card(cardui.card)
+	if !Data.character.cache_pile.cards.has(cardui.card): 
+		Data.character.cache_pile.add_card(cardui.card)
 	cardui.queue_free()
 
 
@@ -53,7 +53,7 @@ func update_card_variant(variant: String, value: int) -> void:
 	for cardui: CardUI in get_children():
 		cardui.card.set(variant, (cardui.card.get(variant) + value))
 		cardui.set_card(cardui.card)
-		cardui.playable = GameManager.character.can_play_card(cardui.card)
+		cardui.playable = Data.character.can_play_card(cardui.card)
 
 
 # Called when a card is added back to hand from an aiming / dragging state

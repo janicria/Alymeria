@@ -1,5 +1,4 @@
-class_name CoreUI
-extends Control
+class_name CoreUI extends Control
 
 const PIPE = preload("res://assets/sfx/pipe.mp3")
 
@@ -28,3 +27,11 @@ func show_tooltip() -> void:
 
 func hide_tooltip() -> void:
 	Events.hide_tooltip.emit()
+
+
+func _on_gui_input(event: InputEvent) -> void:
+	if event.is_action_released("right_mouse") && core.type == Core.Type.RIGHT_CLICK:
+		core.activate()
+		flash()
+	elif event.is_action_released("left_mouse") && core.core_name == "Comically Large Anvil":
+		flash()
