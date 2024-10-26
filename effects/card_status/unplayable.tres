@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CardStatus" load_steps=3 format=3 uid="uid://b12rbpcfqbs2t"]
+
+[ext_resource type="Texture2D" uid="uid://bxa8pkakcodgw" path="res://assets/objects/barrel.png" id="1_5thk8"]
+[ext_resource type="Script" path="res://custom_resources/card_status.gd" id="1_mae1f"]
+
+[resource]
+script = ExtResource("1_mae1f")
+name = "unplayable"
+icon = ExtResource("1_5thk8")
+description = "Unplayable - This card cannot be played!"

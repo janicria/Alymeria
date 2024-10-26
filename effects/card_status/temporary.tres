@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CardStatus" load_steps=3 format=3 uid="uid://cctb0qoiar6s0"]
+
+[ext_resource type="Script" path="res://custom_resources/card_status.gd" id="1_b7vp0"]
+[ext_resource type="Texture2D" uid="uid://c24y6l0ivlqp7" path="res://assets/characters/tile_0108.png" id="1_qp5j8"]
+
+[resource]
+script = ExtResource("1_b7vp0")
+name = "temporary"
+icon = ExtResource("1_qp5j8")
+description = "Temporary -  Right click this card to exhaust it"

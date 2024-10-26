@@ -36,6 +36,12 @@ func end_turn() -> void:
 	player.status_handler.apply_statuses_by_type(Status.Type.END_OF_TURN)
 
 
+func add_card(card: Card, pile: String) -> void:
+	Data.character.deck.add_card(card)
+	if pile == "hand": hand.add_card(card)
+	else: Data.character.get(pile).add_card(card)
+
+
 func draw_card() -> void:
 	if hand.get_child_count() >= 10: OS.alert("Max hand size is 10"); return
 	reshuffle_draw_from_discard()
@@ -66,9 +72,10 @@ func discard_cards() -> void:
 		return
 	
 	var tween := create_tween()
-	for card_ui in hand.get_children():
-		tween.tween_callback(Data.character.discard.add_card.bind(card_ui.card))
-		tween.tween_callback(hand.discard_card.bind(card_ui))
+	for card_ui: CardUI in hand.get_children():
+		if !card_ui.card.has_status("burn"):
+			tween.tween_callback(Data.character.discard.add_card.bind(card_ui.card))
+			tween.tween_callback(hand.discard_card.bind(card_ui))
 		tween.tween_interval(HAND_DISCARD_INTERVAL)
 	
 	tween.finished.connect(func()->void: Events.player_hand_discarded.emit())
@@ -91,7 +98,8 @@ func reshuffle_draw_from_discard() -> void:
 	Data.character.draw_pile.shuffle()
 
 
-func _on_card_played(card : Card) -> void:
+func _on_card_played(card: Card) -> void:
+	if card.has_status("burn"): return
 	if card.has_status("exhaust"): Data.character.exhaust_pile.add_card(card)
 	else: Data.character.discard.add_card(card)
 

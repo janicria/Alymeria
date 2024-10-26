@@ -41,6 +41,7 @@ func _on_update_battle_state(state: State) -> void:
 		State.BASE:
 			Data.turn_number = 0
 			core_handler.activate_cores_of_type(Core.Type.START_OF_COMBAT)
+			for coreui: CoreUI in core_handler.get_all_coreuis(): coreui.playable = true
 			await core_handler.core_activated
 			Events.update_battle_state.emit(State.LOOPS)
 		
@@ -79,9 +80,13 @@ func _on_update_battle_state(state: State) -> void:
 		
 		State.WIN:
 			if !is_inside_tree(): OS.alert("Need return here")
+			for coreui: CoreUI in core_handler.get_all_coreuis(): coreui.playable = false
 			core_handler.activate_cores_of_type(Core.Type.END_OF_COMBAT)
 			print("Victory!")
 			Data.save_to_file()
+		
+		State.LOSE:
+			for coreui: CoreUI in core_handler.get_all_coreuis(): coreui.playable = false
 
 
 func _on_enemy_handler_child_order_changed() -> void:

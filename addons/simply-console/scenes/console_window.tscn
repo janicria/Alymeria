@@ -32,6 +32,7 @@ var historyPosition: int = 0
 func _ready() -> void:
 	Events.toggle_console_visible.connect(func()->void:
 		visible = !visible; if Data.console_banned: queue_free())
+	visibility_changed.connect(func()->void: Data.console_open = visible)
 	output_comment(
 		\"To see a list of available commands use the 'help' command)\"
 	)
@@ -68,6 +69,7 @@ func _input(event: InputEvent) -> void:
 			if historyPosition != commandHistory_.size() - 1:
 				historyPosition += 1
 			InputFieldRef.set_text(commandHistory_[historyPosition])
+
 
 
 func on_output_field_updated() -> void:
@@ -239,14 +241,12 @@ func heal(amount: int, max_health := false) -> String:
 
 
 func deck(action: String, rarity: String, id: String) -> String:
-	#if !action: prin
-		
 	# Checks if the card exists (can't use WeakRef bc it returns null if object hasn't been loaded into memory yet)
 	# Secret cards: deck add ../../secret placeholder_rare_card
 	# Witch cards: deck add ../../witch/cards/common flame
 	var loaded_card: Resource = load((\"res://characters/machine/cards/%s/%s.tres\" % [rarity, id]))
-	if rarity == \"purple\": loaded_card = load(\"res://characters/global/purple/%s.tres\" % id)
-	elif rarity == \"status\": loaded_card = load(\"res://characters/global/status/%s.tres\" % id)
+	if rarity == \"purple\": loaded_card = load(\"res://characters/global/cards/purple/%s.tres\" % id)
+	elif rarity == \"status\": loaded_card = load(\"res://characters/global/cards/status/%s.tres\" % id)
 	if loaded_card is not Card: return \"Card %s with rarity %s does not exist\" % [id, rarity]
 	Data.cheats = true
 	
@@ -297,8 +297,9 @@ func debug(additional_option: String = \"\") -> String:
 	deck(\"add\", \"uncommon\", \"implant_tracking\")
 	deck(\"add\", \"rare\", \"advanced_rerouting\")
 	deck(\"add\", \"rare\", \"file_corruption\")
-	deck(\"add\", \"../../global/purple\", \"godroll\")
-	deck(\"add\", \"../../global/purple\", \"singularity\")
+	deck(\"add\", \"../../global/cards/status\", \"infection\")
+	deck(\"add\", \"../../global/cards/purple\", \"godroll\")
+	deck(\"add\", \"../../global/cards/purple\", \"singularity\")
 	deck(\"add\", \"../../secret\", \"injured_test\")
 	deck(\"add\", \"../../secret\", \"card_status_test\")
 	if additional_option == \"infinite\":
@@ -319,6 +320,7 @@ func debug(additional_option: String = \"\") -> String:
 	if additional_option != \"music\":
 		for child:AudioStreamPlayer in MusicPlayer.get_children(): child.volume_db = -INF
 	print(\"[CMD] Debug w/%s end!\" % [(\" %s\" % additional_option) if additional_option != \"\" else \"o any :c\"])
+	get_parent().settings_bar._on_toggled_button_toggled(true, \"speedy_cards\")
 	Data.cheats = true
 	return 'Have \"fun\" debugging!'
 

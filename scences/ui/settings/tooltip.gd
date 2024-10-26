@@ -27,28 +27,10 @@ func _process(_delta: float) -> void:
 		hide_tooltip()
 
 
-func show_settings(text : String) -> void:
-	if !get_name() == "SettingsTooltip":
-		return
-	
+func show_tooltop(text: String) -> void:
+	if name == "SettingsTooltip" && !get_parent().get_child(0).visible: return
 	is_showing = true
-	
-	if tween:
-		tween.kill()
-	
-	tooltip_text_label.text = text
-	tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
-	tween.tween_callback(show)
-	tween.tween_property(self, "modulate", Color.WHITE, fade_seconds)
-
-
-func show_tooltop(text : String) -> void:
-	if get_name() == "SettingsTooltip": return
-	
-	is_showing = true
-	
-	if tween:
-		tween.kill()
+	if tween: tween.kill()
 	
 	tooltip_text_label.text = "[center]%s[/center]" % text
 	tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)

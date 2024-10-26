@@ -78,9 +78,10 @@ position = Vector2(314, 73)
 ai = ExtResource("6_ay38m")
 stats = ExtResource("7_ulgmk")
 
-[node name="Player" parent="." instance=ExtResource("3_qq8kc")]
+[node name="Player" parent="." node_paths=PackedStringArray("handler") instance=ExtResource("3_qq8kc")]
 position = Vector2(119, 88)
 stats = ExtResource("4_jn668")
+handler = NodePath("../PlayerHandeler")
 
 [node name="PlayerHandeler" type="Node" parent="." node_paths=PackedStringArray("player", "hand")]
 script = ExtResource("8_yhxx8")

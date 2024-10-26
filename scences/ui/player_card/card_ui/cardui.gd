@@ -45,7 +45,7 @@ func  _input(event : InputEvent) -> void:
 	card_state_machine.on_input(event)
 
 
-func set_card(value : Card) -> void:
+func set_card(value: Card) -> void:
 	if ! is_node_ready(): await ready
 	card = value
 	
@@ -82,7 +82,6 @@ func set_card(value : Card) -> void:
 	
 	for child in card_statuses.get_children():
 		child.queue_free()
-	
 	for status in card.statuses:
 		var texture_rect := TextureRect.new()
 		texture_rect.texture = status.icon
@@ -93,6 +92,7 @@ func set_card(value : Card) -> void:
 		else: texture_rect.mouse_entered.connect(func()->void: Events.show_tooltip.emit(status.description))
 		texture_rect.mouse_exited.connect(func()->void: Events.hide_tooltip.emit())
 		card_statuses.add_child(texture_rect)
+		if card.has_status("unplayable"): playable = false
 
 
 func set_playable(value : bool) -> void:
@@ -103,8 +103,7 @@ func set_playable(value : bool) -> void:
 		type.modulate.a = 0.5
 		desc.modulate.a = 0.5
 		cost.modulate.a = 0.8
-	elif canceled: return
-	else:
+	elif !canceled && !card.has_status("unplayable"):
 		cost.remove_theme_color_override("font_color")
 		_name.modulate.a = 1
 		type.modulate.a = 1
@@ -118,13 +117,18 @@ func animate_to_position(new_position : Vector2, duration : float) -> void:
 
 
 func play() -> void:
-	if !card: return
+	if card.has_status("unplayable"):
+		card_state_machine._on_transition_requested(card_state_machine.current_state, CardState.State.BASE)
+		return
 	
 	# Prevents playing single target cards for an enemy during its death animation
 	if card.is_single_targeted() && targets.any(func(target: Node)-> bool: return target is Enemy):
 		if targets.any(func(target: Enemy)-> bool: return !target.is_alive):
 			card_state_machine._on_transition_requested(card_state_machine.current_state, CardState.State.BASE)
 			return
+	
+	if card.has_status("burn") && Data.character.deck.has_card(card):
+		Data.character.deck.remove_card(card)
 	
 	if targets:
 		card.play(targets, player_modifiers)

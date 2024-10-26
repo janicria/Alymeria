@@ -10,7 +10,7 @@ enum Upgrade {NONE, REFINED, ENHANCED}
 @export var type: Type
 @export var rarity: Rarity
 @export var target: Target
-@export var repeats:= 1
+@export var repeats := 1
 @export var cost : int : set = set_cost
 @export var statuses: Array[CardStatus]
 
@@ -92,6 +92,10 @@ func play(targets : Array[Node], modifiers: ModifierHandler) -> void:
 
 
 func apply_effects(_targets: Array[Node], _modifiers: ModifierHandler) -> void:
+	pass
+
+
+func drawn() -> void:
 	pass
 
 

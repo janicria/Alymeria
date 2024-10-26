@@ -377,7 +377,7 @@ visible = false
 [connection signal="mouse_entered" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/CardPilePosHbox" to="." method="_on_hbox_mouse_entered" binds= ["Moves your draw and discard pile buttons to inside or outside the stats box"]]
 [connection signal="mouse_exited" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/CardPilePosHbox" to="." method="hide_tooltip"]
 [connection signal="toggled" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/CardPilePosHbox/CardPilePosButton" to="." method="_on_toggled_button_toggled" binds= ["card_pile_pos"]]
-[connection signal="mouse_entered" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/SpeedyCards" to="." method="_on_hbox_mouse_entered" binds= ["Reverts patch which prevented enemy cards from going extra speedy over time"]]
+[connection signal="mouse_entered" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/SpeedyCards" to="." method="_on_hbox_mouse_entered" binds= ["Reverts patch(es) which prevented enemy cards from going extra speedy over time"]]
 [connection signal="mouse_exited" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/SpeedyCards" to="." method="hide_tooltip"]
 [connection signal="toggled" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/SpeedyCards/SpeedyCardsButton" to="." method="_on_toggled_button_toggled" binds= ["speedy_cards"]]
 [connection signal="mouse_entered" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/ConsoleButton" to="." method="_on_hbox_mouse_entered" binds= ["Opens the debug console (can be toggled by pressing the '~' key, not available in the main menu)"]]

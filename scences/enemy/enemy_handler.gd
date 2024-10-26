@@ -68,6 +68,9 @@ func start_turn() -> void:
 
 
 func play_next_card(first_card := true) -> void:
+	# Makes animation look nicer
+	await get_tree().create_timer(0.1).timeout
+	
 	var card := enemy_hand.get_child(0) as EnemyCardUI
 	card.play()
 	
@@ -75,7 +78,6 @@ func play_next_card(first_card := true) -> void:
 	if !Data.speedy_cards && !first_card: # Somehow actually works (I think)
 		await get_tree().create_timer((enemy_hand.get_child_count()+1)*0.1).timeout
 	
-
 	enemy_hand.remove_child(card)
 	card.queue_free()
 	enemy_hand.organise_cards()

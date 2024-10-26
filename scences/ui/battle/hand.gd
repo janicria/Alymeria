@@ -26,12 +26,17 @@ func add_card(card : Card) -> void:
 	new_card_ui.card = card
 	new_card_ui.playable = Data.character.can_play_card(new_card_ui.card)
 	Events.player_card_drawn.emit()
+	new_card_ui.card.drawn()
 	if player.status_handler._get_status("cancel"): new_card_ui.canceled = true; new_card_ui.playable = false
 
 
-func discard_card(cardui : CardUI) -> void:
-	if !Data.character.cache_pile.cards.has(cardui.card): 
+func discard_card(cardui: CardUI) -> void:
+	if !Data.character.cache_pile.cards.has(cardui.card) && !cardui.card.has_status("burn"): 
 		Data.character.cache_pile.add_card(cardui.card)
+	
+	if cardui.card.has_status("burn") && Data.character.deck.has_card(cardui.card):
+		Data.character.deck.remove_card(cardui.card)
+	
 	cardui.queue_free()
 
 

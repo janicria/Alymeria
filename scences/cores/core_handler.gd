@@ -14,7 +14,7 @@ func activate_cores_of_type(type: Core.Type) -> void:
 	if type == Core.Type.RIGHT_CLICK or type == Core.Type.EVENT:
 		return
 	
-	var queue := get_all_cores().filter(
+	var queue := get_all_coreuis().filter(
 		func(coreui:CoreUI)->bool: return coreui.core.type == type)
 	if queue.is_empty():
 		await get_tree().process_frame
@@ -30,32 +30,33 @@ func activate_cores_of_type(type: Core.Type) -> void:
 
 
 func add_core(core: Core) -> void:
-	if get_all_cores().any(func(core_ui:CoreUI)->bool:
-		return core.core_name == core_ui.core.core_name && core_ui.is_inside_tree()):
-			return # Tree check above is for cores queued for deletion
+	if get_core(core.core_name) != null: return
 	
 	var coreui := COREUI.instantiate()
 	if slotted_cores.get_child_count() < 3:
 		slotted_cores.add_child(coreui)
-		coreui.core.slotted = true
+		coreui.slotted = true
 	elif core.type == Core.Type.RIGHT_CLICK:
 		right_clickable_cores.add_child(coreui)
 	else: remaining_cores.add_child(coreui)
 	coreui.core = core
+	coreui.core.added()
 
 
-func get_all_cores(as_ui := true) -> Array:
-	if as_ui:
-		var coreuis: Array[Node] = slotted_cores.get_children()
-		coreuis.append_array(right_clickable_cores.get_children())
-		coreuis.append_array(remaining_cores.get_children())
-		return coreuis
-	var cores: Array[Core]
-	for coreui in slotted_cores.get_children(): cores.append(coreui.core)
-	for coreui in right_clickable_cores.get_children(): cores.append(coreui.core)
-	for coreui in remaining_cores.get_children(): cores.append(coreui.core)
-	return cores
+func get_core(core_name: String) -> Core:
+	# Tree check is for cores queued for deletion
+	for coreui: CoreUI in get_all_coreuis():
+		if coreui.core.core_name == core_name && coreui.is_inside_tree():
+			return coreui.core
+	return null
+
+
+func get_all_coreuis() -> Array:
+	var coreuis: Array = slotted_cores.get_children()
+	coreuis.append_array(right_clickable_cores.get_children())
+	coreuis.append_array(remaining_cores.get_children())
+	return coreuis
 
 
 func _on_core_removed(coreui: CoreUI) -> void:
-	coreui.core.deactivate(coreui)
+	coreui.core.removed()

@@ -13,11 +13,16 @@ enum Pool {GLOBAL, SPECIAL, MACHINE, WITCH}
 @export_multiline var dump_tooltip: String
 @export_multiline var flavour_text: String = "Very flavoury text here"
 
-var slotted: bool
+var coreui: CoreUI
+
 
 func activate() -> void:
 	pass
 
 
-func deactivate(_coreui: CoreUI) -> void:
+func added() -> void:
+	pass
+
+
+func removed() -> void:
 	pass

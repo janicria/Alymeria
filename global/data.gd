@@ -39,6 +39,7 @@ var current_biome := Biome.FOREST : set = set_current_biome
 var floor_is_infected := false
 var card_pile_open := false : set = set_card_pile
 var console_banned := false
+var console_open := false
 var turn_number := 0
 var biome_floors := {
 	Biome.FOREST: 12,

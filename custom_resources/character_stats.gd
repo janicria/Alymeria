@@ -1,5 +1,4 @@
-class_name CharacterStats
-extends Stats
+class_name CharacterStats extends Stats
 
 @export_group("Visuals")
 @export var character_name : String
@@ -8,7 +7,7 @@ extends Stats
 
 @export_group("Gameplay Data")
 @export var starting_deck: CardPile
-@export var starting_core: Core
+@export var starting_core: Resource
 @export var card_pool: CardPile
 @export var cards_per_turn : int
 @export var max_mana : int

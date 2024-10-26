@@ -1,14 +1,15 @@
-[gd_resource type="Resource" script_class="Core" load_steps=3 format=3 uid="uid://deml6o2r0hunt"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://deml6o2r0hunt"]
 
-[ext_resource type="Script" path="res://custom_resources/core.gd" id="1_hbwkp"]
 [ext_resource type="Texture2D" uid="uid://blkttehatvu04" path="res://assets/misc/icon.svg" id="1_heb8h"]
+[ext_resource type="Script" path="res://characters/global/cores/uncommon/infected_core.gd" id="1_xn43x"]
 
 [resource]
-script = ExtResource("1_hbwkp")
+script = ExtResource("1_xn43x")
 core_name = "Infected Horn"
 icon = ExtResource("1_heb8h")
 type = 4
 rarity = 1
-slotted_tooltip = "Draw 3 and gain 1 memory. Shuffle an Infected with Temporary into your draw pile. Activates once when right clicked"
-dump_tooltip = "Draw 3. Shuffle an Infected into your discard pile. Activates once when right clicked"
+pool = 0
+slotted_tooltip = "Draw 3 and gain 1 memory. Shuffle an Infection with Temporary into your draw pile. Activates once when right clicked"
+dump_tooltip = "Draw 3. Shuffle an Infection into your discard pile. Activates once when right clicked"
 flavour_text = "Very flavoury text here"

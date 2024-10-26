@@ -1,12 +1,12 @@
 [gd_scene load_steps=11 format=3 uid="uid://da8s0fkwwmdle"]
 
-[ext_resource type="Script" path="res://scences/run/run.gd" id="1_327eg"]
-[ext_resource type="PackedScene" uid="uid://klm1dw58y8fj" path="res://scences/map/map.tscn" id="1_jorql"]
-[ext_resource type="Resource" uid="uid://dk2sl2aapuwe7" path="res://scences/run/run_startup.tres" id="2_ehyhl"]
-[ext_resource type="PackedScene" uid="uid://bwuexw3t61b0h" path="res://scences/ui/settings/settings_bar.tscn" id="4_xv74x"]
-[ext_resource type="PackedScene" uid="uid://iq0kljjd6vul" path="res://scences/cores/core_handler.tscn" id="5_24som"]
-[ext_resource type="PackedScene" uid="uid://cmrfdlp25wcby" path="res://addons/simply-console/scenes/console_window.tscn" id="5_p3j0y"]
-[ext_resource type="Script" path="res://scences/run/shaker.gd" id="6_n5mko"]
+[ext_resource type="Script" path="res://scences/main/main.gd" id="1_xn4ul"]
+[ext_resource type="Resource" uid="uid://dk2sl2aapuwe7" path="res://scences/main/run_startup.tres" id="2_71wrl"]
+[ext_resource type="PackedScene" uid="uid://klm1dw58y8fj" path="res://scences/map/map.tscn" id="3_oqdot"]
+[ext_resource type="PackedScene" uid="uid://bwuexw3t61b0h" path="res://scences/ui/settings/settings_bar.tscn" id="4_0dled"]
+[ext_resource type="PackedScene" uid="uid://iq0kljjd6vul" path="res://scences/cores/core_handler.tscn" id="5_w82hd"]
+[ext_resource type="PackedScene" uid="uid://cmrfdlp25wcby" path="res://addons/simply-console/scenes/console_window.tscn" id="6_0syis"]
+[ext_resource type="Script" path="res://scences/main/shaker.gd" id="7_kpps0"]
 
 [sub_resource type="Animation" id="Animation_u5hhp"]
 resource_name = "fade_in"
@@ -70,11 +70,11 @@ _data = {
 "fade_out": SubResource("Animation_mcieo")
 }
 
-[node name="Run" type="Node"]
-script = ExtResource("1_327eg")
-run_startup = ExtResource("2_ehyhl")
+[node name="Main" type="Node"]
+script = ExtResource("1_xn4ul")
+run_startup = ExtResource("2_71wrl")
 
-[node name="Map" parent="." instance=ExtResource("1_jorql")]
+[node name="Map" parent="." instance=ExtResource("3_oqdot")]
 unique_name_in_owner = true
 
 [node name="CurrentView" type="Node" parent="."]
@@ -98,11 +98,11 @@ offset_right = 292.0
 offset_bottom = 8.0
 grow_horizontal = 0
 
-[node name="SettingsBar" parent="UI" instance=ExtResource("4_xv74x")]
+[node name="SettingsBar" parent="UI" instance=ExtResource("4_0dled")]
 unique_name_in_owner = true
 layout_mode = 0
 
-[node name="CoreHandler" parent="UI" instance=ExtResource("5_24som")]
+[node name="CoreHandler" parent="UI" instance=ExtResource("5_w82hd")]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 9.0
@@ -127,7 +127,7 @@ grow_vertical = 2
 color = Color(0.2, 0.117647, 0.0509804, 1)
 metadata/_edit_use_anchors_ = true
 
-[node name="ConsoleWindow" parent="." instance=ExtResource("5_p3j0y")]
+[node name="ConsoleWindow" parent="." instance=ExtResource("6_0syis")]
 unique_name_in_owner = true
 initial_position = 0
 position = Vector2i(50, 20)
@@ -138,4 +138,4 @@ always_on_top = true
 
 [node name="Shaker" type="Node" parent="."]
 unique_name_in_owner = true
-script = ExtResource("6_n5mko")
+script = ExtResource("7_kpps0")

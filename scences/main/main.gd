@@ -1,4 +1,4 @@
-class_name Run extends Node
+class_name Main extends Node
 
 const BATTLE_SCENCE := preload("res://scences/current_views/battle/battle.tscn")
 const SHOP_SCENCE := preload("res://scences/current_views/shop/shop.tscn")
@@ -6,6 +6,7 @@ const TREASURE_SCENCE := preload("res://scences/current_views/treasure/treasure.
 const BATTLE_REWARD_SCENCE := preload("res://scences/current_views/battle_rewards/battle_rewards.tscn")
 const HAVEN_SCENCE := preload("res://scences/current_views/haven/haven.tscn")
 const EVENT_SCENCE := preload("res://scences/current_views/events/event.tscn")
+const COMPASS = preload("res://characters/global/cores/common/compass.tres")
 
 @export var run_startup: RunStartup
 
@@ -42,6 +43,7 @@ func _process(_delta: float) -> void:
 	# Prevents the map camera from moving screen elements
 	version_number.global_position.y = 2 - version_number.get_canvas_transform().origin.y
 	settings_bar.global_position.y = 0 - settings_bar.get_canvas_transform().origin.y
+	core_handler.global_position.y = 39 - core_handler.get_canvas_transform().origin.y
 
 
 func _input(_event: InputEvent) -> void:
@@ -58,14 +60,14 @@ func _start_run() -> void:
 	core_handler.add_core(Data.character.starting_core)
 
 
-func _change_view(scence : PackedScene) -> Node:
+func _change_view(scence: PackedScene) -> Node:
 	# Failsafe which runs while the game is exiting
-	var wr: WeakRef = weakref(get_tree())
-	if !wr.get_ref(): return
+	if !is_inside_tree(): return
 	
 	# Removes the previous view
 	if current_view.get_child_count() > 0:
 		current_view.get_child(0).queue_free()
+	if scence ==  EVENT_SCENCE: print("Rolled event scene")
 	
 	get_tree().paused = false
 	var new_view := scence.instantiate()
@@ -91,7 +93,13 @@ func _setup_event_connections() -> void:
 	Events.map_exited.connect(_on_map_exited)
 	Events.shop_exited.connect(_show_map)
 	Events.treasure_room_exited.connect(_show_map)
-	Events.events_extied.connect(_show_map)
+	Events.events_extied.connect(event_exited)
+
+
+func event_exited() -> void:
+	if core_handler.get_core("Compass").coreui.slotted:
+		_on_reward_exited()
+	else: _show_map()
 
 
 func _on_battle_room_entered(room: Room) -> void:
@@ -116,12 +124,15 @@ func _on_battle_state_updated(state: Battle.State) -> void:
 
 
 func _on_reward_exited() -> void:
-	if !randi_range(0, 4):
-		print("Rolled event scence (1/5)")
+	var event_range := 20
+	# Somehow breaks if in a ternary
+	if core_handler.get_core("Compass"):
+		event_range = 40 if core_handler.get_core("Compass").coreui.slotted else 30
+	
+	if randi_range(0, 100) <= event_range: 
 		_change_view(EVENT_SCENCE)
-	else:
-		print("Rolled map scence (4/5)")
-		_show_map()
+	else: _show_map()
+	print("%d%%" % event_range)
 
 
 func _on_map_exited(room: Room) -> void:

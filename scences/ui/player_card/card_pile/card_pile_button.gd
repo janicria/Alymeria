@@ -35,7 +35,7 @@ func update_ui() -> void:
 		"DeckButton":
 			if Data.true_deck_size: # Imagine putting this in a trenary
 				counter.text = "%s(%s)" % [deck_size, (deck_size - Data.character.deck.cards.filter(
-					func(card: Card)->bool: return card.exhausts).size())]
+					func(card: Card)->bool: return card.has_status("exhaust")).size())]
 			else: counter.text = "[center]%s[/center]" % deck_size
 		
 		
