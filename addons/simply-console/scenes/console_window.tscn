@@ -240,30 +240,51 @@ func heal(amount: int, max_health := false) -> String:
 	return \"Healed %s health\" % amount
 
 
-func deck(action: String, rarity: String, id: String) -> String:
-	# Checks if the card exists (can't use WeakRef bc it returns null if object hasn't been loaded into memory yet)
-	# Secret cards: deck add ../../secret placeholder_rare_card
-	# Witch cards: deck add ../../witch/cards/common flame
-	var loaded_card: Resource = load((\"res://characters/machine/cards/%s/%s.tres\" % [rarity, id]))
-	if rarity == \"purple\": loaded_card = load(\"res://characters/global/cards/purple/%s.tres\" % id)
-	elif rarity == \"status\": loaded_card = load(\"res://characters/global/cards/status/%s.tres\" % id)
-	if loaded_card is not Card: return \"Card %s with rarity %s does not exist\" % [id, rarity]
-	Data.cheats = true
+func deck(action: String, id: String) -> String:
+	const CARDS: Array[Card] = [
+		preload(\"res://characters/machine/cards/common/laser.tres\"),
+		preload(\"res://characters/machine/cards/common/laser_barrage.tres\"),
+		preload(\"res://characters/machine/cards/common/miniature_randomizer.tres\"),
+		preload(\"res://characters/machine/cards/common/missile_launcher.tres\"),
+		preload(\"res://characters/machine/cards/common/power_strike.tres\"),
+		preload(\"res://characters/machine/cards/common/repurposing.tres\"),
+		preload(\"res://characters/machine/cards/common/shields.tres\"),
+		preload(\"res://characters/machine/cards/rare/advanced_rerouting.tres\"),
+		preload(\"res://characters/machine/cards/rare/file_corruption.tres\"),
+		preload(\"res://characters/machine/cards/uncommon/gas_stores.tres\"),
+		preload(\"res://characters/machine/cards/uncommon/implant_tracking.tres\"),
+		preload(\"res://characters/machine/cards/uncommon/power_off.tres\"),
+		preload(\"res://characters/machine/cards/uncommon/suboptimal_learning.tres\"),
+		preload(\"res://characters/global/cards/purple/singularity.tres\"),
+		preload(\"res://characters/global/cards/purple/godroll.tres\"),
+		preload(\"res://characters/global/cards/status/infection.tres\"),
+		preload(\"res://characters/secret/card_status_test.tres\"),
+		preload(\"res://characters/secret/injured_test.tres\"),
+		preload(\"res://characters/secret/kevin.tres\")
+	]
 	
+	var selected_card: Card
+	for card in CARDS:
+		if card.name.to_snake_case() == id:
+			selected_card = card
+	if selected_card == null:
+		return \"Card %s does not exist\" % id
+	if action != \"has\":
+		Data.cheats = true
 	
 	match action:
 		\"add\":
-			Data.character.deck.add_card(loaded_card)
+			Data.character.deck.add_card(selected_card)
 			print(\"[CMD] Added card %s\" % id)
-			return \"Added card %s with rarity %s\" % [id, rarity]
+			return \"Added card %s\" % id
 		\"remove\":
-			Data.character.deck.remove_card(loaded_card)
+			Data.character.deck.remove_card(selected_card)
 			print(\"[CMD] Removed card %s\" % id)
-			return \"Removed card %s with rarity %s\" % [id, rarity]
+			return \"Removed card %s\" % id
 		\"has\":
 			for card in Data.character.deck.cards:
-				if card == loaded_card or card == Data.character.deck.cards[-1]:
-					return \"You %s have card %s in your deck\" % [\"DO\" if card == loaded_card else \"DON'T\", id]
+				if card == selected_card or card == Data.character.deck.cards[-1]:
+					return \"You DO%s have card %s in your deck\" % [\"N'T\" if card != selected_card else \"\", id]
 	
 	return \"%s is not an action for command deck, possible actions: add, remove, has\" % action
 
@@ -284,31 +305,31 @@ func debug(additional_option: String = \"\") -> String:
 	print(\"[CMD] Debug w/%s start\" % [(\" %s\" % additional_option) if additional_option != \"\" else \"o any :c\"])
 	# Note: Running cards.clear() messes up card pile views to show 180-338 cards which is really funny
 	Data.character.deck.cards.clear()
-	deck(\"add\", \"common\", \"repurposing\")
-	deck(\"add\", \"common\", \"missile_launcher\")
-	deck(\"add\", \"common\", \"laser\") 
-	deck(\"add\", \"common\", \"shields\")
-	deck(\"add\", \"common\", \"power_strike\")
-	deck(\"add\", \"common\", \"laser_barrage\")
-	deck(\"add\", \"common\", \"miniature_randomizer\")
-	deck(\"add\", \"uncommon\", \"suboptimal_learning\")
-	deck(\"add\", \"uncommon\", \"power_off\")
-	deck(\"add\", \"uncommon\", \"gas_stores\")
-	deck(\"add\", \"uncommon\", \"implant_tracking\")
-	deck(\"add\", \"rare\", \"advanced_rerouting\")
-	deck(\"add\", \"rare\", \"file_corruption\")
-	deck(\"add\", \"../../global/cards/status\", \"infection\")
-	deck(\"add\", \"../../global/cards/purple\", \"godroll\")
-	deck(\"add\", \"../../global/cards/purple\", \"singularity\")
-	deck(\"add\", \"../../secret\", \"injured_test\")
-	deck(\"add\", \"../../secret\", \"card_status_test\")
+	deck(\"add\", \"repurposing\")
+	deck(\"add\", \"missile_launcher\")
+	deck(\"add\", \"laser\") 
+	deck(\"add\", \"shields\")
+	deck(\"add\",  \"power_strike\")
+	deck(\"add\", \"laser_barrage\")
+	deck(\"add\", \"miniature_randomizer\")
+	deck(\"add\", \"suboptimal_learning\")
+	deck(\"add\",  \"power_off\")
+	deck(\"add\", \"gas_stores\")
+	deck(\"add\", \"implant_tracking\")
+	deck(\"add\", \"advanced_rerouting\")
+	deck(\"add\", \"file_corruption\")
+	deck(\"add\", \"infection\")
+	deck(\"add\", \"godroll\")
+	deck(\"add\", \"singularity\")
+	deck(\"add\",  \"injured_test\")
+	deck(\"add\", \"card_status_test\")
 	if additional_option == \"infinite\":
 		Data.character.deck.cards.clear()
-		deck(\"add\", \"rare\", \"advanced_rerouting\")
-		deck(\"add\", \"common\", \"repurposing\")
-		deck(\"add\", \"common\", \"repurposing\")
-		deck(\"add\", \"common\", \"laser\")
-		deck(\"add\", \"common\", \"shields\")
+		deck(\"add\", \"advanced_rerouting\")
+		deck(\"add\", \"repurposing\")
+		deck(\"add\", \"repurposing\")
+		deck(\"add\", \"laser\")
+		deck(\"add\", \"shields\")
 	
 	# Character
 	heal(999, true)
@@ -373,6 +394,40 @@ func battle(id := \"\") -> String:
 	get_parent()._on_battle_room_entered(room)
 	Data.cheats = true
 	return \"Changed battle to %s\" % id
+
+
+
+func core(action: String, id: String) -> String:
+	const CORES: Array[Core] = [
+		preload(\"res://characters/global/cores/common/comically_large_anvil.tres\"),
+		preload(\"res://characters/global/cores/common/compass.tres\"),
+		preload(\"res://characters/global/cores/rare/blindfold.tres\"),
+		preload(\"res://characters/global/cores/rare/finale.tres\"),
+		preload(\"res://characters/global/cores/rare/maths_textbook.tres\"),
+		preload(\"res://characters/global/cores/special/bargaining_chip.tres\"),
+		preload(\"res://characters/global/cores/uncommon/infected_horn.tres\")
+	]
+	
+	var selected_core: Core
+	for core in CORES:
+		if core.core_name.to_snake_case() == id:
+			selected_core = core
+	if selected_core == null:
+		return \"Core %s does not exist\" % id
+	if action != \"has\": 
+		Data.cheats = true
+	
+	match action:
+		\"add\":
+			get_parent().core_handler.add_core(selected_core)
+			print(\"[CMD] Added core %s\" % id)
+			return \"Added core %s\" % id
+		\"remove\":
+			get_parent().core_handler.remove_core(selected_core)
+			print(\"[CMD] Removed core %s\" % id)
+			return \"Removed core %s\" % id
+	
+	return \"%s is not an action for command deck, possible actions: add, remove, has\" % action
 
 
 

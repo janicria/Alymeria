@@ -101,17 +101,12 @@
 				"optional": false
 			},
 			{
-				"name": "rarity",
-				"type": 4,
-				"optional": false
-			},
-			{
 				"name": "card",
 				"type": 4,
-				"optional": true
+				"optional": false
 			}
 		],
-		"description": "Edit or check cards in your deck\nOptions for action:\nadd - adds a card with the matching rarity and id\nremove - removes a card with the matching rarity and id\nhas - checks if your deck contains a card with the matching rarity and id\nEx: deck add uncommon power_off"
+		"description": "Edit or check cards in your deck\nOptions for action:\nadd - adds a card with the matching id\nremove - removes a card with the matching id\nhas - checks if your deck contains a card with the matching id\nEx: deck add power_off"
 	},
 	"act": {
 		"target": "",
@@ -193,8 +188,28 @@
 				"name": "id",
 				"type": 4,
 				"optional": false
-			},
+			}
 		],
 		"description": "Loads the specified battle\nA list of all battles can be viewed by running 'battle list'"
+	},
+	"core": {
+		"target": "",
+		"type": 1,
+		"minPermission": 0,
+		"cheats": false,
+		"method": "core",
+		"argumentList": [
+			{
+				"name": "action",
+				"type": 4,
+				"optional": false
+			},
+			{
+				"name": "id",
+				"type": 4,
+				"optional": false
+			}
+		],
+		"description": "Edit cores you have\nOptions for action:\nadd - adds a core with the matching id\nremove - removes a core with the matching id\nEx: core add infected_horn"
 	}
 }

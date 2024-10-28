@@ -30,8 +30,6 @@ func activate_cores_of_type(type: Core.Type) -> void:
 
 
 func add_core(core: Core) -> void:
-	if get_core(core.core_name) != null: return
-	
 	var coreui := COREUI.instantiate()
 	if slotted_cores.get_child_count() < 3:
 		slotted_cores.add_child(coreui)
@@ -41,6 +39,13 @@ func add_core(core: Core) -> void:
 	else: remaining_cores.add_child(coreui)
 	coreui.core = core
 	coreui.core.added()
+
+
+func remove_core(core: Core) -> void:
+	if get_core(core.core_name) != null: return
+	for coreui: CoreUI in get_all_coreuis():
+		if coreui.core == core:
+			coreui.queue_free()
 
 
 func get_core(core_name: String) -> Core:
