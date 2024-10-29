@@ -10,6 +10,6 @@ icon = ExtResource("1_yji7s")
 type = 2
 rarity = 0
 pool = 0
-slotted_tooltip = "At the end of each turn all enemies take 8 damage affected by statuses"
+slotted_tooltip = "At the end of each turn all enemies take 8 damage, affected by statuses"
 dump_tooltip = "At the end of each turn all enemies take 5 damage"
 flavour_text = "But where did it come from?"

@@ -7,7 +7,7 @@
 script = ExtResource("2_4acl0")
 core_name = "Maths Textbook"
 icon = ExtResource("1_cv7rp")
-type = 5
+type = 0
 rarity = 2
 pool = 0
 slotted_tooltip = "At the start of each turn gain 1 memory and draw 1 card. Whenever you play a card, draw a card then choose a card in your hand to discard"

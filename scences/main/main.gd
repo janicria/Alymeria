@@ -15,16 +15,17 @@ const COMPASS = preload("res://characters/global/cores/common/compass.tres")
 @onready var version_number: Label = %VersionNumber
 @onready var settings_bar: TextureRect = %SettingsBar
 @onready var core_handler: CoreHandler = %CoreHandler
+@onready var bestiary: Bestiary = %Bestiary
 @onready var scence_transition: AnimationPlayer = %ScenceTransition
 @onready var color_rect: ColorRect = %ColorRect
 @onready var console_window: Window = %ConsoleWindow
 @onready var shaker: Node = %Shaker
 
-
 var character: CharacterStats
 
 
 func _ready() -> void:
+	Data.main = self
 	color_rect.visible = true
 	scence_transition.play("fade_in")
 	version_number.text = ProjectSettings.get_setting("application/config/version")
@@ -44,6 +45,7 @@ func _process(_delta: float) -> void:
 	version_number.global_position.y = 2 - version_number.get_canvas_transform().origin.y
 	settings_bar.global_position.y = 0 - settings_bar.get_canvas_transform().origin.y
 	core_handler.global_position.y = 39 - core_handler.get_canvas_transform().origin.y
+	bestiary.global_position.y = 17 - bestiary.get_canvas_transform().origin.y
 
 
 func _input(_event: InputEvent) -> void:

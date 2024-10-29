@@ -1,5 +1,4 @@
-class_name CardPile
-extends Resource
+class_name CardPile extends Resource
 
 signal card_pile_size_changed(cards_amount: int)
 
@@ -47,14 +46,6 @@ func shuffle() -> Array[Card]:
 func clear() -> void:
 	cards.clear()
 	card_pile_size_changed.emit(cards.size())
-
-
-func _to_string() -> String:
-	var _card_strings: PackedStringArray = []
-	for i in range(cards.size()):
-		_card_strings.append("%s: %s" % [i+1, cards[1].id])
-		print(("%s: %s" % [i+1, cards[1].id]))
-	return "\n".join(_card_strings)
 
 
 func show_cards() -> Array[Card]:

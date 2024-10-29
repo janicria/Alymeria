@@ -16,6 +16,13 @@ var current_view_randomised := false
 var open := false
 
 
+static func generate_cardpile_from_ui(cardui_array: Array[Node]) -> CardPile:
+	var card_pile_to_send := CardPile.new()
+	for cardui in cardui_array:
+		card_pile_to_send.add_card(cardui.card)
+	return card_pile_to_send
+
+
 func _ready() -> void:
 	return_button.pressed.connect(_hide)
 	
@@ -24,18 +31,19 @@ func _ready() -> void:
 		card.queue_free()
 
 
-func set_card_pile(value: CardPile) -> void:
-	card_pile = value
-	card_pile.card_pile_size_changed.connect(func(_cardpile_size: int)->void:
-		# TODO: Fix for shuffled cards <- No ty, too hard
-		if open: show_current_view(title.text, current_view_randomised))
-
-
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"): _hide()
 
 
+func set_card_pile(value: CardPile) -> void:
+	card_pile = value
+	card_pile.card_pile_size_changed.connect(func(_size: int)->void:
+		# TODO: Fix for shuffled cards <- No ty, too hard
+		if open: show_current_view(title.text, current_view_randomised))
+
+
 func select_card() -> void:
+	Data.player_handler.hand.toggle_hand_state(true)
 	for cardmenu: CardMenuUI in cards.get_children():
 		cardmenu.card_tooltip.gui_input.connect(
 			func(input: InputEvent)-> void:
@@ -43,18 +51,21 @@ func select_card() -> void:
 					card_selected.emit(cardmenu.card))
 
 
-# FIXME: Doesn't close if run by repurposing
 func _hide() -> void:
-	super.hide()
+	hide()
 	Data.card_pile_open = false
 	open = false
+	if Data.player_handler != null: # In case a battle hasn't started yet
+		Data.player_handler.hand.toggle_hand_state(false)
 
 
 func show_current_view(new_title : String, randomised := false) -> void:
 	Data.card_pile_open = true
 	open = true
 	
-	for card: Node in cards.get_children(): card.hide(); card.queue_free()
+	for card: Node in cards.get_children(): 
+		card.hide()
+		card.queue_free()
 	
 	title.text = new_title
 	_update_view.call_deferred(randomised)

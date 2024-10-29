@@ -19,6 +19,7 @@ enum Upgrade {NONE, REFINED, ENHANCED}
 @export_multiline var tooltip_text : String
 @export_multiline var effect_description : String
 
+var cardui: CardUI
 var upgrade: Upgrade
 var fully_played := false
 var cache_cost: int : set = set_cache_cost

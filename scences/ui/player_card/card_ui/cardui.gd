@@ -46,8 +46,9 @@ func  _input(event : InputEvent) -> void:
 
 
 func set_card(value: Card) -> void:
-	if ! is_node_ready(): await ready
+	if !is_node_ready(): await ready
 	card = value
+	card.cardui = self
 	
 	# Card coloring and text
 	match card.rarity:

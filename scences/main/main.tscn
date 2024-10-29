@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://da8s0fkwwmdle"]
+[gd_scene load_steps=12 format=3 uid="uid://da8s0fkwwmdle"]
 
 [ext_resource type="Script" path="res://scences/main/main.gd" id="1_xn4ul"]
 [ext_resource type="Resource" uid="uid://dk2sl2aapuwe7" path="res://scences/main/run_startup.tres" id="2_71wrl"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bwuexw3t61b0h" path="res://scences/ui/settings/settings_bar.tscn" id="4_0dled"]
 [ext_resource type="PackedScene" uid="uid://iq0kljjd6vul" path="res://scences/cores/core_handler.tscn" id="5_w82hd"]
 [ext_resource type="PackedScene" uid="uid://cmrfdlp25wcby" path="res://addons/simply-console/scenes/console_window.tscn" id="6_0syis"]
+[ext_resource type="PackedScene" uid="uid://cogno32qd13u" path="res://scences/ui/menus/bestiary.tscn" id="6_codce"]
 [ext_resource type="Script" path="res://scences/main/shaker.gd" id="7_kpps0"]
 
 [sub_resource type="Animation" id="Animation_u5hhp"]
@@ -82,9 +83,12 @@ unique_name_in_owner = true
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="VersionNumber" type="Label" parent="UI"]
 unique_name_in_owner = true
@@ -109,6 +113,11 @@ offset_left = 9.0
 offset_top = 39.0
 offset_right = 71.0
 offset_bottom = 95.0
+
+[node name="Bestiary" parent="UI" instance=ExtResource("6_codce")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
 
 [node name="ScenceTransition" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true

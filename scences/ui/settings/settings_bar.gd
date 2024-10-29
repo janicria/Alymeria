@@ -54,7 +54,7 @@ func _process(_delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_cancel") && !Data.card_pile_open: 
+	if event.is_action_pressed("ui_cancel") && !Data.card_pile_open && !Data.bestiary_open: 
 		toggle_settings()
 
 

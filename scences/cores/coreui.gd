@@ -1,6 +1,8 @@
 class_name CoreUI extends Control
 
 const PIPE = preload("res://assets/sfx/pipe.mp3")
+const CURSOR = preload("res://assets/misc/cursor.png")
+const BUBBLE_CURSOR = preload("res://assets/misc/bubble_cursor.png")
 
 @export var core: Core : set = set_core
 
@@ -31,12 +33,11 @@ func flash() -> void:
 
 
 func show_tooltip() -> void:
-	Events.show_tooltip.emit(
-		"%s\n%s\n[i]%s[/i]" % [core.slotted_tooltip, core.dump_tooltip, core.flavour_text])
+	Input.set_custom_mouse_cursor(BUBBLE_CURSOR)
 
 
 func hide_tooltip() -> void:
-	Events.hide_tooltip.emit()
+	Input.set_custom_mouse_cursor(CURSOR)
 
 
 func _on_gui_input(event: InputEvent) -> void:
@@ -44,5 +45,7 @@ func _on_gui_input(event: InputEvent) -> void:
 		core.activate()
 		playable = false
 		flash()
-	elif event.is_action_released("left_mouse") && core.core_name == "Comically Large Anvil":
-		flash()
+	elif event.is_action_released("left_mouse"):
+		Data.main.bestiary.show_core(core)
+		if core.core_name == "Comically Large Anvil":
+			flash()

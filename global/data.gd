@@ -3,6 +3,8 @@ extends Node
 signal gold_changed
 
 var player_handler: PlayerHandeler
+var main: Main
+var battle_ui: BattleUI
 
 # Constants 
 const STARTING_GOLD := 50
@@ -42,6 +44,7 @@ var floor_is_infected := false
 var card_pile_open := false : set = set_card_pile
 var console_banned := false
 var console_open := false
+var bestiary_open := false
 var turn_number := 0
 var biome_floors := {
 	Biome.FOREST: 12,
