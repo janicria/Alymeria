@@ -1,6 +1,4 @@
-class_name PlayerHandeler
-extends Node
-
+class_name PlayerHandeler extends Node
 
 const HAND_DRAW_INTERVAL := 0.25
 const HAND_DISCARD_INTERVAL := 0.25
@@ -10,6 +8,7 @@ const HAND_DISCARD_INTERVAL := 0.25
 
 
 func _ready() -> void:
+	Data.player_handler = self
 	Events.player_card_played.connect(_on_card_played)
 	Events.player_draw_cards.connect(draw_cards)
 
@@ -32,7 +31,7 @@ func start_turn() -> void:
 
 
 func end_turn() -> void:
-	hand.disable_hand()
+	hand.toggle_hand_state(true)
 	player.status_handler.apply_statuses_by_type(Status.Type.END_OF_TURN)
 
 

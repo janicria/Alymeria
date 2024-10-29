@@ -40,8 +40,8 @@ func discard_card(cardui: CardUI) -> void:
 	cardui.queue_free()
 
 
-func disable_hand() -> void:
-	for card in get_children(): card.disabled = true
+func toggle_hand_state(toggled_on: bool) -> void:
+	for card in get_children(): card.disabled = toggled_on
 
 
 func update_card_seperation() -> void:

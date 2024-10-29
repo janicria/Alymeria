@@ -1,6 +1,4 @@
-class_name BattleUI
-extends CanvasLayer
-
+class_name BattleUI extends CanvasLayer
 
 @onready var hand: Hand = $Hand
 @onready var mana_ui: ManaUI = $ManaUI

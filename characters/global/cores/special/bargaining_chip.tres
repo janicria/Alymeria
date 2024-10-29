@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="Core" load_steps=3 format=3 uid="uid://3guwqalaemm"]
 
+[ext_resource type="Texture2D" uid="uid://b3ntkajnxqmdh" path="res://assets/objects/shop_favour.png" id="1_0xeju"]
 [ext_resource type="Script" path="res://custom_resources/core.gd" id="1_qs448"]
-[ext_resource type="Texture2D" uid="uid://con6y7mc74c5a" path="res://assets/characters/tile_0120.png" id="1_vwogt"]
 
 [resource]
 script = ExtResource("1_qs448")
 core_name = " Bargaining chip"
-icon = ExtResource("1_vwogt")
+icon = ExtResource("1_0xeju")
 type = 5
 rarity = 3
 pool = 0

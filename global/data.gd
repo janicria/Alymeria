@@ -2,6 +2,8 @@ extends Node
 
 signal gold_changed
 
+var player_handler: PlayerHandeler
+
 # Constants 
 const STARTING_GOLD := 50
 const BASE_CARD_REWARDS := 4

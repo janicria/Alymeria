@@ -1,15 +1,16 @@
-[gd_resource type="Resource" script_class="Core" load_steps=3 format=3 uid="uid://dcal00alsf3p5"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://dcal00alsf3p5"]
 
-[ext_resource type="Script" path="res://custom_resources/core.gd" id="1_1lbga"]
-[ext_resource type="Texture2D" uid="uid://blkttehatvu04" path="res://assets/misc/icon.svg" id="1_6up0e"]
+[ext_resource type="Texture2D" uid="uid://ckp4wldwmrcxf" path="res://assets/objects/textbook.png" id="1_cv7rp"]
+[ext_resource type="Script" path="res://characters/global/cores/rare/maths_textbook.gd" id="2_4acl0"]
 
 [resource]
-script = ExtResource("1_1lbga")
+script = ExtResource("2_4acl0")
 core_name = "Maths Textbook"
-icon = ExtResource("1_6up0e")
+icon = ExtResource("1_cv7rp")
 type = 5
 rarity = 2
-slotted_tooltip = "At the start of each turn gain 1 memory. Whenever you play a card, draw a card then choose a card in your hand to discard"
-dump_tooltip = "At the start of each turn draw 2 cards and gain 1 memory. Whenever you play a card, choose a card in your hand to discard
+pool = 0
+slotted_tooltip = "At the start of each turn gain 1 memory and draw 1 card. Whenever you play a card, draw a card then choose a card in your hand to discard"
+dump_tooltip = "At the start of each turn gain 1 memory. Whenever you play a card, choose a card in your hand to discard
 "
 flavour_text = "I knew there was a reason for me not liking maths in school"
