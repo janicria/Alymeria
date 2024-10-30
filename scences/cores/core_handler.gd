@@ -42,7 +42,7 @@ func add_core(core: Core) -> void:
 
 
 func remove_core(core: Core) -> void:
-	if get_core(core.core_name) != null: return
+	if get_core(core.core_name) == null: return
 	for coreui: CoreUI in get_all_coreuis():
 		if coreui.core == core:
 			coreui.queue_free()

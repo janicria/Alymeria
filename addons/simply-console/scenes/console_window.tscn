@@ -405,7 +405,8 @@ func core(action: String, id: String) -> String:
 		preload(\"res://characters/global/cores/rare/finale.tres\"),
 		preload(\"res://characters/global/cores/rare/maths_textbook.tres\"),
 		preload(\"res://characters/global/cores/special/bargaining_chip.tres\"),
-		preload(\"res://characters/global/cores/uncommon/infected_horn.tres\")
+		preload(\"res://characters/global/cores/uncommon/infected_horn.tres\"),
+		preload(\"res://characters/machine/cores/secure_boot.tres\")
 	]
 	
 	var selected_core: Core

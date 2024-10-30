@@ -31,7 +31,9 @@ func add_card(card : Card) -> void:
 
 
 func discard_card(cardui: CardUI) -> void:
-	if !Data.character.cache_pile.cards.has(cardui.card) && !cardui.card.has_status("burn"): 
+	if (!Data.character.cache_pile.cards.has(cardui.card) 
+	&& !cardui.card.has_status("burn") 
+	&& !cardui.card.has_status("exhaust")): 
 		Data.character.cache_pile.add_card(cardui.card)
 	
 	if cardui.card.has_status("burn") && Data.character.deck.has_card(cardui.card):

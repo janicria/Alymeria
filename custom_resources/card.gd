@@ -51,9 +51,11 @@ func has_status(status_name: String) -> bool:
 			return true
 	return false
 
+
 func add_status(status: CardStatus) -> void:
 	if !statuses.has(status):
 		statuses.append(status)
+
 
 func remove_status(status: CardStatus) -> void:
 	if statuses.has(status):

@@ -1,13 +1,15 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://c4gqxff01po2k"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://c4gqxff01po2k"]
 
 [ext_resource type="Script" path="res://characters/machine/cores/secure_boot.gd" id="1_32ipj"]
+[ext_resource type="Texture2D" uid="uid://duxr1bmpqyjlg" path="res://assets/objects/boot_lock.png" id="1_64kio"]
 
 [resource]
 script = ExtResource("1_32ipj")
 core_name = "Secure boot"
+icon = ExtResource("1_64kio")
 type = 0
 rarity = 0
 pool = 0
-slotted_tooltip = ""
-dump_tooltip = ""
-flavour_text = "Very flavoury text here"
+slotted_tooltip = "At the start of each turn draw an additional card and choose up to two cards to give exhaust for the rest of combat"
+dump_tooltip = "At the start of each turn draw an additional card and choose a card to give exhaust for the rest of the combat"
+flavour_text = "https://en.wikipedia.org/wiki/Switching_barriers"

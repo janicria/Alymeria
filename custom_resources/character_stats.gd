@@ -40,7 +40,6 @@ func take_damage(damage : int) -> void:
 	var initial_health := health
 	super.take_damage(damage)
 	if initial_health > health: 
-		#cache_tokens -= damage
 		Data.damage_taken += damage
 		Events.player_hit.emit()
 

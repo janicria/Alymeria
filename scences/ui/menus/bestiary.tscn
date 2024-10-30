@@ -105,5 +105,6 @@ At the start of each turn gain 1 memory. Whenever you play a card, choose a card
 
 I knew there was a reason for me not liking maths in school[/center]"
 fit_content = true
+autowrap_mode = 2
 
 [connection signal="gui_input" from="ColorRect" to="." method="_on_color_rect_gui_input"]

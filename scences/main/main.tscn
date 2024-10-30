@@ -114,10 +114,12 @@ offset_top = 39.0
 offset_right = 71.0
 offset_bottom = 95.0
 
-[node name="Bestiary" parent="UI" instance=ExtResource("6_codce")]
+[node name="BestiaryLayer" type="CanvasLayer" parent="UI"]
+layer = 99
+
+[node name="Bestiary" parent="UI/BestiaryLayer" instance=ExtResource("6_codce")]
 unique_name_in_owner = true
 visible = false
-layout_mode = 1
 
 [node name="ScenceTransition" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
