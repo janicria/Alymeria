@@ -49,6 +49,8 @@ func set_card(value: Card) -> void:
 	if !is_node_ready(): await ready
 	card = value
 	card.cardui = self
+	if !Events.update_draw_card_ui.is_connected(set_card):
+		Events.update_draw_card_ui.connect(set_card.bind(card))
 	
 	# Card coloring and text
 	match card.rarity:

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cogno32qd13u"]
 
-[ext_resource type="Script" path="res://bestiary.gd" id="1_i0uol"]
+[ext_resource type="Script" path="res://scences/ui/menus/bestiary.gd" id="1_i0uol"]
 [ext_resource type="Texture2D" uid="uid://ckp4wldwmrcxf" path="res://assets/objects/textbook.png" id="2_txjvj"]
 
 [node name="Bestiary" type="Control"]
@@ -51,7 +51,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CoreName" type="RichTextLabel" parent="CoreView"]
+[node name="CoreTitle" type="RichTextLabel" parent="CoreView"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5

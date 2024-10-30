@@ -8,7 +8,7 @@ signal card_aim_ended(card_ui: CardUI) # Used by card_ui, card_target_selector, 
 signal player_card_played(card: Card) # Used by player_handler
 signal update_card_pile(card_pile : CardPile) # Used by settings_bar
 signal update_deck_button_ui() # Used by card_pile_button`
-signal update_draw_card_ui # Used by repurposing
+signal update_draw_card_ui # Used by repurposing & card
 signal update_card_variant(variant: String, value: int) # Used by hand
 signal update_hand_state() # Used by hand to check if a the player has cancel
 signal player_card_drawn # Used by godroll (needs to be a global)

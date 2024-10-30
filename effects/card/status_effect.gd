@@ -1,5 +1,4 @@
-class_name StatusEffect
-extends Effect
+class_name StatusEffect extends Effect
 
 var status: Status
 

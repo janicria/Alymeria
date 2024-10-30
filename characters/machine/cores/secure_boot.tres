@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://c4gqxff01po2k"]
+
+[ext_resource type="Script" path="res://characters/machine/cores/secure_boot.gd" id="1_32ipj"]
+
+[resource]
+script = ExtResource("1_32ipj")
+core_name = "Secure boot"
+type = 0
+rarity = 0
+pool = 0
+slotted_tooltip = ""
+dump_tooltip = ""
+flavour_text = "Very flavoury text here"

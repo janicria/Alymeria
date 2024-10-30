@@ -4,14 +4,15 @@ var base_amount := 2
 
 
 func drawn() -> void:
-	if tooltip_text == "Set in script": update_tooltip_text()
+	if tooltip_text == "Set in script": 
+		update_tooltip_text()
+		Events.update_draw_card_ui.emit()
 	Events.update_draw_card_ui.connect(update_tooltip_text)
 
 
 func update_tooltip_text() -> void: # I ain't doing a trenary that long
 	if Data.true_draw_amount: tooltip_text = "Draw %s(%s)\nUncache 1" % [base_amount, base_amount - 1]
 	else: tooltip_text = "Draw %s\nUncache 1" % base_amount
-	cardui.set_card(self)
 
 
 func apply_effects(targets: Array[Node], _modifiers: ModifierHandler) -> void:

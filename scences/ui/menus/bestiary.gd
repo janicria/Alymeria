@@ -1,6 +1,7 @@
 class_name Bestiary extends Control
 
 @onready var core_view: Control = %CoreView
+@onready var core_title: RichTextLabel = %CoreTitle
 @onready var core_icon: TextureRect = %CoreIcon
 @onready var core_text: RichTextLabel = %CoreText
 @onready var color_rect: ColorRect = %ColorRect
@@ -25,6 +26,7 @@ func update_visibility(open: bool) -> void:
 func show_core(core: Core) -> void:
 	if !visible: update_visibility(true)
 	core_view.visible = true
+	core_title.text = core.core_name
 	core_icon.texture = core.icon
 	core_text.text = "[center]%s\n\n%s\n\n%s[/center]" % [core.slotted_tooltip, core.dump_tooltip, core.flavour_text]
 

@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_qs448")
-core_name = " Bargaining chip"
+core_name = "Bargaining chip"
 icon = ExtResource("1_0xeju")
 type = 5
 rarity = 3

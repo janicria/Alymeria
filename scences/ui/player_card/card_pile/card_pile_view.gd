@@ -1,5 +1,4 @@
-class_name CardPileView
-extends Control
+class_name CardPileView extends Control
 
 signal card_selected(card: Card)
 
@@ -44,6 +43,7 @@ func set_card_pile(value: CardPile) -> void:
 
 func select_card() -> void:
 	Data.player_handler.hand.toggle_hand_state(true)
+	return_button.visible = title.text == "Select a card to uncache"
 	for cardmenu: CardMenuUI in cards.get_children():
 		cardmenu.card_tooltip.gui_input.connect(
 			func(input: InputEvent)-> void:
