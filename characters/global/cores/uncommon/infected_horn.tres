@@ -1,7 +1,7 @@
 [gd_resource type="Resource" load_steps=3 format=3 uid="uid://deml6o2r0hunt"]
 
 [ext_resource type="Texture2D" uid="uid://blkttehatvu04" path="res://assets/misc/icon.svg" id="1_heb8h"]
-[ext_resource type="Script" path="res://characters/global/cores/uncommon/infected_core.gd" id="1_xn43x"]
+[ext_resource type="Script" path="res://characters/global/cores/uncommon/infected_horn.gd" id="1_xn43x"]
 
 [resource]
 script = ExtResource("1_xn43x")

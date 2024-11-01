@@ -49,6 +49,7 @@ func set_card(value: Card) -> void:
 	if !is_node_ready(): await ready
 	card = value
 	card.cardui = self
+	
 	if !Events.update_draw_card_ui.is_connected(set_card):
 		Events.update_draw_card_ui.connect(set_card.bind(card))
 	
@@ -106,6 +107,7 @@ func set_playable(value : bool) -> void:
 		type.modulate.a = 0.5
 		desc.modulate.a = 0.5
 		cost.modulate.a = 0.8
+	
 	elif !canceled && !card.has_status("unplayable"):
 		cost.remove_theme_color_override("font_color")
 		_name.modulate.a = 1
@@ -142,6 +144,8 @@ func play() -> void:
 
 func _on_gui_input(event : InputEvent) -> void:
 	card_state_machine.on_gui_input(event)
+	if event.is_action_pressed("middle_mouse"):
+		OS.alert("%s - %s\n\n%s - %s" % [card.name, card.unique_id, self, get_index()])
 
 
 func _on_mouse_entered() -> void:

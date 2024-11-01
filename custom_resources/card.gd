@@ -21,8 +21,13 @@ enum Upgrade {NONE, REFINED, ENHANCED}
 
 var cardui: CardUI
 var upgrade: Upgrade
+var unique_id := randi()
 var fully_played := false
 var cache_cost: int : set = set_cache_cost
+
+
+func _to_string() -> String:
+	return "%s - %s\n\n%s - %s" % [name, unique_id, cardui, cardui.get_index()]
 
 
 func set_cache_cost(_value: int) -> void:

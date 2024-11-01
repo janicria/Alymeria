@@ -17,7 +17,7 @@ func card_played(_card: Card) -> void:
 	coreui.flash()
 	
 	Data.player_handler.draw_card()
-	Data.battle_ui.custom_pile_view.card_pile = CardPileView.generate_cardpile_from_ui(
+	Data.battle_ui.custom_pile_view.card_pile = CardPile.generate_from_ui(
 		Data.battle_ui.hand.get_children())
 	Data.battle_ui.custom_pile_view.show_current_view("Select a card to discard")
 	await Data.get_tree().process_frame

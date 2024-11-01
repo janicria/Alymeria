@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://custom_resources/enemy_card.gd" id="1_0it34"]
 [ext_resource type="Script" path="res://custom_resources/enemy_ai.gd" id="2_0nbxx"]
-[ext_resource type="Resource" uid="uid://dcy2flb17tdqq" path="res://enemies/evenodd/cards/superboss/microsoftsucks.tres" id="2_rreww"]
+[ext_resource type="Resource" uid="uid://dcy2flb17tdqq" path="res://enemies/evenodd/superboss/microsoftsucks.tres" id="2_rreww"]
 
 [resource]
 script = ExtResource("2_0nbxx")

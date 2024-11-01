@@ -1,5 +1,4 @@
-class_name ManaDown
-extends Status
+class_name ManaDown extends Status
 
 
 func apply_status(_target: Node) -> void:

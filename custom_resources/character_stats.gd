@@ -36,11 +36,15 @@ func reset_mana() -> void:
 	mana = max_mana
 
 
-func take_damage(damage : int) -> void:
+func take_damage(damage: int, status: Status = null) -> void:
 	var initial_health := health
 	super.take_damage(damage)
-	if initial_health > health: 
+	if initial_health > health:
 		Data.damage_taken += damage
+		if status != null:
+			var status_effect := StatusEffect.new()
+			status_effect.status = status
+			status_effect.execute([Data.player_handler.player])
 		Events.player_hit.emit()
 
 

@@ -1,5 +1,4 @@
-class_name Room
-extends Resource
+class_name Room extends Resource
 
 enum Type {NOT_ASSIGNED, MONSTER, TREASURE, HAVEN, SHOP, ELITE, BOSS}
 

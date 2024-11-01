@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" path="res://custom_resources/enemy_card.gd" id="1_ctery"]
 [ext_resource type="Script" path="res://custom_resources/enemy_ai.gd" id="2_76rbq"]
-[ext_resource type="Resource" uid="uid://bgs83kjfm70ri" path="res://enemies/evenodd/cards/regular/bash.tres" id="2_jq5gu"]
-[ext_resource type="Resource" uid="uid://tjohi5frwtj5" path="res://enemies/evenodd/cards/regular/shields.tres" id="3_0eaqg"]
-[ext_resource type="Resource" uid="uid://c20rwiypjm8ah" path="res://enemies/evenodd/cards/regular/buff.tres" id="4_s0rby"]
-[ext_resource type="Resource" uid="uid://cegvackxib523" path="res://enemies/evenodd/cards/regular/debuff.tres" id="5_d7th8"]
+[ext_resource type="Resource" uid="uid://bgs83kjfm70ri" path="res://enemies/evenodd/regular/bash.tres" id="2_jq5gu"]
+[ext_resource type="Resource" uid="uid://tjohi5frwtj5" path="res://enemies/evenodd/regular/shields.tres" id="3_0eaqg"]
+[ext_resource type="Resource" uid="uid://c20rwiypjm8ah" path="res://enemies/evenodd/regular/buff.tres" id="4_s0rby"]
+[ext_resource type="Resource" uid="uid://cegvackxib523" path="res://enemies/evenodd/regular/debuff.tres" id="5_d7th8"]
 
 [resource]
 script = ExtResource("2_76rbq")

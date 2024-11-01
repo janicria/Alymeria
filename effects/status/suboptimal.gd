@@ -1,5 +1,4 @@
-class_name Suboptimal
-extends Status
+class_name Suboptimal extends Status
 
 const DMG_UP := preload("res://effects/status/damage_up.tres")
 const MANA_DOWN := preload("res://effects/status/mana_down.tres")

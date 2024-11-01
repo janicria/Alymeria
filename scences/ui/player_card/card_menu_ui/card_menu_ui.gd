@@ -66,6 +66,11 @@ func set_card(value : Card) -> void:
 		desc.position.y = desc.position.y + (_name.get_line_count() * _name.get_line_height()) -5
 
 
+func _on_gui_input(event : InputEvent) -> void:
+	if event.is_action_pressed("middle_mouse"):
+		OS.alert(str(card))
+
+
 func _on_tooltip_mouse_entered() -> void:
 	panel.set("theme_override_styles/panel", HOVER_STYLEBOX)
 	card_tooltip.show_tooltip(card)

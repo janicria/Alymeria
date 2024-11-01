@@ -1,5 +1,4 @@
-class_name ModifierHandler
-extends Node
+class_name ModifierHandler extends Node
 
 
 func has_modifier_of_type(type: Modifier.Type) -> bool:

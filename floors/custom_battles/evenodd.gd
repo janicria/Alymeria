@@ -24,5 +24,5 @@ func update_battle() -> void:
 	live_enemies[0].stats.max_mana = 99
 	live_enemies[0].mana = 99
 	live_enemies[1].mana = 99
-	live_enemies[0].ai = preload("res://enemies/evenodd/even_superboss_ai.tres")
-	live_enemies[1].ai = preload("res://enemies/evenodd/odd_superboss_ai.tres")
+	live_enemies[0].ai = preload("res://enemies/evenodd/superboss/even_superboss_ai.tres")
+	live_enemies[1].ai = preload("res://enemies/evenodd/superboss/odd_superboss_ai.tres")

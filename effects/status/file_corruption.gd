@@ -1,5 +1,4 @@
-class_name FileCorruption
-extends Status
+class_name FileCorruption extends Status
 
 const NANO_PLAGUE = preload("res://effects/status/nano_plague.tres")
 

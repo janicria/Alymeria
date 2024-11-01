@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=2 format=3 uid="uid://dcy2flb17tdqq"]
 
-[ext_resource type="Script" path="res://enemies/evenodd/cards/superboss/microsoftsucks.gd" id="1_khooi"]
+[ext_resource type="Script" path="res://enemies/evenodd/superboss/microsoftsucks.gd" id="1_khooi"]
 
 [resource]
 script = ExtResource("1_khooi")

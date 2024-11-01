@@ -81,9 +81,9 @@ func discard_cards() -> void:
 
 
 func reshuffle_draw_from_discard() -> void:
-	if !Data.character.draw_pile.empty(): return
+	if !Data.character.draw_pile.cards.is_empty(): return
 	
-	while !Data.character.discard.empty():
+	while !Data.character.discard.cards.is_empty():
 		Data.character.draw_pile.add_card(Data.character.discard.draw_card())
 		# Discard to draw pile animation
 		var orb := TextureRect.new()

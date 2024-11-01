@@ -6,6 +6,7 @@ const CARD_MENU_UI_SCENCE := preload("res://scences/ui/player_card/card_menu_ui/
 
 @export var card_pile : CardPile : set = set_card_pile
 
+@onready var title_control: Control = %TitleControl
 @onready var title: Label = %Title
 @onready var cards: GridContainer = %Cards
 @onready var return_button: Button = %ReturnButton
@@ -13,13 +14,6 @@ const CARD_MENU_UI_SCENCE := preload("res://scences/ui/player_card/card_menu_ui/
 var shuffled_cards: Array[Card]
 var current_view_randomised := false
 var open := false
-
-
-static func generate_cardpile_from_ui(cardui_array: Array[Node]) -> CardPile:
-	var card_pile_to_send := CardPile.new()
-	for cardui in cardui_array:
-		card_pile_to_send.add_card(cardui.card)
-	return card_pile_to_send
 
 
 func _ready() -> void:
@@ -41,10 +35,12 @@ func set_card_pile(value: CardPile) -> void:
 		if open: show_current_view(title.text, current_view_randomised))
 
 
-func select_card() -> void:
+func select_card(optional := false) -> void:
 	Data.player_handler.hand.toggle_hand_state(true)
-	return_button.visible = title.text == "Select a card to uncache"
+	return_button.visible = optional
+	await get_tree().process_frame
 	for cardmenu: CardMenuUI in cards.get_children():
+		#OS.alert(str(cardmenu.card))
 		cardmenu.card_tooltip.gui_input.connect(
 			func(input: InputEvent)-> void:
 				if input.is_action_pressed("left_mouse"):
@@ -68,18 +64,22 @@ func show_current_view(new_title : String, randomised := false) -> void:
 		card.queue_free()
 	
 	title.text = new_title
+	title_control.custom_minimum_size.y = 10 * title.get_line_count()
 	_update_view.call_deferred(randomised)
 
 
-func _update_view(randomised: bool) -> void:
-	if ! card_pile: return
+func _update_view(randomised: bool = current_view_randomised) -> void:
+	if !card_pile: return
 	current_view_randomised = randomised
 	
 	var all_cards := card_pile.cards.duplicate()
 	if randomised: all_cards.shuffle(); shuffled_cards = all_cards
 	
+	for card: Node in cards.get_children(): 
+		card.queue_free()
+	
 	for card: Card in all_cards:
-		var new_card := CARD_MENU_UI_SCENCE.instantiate() as CardMenuUI
+		var new_card := CARD_MENU_UI_SCENCE.instantiate()
 		cards.add_child(new_card)
 		new_card.card = card
 		if get_name() == "CachePileView": new_card.show_cache_cost()

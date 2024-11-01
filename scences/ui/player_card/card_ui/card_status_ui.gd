@@ -1,5 +1,4 @@
-class_name CardStatusUI
-extends VBoxContainer
+class_name CardStatusUI extends VBoxContainer
 
 @export var cardui: CardUI
 

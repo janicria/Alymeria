@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EnemyStats" load_steps=5 format=3 uid="uid://ch45uruxcfdmb"]
+
+[ext_resource type="Script" path="res://custom_resources/enemy_stats.gd" id="1_b2hm1"]
+[ext_resource type="Texture2D" uid="uid://1u3b3hwqd8yh" path="res://assets/characters/tile_0110.png" id="1_rgi0d"]
+[ext_resource type="Script" path="res://custom_resources/status.gd" id="3_0pifa"]
+[ext_resource type="Resource" uid="uid://lohf2aefbu1p" path="res://effects/status/spinneret.tres" id="4_jmbc0"]
+
+[resource]
+script = ExtResource("1_b2hm1")
+max_mana = 2
+starter_statuses = Array[ExtResource("3_0pifa")]([ExtResource("4_jmbc0")])
+max_health = 16
+art = ExtResource("1_rgi0d")

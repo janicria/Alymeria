@@ -1,5 +1,4 @@
-class_name Enemy
-extends Area2D
+class_name Enemy extends Area2D
 
 const ARROW_OFFSET := 19
 
@@ -33,6 +32,8 @@ func _setup_stats(value: EnemyStats) -> void:
 	
 	if !is_node_ready(): await ready
 	status_handler.status_owner = self
+	for status in stats.starter_statuses:
+		status_handler.add_status(status)
 
 
 func _setup_card_weights() -> void:

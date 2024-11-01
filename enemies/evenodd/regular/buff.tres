@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=2 format=3 uid="uid://c20rwiypjm8ah"]
 
-[ext_resource type="Script" path="res://enemies/evenodd/cards/regular/buff.gd" id="1_s0qum"]
+[ext_resource type="Script" path="res://enemies/evenodd/regular/buff.gd" id="1_s0qum"]
 
 [resource]
 script = ExtResource("1_s0qum")

@@ -5,8 +5,21 @@ signal card_pile_size_changed(cards_amount: int)
 @export var cards : Array[Card] = []
 
 
-func empty() -> bool:
-	return cards.is_empty()
+static func generate_from_ui(cardui_array: Array[Node]) -> CardPile:
+	var card_pile_to_send := CardPile.new()
+	for cardui in cardui_array:
+		card_pile_to_send.add_card(cardui.card)
+	return card_pile_to_send
+
+
+# Erase doesn't take id into consideration, idk why
+func erase_card_with_id(id: int) -> void:
+	var i := 0 # Prevents warning
+	for card in cards:
+		i += 1
+		if card.unique_id == id:
+			cards.remove_at(i)
+			return
 
 
 func draw_card() -> Card:

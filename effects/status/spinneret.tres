@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Status" load_steps=3 format=3 uid="uid://lohf2aefbu1p"]
+
+[ext_resource type="Script" path="res://custom_resources/status.gd" id="1_4rsxs"]
+[ext_resource type="Texture2D" uid="uid://bfvi02kojsa00" path="res://assets/objects/sword_size1.png" id="1_7hpnc"]
+
+[resource]
+script = ExtResource("1_4rsxs")
+id = "spinneret"
+type = 2
+stack_type = 0
+duration = 0
+stacks = 0
+icon = ExtResource("1_7hpnc")
+tooltip = "[color=1AD12C]Spinneret[/color] - Whenever you receive unblocked [color=AB3321]attack damage[/color] gain one Webbed"

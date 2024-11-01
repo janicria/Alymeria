@@ -3,7 +3,7 @@ extends HBoxContainer
 
 @export var player: Player
 
-@onready var card_ui := preload("res://scences/ui/player_card/card_ui/cardui.tscn")
+@onready var CARDUI := preload("res://scences/ui/player_card/card_ui/cardui.tscn")
 
 
 func _ready() -> void:
@@ -16,7 +16,7 @@ func _ready() -> void:
 func add_card(card : Card) -> void:
 	# Needed for uncaching cards
 	if get_child_count() >= 10: OS.alert("Max hand size is 10"); return
-	var new_card_ui := card_ui.instantiate() as CardUI
+	var new_card_ui := CARDUI.instantiate() as CardUI
 	add_child(new_card_ui)
 	new_card_ui.reparent_requested.connect(_on_card_ui_reparent_requested)
 	new_card_ui.parent = self

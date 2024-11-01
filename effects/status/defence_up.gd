@@ -1,5 +1,4 @@
-class_name DefenceUp
-extends Status
+class_name DefenceUp extends Status
 
 
 func initalise_target(target: Node) -> void:

@@ -1,7 +1,8 @@
-class_name EnemyCardUI
-extends Node2D
+class_name EnemyCardUI extends Node2D
 
 signal finished_playing
+
+const WEBBED = preload("res://effects/status/webbed.tres")
 
 @onready var cost: Label = %Cost
 @onready var icon: TextureRect = %Icon
@@ -118,16 +119,21 @@ func apply_effects(targets: Array[Node]) -> void:
 			EnemyCard.Type.ATTACK: 
 				effect = DamageEffect.new()
 				effect.amount = modified_damage
+				if enemy_stats.status_handler._has_status("spinneret"):
+					effect.status = WEBBED.duplicate()
 				effect.sound = preload("res://assets/sfx/enemy_attack.ogg")
+			
 			EnemyCard.Type.BARRIER: 
 				effect = BarrierEffect.new()
 				effect.amount = modified_barrier
+			
 			EnemyCard.Type.LARGE_BARRIER: 
 				effect = BarrierEffect.new()
 				effect.amount = modified_barrier
-			EnemyCard.Type.DRAW: 
-				enemy_stats.draw_cards(card_stats.amount); return
+			
+			EnemyCard.Type.DRAW: enemy_stats.draw_cards(card_stats.amount); return
 			EnemyCard.Type.ENERGY: enemy_stats.mana += card_stats.amount; return
+			
 			EnemyCard.Type.BUFF: card_stats.custom_play(get_targets()); return
 			EnemyCard.Type.DEBUFF: card_stats.custom_play(get_targets()); return
 			EnemyCard.Type.SPAWN: card_stats.custom_play(get_targets()); return

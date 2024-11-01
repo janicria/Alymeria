@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=3 uid="uid://2dgenlf354rn"]
+
+[ext_resource type="PackedScene" uid="uid://dkpw6tsw7i7y0" path="res://scences/enemy/enemy.tscn" id="1_uahfy"]
+[ext_resource type="Resource" uid="uid://frpidlsrkefm" path="res://enemies/spider_sentinel/sentinel_ai.tres" id="2_88vrs"]
+[ext_resource type="Resource" uid="uid://ch45uruxcfdmb" path="res://enemies/spider_sentinel/sentinel_stats.tres" id="3_lfgys"]
+
+[node name="a1t2_evenodd" type="Node2D"]
+
+[node name="Enemy" parent="." instance=ExtResource("1_uahfy")]
+position = Vector2(237, 83)
+ai = ExtResource("2_88vrs")
+stats = ExtResource("3_lfgys")

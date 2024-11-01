@@ -1,5 +1,4 @@
-class_name Player
-extends Node2D
+class_name Player extends Node2D
 
 @export var stats: CharacterStats : set = set_character_stats
 @export var handler: PlayerHandeler
@@ -11,6 +10,7 @@ extends Node2D
 @onready var modifier_handler: ModifierHandler = %ModifierHandler
 
 var damage_count: int
+
 
 func _ready() -> void:
 	Events.update_player_dmg_counter.connect(update_damage_counter)
@@ -50,12 +50,12 @@ func update_damage_counter(amount: int, reset: bool) -> void:
 	damage_counter.text = "[center][color=AB3321] %s [/color][/center]" % damage_count
 
 
-func take_damage(damage : int) -> void:
+func take_damage(damage: int, status: Status = null) -> void:
 	if stats.health <= 0: return
 	
 	var tween := create_tween()
 	tween.tween_callback(get_tree().current_scene.shaker.shake.bind(self, 12, 0.15))
-	tween.tween_callback(stats.take_damage.bind(damage))
+	tween.tween_callback(stats.take_damage.bind(damage, status))
 	tween.tween_interval(0.2)
 	
 	tween.finished.connect(

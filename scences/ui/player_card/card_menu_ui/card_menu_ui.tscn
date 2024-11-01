@@ -17,6 +17,7 @@ card = ExtResource("2_k6r6l")
 [node name="Elements" type="Control" parent="."]
 custom_minimum_size = Vector2(40, 50.4)
 layout_mode = 2
+mouse_filter = 1
 theme = ExtResource("1_21628")
 
 [node name="Panel" type="Panel" parent="Elements"]
@@ -132,6 +133,8 @@ layout_mode = 1
 offset_left = 0.0
 offset_right = 5.0
 offset_bottom = 6.6
+mouse_filter = 1
 
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="mouse_entered" from="Elements/CardTooltip" to="." method="_on_tooltip_mouse_entered"]
 [connection signal="mouse_exited" from="Elements/CardTooltip" to="." method="_on_tooltip_mouse_exited"]
