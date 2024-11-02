@@ -17,5 +17,4 @@ tooltip_text = "DMG UP X
 Health -X
 X=enemies
 "
-effect_description = "[center]Damage up - [color=ff0000]Attacks[/color] deal X more damage
-X - Applies effects for each enemy[/center]"
+effects = Array[String]([])

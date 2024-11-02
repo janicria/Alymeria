@@ -14,8 +14,6 @@ repeats = 1
 cost = 1
 statuses = Array[ExtResource("3_84iku")]([])
 sound = ExtResource("2_rav3k")
-tooltip_text = "Either buff 2 OR debuff 1
+tooltip_text = "Buff 2 OR debuff 1
 Exhaust"
-effect_description = "Buff - Apply a random buff
-Debuff - Apply a random debuff
-OR - Only one of the two effects will be applied"
+effects = Array[String](["buff", "debuff", "or", "exhaust"])

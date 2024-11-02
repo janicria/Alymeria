@@ -1,5 +1,4 @@
-class_name  CardState
-extends Node
+class_name CardState extends Node
 
 enum State {BASE, CLICKED, DRAGGING, AIMING, RELEASED}
 

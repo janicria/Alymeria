@@ -41,9 +41,5 @@ layout_mode = 2
 size_flags_vertical = 0
 mouse_filter = 2
 bbcode_enabled = true
-text = "[center]Attack - Deal [color=\"ff0000\"]damage[/color] to an enemy[/center]
-
-
-"
 fit_content = true
 scroll_active = false

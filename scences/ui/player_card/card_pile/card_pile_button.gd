@@ -1,5 +1,4 @@
-class_name CardPileButton
-extends TextureButton
+class_name CardPileButton extends TextureButton
 
 @export var counter : RichTextLabel
 @export var card_pile : CardPile : set = set_card_pile

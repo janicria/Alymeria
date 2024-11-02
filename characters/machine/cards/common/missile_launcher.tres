@@ -16,4 +16,4 @@ statuses = Array[ExtResource("3_2r0yn")]([])
 sound = ExtResource("2_qcqyc")
 tooltip_text = "ATK %s
 EVERYONE"
-effect_description = "[center]Attack - Deal [color=\"ff0000\"]damage[/color] to an enemy[/center]"
+effects = Array[String](["attack"])

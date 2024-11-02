@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="DefenceUp" load_steps=3 format=3 uid="uid://c0qu7qbc404de"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://c0qu7qbc404de"]
 
 [ext_resource type="Texture2D" uid="uid://boklhiqs1414d" path="res://assets/objects/tile_0115.png" id="1_j2vdn"]
 [ext_resource type="Script" path="res://effects/status/defence_up.gd" id="2_lg55t"]
@@ -11,4 +11,4 @@ stack_type = 1
 duration = 0
 stacks = 1
 icon = ExtResource("1_j2vdn")
-tooltip = "[center]Defence up - [color=0044ff]Gain[/color] %s more barrier"
+tooltip = "[color=1AD12C]Defence up[/color] - Gain %s more [color=0044ff]barrier[/color] from [color=0044ff]cards[/color]"

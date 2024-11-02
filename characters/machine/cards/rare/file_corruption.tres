@@ -16,4 +16,4 @@ cost = 2
 statuses = Array[ExtResource("3_1e4he")]([ExtResource("4_tpn1h")])
 sound = ExtResource("2_rgqdt")
 tooltip_text = "File corruption 1"
-effect_description = "File corruption - Whenever you play a card apply 1 nano plague to everyone"
+effects = Array[String](["file_corruption"])

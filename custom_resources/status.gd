@@ -27,7 +27,9 @@ func apply_status(_target: Node) -> void:
 
 
 func get_tooltip() -> String:
-	return tooltip
+	if stack_type == Status.StackType.INTENSITY:
+		return tooltip % stacks
+	return tooltip 
 
 
 func set_duration(new_duration: int) -> void:

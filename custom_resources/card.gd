@@ -17,7 +17,7 @@ enum Upgrade {NONE, REFINED, ENHANCED}
 @export_group("Visuals")
 @export var sound : AudioStream
 @export_multiline var tooltip_text : String
-@export_multiline var effect_description : String
+@export var effects: Array[String]
 
 var cardui: CardUI
 var upgrade: Upgrade
@@ -27,7 +27,7 @@ var cache_cost: int : set = set_cache_cost
 
 
 func _to_string() -> String:
-	return "%s - %s\n\n%s - %s" % [name, unique_id, cardui, cardui.get_index()]
+	return cardui.stats.call()
 
 
 func set_cache_cost(_value: int) -> void:

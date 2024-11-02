@@ -17,7 +17,4 @@ sound = ExtResource("2_6e1md")
 tooltip_text = "ATK X + 3
 X = DRAW
 Cancel 2"
-effect_description = "[center]Attack - Deal [color=\"ff0000\"]damage[/color] to an enemy
-X - Attack equals the number of cards in your draw pile
-Cancel - You cannot play cards. Decreases by 1 at the END of each turn.[/center]
-"
+effects = Array[String](["attack", "cancel"])

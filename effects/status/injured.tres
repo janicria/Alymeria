@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Injured" load_steps=3 format=3 uid="uid://ddddlotnbvmxo"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://ddddlotnbvmxo"]
 
 [ext_resource type="Texture2D" uid="uid://bmuj5in6okgaq" path="res://assets/ui/universal/cross.png" id="1_65srr"]
 [ext_resource type="Script" path="res://effects/status/injured.gd" id="2_glvcc"]
@@ -11,4 +11,4 @@ stack_type = 2
 duration = 1
 stacks = 0
 icon = ExtResource("1_65srr")
-tooltip = "Injured - Recive 30% more damage from attacks. Decreases by 1 at the END of each turn"
+tooltip = "[color=AB3321]Injured[/color] - Recive 30% more [color=ff0000]damage[/color] from [color=ff0000]attacks[/color]. Decreases by 1 at the END of each turn"

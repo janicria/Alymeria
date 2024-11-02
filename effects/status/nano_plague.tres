@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="NanoPlague" load_steps=3 format=3 uid="uid://b8wm8xlls652g"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://b8wm8xlls652g"]
 
 [ext_resource type="Texture2D" uid="uid://psr6xk3k26oh" path="res://assets/objects/tile_0114.png" id="1_fwccx"]
 [ext_resource type="Script" path="res://effects/status/nano_plague.gd" id="1_psyxc"]
@@ -11,4 +11,4 @@ stack_type = 1
 duration = 0
 stacks = 1
 icon = ExtResource("1_fwccx")
-tooltip = "nano plaaaague %s"
+tooltip = "[color=AB3321]Nano plague[/color] - Take [color=ff0000]damage[/color] equal to 80% of stacks then apply [color=008000]nano plague[/color] equal to 20% of stacks to all allies at the END of each turn"

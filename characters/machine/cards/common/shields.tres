@@ -15,4 +15,4 @@ cost = 1
 statuses = Array[ExtResource("3_pl30q")]([])
 sound = ExtResource("3_xer4h")
 tooltip_text = "Barrier %d"
-effect_description = "[center]Barrier - [color=\"0044ff\"]Prevents[/color] [color=\"ff0000\"]damage[/color] from enemy attacks[/center]"
+effects = Array[String](["barrier"])

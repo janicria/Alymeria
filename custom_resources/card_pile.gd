@@ -7,7 +7,8 @@ signal card_pile_size_changed(cards_amount: int)
 
 static func generate_from_ui(cardui_array: Array[Node]) -> CardPile:
 	var card_pile_to_send := CardPile.new()
-	for cardui in cardui_array:
+	for cardui: CardUI in cardui_array:
+		cardui.card.cardui = cardui
 		card_pile_to_send.add_card(cardui.card)
 	return card_pile_to_send
 

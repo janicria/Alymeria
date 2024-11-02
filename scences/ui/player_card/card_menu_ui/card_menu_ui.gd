@@ -1,7 +1,6 @@
-class_name CardMenuUI
-extends CenterContainer
+class_name CardMenuUI extends CenterContainer
 
-signal show_tooltip(card : Card)
+signal show_tooltip(card: Card)
 
 const BASE_STYLEBOX := preload("res://scences/ui/player_card/card_ui/card_base_stylebox.tres")
 const HOVER_STYLEBOX := preload("res://scences/ui/player_card/card_ui/card_hover_stylebox.tres")
@@ -27,8 +26,7 @@ func show_cache_cost() -> void:
 
 # TODO: Connect with CardUI
 func set_card(value : Card) -> void:
-	if ! is_node_ready():
-		await ready
+	if !is_node_ready(): await ready
 	
 	card = value
 	
@@ -68,7 +66,7 @@ func set_card(value : Card) -> void:
 
 func _on_gui_input(event : InputEvent) -> void:
 	if event.is_action_pressed("middle_mouse"):
-		OS.alert(str(card))
+		OS.alert(card._to_string())
 
 
 func _on_tooltip_mouse_entered() -> void:

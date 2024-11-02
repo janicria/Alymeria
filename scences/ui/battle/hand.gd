@@ -8,12 +8,21 @@ extends HBoxContainer
 
 func _ready() -> void:
 	Events.update_card_variant.connect(update_card_variant)
-	child_order_changed.connect(update_card_seperation) # Reuse the below lambda in future <- uhh, why?
-	Events.update_hand_state.connect(func()->void: for child: CardUI in get_children():
-		if player.status_handler._get_status("cancel"): child.canceled = true; child.playable = false)
+	child_order_changed.connect(update_card_seperation)
+	Events.update_hand_state.connect(check_for_cancel)
+	Events.player_hand_drawn.connect(check_for_cancel)
 
 
-func add_card(card : Card) -> void:
+# TODO: Mention playing cards before start of turn cores being a feature
+func check_for_cancel() -> void:
+	if player.status_handler._get_status("cancel"): 
+		for child: CardUI in get_children():
+			child.canceled = true
+			child.playable = false
+			child.disabled = true
+
+
+func add_card(card: Card) -> void:
 	# Needed for uncaching cards
 	if get_child_count() >= 10: OS.alert("Max hand size is 10"); return
 	var new_card_ui := CARDUI.instantiate() as CardUI
@@ -24,6 +33,9 @@ func add_card(card : Card) -> void:
 	var wr: WeakRef = weakref(player); if !wr.get_ref(): return
 	new_card_ui.player_modifiers = player.modifier_handler
 	new_card_ui.card = card
+	# DO NOT REMOVE THE BELOW LINE
+	new_card_ui.card.cardui = new_card_ui
+	# DO NOT REMOVE THE ABOVE LINE
 	new_card_ui.playable = Data.character.can_play_card(new_card_ui.card)
 	Events.player_card_drawn.emit()
 	new_card_ui.card.drawn()

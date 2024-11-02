@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="FileCorruption" load_steps=3 format=3 uid="uid://cyxy6nnu00kma"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://cyxy6nnu00kma"]
 
 [ext_resource type="Texture2D" uid="uid://o6mhnfvroyvx" path="res://assets/objects/tile_0125.png" id="1_ra5v2"]
 [ext_resource type="Script" path="res://effects/status/file_corruption.gd" id="2_0kw1l"]
@@ -11,4 +11,4 @@ stack_type = 1
 duration = 0
 stacks = 1
 icon = ExtResource("1_ra5v2")
-tooltip = "File corruption - Whenever you play a card apply %s nano plague to everyone"
+tooltip = "[color=1AD12C]File corruption[/color] - Whenever you play a [color=0044ff]card[/color] apply %s [color=008000]nano plague[/color] to everyone"

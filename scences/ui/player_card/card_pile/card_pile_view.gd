@@ -40,10 +40,13 @@ func select_card(optional := false) -> void:
 	return_button.visible = optional
 	await get_tree().process_frame
 	for cardmenu: CardMenuUI in cards.get_children():
-		#OS.alert(str(cardmenu.card))
 		cardmenu.card_tooltip.gui_input.connect(
 			func(input: InputEvent)-> void:
 				if input.is_action_pressed("left_mouse"):
+					# ALERT: DO NOT REMOVE THE BELOW LINE UNDER ANY CIRCUMSTANCES
+					# Prevents the wrong cardui from being assigned and causing days of pain and suffering
+					# Works with shuffled cardpiles as they won't ever call select_card
+					cardmenu.card.cardui = Data.player_handler.hand.get_child(cardmenu.get_index())
 					card_selected.emit(cardmenu.card))
 
 

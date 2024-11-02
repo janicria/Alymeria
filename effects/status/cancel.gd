@@ -1,4 +1,4 @@
-class_name Cancel extends Status
+extends Status
 
 
 func initalise_target(_target: Node) -> void:

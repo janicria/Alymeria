@@ -1,4 +1,4 @@
-class_name NanoPlague extends Status
+extends Status
 
 const NANO_PLAGUE = preload("res://effects/status/nano_plague.tres")
 
@@ -12,4 +12,5 @@ func apply_status(target: Node) -> void:
 	nano_plauge.stacks = ceili(stacks * 0.2)
 	status_effect.status = nano_plauge
 	nano_plauge.active = false
-	status_effect.execute(target.get_tree().get_nodes_in_group(target.get_groups()[-1]))
+	for ally in target.get_tree().get_nodes_in_group(target.get_groups()[-1]):
+		if ally != target: status_effect.execute([ally])

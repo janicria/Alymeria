@@ -23,6 +23,8 @@ const HOVER_STYLEBOX := preload("res://scences/ui/player_card/card_ui/card_hover
 
 # Members below are referenced in various other scripts
 var player_modifiers: ModifierHandler
+var stats := func()->String: 
+	return "%s - %s\n\n%s - %s" % [card.name, card.unique_id, self, get_index()]
 var original_index := 0
 var parent: Control
 var tween: Tween
@@ -48,7 +50,6 @@ func  _input(event : InputEvent) -> void:
 func set_card(value: Card) -> void:
 	if !is_node_ready(): await ready
 	card = value
-	card.cardui = self
 	
 	if !Events.update_draw_card_ui.is_connected(set_card):
 		Events.update_draw_card_ui.connect(set_card.bind(card))
@@ -67,11 +68,11 @@ func set_card(value: Card) -> void:
 	
 	# Card type text
 	match card.type:
-		0: type.text = " -Physical" 
-		1: type.text = " -Internal"
-		2: type.text = " -Looped" if Data.character.character_name == "Machine" else " -Summon"
-		3: type.text = " -Status"
-		4: type.text = " -Malware" if Data.character.character_name == "Machine" else " -Hex"
+		Card.Type.PHYSICAL: type.text = " -Physical" 
+		Card.Type.INTERNAL: type.text = " -Internal"
+		Card.Type.CHAR: type.text = " -Looped" if Data.character.character_name == "Machine" else " -Summon"
+		Card.Type.STATUS: type.text = " -Status"
+		Card.Type.CHAR_CURSE: type.text = " -Malware" if Data.character.character_name == "Machine" else " -Hex"
 	
 	# Card name (Prevents names from going out of the cardui's area/hitbox)
 	if _name.get_line_count() > 1 && !name_initialised:
@@ -142,10 +143,10 @@ func play() -> void:
 		queue_free()
 
 
-func _on_gui_input(event : InputEvent) -> void:
+func _on_gui_input(event: InputEvent) -> void:
 	card_state_machine.on_gui_input(event)
-	if event.is_action_pressed("middle_mouse"):
-		OS.alert("%s - %s\n\n%s - %s" % [card.name, card.unique_id, self, get_index()])
+	if event.is_action_pressed("middle_mouse"): 
+		OS.alert(stats.call(), "Card stats")
 
 
 func _on_mouse_entered() -> void:

@@ -40,9 +40,7 @@ func status_changed() -> void:
 
 
 func _on_mouse_entered() -> void:
-	if status.stack_type == Status.StackType.INTENSITY:
-		Events.show_tooltip.emit(status.tooltip % status.stacks)
-	else: Events.show_tooltip.emit(status.tooltip)
+	Events.show_tooltip.emit(status.get_tooltip())
 	z_index = 2 # Infront of carduis
 
 

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Suboptimal" load_steps=3 format=3 uid="uid://cnal7kyq8tqrv"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://cnal7kyq8tqrv"]
 
 [ext_resource type="Texture2D" uid="uid://pgj8vfpj6tc5" path="res://assets/objects/tile_0130.png" id="1_7fdrm"]
 [ext_resource type="Script" path="res://effects/status/suboptimal.gd" id="2_xgxyy"]
@@ -11,5 +11,4 @@ stack_type = 0
 duration = 0
 stacks = 0
 icon = ExtResource("1_7fdrm")
-tooltip = "Suboptimal - At the start of each turn lose X health and gain X damage up
-[center]Damage up - [color=ff0000]Attacks[/color] deal %s more damage"
+tooltip = "[color=1AD12C]Suboptimal[/color] - At the start of each turn lose %d [color=ff0000]health[/color] and gain %d [color=1AD12C]damage up[/color]"

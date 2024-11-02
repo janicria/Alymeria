@@ -1,4 +1,3 @@
-class_name DamageUp
 extends Status
 
 
@@ -9,9 +8,7 @@ func initalise_target(target: Node) -> void:
 
 func _on_status_changed(target: Node) -> void:
 	# Getting mod
-	assert(target.get("modifier_handler"), "No mods on target %s" % target)
 	var damage_dealt_modifier: Modifier = target.modifier_handler.get_modifier_of_type(Modifier.Type.DMG_DEALT)
-	assert(damage_dealt_modifier, "No dmg dealt mod on target %s" % target)
 	# Getting / creating mod value
 	var damage_up_value: ModifierValue = damage_dealt_modifier.get_value("damage_up")
 	if !damage_up_value:

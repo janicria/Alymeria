@@ -15,4 +15,4 @@ cost = 1
 statuses = Array[ExtResource("3_84rcc")]([])
 sound = ExtResource("2_iixm5")
 tooltip_text = "Nano plague 4"
-effect_description = ":3"
+effects = Array[String](["nano_plague"])
