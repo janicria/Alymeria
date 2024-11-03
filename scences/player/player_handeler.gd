@@ -25,7 +25,7 @@ func start_battle(character : CharacterStats) -> void:
 
 func start_turn() -> void:
 	Data.character.barrier = clamp(Data.character.barrier -10, 0, 999)
-	Data.character.reset_mana()
+	Data.character.memory = Data.character.max_memory
 	var wr: WeakRef = weakref(player) # In case player died
 	if wr.get_ref(): player.status_handler.apply_statuses_by_type(Status.Type.START_OF_TURN)
 
@@ -58,8 +58,8 @@ func draw_cards(amount: int) -> void:
 	
 		tween.finished.connect(
 			func()->void:
-				# Prevents cards from being placed after being draw in between updating mana
-				Data.character.set_mana(Data.character.mana)
+				# Prevents cards from being placed after being draw in between updating memory
+				Data.character.set_memory(Data.character.memory)
 				Events.player_hand_drawn.emit()
 				Events.update_draw_card_ui.emit())
 

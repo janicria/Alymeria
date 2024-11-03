@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://dp685le4xdy6x"]
+
+[ext_resource type="Script" path="res://scences/summon/summon.gd" id="1_ofle6"]
+[ext_resource type="PackedScene" uid="uid://b21bh1sh66gbd" path="res://scences/ui/battle/stats_ui.tscn" id="2_js3ca"]
+[ext_resource type="Texture2D" uid="uid://1u3b3hwqd8yh" path="res://assets/characters/tile_0110.png" id="2_v6ld2"]
+[ext_resource type="PackedScene" uid="uid://dy5kejm171f3a" path="res://scences/status/status_handler.tscn" id="3_j7vls"]
+[ext_resource type="PackedScene" uid="uid://j47d0nutw0m" path="res://scences/modifer/modifier_handler.tscn" id="4_yide4"]
+[ext_resource type="PackedScene" uid="uid://b1572o2e6qr8n" path="res://scences/modifer/modifier.tscn" id="5_hl6es"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v0mrw"]
+
+[node name="Summon" type="Area2D" groups=["summons"]]
+collision_layer = 4
+script = ExtResource("1_ofle6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(8, 8)
+shape = SubResource("RectangleShape2D_v0mrw")
+
+[node name="Texture" type="TextureRect" parent="."]
+unique_name_in_owner = true
+offset_right = 16.0
+offset_bottom = 16.0
+texture = ExtResource("2_v6ld2")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="StatsUI" parent="." instance=ExtResource("2_js3ca")]
+unique_name_in_owner = true
+offset_left = -40.0
+offset_top = 14.0
+offset_right = 50.0
+offset_bottom = 30.0
+
+[node name="StatusHandler" parent="." node_paths=PackedStringArray("status_owner") instance=ExtResource("3_j7vls")]
+unique_name_in_owner = true
+offset_left = -22.0
+offset_top = 21.0
+offset_right = -22.0
+offset_bottom = 21.0
+status_owner = NodePath("")
+
+[node name="ModifierHandler" parent="." instance=ExtResource("4_yide4")]
+unique_name_in_owner = true
+
+[node name="DamageDealt" parent="ModifierHandler" instance=ExtResource("5_hl6es")]
+
+[node name="BarrierGained" parent="ModifierHandler" instance=ExtResource("5_hl6es")]
+type = 1
+
+[node name="DamageTaken" parent="ModifierHandler" instance=ExtResource("5_hl6es")]
+type = 2
+
+[node name="CardCost" parent="ModifierHandler" instance=ExtResource("5_hl6es")]
+type = 3

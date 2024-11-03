@@ -10,6 +10,7 @@ enum State {BASE, LOOPS, ENEMY_DRAW, PLAYER, ENEMY_CARDS, WIN, LOSE}
 @onready var battle_ui: BattleUI = $BattleUI
 @onready var player_handeler: PlayerHandeler = $PlayerHandeler
 @onready var player: Player = $Player
+@onready var summon_handler: SummonHandler = %SummonHandler
 
 var core_handler: CoreHandler
 
@@ -52,6 +53,8 @@ func _on_update_battle_state(state: State) -> void:
 			Events.update_turn_number.emit(Data.turn_number + 1)
 			enemy_handler.start_mana()
 			battle_stats.turn_effects()
+			summon_handler.start_turn()
+			await summon_handler.actions_finished
 			Events.update_battle_state.emit(State.ENEMY_DRAW)
 		
 		State.ENEMY_DRAW: # Also enemy statuses

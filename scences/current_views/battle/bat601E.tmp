@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://hmurq7k0cm7y"]
+[gd_scene load_steps=26 format=3 uid="uid://hmurq7k0cm7y"]
 
 [ext_resource type="Script" path="res://scences/current_views/battle/battle.gd" id="1_aq6po"]
 [ext_resource type="Texture2D" uid="uid://j16iwp255gqv" path="res://assets/backgrounds/sand.png" id="1_rkqh7"]
@@ -17,10 +17,7 @@
 [ext_resource type="Script" path="res://scences/player/player_handeler.gd" id="8_yhxx8"]
 [ext_resource type="PackedScene" uid="uid://c6uvw3m0xy3xg" path="res://scences/ui/battle/memory_ui.tscn" id="11_a3x14"]
 [ext_resource type="PackedScene" uid="uid://bijq7mf8h0j85" path="res://scences/ui/settings/tooltip.tscn" id="12_rl0gg"]
-[ext_resource type="Script" path="res://scences/summon/summon_handler.gd" id="13_7kmvg"]
 [ext_resource type="Theme" uid="uid://bhs76hnulf3s4" path="res://assets/misc/main_theme.tres" id="13_j1van"]
-[ext_resource type="PackedScene" uid="uid://dp685le4xdy6x" path="res://scences/summon/summon.tscn" id="14_h8sp4"]
-[ext_resource type="Resource" uid="uid://t4pkxirfov3c" path="res://summons/summon_test.tres" id="15_xgbvd"]
 [ext_resource type="Script" path="res://scences/ui/battle/red_flash.gd" id="15_ym3km"]
 [ext_resource type="PackedScene" uid="uid://ummt03ux4buj" path="res://scences/ui/battle/defeat_panel.tscn" id="17_lrr78"]
 [ext_resource type="PackedScene" uid="uid://cmrvm435qcold" path="res://scences/ui/player_card/card_pile/card_pile_button.tscn" id="21_4q4vq"]
@@ -82,17 +79,9 @@ ai = ExtResource("6_ay38m")
 stats = ExtResource("7_ulgmk")
 
 [node name="Player" parent="." node_paths=PackedStringArray("handler") instance=ExtResource("3_qq8kc")]
-position = Vector2(109, 101)
+position = Vector2(119, 88)
 stats = ExtResource("4_jn668")
 handler = NodePath("../PlayerHandeler")
-
-[node name="SummonHandler" type="Node2D" parent="."]
-unique_name_in_owner = true
-script = ExtResource("13_7kmvg")
-
-[node name="Summon" parent="SummonHandler" instance=ExtResource("14_h8sp4")]
-position = Vector2(157, 91)
-stats = ExtResource("15_xgbvd")
 
 [node name="PlayerHandeler" type="Node" parent="." node_paths=PackedStringArray("player", "hand")]
 script = ExtResource("8_yhxx8")

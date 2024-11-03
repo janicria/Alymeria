@@ -6,7 +6,7 @@ func added() -> void:
 
 
 func activate() -> void:
-	Data.character.mana += 1
+	Data.character.memory += 1
 	await coreui.get_tree().create_timer(0.1).timeout
 	if coreui.slotted: Data.player_handler.draw_card()
 

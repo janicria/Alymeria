@@ -1,5 +1,5 @@
-class_name ManaDown extends Status
+extends Status
 
 
 func apply_status(_target: Node) -> void:
-	Data.character.mana -= stacks
+	Data.character.memory -= stacks

@@ -214,7 +214,7 @@ func kill(who: String) -> String:
 		print(\"[CMD] Failed to kill %s\" % who)
 		return \"Not in a battle!\"
 	
-	if who != \"self\" && who != \"enemies\":
+	if who != \"self\" && who != \"enemies\" && who != \"summons\":
 		return \"%s is not a valid group!\" % who
 	
 	Data.cheats = true

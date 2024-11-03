@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="SummonStats" load_steps=3 format=3 uid="uid://t4pkxirfov3c"]
+
+[ext_resource type="Texture2D" uid="uid://blkttehatvu04" path="res://assets/misc/icon.svg" id="1_6hctb"]
+[ext_resource type="Script" path="res://custom_resources/summon_stats.gd" id="1_r658n"]
+
+[resource]
+script = ExtResource("1_r658n")
+name = "Testy"
+description = "wiw"
+card_type = 0
+max_health = 12
+art = ExtResource("1_6hctb")

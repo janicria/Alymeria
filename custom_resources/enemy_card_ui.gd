@@ -116,7 +116,7 @@ func apply_effects(targets: Array[Node]) -> void:
 		# Indentation moment <- ikr it sucks
 		var effect: Effect
 		match card_stats.type:
-			EnemyCard.Type.ATTACK: 
+			EnemyCard.Type.ATTACK:
 				effect = DamageEffect.new()
 				effect.amount = modified_damage
 				if enemy_stats.status_handler._has_status("spinneret"):
@@ -149,36 +149,36 @@ func apply_effects(targets: Array[Node]) -> void:
 func _on_control_mouse_entered() -> void:
 	var wr: WeakRef = weakref(enemy_stats); if !wr.get_ref(): 
 		Events.show_tooltip.emit(
-		"[center]This enemy died, but it's card is still here for some reason? \n [s](bad programming)[/s][/center]")
+		"This [color=CD57FF]enemy[/color] died, but it's [color=0044ff]card[/color] is still here for some reason? \n [s](bad programming)[/s]")
 		return
 	
 	if card_stats.custom_amount != "":
 		Events.show_tooltip.emit(card_stats.get_tooltip())
 		return
 	
-	var tooltip_text := "[center]This enemy is going to "
+	var tooltip_text := "This [color=CD57FF]enemy[/color] is going to "
 	
 	if card_stats.type == card_stats.Type.ATTACK && card_stats.repeats != 1:
 		tooltip_text += "[color=ff0000]attack for %sx%s[/color]" % [card_stats.amount, card_stats.repeats]
 	else: match card_stats.type:
 		card_stats.Type.ATTACK: tooltip_text += "[color=ff0000]attack for %s[/color]" % card_stats.amount
-		card_stats.Type.BARRIER: tooltip_text += "apply a small amount of [color=0044ff]barrier[/color]"
-		card_stats.Type.LARGE_BARRIER: tooltip_text +=  "apply a large amount of [color=0044ff]barrier[/color]"
-		card_stats.Type.DRAW: tooltip_text += "draw %s cards" % card_stats.amount
-		card_stats.Type.ENERGY: tooltip_text += "replenish %s mana" % card_stats.amount
+		card_stats.Type.BARRIER: tooltip_text += "gain a small amount of [color=0044ff]barrier[/color]"
+		card_stats.Type.LARGE_BARRIER: tooltip_text +=  "gain a large amount of [color=0044ff]barrier[/color]"
+		card_stats.Type.DRAW: tooltip_text += "[color=3D7BFF]draw %s[/color] [color=0044ff]cards[/color]" % card_stats.amount
+		card_stats.Type.ENERGY: tooltip_text += "[color=3D7BFF]replenish %s mana[/color]" % card_stats.amount
 		card_stats.Type.BUFF: tooltip_text += "[color=1AD12C]apply a buff[/color]"
 		card_stats.Type.DEBUFF: tooltip_text += "[color=AB3321]apply a debuff[/color]"
-		card_stats.Type.SPAWN: tooltip_text += "spawn an ally"
+		card_stats.Type.SPAWN: tooltip_text += "spawn an [color=CD57FF]ally[/color]"
 		card_stats.Type.UNKNOWN: tooltip_text += "do something unknown"
 	
 	if card_stats.type != card_stats.Type.ATTACK: match card_stats.targets:
-		card_stats.Targets.SINGLE: tooltip_text += " to you"
-		card_stats.Targets.SELF: tooltip_text += " to itself"
-		card_stats.Targets.ENEMIES: tooltip_text += " to you and your summons"
-		card_stats.Targets.ALLIES: tooltip_text += " to all enemies"
-		card_stats.Targets.EVERYONE: tooltip_text += "to everyone"
+		card_stats.Targets.SINGLE: tooltip_text += " [color=CD57FF]to you[/color]"
+		card_stats.Targets.SELF: tooltip_text += " [color=CD57FF]to itself[/color]"
+		card_stats.Targets.ENEMIES: tooltip_text += " [color=CD57FF]to you and your summons[/color]"
+		card_stats.Targets.ALLIES: tooltip_text += " [color=CD57FF]to all enemies[/color]"
+		card_stats.Targets.EVERYONE: tooltip_text += "[color=CD57FF]to everyone[/color]"
 	
-	tooltip_text += " when this card is played[/center]"
+	tooltip_text += " when this [color=0044ff]card[/color] is played"
 	Events.show_tooltip.emit(tooltip_text)
 	
 	enemy_stats.arrow.visible = !enemy_stats.arrow.visible

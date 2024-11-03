@@ -6,8 +6,6 @@
 [ext_resource type="Resource" uid="uid://dk2sl2aapuwe7" path="res://scences/main/run_startup.tres" id="2_8jbpy"]
 [ext_resource type="Texture2D" uid="uid://clbji84e7ec6m" path="res://assets/objects/tile_0126.png" id="3_30xcd"]
 
-
-
 [sub_resource type="Gradient" id="Gradient_mtqjb"]
 colors = PackedColorArray(0.2, 0.117647, 0.0509804, 1, 0.054902, 0, 0.0588235, 1)
 
@@ -16,7 +14,7 @@ gradient = SubResource("Gradient_mtqjb")
 width = 50
 
 [sub_resource type="LabelSettings" id="LabelSettings_aj7pw"]
-font_size = 32
+font_size = 24
 shadow_size = 4
 shadow_color = Color(0.772549, 0.454902, 0.72549, 0.509804)
 

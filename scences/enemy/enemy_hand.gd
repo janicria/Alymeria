@@ -61,7 +61,7 @@ func organise_cards() -> void:
 		# We want multiple cards to move at the same time
 		await get_tree().create_timer(0.1).timeout
 		# Scheduling the next card to be played after all cards have been moved
-		if card == get_child(-1): cards_finished_moving.emit()#; printerr("\n\n\n\n\n\n\n\n")
+		if card == get_child(-1): cards_finished_moving.emit()
 	if !get_children(): Events.update_battle_state.emit(Battle.State.LOOPS)
 
 

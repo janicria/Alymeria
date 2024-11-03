@@ -1,5 +1,4 @@
-class_name  CardUI
-extends Control
+class_name  CardUI extends Control
 
 signal reparent_requested(card_ui: CardUI)
 signal transition_requested(from: CardState, to: CardState.State)
@@ -65,14 +64,7 @@ func set_card(value: Card) -> void:
 	cost.text = str(card.cost)
 	desc.text = "[center]%s[/center]" % card.get_tooltip_text(player_modifiers, null)
 	_name.text = card.name
-	
-	# Card type text
-	match card.type:
-		Card.Type.PHYSICAL: type.text = " -Physical" 
-		Card.Type.INTERNAL: type.text = " -Internal"
-		Card.Type.CHAR: type.text = " -Looped" if Data.character.character_name == "Machine" else " -Summon"
-		Card.Type.STATUS: type.text = " -Status"
-		Card.Type.CHAR_CURSE: type.text = " -Malware" if Data.character.character_name == "Machine" else " -Hex"
+	type.text = " -%s" % (str(Card.Type.find_key(card.type))).capitalize()
 	
 	# Card name (Prevents names from going out of the cardui's area/hitbox)
 	if _name.get_line_count() > 1 && !name_initialised:
@@ -157,7 +149,6 @@ func _on_mouse_entered() -> void:
 func _on_mouse_exited() -> void:
 	card_state_machine.on_mouse_exited()
 	z_index = 0
-
 
 
 func _on_drop_point_detector_area_entered(area : Area2D) -> void:

@@ -36,7 +36,6 @@ shape = SubResource("RectangleShape2D_5jego")
 unique_name_in_owner = true
 offset_top = 8.0
 offset_bottom = 24.0
-metadata/_edit_use_anchors_ = true
 
 [node name="ManaCounter" type="RichTextLabel" parent="."]
 unique_name_in_owner = true

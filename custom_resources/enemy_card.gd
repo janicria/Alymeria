@@ -1,5 +1,4 @@
-class_name EnemyCard
-extends Resource
+class_name EnemyCard extends Resource
 
 enum Type {ATTACK, BARRIER, LARGE_BARRIER, DRAW, ENERGY, BUFF, DEBUFF, SPAWN, UNKNOWN}
 enum Targets {SINGLE, SELF, ENEMIES, ALLIES, EVERYONE}

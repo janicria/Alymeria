@@ -1,7 +1,7 @@
 class_name BattleUI extends CanvasLayer
 
 @onready var hand: Hand = $Hand
-@onready var mana_ui: ManaUI = $ManaUI
+@onready var memory_ui: MemoryUI = $MemoryUI
 @onready var end_turn_button: Button = %EndTurnButton
 @onready var draw_pile_button: CardPileButton = %DrawPileButton
 @onready var discard_pile_button: CardPileButton = %DiscardPileButton

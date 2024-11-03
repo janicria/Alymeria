@@ -1,10 +1,10 @@
-class_name CardSateMachine
-extends Node
+class_name CardSateMachine extends Node
 
 @export var inital_state: CardState
 
 var current_state: CardState
 var states := {}
+
 
 func init(card: CardUI) -> void:
 	for child in get_children():

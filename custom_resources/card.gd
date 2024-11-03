@@ -1,8 +1,8 @@
 class_name Card extends Resource
 
-enum Type {PHYSICAL, INTERNAL, CHAR, STATUS, CHAR_CURSE}
+enum Type {PHYSICAL, INTERNAL, LOOPED, STATUS, MALWARE}
 enum Rarity {COMMON, UNCOMMON, RARE, STATUS, PURPLE}
-enum Target {SELF, SINGLE_ENEMY, ALL_ENEMIES, RANDOM, EVERYONE}
+enum Target {SELF, SINGLE_ENEMY, ALL_ENEMIES, RANDOM, EVERYONE, SUMMON}
 enum Upgrade {NONE, REFINED, ENHANCED}
 
 @export_group("Attributes")
@@ -68,7 +68,7 @@ func remove_status(status: CardStatus) -> void:
 
 
 func is_single_targeted() -> bool:
-	return target == Target.SINGLE_ENEMY
+	return target == Target.SINGLE_ENEMY or target == Target.SUMMON
 
 
 func _get_targets(targets: Array[Node]) -> Array[Node]:
@@ -91,7 +91,7 @@ func _get_targets(targets: Array[Node]) -> Array[Node]:
 func play(targets : Array[Node], modifiers: ModifierHandler) -> void:
 	fully_played = false
 	Events.player_card_played.emit(self) 
-	Data.character.mana -= cost
+	Data.character.memory -= cost
 	
 	if is_single_targeted(): 
 		apply_effects(targets, modifiers)
