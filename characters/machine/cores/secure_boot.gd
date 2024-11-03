@@ -4,7 +4,6 @@ const EXHAUST = preload("res://effects/card_status/exhaust.tres")
 
 var cards_selected: int
 
-
 func activate() -> void:
 	# In case core was removed
 	if coreui == null: return
@@ -19,10 +18,9 @@ func activate() -> void:
 		"Select %s to give exhaust" % ("a card" if !coreui.slotted else "up to two cards"))
 	
 	await Data.get_tree().process_frame
-	Data.battle_ui.custom_pile_view.select_card(true)
+	erase_then_select()
 	
 	Data.battle_ui.custom_pile_view.card_selected.connect(func(card:Card)->void:
-		OS.alert("%s - %s\n\n%s - %s" % [card.name, card.unique_id, card.cardui, card.cardui.get_index()])
 		if !coreui.slotted: cards_selected = 1
 		cards_selected += 1
 		card.add_status(EXHAUST.duplicate())
@@ -32,4 +30,11 @@ func activate() -> void:
 		if cards_selected > 1:
 			Data.battle_ui.custom_pile_view._hide()
 			return
-		Data.battle_ui.custom_pile_view.select_card(true))
+		erase_then_select())
+
+
+func erase_then_select() -> void:
+	for cardmenu: CardMenuUI in Data.battle_ui.custom_pile_view.cards.get_children():
+		if cardmenu.card.has_status("exhaust"):
+			cardmenu.queue_free()
+	Data.battle_ui.custom_pile_view.select_card(true)

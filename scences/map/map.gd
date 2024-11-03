@@ -1,5 +1,6 @@
-class_name Map
-extends Node2D
+class_name Map extends Node2D
+
+signal map_exited(current_room: Room)
 
 const SCROLL_SPEED := 15
 const MAP_ROOM := preload("res://scences/map/map_room.tscn")
@@ -64,9 +65,10 @@ func unlock_floor(which_floor: int = floors_climbed) -> void:
 			map_room.available = true
 
 
-# Called by Run
+# Called by Main
 func unlock_next_rooms() -> void:
 	for map_room: MapRoom in rooms.get_children():
+		if last_room == null: return # If from command
 		if last_room.next_rooms.has(map_room.room):
 			map_room.available = true
 
@@ -112,4 +114,4 @@ func _on_map_room_selected(room: Room) -> void:
 	
 	last_room = room
 	floors_climbed += 1
-	Events.map_exited.emit(room)
+	map_exited.emit(room)

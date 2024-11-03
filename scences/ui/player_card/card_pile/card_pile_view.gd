@@ -11,6 +11,7 @@ const CARD_MENU_UI_SCENCE := preload("res://scences/ui/player_card/card_menu_ui/
 @onready var cards: GridContainer = %Cards
 @onready var return_button: Button = %ReturnButton
 
+var relative_index: int
 var shuffled_cards: Array[Card]
 var current_view_randomised := false
 var open := false
@@ -25,7 +26,8 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_cancel"): _hide()
+	if event.is_action_pressed("ui_cancel") && return_button.visible: 
+		_hide()
 
 
 func set_card_pile(value: CardPile) -> void:
@@ -46,11 +48,16 @@ func select_card(optional := false) -> void:
 					# ALERT: DO NOT REMOVE THE BELOW LINE UNDER ANY CIRCUMSTANCES
 					# Prevents the wrong cardui from being assigned and causing days of pain and suffering
 					# Works with shuffled cardpiles as they won't ever call select_card
-					cardmenu.card.cardui = Data.player_handler.hand.get_child(cardmenu.get_index())
-					card_selected.emit(cardmenu.card))
+					for cardmenuui: CardMenuUI in cards.get_children():
+						if cardmenuui.card == cardmenu.card && !cardmenuui.card.has_status("exhaust"):
+							card_selected.emit(cardmenu.card))
+					#cardmenu.card.cardui = Data.player_handler.hand.get_child(cardmenu.get_index() + relative_index)
+					
 
 
 func _hide() -> void:
+	# Cache pile doesn't hide without await (might be becuase it's emitting)
+	await get_tree().process_frame
 	hide()
 	Data.card_pile_open = false
 	open = false
@@ -59,6 +66,12 @@ func _hide() -> void:
 
 
 func show_current_view(new_title : String, randomised := false) -> void:
+	# Prevents maths textbook from somehow not closing custom pile view correctly
+	if name == "CustomPileView":
+		await get_tree().process_frame
+		if Data.battle_ui.cache_pile_view.visible: 
+			return
+		
 	Data.card_pile_open = true
 	open = true
 	

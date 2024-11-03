@@ -7,7 +7,7 @@
 resource_name = "console_window"
 script/source = "extends Window
 
-const Room = preload(\"res://custom_resources/room.gd\")
+const SHOP := preload(\"res://scences/current_views/shop/shop.tscn\")
 
 # Permissions for executing commands.
 @export var permissionLevel: ConsoleDataManager.PermissionLevel = 0
@@ -446,6 +446,12 @@ func core(action: String, id: String) -> String:
 	
 	return \"%s is not an action for command deck, possible actions: add, remove, has\" % action
 
+
+func shop() -> String:
+	get_parent()._change_view(SHOP)
+	Data.cheats = true
+	print(\"[CMD] Entered a shop\")
+	return \"Entered a shop\"
 
 
 #endregion

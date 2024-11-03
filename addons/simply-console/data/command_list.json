@@ -211,5 +211,14 @@
 			}
 		],
 		"description": "Edit cores you have\nOptions for action:\nadd - adds a core with the matching id\nremove - removes a core with the matching id\nEx: core add infected_horn"
+	},
+	"shop": {
+		"target": "",
+		"type": 1,
+		"minPermission": 0,
+		"cheats": false,
+		"method": "shop",
+		"argumentList": [],
+		"description": "Enter a shop"
 	}
 }

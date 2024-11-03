@@ -92,14 +92,17 @@ func _setup_event_connections() -> void:
 	Events.update_battle_state.connect(_on_battle_state_updated)
 	Events.battle_reward_exited.connect(_on_reward_exited)
 	Events.haven_exited.connect(_show_map)
-	Events.map_exited.connect(_on_map_exited)
+	map.map_exited.connect(_on_map_exited)
 	Events.shop_exited.connect(_show_map)
 	Events.treasure_room_exited.connect(_show_map)
 	Events.events_extied.connect(event_exited)
 
 
 func event_exited() -> void:
-	if core_handler.get_core("Compass").coreui.slotted:
+	if core_handler.get_core("Compass") == null:
+		_show_map()
+		return
+	elif core_handler.get_core("Compass").coreui.slotted:
 		_on_reward_exited()
 	else: _show_map()
 
@@ -127,7 +130,6 @@ func _on_battle_state_updated(state: Battle.State) -> void:
 
 func _on_reward_exited() -> void:
 	var event_range := 20
-	# Somehow breaks if in a ternary
 	if core_handler.get_core("Compass"):
 		event_range = 40 if core_handler.get_core("Compass").coreui.slotted else 30
 	
@@ -146,6 +148,6 @@ func _on_map_exited(room: Room) -> void:
 		Room.Type.ELITE: _on_battle_room_entered(room)
 		Room.Type.BOSS: _on_battle_room_entered(room)
 	print("Floor %s: %s%s %s (column/type/tier/infected)" % [
-		map.floors_climbed, 
+		map.floors_climbed,
 		room, str(map.last_room.battle_stats.battle_tier) if map.last_room.battle_stats else "X", 
 		Data.floor_is_infected])

@@ -36,7 +36,6 @@ signal show_tooltip(text: String) # Used by tooltp
 signal hide_tooltip # Used by tooltip
 
 ## Floor exited-related events
-signal map_exited(current_room: Room) # Used by run
 signal shop_exited # Used by run
 signal haven_exited # Used by run
 signal battle_reward_exited # Used by run

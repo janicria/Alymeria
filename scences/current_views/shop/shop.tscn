@@ -1,7 +1,69 @@
-[gd_scene load_steps=2 format=3 uid="uid://c7d5vr117jbiu"]
+[gd_scene load_steps=21 format=3 uid="uid://c7d5vr117jbiu"]
 
 [ext_resource type="Script" path="res://scences/current_views/shop/shop.gd" id="1_u6vi2"]
+[ext_resource type="Texture2D" uid="uid://dv4gtxwjv0yvi" path="res://assets/ui/universal/left_box.png" id="2_jqlx7"]
+[ext_resource type="Texture2D" uid="uid://c5144k01njctp" path="res://assets/characters/merchant_2.png" id="3_6y8nb"]
+[ext_resource type="Texture2D" uid="uid://bj3im6egs4wxx" path="res://assets/characters/merchant_1.png" id="3_lj5gb"]
+[ext_resource type="Texture2D" uid="uid://dmnh5xxe2xne0" path="res://assets/ui/misc/big_heart.png" id="5_8lctr"]
+[ext_resource type="Texture2D" uid="uid://ckp4wldwmrcxf" path="res://assets/objects/textbook.png" id="6_m4wph"]
+[ext_resource type="Texture2D" uid="uid://b0npnkt128wpy" path="res://assets/ui/universal/gold.png" id="6_v4so0"]
+[ext_resource type="Texture2D" uid="uid://fb0t0b1qg1ms" path="res://assets/ui/cards/discard.png" id="7_v7jrj"]
+[ext_resource type="Texture2D" uid="uid://c2xhttrclo1r7" path="res://assets/objects/tile_0116.png" id="8_fpyi0"]
+[ext_resource type="Texture2D" uid="uid://boklhiqs1414d" path="res://assets/objects/tile_0115.png" id="9_jtlib"]
+[ext_resource type="Texture2D" uid="uid://c4e7ovx16yfl1" path="res://assets/objects/tile_0113.png" id="10_tkglf"]
+[ext_resource type="Texture2D" uid="uid://psr6xk3k26oh" path="res://assets/objects/tile_0114.png" id="11_alt0u"]
+[ext_resource type="Texture2D" uid="uid://c7xx3uproscj" path="res://assets/objects/tile_0128.png" id="12_dsgko"]
 
+[sub_resource type="Gradient" id="Gradient_gw1d3"]
+colors = PackedColorArray(0.215686, 0.215686, 0.215686, 1, 0.4, 0.219608, 0.203922, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_6bi2g"]
+gradient = SubResource("Gradient_gw1d3")
+width = 50
+
+[sub_resource type="Animation" id="Animation_d6a0y"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Merchant:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_lj5gb")]
+}
+
+[sub_resource type="Animation" id="Animation_12mba"]
+resource_name = "blink"
+length = 0.15
+step = 0.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Merchant:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("3_6y8nb"), ExtResource("3_lj5gb")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7abef"]
+_data = {
+"RESET": SubResource("Animation_d6a0y"),
+"blink": SubResource("Animation_12mba")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_waytp"]
+font_size = 12
+
+[sub_resource type="LabelSettings" id="LabelSettings_ly7wg"]
+font_size = 6
 
 [node name="Shop" type="Control"]
 layout_mode = 3
@@ -13,40 +75,576 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_u6vi2")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 1
+[node name="BackgroundLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Background" type="TextureRect" parent="BackgroundLayer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
-color = Color(0.217147, 0.127604, 0.0571354, 0.705882)
+texture = SubResource("GradientTexture1D_6bi2g")
+metadata/_edit_lock_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="LeftBox" type="TextureRect" parent="BackgroundLayer"]
+modulate = Color(0.737193, 0.737193, 0.737193, 1)
+texture = ExtResource("2_jqlx7")
+metadata/_edit_lock_ = true
+
+[node name="Merchant" type="TextureRect" parent="BackgroundLayer"]
+offset_left = 81.0
+offset_top = 101.0
+offset_right = 161.0
+offset_bottom = 181.0
+texture = ExtResource("3_lj5gb")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="MerchantAnimation" type="AnimationPlayer" parent="BackgroundLayer"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_7abef")
+}
+
+[node name="BlinkTimer" type="Timer" parent="BackgroundLayer"]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="ShopTitle" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -6.0
+offset_top = -88.0
+offset_right = 34.0
+offset_bottom = -76.0
 grow_horizontal = 2
 grow_vertical = 2
+text = "Shop"
+label_settings = SubResource("LabelSettings_waytp")
+horizontal_alignment = 1
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="BegoneButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 288.0
+offset_top = 5.0
+offset_right = 328.0
+offset_bottom = 19.0
+text = "Begone"
+
+[node name="Service" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 269.0
+offset_top = 122.0
+offset_right = 309.0
+offset_bottom = 177.0
+
+[node name="Title" type="Label" parent="Service"]
 layout_mode = 2
-text = "Shop
+offset_left = -3.0
+offset_top = 8.0
+offset_right = 37.0
+offset_bottom = 14.0
+text = "Service"
+horizontal_alignment = 1
+
+[node name="Icon" type="TextureRect" parent="Service"]
+layout_mode = 0
+offset_top = 14.0
+offset_right = 40.0
+offset_bottom = 54.0
+texture = ExtResource("5_8lctr")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Amount" type="Label" parent="Service"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 29.0
+offset_right = 29.0
+offset_bottom = 35.0
+text = "40%"
+
+[node name="SoldOut" type="Panel" parent="Service"]
+visible = false
+offset_left = 1.0
+offset_top = 27.0
+offset_right = 41.0
+offset_bottom = 38.0
+rotation = 0.0523599
+
+[node name="Label" type="RichTextLabel" parent="Service/SoldOut"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.0
+offset_top = -3.0
+offset_right = 21.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center][color=E83521]SOLD OUT[/color][/center]"
+
+[node name="Cost" type="Control" parent="Service"]
+anchors_preset = 0
+offset_left = 30.0
+offset_top = 8.0
+offset_right = 50.0
+offset_bottom = 28.0
+
+[node name="Icon" type="TextureRect" parent="Service/Cost"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+offset_left = 2.0
+offset_top = -3.0
+offset_right = 12.0
+offset_bottom = 7.0
+texture = ExtResource("6_v4so0")
+expand_mode = 4
+
+[node name="Amount" type="Label" parent="Service/Cost"]
+layout_mode = 2
+offset_left = 13.0
+offset_top = -1.0
+offset_right = 23.0
+offset_bottom = 5.0
+text = "30"
+label_settings = SubResource("LabelSettings_ly7wg")
+horizontal_alignment = 1
+
+[node name="Resurrection" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 197.0
+offset_top = 114.0
+offset_right = 237.0
+offset_bottom = 169.0
+
+[node name="Title" type="Label" parent="Resurrection"]
+layout_mode = 2
+offset_top = 6.0
+offset_right = 40.0
+offset_bottom = 12.0
+text = "Resurrection
 "
 horizontal_alignment = 1
-vertical_alignment = 1
 
-[node name="Button" type="Button" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 14)
+[node name="Icon" type="TextureRect" parent="Resurrection"]
+layout_mode = 0
+offset_top = 14.0
+offset_right = 40.0
+offset_bottom = 54.0
+texture = ExtResource("6_m4wph")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SoldOut" type="Panel" parent="Resurrection"]
+offset_left = 0.575699
+offset_top = 29.0
+offset_right = 40.5757
+offset_bottom = 40.0
+rotation = 0.0523599
+
+[node name="Label" type="RichTextLabel" parent="Resurrection/SoldOut"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.0
+offset_top = -3.0
+offset_right = 21.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center][color=E83521]SOLD OUT[/color][/center]"
+
+[node name="Cost" type="Control" parent="Resurrection"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 6.0
+offset_top = 56.0
+offset_right = 26.0
+offset_bottom = 76.0
+
+[node name="Icon" type="TextureRect" parent="Resurrection/Cost"]
+custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
-text = "Go back"
+offset_left = 2.0
+offset_top = -3.0
+offset_right = 12.0
+offset_bottom = 7.0
+texture = ExtResource("6_v4so0")
+expand_mode = 4
 
-[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
+[node name="Amount" type="Label" parent="Resurrection/Cost"]
+layout_mode = 2
+offset_left = 13.0
+offset_top = -1.0
+offset_right = 23.0
+offset_bottom = 5.0
+text = "30"
+label_settings = SubResource("LabelSettings_ly7wg")
+horizontal_alignment = 1
+
+[node name="RefineEnhance" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 190.0
+offset_top = 34.0
+offset_right = 230.0
+offset_bottom = 89.0
+
+[node name="Title" type="Label" parent="RefineEnhance"]
+layout_mode = 2
+offset_top = 6.0
+offset_right = 40.0
+offset_bottom = 12.0
+text = "Enhance"
+horizontal_alignment = 1
+
+[node name="Icon" type="TextureRect" parent="RefineEnhance"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 14.0
+offset_right = 37.0
+offset_bottom = 49.0
+texture = ExtResource("7_v7jrj")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SoldOut" type="Panel" parent="RefineEnhance"]
+offset_left = 0.575699
+offset_top = 25.0
+offset_right = 40.5757
+offset_bottom = 36.0
+rotation = 0.0523599
+
+[node name="Label" type="RichTextLabel" parent="RefineEnhance/SoldOut"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.0
+offset_top = -3.0
+offset_right = 21.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center][color=E83521]SOLD OUT[/color][/center]"
+
+[node name="Cost" type="Control" parent="RefineEnhance"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 6.0
+offset_top = 54.0
+offset_right = 26.0
+offset_bottom = 74.0
+
+[node name="Icon" type="TextureRect" parent="RefineEnhance/Cost"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+offset_left = 2.0
+offset_top = -3.0
+offset_right = 12.0
+offset_bottom = 7.0
+texture = ExtResource("6_v4so0")
+expand_mode = 4
+
+[node name="Amount" type="Label" parent="RefineEnhance/Cost"]
+layout_mode = 2
+offset_left = 13.0
+offset_top = -1.0
+offset_right = 23.0
+offset_bottom = 5.0
+text = "30"
+label_settings = SubResource("LabelSettings_ly7wg")
+horizontal_alignment = 1
+
+[node name="SpecialOffer" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 114.0
+offset_top = 29.0
+offset_right = 154.0
+offset_bottom = 84.0
+
+[node name="Title" type="Label" parent="SpecialOffer"]
+layout_mode = 2
+offset_left = -11.0
+offset_top = 11.0
+offset_right = 38.0
+offset_bottom = 17.0
+text = "Special offer"
+horizontal_alignment = 1
+
+[node name="Items" type="HBoxContainer" parent="SpecialOffer"]
+offset_left = -26.0
+offset_top = 14.0
+offset_right = 54.0
+offset_bottom = 54.0
+alignment = 1
+
+[node name="ItemA" type="TextureRect" parent="SpecialOffer/Items"]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+texture = ExtResource("8_fpyi0")
+stretch_mode = 5
+
+[node name="ItemB" type="TextureRect" parent="SpecialOffer/Items"]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+texture = ExtResource("9_jtlib")
+stretch_mode = 5
+
+[node name="ItemC" type="TextureRect" parent="SpecialOffer/Items"]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+texture = ExtResource("10_tkglf")
+stretch_mode = 5
+
+[node name="SoldOut" type="Panel" parent="SpecialOffer"]
+offset_left = -6.4243
+offset_top = 9.0
+offset_right = 33.5757
+offset_bottom = 20.0
+rotation = 0.0523599
+
+[node name="Label" type="RichTextLabel" parent="SpecialOffer/SoldOut"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.0
+offset_top = -3.0
+offset_right = 21.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center][color=E83521]SOLD OUT[/color][/center]"
+
+[node name="Cost" type="Control" parent="SpecialOffer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1.0
+offset_top = 2.0
+offset_right = 21.0
+offset_bottom = 22.0
+
+[node name="Icon" type="TextureRect" parent="SpecialOffer/Cost"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+offset_left = 2.0
+offset_top = -3.0
+offset_right = 12.0
+offset_bottom = 7.0
+texture = ExtResource("6_v4so0")
+expand_mode = 4
+
+[node name="Amount" type="Label" parent="SpecialOffer/Cost"]
+layout_mode = 2
+offset_left = 13.0
+offset_top = -1.0
+offset_right = 23.0
+offset_bottom = 5.0
+text = "30"
+label_settings = SubResource("LabelSettings_ly7wg")
+horizontal_alignment = 1
+
+[node name="PotionBundle1" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 242.0
+offset_top = 29.0
+offset_right = 321.0
+offset_bottom = 64.0
+
+[node name="Title" type="Label" parent="PotionBundle1"]
+layout_mode = 2
+offset_left = 14.0
+offset_top = 1.0
+offset_right = 63.0
+offset_bottom = 7.0
+text = "Potion Bundle
+"
+horizontal_alignment = 1
+
+[node name="Items" type="HBoxContainer" parent="PotionBundle1"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+alignment = 1
+
+[node name="Potion1" type="TextureRect" parent="PotionBundle1/Items"]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+texture = ExtResource("8_fpyi0")
+stretch_mode = 5
+
+[node name="Potion2" type="TextureRect" parent="PotionBundle1/Items"]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+texture = ExtResource("9_jtlib")
+stretch_mode = 5
+
+[node name="PotionSlot" type="TextureRect" parent="PotionBundle1/Items"]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+texture = ExtResource("10_tkglf")
+stretch_mode = 5
+
+[node name="SoldOut" type="Panel" parent="PotionBundle1"]
+offset_left = 17.5757
+offset_top = -2.0
+offset_right = 57.5757
+offset_bottom = 9.0
+rotation = 0.0523599
+
+[node name="Label" type="RichTextLabel" parent="PotionBundle1/SoldOut"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.0
+offset_top = -3.0
+offset_right = 21.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center][color=E83521]SOLD OUT[/color][/center]"
+
+[node name="Cost" type="Control" parent="PotionBundle1"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 65.0
+offset_right = 85.0
+offset_bottom = 20.0
+
+[node name="Icon" type="TextureRect" parent="PotionBundle1/Cost"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+offset_left = 2.0
+offset_top = -3.0
+offset_right = 12.0
+offset_bottom = 7.0
+texture = ExtResource("6_v4so0")
+expand_mode = 4
+
+[node name="Amount" type="Label" parent="PotionBundle1/Cost"]
+layout_mode = 2
+offset_left = 13.0
+offset_top = -1.0
+offset_right = 23.0
+offset_bottom = 5.0
+text = "30"
+label_settings = SubResource("LabelSettings_ly7wg")
+horizontal_alignment = 1
+
+[node name="PotionBundle2" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 242.0
+offset_top = 72.0
+offset_right = 321.0
+offset_bottom = 107.0
+
+[node name="Title" type="Label" parent="PotionBundle2"]
+layout_mode = 2
+offset_left = 14.0
+offset_top = 1.0
+offset_right = 63.0
+offset_bottom = 7.0
+text = "Potion Bundle
+"
+horizontal_alignment = 1
+
+[node name="Items" type="HBoxContainer" parent="PotionBundle2"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+alignment = 1
+
+[node name="Potion1" type="TextureRect" parent="PotionBundle2/Items"]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+texture = ExtResource("11_alt0u")
+stretch_mode = 5
+
+[node name="Potion2" type="TextureRect" parent="PotionBundle2/Items"]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+texture = ExtResource("12_dsgko")
+stretch_mode = 5
+
+[node name="PotionSlot" type="TextureRect" parent="PotionBundle2/Items"]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+texture = ExtResource("10_tkglf")
+stretch_mode = 5
+
+[node name="SoldOut" type="Panel" parent="PotionBundle2"]
+offset_left = 20.5757
+offset_right = 60.5757
+offset_bottom = 11.0
+rotation = 0.0523599
+
+[node name="Label" type="RichTextLabel" parent="PotionBundle2/SoldOut"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.0
+offset_top = -3.0
+offset_right = 21.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center][color=E83521]SOLD OUT[/color][/center]"
+
+[node name="Cost" type="Control" parent="PotionBundle2"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 65.0
+offset_top = 1.0
+offset_right = 85.0
+offset_bottom = 21.0
+
+[node name="Icon" type="TextureRect" parent="PotionBundle2/Cost"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+offset_left = 2.0
+offset_top = -3.0
+offset_right = 12.0
+offset_bottom = 7.0
+texture = ExtResource("6_v4so0")
+expand_mode = 4
+
+[node name="Amount" type="Label" parent="PotionBundle2/Cost"]
+layout_mode = 2
+offset_left = 13.0
+offset_top = -1.0
+offset_right = 23.0
+offset_bottom = 5.0
+text = "30"
+label_settings = SubResource("LabelSettings_ly7wg")
+horizontal_alignment = 1
+
+[connection signal="pressed" from="BegoneButton" to="." method="_on_begone_button_pressed"]
+[connection signal="gui_input" from="Service" to="." method="item_clicked" binds= ["Service"]]

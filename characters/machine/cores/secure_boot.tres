@@ -10,6 +10,6 @@ icon = ExtResource("1_64kio")
 type = 0
 rarity = 0
 pool = 0
-slotted_tooltip = "At the start of each turn draw an additional card and choose up to two cards to give exhaust for the rest of combat"
+slotted_tooltip = "At the start of each turn draw an additional card and choose up to two cards of differnt types to give exhaust for the rest of combat"
 dump_tooltip = "At the start of each turn draw an additional card and choose a card to give exhaust for the rest of the combat"
 flavour_text = "https://en.wikipedia.org/wiki/Switching_barriers"
