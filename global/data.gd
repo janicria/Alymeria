@@ -35,6 +35,7 @@ const StatusDescriptions := {
 var player_handler: PlayerHandeler
 var main: Main
 var battle_ui: BattleUI
+var shop: Shop
 
 # Settings
 var true_draw_amount := false
@@ -81,8 +82,10 @@ var bestiary_open := false
 
 # Battle
 var turn_number := 0
+var character: CharacterStats
 var multipliers := {
 	"WEATHER": 1,
+	"SHOP_COST": 1,
 	"ENEMY_DAMAGE": 1,
 	"ENEMY_HEALTH": 1,
 	"INFECTION": 1,
@@ -93,7 +96,7 @@ var multipliers := {
 	"UNCOMMON_CARD_RARITY": 0.0,
 	"RARE_CARD_RARITY": 0.0}
 
-# Misc
+# Rewards
 var gold := STARTING_GOLD : 
 	set(new_amount):
 		gold = new_amount
@@ -102,7 +105,16 @@ var card_rewards := BASE_CARD_REWARDS
 var common_weight := BASE_COMMON_WEIGHT
 var uncommon_weight := BASE_UNCOMMON_WEIGHT
 var rare_weight := BASE_RARE_WEIGHT
-var character: CharacterStats
+var available_cores: Array[Core] = [
+	preload("res://characters/global/cores/common/comically_large_anvil.tres"),
+	preload("res://characters/global/cores/common/compass.tres"),
+	preload("res://characters/global/cores/rare/blindfold.tres"),
+	preload("res://characters/global/cores/rare/finale.tres"),
+	preload("res://characters/global/cores/rare/maths_textbook.tres"),
+	preload("res://characters/global/cores/uncommon/infected_horn.tres"),
+	preload("res://characters/machine/cores/secure_boot.tres")
+]
+var removed_cores: Array[Core]
 
 
 func _init() -> void:
@@ -112,6 +124,24 @@ func _init() -> void:
 	
 	print("Successful launch")
 	print("Version: %s (%s)" % [ProjectSettings.get_setting("application/config/version"), "Linux" if OS.has_feature("linux") else "Windows"])
+
+
+func get_core_from_rarity(rarity: Core.Rarity) -> Core:
+	available_cores.shuffle()
+	for core in available_cores:
+		if core.rarity == rarity:
+			available_cores.erase(core)
+			removed_cores.append(core)
+			return core
+	OS.alert("Ran out of cores in rarity %s" % rarity)
+	return removed_cores.pick_random()
+
+
+func get_core_from_weight() -> Core:
+	var roll := randi_range(0, 100)
+	if roll >= 80: return get_core_from_rarity(Core.Rarity.RARE)
+	elif roll >= 60: return get_core_from_rarity(Core.Rarity.UNCOMMON)
+	return get_core_from_rarity(Core.Rarity.COMMON)
 
 
 func reset_stats() -> void:

@@ -44,7 +44,7 @@ func _setup_card_weights() -> void:
 
 
 func draw_cards(amount: int) -> void:
-	# DO NOT REMOVE THIS LINE UNLESS YOU WANT TO SPEND HOURS TRYING TO DEBUG SOMETHING THAT DOESN'T EXIST
+	# In case old enemies haven't been cleared yet
 	if !active: return
 	
 	for card in amount:

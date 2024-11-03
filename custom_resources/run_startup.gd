@@ -1,5 +1,4 @@
-class_name RunStartup
-extends Resource
+class_name RunStartup extends Resource
 
 enum Type {NEW_RUN, CONTINUED_RUN}
 enum Difficulity {STANDARD, THREATENING, HAZARDOUS, LETHAL, DEATH}

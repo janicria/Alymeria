@@ -26,7 +26,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Merchant:texture")
+tracks/0/path = NodePath("../Merchant:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -43,7 +43,7 @@ step = 0.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Merchant:texture")
+tracks/0/path = NodePath("../Merchant:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -92,15 +92,6 @@ modulate = Color(0.737193, 0.737193, 0.737193, 1)
 texture = ExtResource("2_jqlx7")
 metadata/_edit_lock_ = true
 
-[node name="Merchant" type="TextureRect" parent="BackgroundLayer"]
-offset_left = 81.0
-offset_top = 101.0
-offset_right = 161.0
-offset_bottom = 181.0
-texture = ExtResource("3_lj5gb")
-expand_mode = 1
-stretch_mode = 4
-
 [node name="MerchantAnimation" type="AnimationPlayer" parent="BackgroundLayer"]
 unique_name_in_owner = true
 libraries = {
@@ -110,6 +101,14 @@ libraries = {
 [node name="BlinkTimer" type="Timer" parent="BackgroundLayer"]
 unique_name_in_owner = true
 one_shot = true
+
+[node name="Merchant" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 81.0
+offset_top = 101.0
+offset_right = 161.0
+offset_bottom = 181.0
+texture = ExtResource("3_lj5gb")
 
 [node name="ShopTitle" type="Label" parent="."]
 layout_mode = 1
@@ -169,8 +168,37 @@ offset_right = 29.0
 offset_bottom = 35.0
 text = "40%"
 
+[node name="Cost" type="Control" parent="Service"]
+anchors_preset = 0
+offset_left = 30.0
+offset_top = 8.0
+offset_right = 50.0
+offset_bottom = 28.0
+
+[node name="Icon" type="TextureRect" parent="Service/Cost"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+offset_left = 2.0
+offset_top = -3.0
+offset_right = 12.0
+offset_bottom = 7.0
+texture = ExtResource("6_v4so0")
+expand_mode = 4
+
+[node name="ServiceAmount" type="Label" parent="Service/Cost"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 13.0
+offset_top = -1.0
+offset_right = 23.0
+offset_bottom = 5.0
+text = "30"
+label_settings = SubResource("LabelSettings_ly7wg")
+horizontal_alignment = 1
+
 [node name="SoldOut" type="Panel" parent="Service"]
 visible = false
+layout_mode = 0
 offset_left = 1.0
 offset_top = 27.0
 offset_right = 41.0
@@ -193,33 +221,6 @@ grow_vertical = 2
 bbcode_enabled = true
 text = "[center][color=E83521]SOLD OUT[/color][/center]"
 
-[node name="Cost" type="Control" parent="Service"]
-anchors_preset = 0
-offset_left = 30.0
-offset_top = 8.0
-offset_right = 50.0
-offset_bottom = 28.0
-
-[node name="Icon" type="TextureRect" parent="Service/Cost"]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-offset_left = 2.0
-offset_top = -3.0
-offset_right = 12.0
-offset_bottom = 7.0
-texture = ExtResource("6_v4so0")
-expand_mode = 4
-
-[node name="Amount" type="Label" parent="Service/Cost"]
-layout_mode = 2
-offset_left = 13.0
-offset_top = -1.0
-offset_right = 23.0
-offset_bottom = 5.0
-text = "30"
-label_settings = SubResource("LabelSettings_ly7wg")
-horizontal_alignment = 1
-
 [node name="Resurrection" type="Control" parent="."]
 anchors_preset = 0
 offset_left = 197.0
@@ -236,7 +237,8 @@ text = "Resurrection
 "
 horizontal_alignment = 1
 
-[node name="Icon" type="TextureRect" parent="Resurrection"]
+[node name="ResurrectionIcon" type="TextureRect" parent="Resurrection"]
+unique_name_in_owner = true
 layout_mode = 0
 offset_top = 14.0
 offset_right = 40.0
@@ -245,12 +247,44 @@ texture = ExtResource("6_m4wph")
 expand_mode = 1
 stretch_mode = 5
 
+[node name="Cost" type="Control" parent="Resurrection"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 6.0
+offset_top = 57.0
+offset_right = 26.0
+offset_bottom = 77.0
+
+[node name="Icon" type="TextureRect" parent="Resurrection/Cost"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+offset_left = 2.0
+offset_top = -3.0
+offset_right = 12.0
+offset_bottom = 7.0
+texture = ExtResource("6_v4so0")
+expand_mode = 4
+
+[node name="ResurrectionAmount" type="Label" parent="Resurrection/Cost"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 13.0
+offset_top = -1.0
+offset_right = 23.0
+offset_bottom = 5.0
+text = "30"
+label_settings = SubResource("LabelSettings_ly7wg")
+horizontal_alignment = 1
+
 [node name="SoldOut" type="Panel" parent="Resurrection"]
+visible = false
+layout_mode = 0
 offset_left = 0.575699
 offset_top = 29.0
 offset_right = 40.5757
 offset_bottom = 40.0
 rotation = 0.0523599
+mouse_filter = 2
 
 [node name="Label" type="RichTextLabel" parent="Resurrection/SoldOut"]
 layout_mode = 1
@@ -267,34 +301,6 @@ grow_horizontal = 2
 grow_vertical = 2
 bbcode_enabled = true
 text = "[center][color=E83521]SOLD OUT[/color][/center]"
-
-[node name="Cost" type="Control" parent="Resurrection"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 6.0
-offset_top = 56.0
-offset_right = 26.0
-offset_bottom = 76.0
-
-[node name="Icon" type="TextureRect" parent="Resurrection/Cost"]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-offset_left = 2.0
-offset_top = -3.0
-offset_right = 12.0
-offset_bottom = 7.0
-texture = ExtResource("6_v4so0")
-expand_mode = 4
-
-[node name="Amount" type="Label" parent="Resurrection/Cost"]
-layout_mode = 2
-offset_left = 13.0
-offset_top = -1.0
-offset_right = 23.0
-offset_bottom = 5.0
-text = "30"
-label_settings = SubResource("LabelSettings_ly7wg")
-horizontal_alignment = 1
 
 [node name="RefineEnhance" type="Control" parent="."]
 anchors_preset = 0
@@ -321,7 +327,37 @@ texture = ExtResource("7_v7jrj")
 expand_mode = 1
 stretch_mode = 5
 
+[node name="Cost" type="Control" parent="RefineEnhance"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 6.0
+offset_top = 54.0
+offset_right = 26.0
+offset_bottom = 74.0
+
+[node name="Icon" type="TextureRect" parent="RefineEnhance/Cost"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+offset_left = 2.0
+offset_top = -3.0
+offset_right = 12.0
+offset_bottom = 7.0
+texture = ExtResource("6_v4so0")
+expand_mode = 4
+
+[node name="RefineEnhanceAmount" type="Label" parent="RefineEnhance/Cost"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 13.0
+offset_top = -1.0
+offset_right = 23.0
+offset_bottom = 5.0
+text = "30"
+label_settings = SubResource("LabelSettings_ly7wg")
+horizontal_alignment = 1
+
 [node name="SoldOut" type="Panel" parent="RefineEnhance"]
+layout_mode = 0
 offset_left = 0.575699
 offset_top = 25.0
 offset_right = 40.5757
@@ -344,34 +380,6 @@ grow_vertical = 2
 bbcode_enabled = true
 text = "[center][color=E83521]SOLD OUT[/color][/center]"
 
-[node name="Cost" type="Control" parent="RefineEnhance"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 6.0
-offset_top = 54.0
-offset_right = 26.0
-offset_bottom = 74.0
-
-[node name="Icon" type="TextureRect" parent="RefineEnhance/Cost"]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-offset_left = 2.0
-offset_top = -3.0
-offset_right = 12.0
-offset_bottom = 7.0
-texture = ExtResource("6_v4so0")
-expand_mode = 4
-
-[node name="Amount" type="Label" parent="RefineEnhance/Cost"]
-layout_mode = 2
-offset_left = 13.0
-offset_top = -1.0
-offset_right = 23.0
-offset_bottom = 5.0
-text = "30"
-label_settings = SubResource("LabelSettings_ly7wg")
-horizontal_alignment = 1
-
 [node name="SpecialOffer" type="Control" parent="."]
 anchors_preset = 0
 offset_left = 114.0
@@ -389,6 +397,7 @@ text = "Special offer"
 horizontal_alignment = 1
 
 [node name="Items" type="HBoxContainer" parent="SpecialOffer"]
+layout_mode = 0
 offset_left = -26.0
 offset_top = 14.0
 offset_right = 54.0
@@ -413,7 +422,37 @@ layout_mode = 2
 texture = ExtResource("10_tkglf")
 stretch_mode = 5
 
+[node name="Cost" type="Control" parent="SpecialOffer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1.0
+offset_top = 2.0
+offset_right = 21.0
+offset_bottom = 22.0
+
+[node name="Icon" type="TextureRect" parent="SpecialOffer/Cost"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+offset_left = 2.0
+offset_top = -3.0
+offset_right = 12.0
+offset_bottom = 7.0
+texture = ExtResource("6_v4so0")
+expand_mode = 4
+
+[node name="SpecialOfferAmount" type="Label" parent="SpecialOffer/Cost"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 13.0
+offset_top = -1.0
+offset_right = 23.0
+offset_bottom = 5.0
+text = "30"
+label_settings = SubResource("LabelSettings_ly7wg")
+horizontal_alignment = 1
+
 [node name="SoldOut" type="Panel" parent="SpecialOffer"]
+layout_mode = 0
 offset_left = -6.4243
 offset_top = 9.0
 offset_right = 33.5757
@@ -435,34 +474,6 @@ grow_horizontal = 2
 grow_vertical = 2
 bbcode_enabled = true
 text = "[center][color=E83521]SOLD OUT[/color][/center]"
-
-[node name="Cost" type="Control" parent="SpecialOffer"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 1.0
-offset_top = 2.0
-offset_right = 21.0
-offset_bottom = 22.0
-
-[node name="Icon" type="TextureRect" parent="SpecialOffer/Cost"]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-offset_left = 2.0
-offset_top = -3.0
-offset_right = 12.0
-offset_bottom = 7.0
-texture = ExtResource("6_v4so0")
-expand_mode = 4
-
-[node name="Amount" type="Label" parent="SpecialOffer/Cost"]
-layout_mode = 2
-offset_left = 13.0
-offset_top = -1.0
-offset_right = 23.0
-offset_bottom = 5.0
-text = "30"
-label_settings = SubResource("LabelSettings_ly7wg")
-horizontal_alignment = 1
 
 [node name="PotionBundle1" type="Control" parent="."]
 anchors_preset = 0
@@ -505,7 +516,36 @@ layout_mode = 2
 texture = ExtResource("10_tkglf")
 stretch_mode = 5
 
+[node name="Cost" type="Control" parent="PotionBundle1"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 65.0
+offset_right = 85.0
+offset_bottom = 20.0
+
+[node name="Icon" type="TextureRect" parent="PotionBundle1/Cost"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+offset_left = 2.0
+offset_top = -3.0
+offset_right = 12.0
+offset_bottom = 7.0
+texture = ExtResource("6_v4so0")
+expand_mode = 4
+
+[node name="PotionBundle1Amount" type="Label" parent="PotionBundle1/Cost"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 13.0
+offset_top = -1.0
+offset_right = 23.0
+offset_bottom = 5.0
+text = "30"
+label_settings = SubResource("LabelSettings_ly7wg")
+horizontal_alignment = 1
+
 [node name="SoldOut" type="Panel" parent="PotionBundle1"]
+layout_mode = 0
 offset_left = 17.5757
 offset_top = -2.0
 offset_right = 57.5757
@@ -527,33 +567,6 @@ grow_horizontal = 2
 grow_vertical = 2
 bbcode_enabled = true
 text = "[center][color=E83521]SOLD OUT[/color][/center]"
-
-[node name="Cost" type="Control" parent="PotionBundle1"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 65.0
-offset_right = 85.0
-offset_bottom = 20.0
-
-[node name="Icon" type="TextureRect" parent="PotionBundle1/Cost"]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-offset_left = 2.0
-offset_top = -3.0
-offset_right = 12.0
-offset_bottom = 7.0
-texture = ExtResource("6_v4so0")
-expand_mode = 4
-
-[node name="Amount" type="Label" parent="PotionBundle1/Cost"]
-layout_mode = 2
-offset_left = 13.0
-offset_top = -1.0
-offset_right = 23.0
-offset_bottom = 5.0
-text = "30"
-label_settings = SubResource("LabelSettings_ly7wg")
-horizontal_alignment = 1
 
 [node name="PotionBundle2" type="Control" parent="."]
 anchors_preset = 0
@@ -596,7 +609,37 @@ layout_mode = 2
 texture = ExtResource("10_tkglf")
 stretch_mode = 5
 
+[node name="Cost" type="Control" parent="PotionBundle2"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 65.0
+offset_top = 1.0
+offset_right = 85.0
+offset_bottom = 21.0
+
+[node name="Icon" type="TextureRect" parent="PotionBundle2/Cost"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+offset_left = 2.0
+offset_top = -3.0
+offset_right = 12.0
+offset_bottom = 7.0
+texture = ExtResource("6_v4so0")
+expand_mode = 4
+
+[node name="PotionBundle2Amount" type="Label" parent="PotionBundle2/Cost"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 13.0
+offset_top = -1.0
+offset_right = 23.0
+offset_bottom = 5.0
+text = "30"
+label_settings = SubResource("LabelSettings_ly7wg")
+horizontal_alignment = 1
+
 [node name="SoldOut" type="Panel" parent="PotionBundle2"]
+layout_mode = 0
 offset_left = 20.5757
 offset_right = 60.5757
 offset_bottom = 11.0
@@ -618,33 +661,6 @@ grow_vertical = 2
 bbcode_enabled = true
 text = "[center][color=E83521]SOLD OUT[/color][/center]"
 
-[node name="Cost" type="Control" parent="PotionBundle2"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 65.0
-offset_top = 1.0
-offset_right = 85.0
-offset_bottom = 21.0
-
-[node name="Icon" type="TextureRect" parent="PotionBundle2/Cost"]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-offset_left = 2.0
-offset_top = -3.0
-offset_right = 12.0
-offset_bottom = 7.0
-texture = ExtResource("6_v4so0")
-expand_mode = 4
-
-[node name="Amount" type="Label" parent="PotionBundle2/Cost"]
-layout_mode = 2
-offset_left = 13.0
-offset_top = -1.0
-offset_right = 23.0
-offset_bottom = 5.0
-text = "30"
-label_settings = SubResource("LabelSettings_ly7wg")
-horizontal_alignment = 1
-
 [connection signal="pressed" from="BegoneButton" to="." method="_on_begone_button_pressed"]
 [connection signal="gui_input" from="Service" to="." method="item_clicked" binds= ["Service"]]
+[connection signal="gui_input" from="Resurrection" to="." method="item_clicked" binds= ["Resurrection"]]

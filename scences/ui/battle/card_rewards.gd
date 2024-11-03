@@ -1,5 +1,4 @@
-class_name CardRewards
-extends ColorRect
+class_name CardRewards extends ColorRect
 
 signal card_reward_selected(card: Card)
 

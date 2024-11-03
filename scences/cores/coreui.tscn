@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://bremx77uh6mpb"]
+[gd_scene load_steps=8 format=3 uid="uid://bremx77uh6mpb"]
 
 [ext_resource type="Script" path="res://scences/cores/coreui.gd" id="1_ouyvs"]
 [ext_resource type="Texture2D" uid="uid://dytq0eumwvky6" path="res://assets/objects/anvil.png" id="1_q8ods"]
-[ext_resource type="Resource" uid="uid://cu3ejirfp3hyg" path="res://characters/global/cores/common/comically_large_anvil.tres" id="2_b814c"]
 [ext_resource type="Shader" path="res://assets/misc/white.gdshader" id="2_j3t8l"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6iob4"]
@@ -75,7 +74,6 @@ custom_minimum_size = Vector2(16, 16)
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_ouyvs")
-core = ExtResource("2_b814c")
 
 [node name="Icon" type="TextureRect" parent="."]
 unique_name_in_owner = true

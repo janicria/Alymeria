@@ -1,7 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://cogno32qd13u"]
+[gd_scene load_steps=4 format=3 uid="uid://cogno32qd13u"]
 
 [ext_resource type="Script" path="res://scences/ui/menus/bestiary.gd" id="1_i0uol"]
 [ext_resource type="Texture2D" uid="uid://ckp4wldwmrcxf" path="res://assets/objects/textbook.png" id="2_txjvj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_p0uah"]
+font_size = 6
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Bestiary" type="Control"]
 layout_mode = 3
@@ -93,9 +98,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -80.0
-offset_top = -82.0
+offset_top = -78.0
 offset_right = 80.0
-offset_bottom = 8.0
+offset_bottom = 12.0
 grow_horizontal = 2
 grow_vertical = 0
 bbcode_enabled = true
@@ -106,5 +111,17 @@ At the start of each turn gain 1 memory. Whenever you play a card, choose a card
 I knew there was a reason for me not liking maths in school[/center]"
 fit_content = true
 autowrap_mode = 2
+
+[node name="ShopText" type="Label" parent="CoreView"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 214.0
+offset_top = 33.0
+offset_right = 294.0
+offset_bottom = 48.0
+text = "Right click to purchase in shop"
+label_settings = SubResource("LabelSettings_p0uah")
+horizontal_alignment = 1
+autowrap_mode = 3
 
 [connection signal="gui_input" from="ColorRect" to="." method="_on_color_rect_gui_input"]

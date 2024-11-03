@@ -28,7 +28,7 @@ signal update_battle_stats() # Emitted by console window (not visible in Ctrl+sh
 signal toggle_console_visible() # Used by console (not visible via search)
 
 ## Battle-related events
-signal update_battle_state(state: Battle.State) # Used by battle, battle_over_panel, run
+signal update_battle_state(state: Battle.State) # Used by battle, battle_over_panel, Main
 signal update_turn_number(number: int) # Used by battle_ui, Data
 
 ## Tooltip-related events
@@ -36,11 +36,13 @@ signal show_tooltip(text: String) # Used by tooltp
 signal hide_tooltip # Used by tooltip
 
 ## Floor exited-related events
-signal shop_exited # Used by run
-signal haven_exited # Used by run
-signal battle_reward_exited # Used by run
-signal treasure_room_exited # Used by run
-signal events_extied # Used by run
+signal shop_exited # Used by Main
+signal shop_entered() # Used by Bargaining Chip
+signal haven_exited # Used by Main
+signal battle_reward_exited # Used by Main
+signal treasure_room_exited # Used by Main
+signal events_extied # Used by Main
 
 
-func _init() -> void: process_mode = PROCESS_MODE_ALWAYS
+func _init() -> void: 
+	process_mode = PROCESS_MODE_ALWAYS
