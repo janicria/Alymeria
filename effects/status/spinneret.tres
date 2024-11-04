@@ -8,7 +8,7 @@ script = ExtResource("1_4rsxs")
 id = "spinneret"
 type = 2
 stack_type = 0
+format_tooltip = false
 duration = 0
 stacks = 0
 icon = ExtResource("1_7hpnc")
-tooltip = "[color=1AD12C]Spinneret[/color] - Whenever you receive unblocked [color=AB3321]attack damage[/color] from this enemy, gain one [color=AB3321]Webbed[/color]"

@@ -8,7 +8,7 @@ script = ExtResource("2_lg55t")
 id = "defence_up"
 type = 2
 stack_type = 1
+format_tooltip = true
 duration = 0
 stacks = 1
 icon = ExtResource("1_j2vdn")
-tooltip = "[color=1AD12C]Defence up[/color] - Gain %s more [color=0044ff]barrier[/color] from [color=0044ff]cards[/color]"

@@ -8,7 +8,7 @@ script = ExtResource("1_lijh8")
 id = "injured"
 type = 1
 stack_type = 2
+format_tooltip = false
 duration = 1
 stacks = 0
 icon = ExtResource("1_54qmh")
-tooltip = "[color=AB3321]Webbed[/color] - [color=0044ff]Cards[/color] deal 30% less [[color=ff0000]damage[/color]. Decreases by one at the start of each turn"

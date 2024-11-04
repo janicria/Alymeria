@@ -8,7 +8,7 @@ script = ExtResource("2_4b3ro")
 id = "cancel"
 type = 1
 stack_type = 2
+format_tooltip = false
 duration = 1
 stacks = 0
 icon = ExtResource("1_d5puv")
-tooltip = "[color=AB3321]Cancel[/color] - You cannot play [color=0044ff]cards[/color]. Decreases by 1 at the END of each turn"

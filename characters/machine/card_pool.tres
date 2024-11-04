@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CardPile" load_steps=15 format=3 uid="uid://dgqbrh131722d"]
+[gd_resource type="Resource" script_class="CardPile" load_steps=16 format=3 uid="uid://dgqbrh131722d"]
 
 [ext_resource type="Script" path="res://custom_resources/card.gd" id="1_5ewv6"]
 [ext_resource type="Resource" uid="uid://bivd0gsfass0" path="res://characters/machine/cards/common/laser_barrage.tres" id="2_ni5cn"]
@@ -14,7 +14,8 @@
 [ext_resource type="Resource" uid="uid://b3k1qnuqi4oeu" path="res://characters/machine/cards/uncommon/suboptimal_learning.tres" id="10_lgcoy"]
 [ext_resource type="Script" path="res://custom_resources/card_pile.gd" id="11_3oava"]
 [ext_resource type="Resource" uid="uid://bwd23qw8dqmb1" path="res://characters/machine/cards/common/miniature_randomizer.tres" id="13_b3ajy"]
+[ext_resource type="Resource" uid="uid://b0d41l3g2d0qg" path="res://characters/machine/cards/common/espionage.tres" id="14_mhp17"]
 
 [resource]
 script = ExtResource("11_3oava")
-cards = Array[ExtResource("1_5ewv6")]([ExtResource("2_ni5cn"), ExtResource("3_p0bya"), ExtResource("4_6243d"), ExtResource("5_g2o18"), ExtResource("6_tkqfh"), ExtResource("7_d7cwr"), ExtResource("8_xcrab"), ExtResource("9_fb7dr"), ExtResource("8_tyksy"), ExtResource("8_tyksy"), ExtResource("9_s54w8"), ExtResource("10_lgcoy"), ExtResource("13_b3ajy")])
+cards = Array[ExtResource("1_5ewv6")]([ExtResource("2_ni5cn"), ExtResource("3_p0bya"), ExtResource("4_6243d"), ExtResource("5_g2o18"), ExtResource("6_tkqfh"), ExtResource("7_d7cwr"), ExtResource("8_xcrab"), ExtResource("9_fb7dr"), ExtResource("8_tyksy"), ExtResource("8_tyksy"), ExtResource("9_s54w8"), ExtResource("10_lgcoy"), ExtResource("13_b3ajy"), ExtResource("14_mhp17")])

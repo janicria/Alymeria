@@ -26,6 +26,12 @@ func apply_effects(targets: Array[Node], modifiers: ModifierHandler) -> void:
 		Data.character.heal(1)
 
 
+func get_status_or_effect_text(text: String) -> String:
+	if text == "lucky_draw":
+		return (str(Data.StatusDescriptions.get(text)) % chance) + "\n"
+	return ""
+
+
 func get_tooltip_text(player_mods: ModifierHandler, _enemy_mods: ModifierHandler) -> String:
 	if !player_mods: return tooltip_text % base_barrier # When not in a battle
 	var modified_dmg := player_mods.get_modified_value(base_barrier, Modifier.Type.BARRIER_GAINED)

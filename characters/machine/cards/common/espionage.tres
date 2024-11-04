@@ -1,0 +1,18 @@
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://b0d41l3g2d0qg"]
+
+[ext_resource type="Script" path="res://characters/machine/cards/common/espionage.gd" id="1_4ekbw"]
+[ext_resource type="AudioStream" uid="uid://dixklg6g4jnsq" path="res://assets/sfx/slash.ogg" id="2_pf1bb"]
+[ext_resource type="Script" path="res://custom_resources/card_status.gd" id="2_unswd"]
+
+[resource]
+script = ExtResource("1_4ekbw")
+name = "Espionage"
+type = 5
+rarity = 0
+target = 5
+repeats = 1
+cost = 1
+statuses = Array[ExtResource("2_unswd")]([])
+sound = ExtResource("2_pf1bb")
+tooltip_text = "Hide %d"
+effects = Array[String](["hidden"])

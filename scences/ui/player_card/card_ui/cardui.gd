@@ -42,7 +42,6 @@ func _ready() -> void:
 	Data.character.stats_changed.connect(_on_character_changed)
 	card_state_machine.init(self)
 
-
 func  _input(event : InputEvent) -> void:
 	card_state_machine.on_input(event)
 
@@ -142,14 +141,27 @@ func _on_mouse_entered() -> void:
 	card_state_machine.on_mouse_entered()
 	z_index = 1
 	
-	var description_to_send := "" # Assigning value prevents warning
+	# Assigning value prevents warning
+	var description_to_send := ""
+	
+	# Effects
 	for effect in card.effects:
-		description_to_send += "%s%s" % (
-			[Data.StatusDescriptions.get(effect), "\n" if effect != card.effects[-1] else ""])
+		if effect == "suboptimal":
+			description_to_send = card.get_status_or_effect_text("suboptimal")
+		else:
+			description_to_send += "%s%s" % (
+				[Data.StatusDescriptions.get(effect), "" if effect == card.effects[-1] else "\n"])
+	
+	# Statuses
 	if !card.statuses.is_empty(): description_to_send += "\n"
 	for status in card.statuses:
-		description_to_send += "%s%s" % (
-			[Data.StatusDescriptions.get(status.name), "\n" if status != card.statuses[-1] else ""])
+		if status.format_tooltip: 
+			description_to_send += card.get_status_or_effect_text(status.name)
+		else:
+			description_to_send += "%s%s" % (
+				[Data.StatusDescriptions.get(status.name), "" if status == card.statuses[-1] else "\n"])
+	
+	# More stuff
 	Events.show_tooltip.emit(description_to_send)
 	tooltip_opening = true
 	await get_tree().create_timer(0.1).timeout

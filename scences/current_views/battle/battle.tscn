@@ -20,7 +20,7 @@
 [ext_resource type="Script" path="res://scences/summon/summon_handler.gd" id="13_7kmvg"]
 [ext_resource type="Theme" uid="uid://bhs76hnulf3s4" path="res://assets/misc/main_theme.tres" id="13_j1van"]
 [ext_resource type="PackedScene" uid="uid://dp685le4xdy6x" path="res://scences/summon/summon.tscn" id="14_h8sp4"]
-[ext_resource type="Resource" uid="uid://t4pkxirfov3c" path="res://summons/summon_test.tres" id="15_xgbvd"]
+[ext_resource type="Resource" uid="uid://b5t2dhytk2fg2" path="res://summons/rover/rover.tres" id="15_4iapu"]
 [ext_resource type="Script" path="res://scences/ui/battle/red_flash.gd" id="15_ym3km"]
 [ext_resource type="PackedScene" uid="uid://ummt03ux4buj" path="res://scences/ui/battle/defeat_panel.tscn" id="17_lrr78"]
 [ext_resource type="PackedScene" uid="uid://cmrvm435qcold" path="res://scences/ui/player_card/card_pile/card_pile_button.tscn" id="21_4q4vq"]
@@ -92,7 +92,7 @@ script = ExtResource("13_7kmvg")
 
 [node name="Summon" parent="SummonHandler" instance=ExtResource("14_h8sp4")]
 position = Vector2(157, 91)
-stats = ExtResource("15_xgbvd")
+stats = ExtResource("15_4iapu")
 
 [node name="PlayerHandeler" type="Node" parent="." node_paths=PackedStringArray("player", "hand")]
 script = ExtResource("8_yhxx8")

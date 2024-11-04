@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Status" load_steps=3 format=3 uid="uid://duxi2hffeedlc"]
+
+[ext_resource type="Texture2D" uid="uid://duxr1bmpqyjlg" path="res://assets/objects/boot_lock.png" id="1_bqdqk"]
+[ext_resource type="Script" path="res://custom_resources/status.gd" id="2_ah438"]
+
+[resource]
+script = ExtResource("2_ah438")
+id = "hidden"
+type = 0
+stack_type = 2
+format_tooltip = false
+duration = 1
+stacks = 0
+icon = ExtResource("1_bqdqk")

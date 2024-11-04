@@ -1,11 +1,14 @@
 class_name SummonStats extends Stats
 
+enum SpecialActionType {HEALTH_LOST, DEATH, STATUS_GAINED, STATUS_REMOVED}
+
 @export var name: String
 @export_multiline var description: String
-@export var card_type: Card.Type
 @export var base_action: SummonAction
 @export var card_action: SummonAction
+@export var card_action_type: Card.Type
 @export var special_action: SummonAction
+@export var special_action_type: SpecialActionType
 
 var summon: Summon
 
@@ -13,7 +16,10 @@ var summon: Summon
 func take_damage(damage: int, status: Status = null) -> void:
 	var initial_health := health
 	super.take_damage(damage)
-	if initial_health > health && status != null:
-		var status_effect := StatusEffect.new()
-		status_effect.status = status
-		status_effect.execute([summon])
+	if initial_health > health:
+		if special_action_type == SpecialActionType.HEALTH_LOST:
+			special_action.play()
+		if status != null:
+			var status_effect := StatusEffect.new()
+			status_effect.status = status
+			status_effect.execute([summon])

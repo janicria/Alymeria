@@ -262,7 +262,8 @@ func deck(action: String, id: String) -> String:
 		preload(\"res://characters/global/cards/status/infection.tres\"),
 		preload(\"res://characters/secret/card_status_test.tres\"),
 		preload(\"res://characters/secret/injured_test.tres\"),
-		preload(\"res://characters/secret/kevin.tres\")
+		preload(\"res://characters/secret/kevin.tres\"),
+		preload(\"res://characters/machine/cards/common/espionage.tres\")
 	]
 	
 	var selected_card: Card

@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("1_4vh52")
 name = "Gas stores"
-type = 0
+type = 1
 rarity = 1
 target = 1
 repeats = 1

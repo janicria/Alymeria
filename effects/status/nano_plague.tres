@@ -8,7 +8,7 @@ script = ExtResource("1_psyxc")
 id = "nano_plague"
 type = 1
 stack_type = 1
+format_tooltip = false
 duration = 0
 stacks = 1
 icon = ExtResource("1_fwccx")
-tooltip = "[color=AB3321]Nano plague[/color] - Take [color=ff0000]damage[/color] equal to 80% of stacks then apply [color=008000]nano plague[/color] equal to 20% of stacks to all allies at the END of each turn"

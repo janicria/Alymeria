@@ -17,4 +17,4 @@ tooltip_text = "DMG UP X
 Health -X
 X=enemies
 "
-effects = Array[String]([])
+effects = Array[String](["suboptimal"])

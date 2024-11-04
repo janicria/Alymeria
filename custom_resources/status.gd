@@ -10,12 +10,12 @@ enum StackType {NONE, INTENSITY, DURATION}
 @export var id: String
 @export var type: Type
 @export var stack_type: StackType
+@export var format_tooltip: bool
 @export var duration: int : set = set_duration
 @export var stacks: int : set = set_stacks
 
 @export_group("Visuals")
 @export var icon: Texture
-@export_multiline var tooltip: String
 
 
 func initalise_target(_target: Node) -> void:
@@ -27,9 +27,9 @@ func apply_status(_target: Node) -> void:
 
 
 func get_tooltip() -> String:
-	if stack_type == Status.StackType.INTENSITY:
-		return tooltip % stacks
-	return tooltip 
+	if format_tooltip:
+		return str(Data.StatusDescriptions.get(id)) % stacks
+	return Data.StatusDescriptions.get(id) 
 
 
 func set_duration(new_duration: int) -> void:

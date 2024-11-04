@@ -8,7 +8,7 @@ script = ExtResource("2_0kw1l")
 id = "file_corruption"
 type = 2
 stack_type = 1
+format_tooltip = true
 duration = 0
 stacks = 1
 icon = ExtResource("1_ra5v2")
-tooltip = "[color=1AD12C]File corruption[/color] - Whenever you play a [color=0044ff]card[/color] apply %s [color=008000]nano plague[/color] to everyone"

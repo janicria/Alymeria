@@ -32,7 +32,9 @@ func get_targets() -> Array[Node]:
 	
 	var target := get_tree().get_first_node_in_group("player")
 	if get_tree().get_node_count_in_group("summons"):
-		target = get_tree().get_first_node_in_group("summons")
+		if !get_tree().get_first_node_in_group("summons").status_handler._has_status("hidden"):
+			target = get_tree().get_first_node_in_group("summons")
+		else: target = get_tree().get_first_node_in_group("player")
 	
 	var targets: Array[Node] = []
 	
@@ -51,6 +53,10 @@ func get_targets() -> Array[Node]:
 			targets.append_array(get_tree().get_nodes_in_group("player"))
 			targets.append_array(get_tree().get_nodes_in_group("summons"))
 			targets.append_array(get_tree().get_nodes_in_group("enemies"))
+	
+	for summon in targets:
+		if summon.status_handler._has_status("hidden"):
+			targets.erase(summon)
 	
 	return targets
 

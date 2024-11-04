@@ -27,4 +27,4 @@ func apply_status(target: Node) -> void:
 
 
 func get_tooltip() -> String:
-	return tooltip % [enemy_count.call(), enemy_count.call()]
+	return Data.StatusDescriptions.get(id) % [enemy_count.call(), enemy_count.call()]

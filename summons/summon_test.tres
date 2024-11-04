@@ -7,6 +7,7 @@
 script = ExtResource("1_r658n")
 name = "Testy"
 description = "wiw"
-card_type = 0
+card_action_type = 0
+special_action_type = 0
 max_health = 12
 art = ExtResource("1_6hctb")

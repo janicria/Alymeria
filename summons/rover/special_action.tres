@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dku4s8t713n4f"]
+
+[ext_resource type="Script" path="res://summons/rover/special_action.gd" id="1_eg8pi"]
+
+[resource]
+script = ExtResource("1_eg8pi")
+type = 2
+target_type = 1

@@ -13,13 +13,16 @@ func _ready() -> void:
 	texture.texture = stats.art
 	
 	stats.summon = self
-	#stats.base_action.owner = self
-	#stats.card_action.owner = self
+	stats.base_action.owner = self
+	stats.card_action.owner = self
 	#stats.special_action.owner = self
 	status_handler.status_owner = self
 	
 	if !stats.stats_changed.is_connected(stats_ui.update_stats):
 		stats.stats_changed.connect(stats_ui.update_stats.bind(stats))
+	
+	stats.card_action.setup()
+	#stats.special_action.setup()
 	stats_ui.update_stats(stats)
 
 
@@ -41,9 +44,13 @@ func take_damage(damage: int, status: Status = null) -> void:
 
 
 func death_animation(repeats := 3) -> void:
-	var death_tween := create_tween()
-	# So enemies won't be stuck attacking dying summons
+	if stats.special_action_type == stats.SpecialActionType.DEATH && is_in_group("summons"):
+		stats.special_action.play()
+		await stats.special_action.finished
+	# So enemies don't attack dying summons and special action doesn't repeat 
 	remove_from_group("summons")
+	
+	var death_tween := create_tween()
 	death_tween.tween_callback(get_tree().current_scene.shaker.shake.bind(self, 10, 0.15))
 	death_tween.tween_interval(0.2)
 	

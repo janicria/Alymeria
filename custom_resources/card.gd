@@ -1,6 +1,6 @@
 class_name Card extends Resource
 
-enum Type {PHYSICAL, INTERNAL, LOOPED, STATUS, MALWARE}
+enum Type {PHYSICAL, INTERNAL, LOOPED, STATUS, MALWARE, SUMMON}
 enum Rarity {COMMON, UNCOMMON, RARE, STATUS, PURPLE}
 enum Target {SELF, SINGLE_ENEMY, ALL_ENEMIES, RANDOM, EVERYONE, SUMMON}
 enum Upgrade {NONE, REFINED, ENHANCED}
@@ -101,6 +101,10 @@ func play(targets : Array[Node], modifiers: ModifierHandler) -> void:
 
 func apply_effects(_targets: Array[Node], _modifiers: ModifierHandler) -> void:
 	pass
+
+
+func get_status_or_effect_text(_name: String) -> String:
+	return "Status text not found"
 
 
 func drawn() -> void:

@@ -16,4 +16,4 @@ cost = 0
 statuses = Array[ExtResource("2_xlj0w")]([ExtResource("3_mgrwe"), ExtResource("4_mpnms")])
 tooltip_text = "On draw
 Duplicate"
-effects = Array[String](["on_draw", "duplicate", "heavy"])
+effects = Array[String](["on_draw", "duplicate"])

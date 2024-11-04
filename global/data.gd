@@ -22,26 +22,29 @@ const StatusDescriptions := {
 	"heal": "[color=ff0000]Heal[/color] - Recover [color=ff0000]health[/color]",
 	"cancel": "[color=AB3321]Cancel[/color] - You cannot play [color=0044ff]cards[/color]. Decreases by 1 at the END of each turn",
 	"card_damage_up": "[color=1AD12C]Damage up[/color] - [color=ff0000]Attacks[/color] deal additional [color=ff0000]damage[/color]",
-	"webbed": "[color=AB3321]Webbed[/color] - [color=0044ff]Cards[/color] deal 30% less [[color=ff0000]damage[/color]. Decreases by one at the start of each turn",
-	"spinneret": "[color=1AD12C]Spinneret[/color] - Whenever you receive unblocked [color=AB3321]attack damage[/color] from this [color=CD57FF]enemy[/color], gain one [color=AB3321]Webbed[/color]",
-	"nano_plague": "[color=AB3321]Nano plague[/color] - Take [color=ff0000]damage[/color] equal to 80% of stacks then apply [color=008000]nano plague[/color] equal to 20% of stacks to all [color=CD57FF]allies[/color] at the END of each turn",
 	"on_draw": "[color=3D7BFF]On draw[/color] - The below affects are applied when the [color=0044ff]card[/color] is drawn",
 	"duplicate": "[color=3D7BFF]Duplicate[/color] - Add a copy of this [color=0044ff]card[/color] to your draw pile for the rest of combat",
 	
 	# Card statuses
-	"burn": "[color=ff8121]Burn[/color] - When this [color=0044ff]card[/color] is played or [color=AB3321]exhausted[/color], remove a copy of it from your deck until is [color=D9BB26]uncached[/color]",
+	"burn": "[color=ff8121]Burn[/color] - When this [color=0044ff]card[/color] is played or [color=AB3321]exhausted[/color], remove a copy of it from your deck, unless it is [color=D9BB26]uncached[/color]",
 	"exhaust": "[color=AB3321]Exhaust[/color] - Can only be played once per combat and cannot be [color=D9BB26]cached[/color]",
 	"heavy": "[color=A7A5A6]Heavy[/color] - Whenever the draw pile is shuffled, this [color=0044ff]card[/color] is moved to the bottom",
 	"singular": "[color=9370db]Singular[/color] - Cost decreases one whenever you [color=D9BB26]uncache[/color] it. [color=D9BB26]Cache[/color] cost always equals 10",
 	"unplayable": "Unplayable - This [color=0044ff]card[/color] cannot be played!",
+	"temporary": "[color=2C9671]Temporary[/color] -  Right click this [color=0044ff]card[/color] to [color=AB3321]exhaust[/color] it",
+	
+	# Statuses
+	"hidden": "[color=1AD12C]Hidden[/color] - [color=CD57FF]Enemies[/color] ignore this [color=CD57FF]summon[/color] when [color=ff0000]attacking[/color]. Decreases at the start of each turn",
+	"webbed": "[color=AB3321]Webbed[/color] - [color=0044ff]Cards[/color] deal 30% less [color=ff0000]damage[/color]. Decreases at the start of each turn",
+	"spinneret": "[color=1AD12C]Spinneret[/color] - Whenever you receive unblocked [color=AB3321]attack damage[/color] from this [color=CD57FF]enemy[/color], gain one [color=AB3321]Webbed[/color]",
+	"nano_plague": "[color=AB3321]Nano plague[/color] - Take [color=ff0000]damage[/color] equal to 80% of stacks then apply [color=008000]nano plague[/color] equal to 20% of stacks to all [color=CD57FF]allies[/color] at the END of each turn",
+	"injured": "[color=AB3321]Injured[/color] - Recive 30% more [color=ff0000]damage[/color] from [color=ff0000]attacks[/color]. Decreases by 1 at the END of each turn",
 	
 	# With string replacements
-	"temporary": "[color=2C9671]Temporary[/color] -  Right click this [color=0044ff]card[/color] to [color=AB3321]exhaust[/color] it",
-	"lucky_draw": "[color=9370db]Lucky draw[/color] - There is a [color=9370db]%d%%[/color] chance for this [color=0044ff]card[/color] to fail to play, chance decreases by one whenever you draw a [color=0044ff]card[/color]",
+	"lucky_draw": "[color=9370db]Lucky draw[/color] - There is a [color=9370db]%d%%[/color] chance for this [color=0044ff]card[/color] to fail to play, chance decreases whenever you [color=3D7BFF]draw[/color] a [color=0044ff]card[/color]",
 	"damage_up": "[color=1AD12C]Damage up[/color] - [color=ff0000]Attacks[/color] deal %s additional [color=ff0000]damage[/color]",
 	"defence_up": "[color=1AD12C]Defence up[/color] - Gain %s more [color=0044ff]barrier[/color] from [color=0044ff]cards[/color]",
 	"file_corruption": "[color=1AD12C]File corruption[/color] - Whenever you play a [color=0044ff]card[/color] apply %s [color=008000]nano plague[/color] to [color=CD57FF]everyone[/color]",
-	"injured": "[color=AB3321]Injured[/color] - Recive 30% more [color=ff0000]damage[/color] from [color=ff0000]attacks[/color]. Decreases by 1 at the END of each turn",
 	"memory_down": "[color=AB3321]Memory down[/color] - Lose %s [color=ffff00]memory[/color] at the start of each turn. Amount is equal to looped [color=0044ff]card's[/color] cost",
 	"suboptimal": "[color=1AD12C]Suboptimal[/color] - At the start of each turn lose %d [color=ff0000]health[/color] and gain %d [color=1AD12C]damage up[/color]"
 }
@@ -157,6 +160,11 @@ func get_core_from_weight() -> Core:
 	if roll >= 80: return get_core_from_rarity(Core.Rarity.RARE)
 	elif roll >= 60: return get_core_from_rarity(Core.Rarity.UNCOMMON)
 	return get_core_from_rarity(Core.Rarity.COMMON)
+
+
+@warning_ignore("untyped_declaration")
+func hi(message = "") -> void:
+	OS.alert("hiya" if str(message) == "" else str(message), "I think something broke :c")
 
 
 func reset_stats() -> void:

@@ -6,5 +6,5 @@
 [resource]
 script = ExtResource("1_etqqc")
 name = "lucky_draw"
+format_tooltip = true
 icon = ExtResource("1_xytje")
-description = "Lucky draw - There is a [color=9370db]%d%%[/color] chance for this [color=0044ff]card[/color] to fail to play, chance decreases by one whenever you draw a [color=0044ff]card[/color]"
