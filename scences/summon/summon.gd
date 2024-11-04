@@ -12,26 +12,26 @@ func _ready() -> void:
 	stats = stats.create_instance()
 	texture.texture = stats.art
 	
+	stats.summon = self
 	#stats.base_action.owner = self
 	#stats.card_action.owner = self
 	#stats.special_action.owner = self
-	#status_handler.status_owner = self
+	status_handler.status_owner = self
 	
 	if !stats.stats_changed.is_connected(stats_ui.update_stats):
 		stats.stats_changed.connect(stats_ui.update_stats.bind(stats))
 	stats_ui.update_stats(stats)
 
 
-func take_damage(damage : int, modify_damage := true) -> void:
+func take_damage(damage: int, status: Status = null) -> void:
 	if stats.health <= 0: return
 	Data.damage_dealt += damage
 	
 	var modified_damage := modifier_handler.get_modified_value(damage, Modifier.Type.DMG_TAKEN)
-	if !modify_damage: modified_damage = damage
 	
 	var tween := create_tween()
 	tween.tween_callback(get_tree().current_scene.shaker.shake.bind(self, 12, 0.15))
-	tween.tween_callback(stats.take_damage.bind(modified_damage))
+	tween.tween_callback(stats.take_damage.bind(modified_damage, status))
 	tween.tween_interval(0.2)
 	
 	tween.finished.connect(

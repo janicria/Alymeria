@@ -18,9 +18,6 @@ statuses = Array[ExtResource("3_ggqs4")]([ExtResource("4_s7kkj"), ExtResource("5
 sound = ExtResource("2_4lwbi")
 tooltip_text = "Barrier %d
 DMG UP 20
-Card draw 3
+Draw 3
 Heal 1"
-effect_description = "Barrier - [color=0044ff]Prevents[/color] [color=ff0000]damage[/color] from enemy attacks
-Damage up - [color=ff0000]Attacks[/color] deal X more damage
-Card draw - Draw X additional [color=0044ff]cards[/color] at the start of each turn
-Heal - Heal 1[color=ff0000]health[/color]"
+effects = Array[String](["barrier", "card_damage_up", "draw", "heal"])

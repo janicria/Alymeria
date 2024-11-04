@@ -16,5 +16,4 @@ cost = 0
 statuses = Array[ExtResource("2_xlj0w")]([ExtResource("3_mgrwe"), ExtResource("4_mpnms")])
 tooltip_text = "On draw
 Duplicate"
-effect_description = "On draw - The below affects are applied when the Blue [color=0044ff]card[/color] is drawn
-Duplicate - Add a copy of this [color=0044ff]card[/color] to your draw pile without adding it to your deck"
+effects = Array[String](["on_draw", "duplicate", "heavy"])

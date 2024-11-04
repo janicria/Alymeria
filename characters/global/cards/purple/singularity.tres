@@ -1,8 +1,9 @@
-[gd_resource type="Resource" load_steps=4 format=3 uid="uid://k4hkbwis7pig"]
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://k4hkbwis7pig"]
 
 [ext_resource type="Script" path="res://characters/global/cards/purple/singularity.gd" id="1_mhvej"]
 [ext_resource type="AudioStream" uid="uid://dixklg6g4jnsq" path="res://assets/sfx/slash.ogg" id="2_plcc7"]
 [ext_resource type="Script" path="res://custom_resources/card_status.gd" id="2_wsgfn"]
+[ext_resource type="Resource" uid="uid://bk22odytwwilo" path="res://effects/card_status/singular.tres" id="4_t4wuk"]
 
 [resource]
 script = ExtResource("1_mhvej")
@@ -12,7 +13,7 @@ rarity = 4
 target = 0
 repeats = 1
 cost = 8
-statuses = Array[ExtResource("2_wsgfn")]([])
+statuses = Array[ExtResource("2_wsgfn")]([ExtResource("4_t4wuk")])
 sound = ExtResource("2_plcc7")
 tooltip_text = "ATK %d"
-effect_description = "Attack - Deal [color=ff0000]damage[/color] to an enemy"
+effects = Array[String](["attack"])

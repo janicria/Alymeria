@@ -31,6 +31,7 @@ var playable := true : set = set_playable
 var disabled := false
 var canceled := false
 var name_initialised := false
+var tooltip_opening: bool
 
 
 func _ready() -> void:
@@ -76,20 +77,16 @@ func set_card(value: Card) -> void:
 	# Card statuses
 	for status in card.statuses:
 		card.add_status(status)
-	
 	for child in card_statuses.get_children():
 		child.queue_free()
+		
 	for status in card.statuses:
 		var texture_rect := TextureRect.new()
 		texture_rect.texture = status.icon
 		texture_rect.expand_mode = TextureRect.EXPAND_FIT_WIDTH
 		texture_rect.custom_minimum_size.y = 10
-		if status.name == "lucky_draw": texture_rect.mouse_entered.connect(func()->void: 
-			Events.show_tooltip.emit(status.description % card.chance))
-		else: texture_rect.mouse_entered.connect(func()->void: Events.show_tooltip.emit(status.description))
-		texture_rect.mouse_exited.connect(func()->void: Events.hide_tooltip.emit())
 		card_statuses.add_child(texture_rect)
-		if card.has_status("unplayable"): playable = false
+	if card.has_status("unplayable"): playable = false
 
 
 func set_playable(value : bool) -> void:
@@ -144,9 +141,24 @@ func _on_gui_input(event: InputEvent) -> void:
 func _on_mouse_entered() -> void:
 	card_state_machine.on_mouse_entered()
 	z_index = 1
+	
+	var description_to_send := "" # Assigning value prevents warning
+	for effect in card.effects:
+		description_to_send += "%s%s" % (
+			[Data.StatusDescriptions.get(effect), "\n" if effect != card.effects[-1] else ""])
+	if !card.statuses.is_empty(): description_to_send += "\n"
+	for status in card.statuses:
+		description_to_send += "%s%s" % (
+			[Data.StatusDescriptions.get(status.name), "\n" if status != card.statuses[-1] else ""])
+	Events.show_tooltip.emit(description_to_send)
+	tooltip_opening = true
+	await get_tree().create_timer(0.1).timeout
+	tooltip_opening = false
 
 
 func _on_mouse_exited() -> void:
+	if !tooltip_opening:
+		Events.hide_tooltip.emit()
 	card_state_machine.on_mouse_exited()
 	z_index = 0
 

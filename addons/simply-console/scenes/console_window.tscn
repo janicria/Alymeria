@@ -335,7 +335,7 @@ func debug(additional_option: String = \"\") -> String:
 	
 	# Character
 	heal(999, true)
-	Data.character.max_mana = 99
+	Data.character.max_memory = 99
 	if additional_option != \"draw\":
 		Data.character.cards_per_turn = 10
 	

@@ -109,11 +109,17 @@ func play() -> void:
 
 
 func apply_effects(targets: Array[Node]) -> void:
-	# Await is needed because signals are slow (I think??)
-	if is_dead: await get_tree().process_frame; finished_playing.emit(); return
-	if card_stats.custom_amount != "": card_stats.custom_play(get_targets()); return
+	if is_dead:
+		await get_tree().process_frame
+		finished_playing.emit()
+		return
+	if card_stats.custom_amount != "": 
+		card_stats.custom_play(get_targets())
+		return
+	if enemy_stats == null: 
+		return
+	
 	for i in card_stats.repeats:
-		# Indentation moment <- ikr it sucks
 		var effect: Effect
 		match card_stats.type:
 			EnemyCard.Type.ATTACK:
@@ -142,6 +148,7 @@ func apply_effects(targets: Array[Node]) -> void:
 		if !effect.amount: effect.amount = card_stats.amount
 		effect.sound = card_stats.SFX_dict.get(card_stats.type)
 		effect.execute(targets)
+		# Await is needed because signals are slow (I think??)
 		await get_tree().create_timer(0.1).timeout
 	finished_playing.emit()
 
@@ -162,8 +169,8 @@ func _on_control_mouse_entered() -> void:
 		tooltip_text += "[color=ff0000]attack for %sx%s[/color]" % [card_stats.amount, card_stats.repeats]
 	else: match card_stats.type:
 		card_stats.Type.ATTACK: tooltip_text += "[color=ff0000]attack for %s[/color]" % card_stats.amount
-		card_stats.Type.BARRIER: tooltip_text += "gain a small amount of [color=0044ff]barrier[/color]"
-		card_stats.Type.LARGE_BARRIER: tooltip_text +=  "gain a large amount of [color=0044ff]barrier[/color]"
+		card_stats.Type.BARRIER: tooltip_text += "apply a small amount of [color=0044ff]barrier[/color]"
+		card_stats.Type.LARGE_BARRIER: tooltip_text +=  "apply a large amount of [color=0044ff]barrier[/color]"
 		card_stats.Type.DRAW: tooltip_text += "[color=3D7BFF]draw %s[/color] [color=0044ff]cards[/color]" % card_stats.amount
 		card_stats.Type.ENERGY: tooltip_text += "[color=3D7BFF]replenish %s mana[/color]" % card_stats.amount
 		card_stats.Type.BUFF: tooltip_text += "[color=1AD12C]apply a buff[/color]"

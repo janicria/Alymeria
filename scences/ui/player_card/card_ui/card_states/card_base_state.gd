@@ -23,12 +23,6 @@ func on_gui_input(event: InputEvent) -> void:
 func on_mouse_entered() -> void:
 	if !card_ui.playable or card_ui.disabled: return
 	card_ui.panel.set("theme_override_styles/panel", card_ui.HOVER_STYLEBOX)
-	
-	var description_to_send := "" # Assigning value prevents warning
-	for effect in card_ui.card.effects:
-		description_to_send += Data.StatusDescriptions.get(effect) + (
-			"\n" if effect != card_ui.card.effects[-1] else "")
-	Events.show_tooltip.emit(description_to_send)
 
 
 func on_mouse_exited() -> void:

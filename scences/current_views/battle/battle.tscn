@@ -133,7 +133,7 @@ player = NodePath("../../Player")
 [node name="Tooltip" parent="BattleUI" instance=ExtResource("12_rl0gg")]
 offset_left = -86.0
 offset_top = 44.0
-offset_right = 24.0
+offset_right = 44.0
 offset_bottom = 80.0
 
 [node name="EndTurnButton" type="Button" parent="BattleUI"]
@@ -270,6 +270,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.913725, 0, 0.2, 0)
 metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
 
 [node name="Timer" type="Timer" parent="RedFlash"]
 wait_time = 0.2
