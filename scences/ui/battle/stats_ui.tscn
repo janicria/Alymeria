@@ -5,7 +5,6 @@
 [ext_resource type="Theme" uid="uid://bhs76hnulf3s4" path="res://assets/misc/main_theme.tres" id="3_g2v77"]
 [ext_resource type="PackedScene" uid="uid://dn8ooj6qia3x8" path="res://scences/ui/settings/health_ui.tscn" id="4_a1wiv"]
 
-
 [node name="StatsUI" type="HBoxContainer"]
 anchors_preset = 5
 anchor_left = 0.5
@@ -23,8 +22,10 @@ layout_mode = 2
 theme_override_constants/separation = 0
 
 [node name="BarrierImage" type="TextureRect" parent="Barrier"]
+custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 texture = ExtResource("2_rgk6s")
+expand_mode = 1
 stretch_mode = 5
 
 [node name="BarrierLabel" type="Label" parent="Barrier"]

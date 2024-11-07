@@ -10,8 +10,12 @@
 [node name="Player" type="Node2D" groups=["player"]]
 script = ExtResource("1_u6pjk")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="TextureRect" parent="."]
 unique_name_in_owner = true
+offset_left = -17.0
+offset_top = -28.0
+offset_right = 15.0
+offset_bottom = 4.0
 texture = ExtResource("1_f7p4x")
 
 [node name="StatsUI" parent="." instance=ExtResource("2_qygbq")]

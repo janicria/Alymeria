@@ -5,8 +5,8 @@
 
 [node name="CardPileButton" type="TextureButton"]
 process_mode = 3
-offset_right = 12.0
-offset_bottom = 14.0
+offset_right = 24.0
+offset_bottom = 28.0
 texture_normal = ExtResource("1_xaofm")
 ignore_texture_size = true
 stretch_mode = 5

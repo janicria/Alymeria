@@ -45,8 +45,8 @@ gdscript/warnings/native_method_override=1
 
 [display]
 
-window/size/viewport_width=334
-window/size/viewport_height=188
+window/size/viewport_width=640
+window/size/viewport_height=360
 window/size/resizable=false
 window/size/window_width_override=1280
 window/size/window_height_override=720

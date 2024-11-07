@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bwuexw3t61b0h"]
+[gd_scene load_steps=15 format=3 uid="uid://bwuexw3t61b0h"]
 
 [ext_resource type="Script" path="res://scences/ui/settings/settings_bar.gd" id="1_gqwvr"]
 [ext_resource type="AudioStream" uid="uid://b1vpjjmi5cj3n" path="res://assets/sfx/axe.ogg" id="2_mu1su"]
@@ -9,6 +9,12 @@
 [ext_resource type="PackedScene" uid="uid://da7tuwoqikc3r" path="res://scences/ui/settings/gold_ui.tscn" id="6_qme55"]
 [ext_resource type="PackedScene" uid="uid://bijq7mf8h0j85" path="res://scences/ui/settings/tooltip.tscn" id="7_w5c4v"]
 [ext_resource type="PackedScene" uid="uid://hqt3nv2gge3l" path="res://scences/ui/player_card/card_pile/card_pile_view.tscn" id="8_4kgy7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_sf1iy"]
+font_size = 6
+
+[sub_resource type="LabelSettings" id="LabelSettings_tfese"]
+font_size = 6
 
 [sub_resource type="LabelSettings" id="LabelSettings_dr0uj"]
 
@@ -23,6 +29,7 @@ process_mode = 3
 modulate = Color(0.737255, 0.737255, 0.737255, 1)
 offset_right = 334.0
 offset_bottom = 20.0
+scale = Vector2(1.9, 1.9)
 mouse_filter = 2
 expand_mode = 1
 stretch_mode = 2
@@ -61,22 +68,32 @@ texture = ExtResource("3_xk6qw")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="DeckButton" parent="TopVbox/Layer1" node_paths=PackedStringArray("counter") instance=ExtResource("4_hmjjb")]
+[node name="DeckButtonControl" type="Control" parent="TopVbox/Layer1"]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+
+[node name="DeckButton" parent="TopVbox/Layer1/DeckButtonControl" node_paths=PackedStringArray("counter") instance=ExtResource("4_hmjjb")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(12, 16)
 layout_mode = 2
+offset_left = -1.21053
+offset_top = -0.105263
+offset_right = 10.7895
+offset_bottom = 15.8947
 texture_normal = ExtResource("5_ye2i7")
 counter = NodePath("../Counter")
 
-[node name="Counter" type="RichTextLabel" parent="TopVbox/Layer1"]
+[node name="Counter" type="RichTextLabel" parent="TopVbox/Layer1/DeckButtonControl"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
-size_flags_vertical = 4
+offset_left = 0.894736
+offset_top = 5.15789
+offset_right = 30.8947
+offset_bottom = 21.1579
 bbcode_enabled = true
-text = "99"
+text = "[font_size=6]99[/font_size]"
 fit_content = true
-scroll_active = false
-autowrap_mode = 0
 
 [node name="Layer2" type="HBoxContainer" parent="TopVbox"]
 layout_mode = 2
@@ -86,6 +103,15 @@ theme_override_constants/separation = 2
 unique_name_in_owner = true
 layout_mode = 2
 show_max_hp = true
+
+[node name="HealthImage" parent="TopVbox/Layer2/HealthUI" index="0"]
+custom_minimum_size = Vector2(10, 10)
+
+[node name="HealthLabel" parent="TopVbox/Layer2/HealthUI" index="1"]
+label_settings = SubResource("LabelSettings_sf1iy")
+
+[node name="MaxHealthLabel" parent="TopVbox/Layer2/HealthUI" index="2"]
+label_settings = SubResource("LabelSettings_tfese")
 
 [node name="GoldUI" parent="TopVbox/Layer2" instance=ExtResource("6_qme55")]
 unique_name_in_owner = true
@@ -365,28 +391,14 @@ visible = false
 
 [connection signal="gui_input" from="ColorRect" to="." method="_on_color_rect_gui_input"]
 [connection signal="gui_input" from="TopVbox/Layer1/Cog" to="." method="_on_cog_gui_input"]
-[connection signal="mouse_entered" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/TrueDrawHbox" to="." method="_on_hbox_mouse_entered" binds= ["Cards which draw show how far they move your deck (show one less in the draw counter)"]]
 [connection signal="mouse_exited" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/TrueDrawHbox" to="." method="hide_tooltip"]
-[connection signal="toggled" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/TrueDrawHbox/TrueDrawButton" to="." method="_on_toggled_button_toggled" binds= ["true_draw"]]
-[connection signal="mouse_entered" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/TrueDeckHbox" to="." method="_on_hbox_mouse_entered" binds= ["Deck counter doesn't show cards which exhaust"]]
 [connection signal="mouse_exited" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/TrueDeckHbox" to="." method="hide_tooltip"]
-[connection signal="toggled" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/TrueDeckHbox/TrueDeckButton" to="." method="_on_toggled_button_toggled" binds= ["true_deck"]]
-[connection signal="mouse_entered" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/HintsHbox" to="." method="_on_hbox_mouse_entered" binds= ["Show useful gameplay hints during menus (recommended)"]]
 [connection signal="mouse_exited" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/HintsHbox" to="." method="hide_tooltip"]
-[connection signal="toggled" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/HintsHbox/HintsButton" to="." method="_on_toggled_button_toggled" binds= ["hints"]]
-[connection signal="mouse_entered" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/CardPilePosHbox" to="." method="_on_hbox_mouse_entered" binds= ["Moves your draw and discard pile buttons to inside or outside the stats box"]]
 [connection signal="mouse_exited" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/CardPilePosHbox" to="." method="hide_tooltip"]
-[connection signal="toggled" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/CardPilePosHbox/CardPilePosButton" to="." method="_on_toggled_button_toggled" binds= ["card_pile_pos"]]
-[connection signal="mouse_entered" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/SpeedyCards" to="." method="_on_hbox_mouse_entered" binds= ["Reverts patch(es) which prevented enemy cards from going extra speedy over time"]]
 [connection signal="mouse_exited" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/SpeedyCards" to="." method="hide_tooltip"]
-[connection signal="toggled" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/SpeedyCards/SpeedyCardsButton" to="." method="_on_toggled_button_toggled" binds= ["speedy_cards"]]
-[connection signal="mouse_entered" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/ConsoleButton" to="." method="_on_hbox_mouse_entered" binds= ["Opens the debug console (can be toggled by pressing the '~' key, not available in the main menu)"]]
 [connection signal="mouse_exited" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/ConsoleButton" to="." method="hide_tooltip"]
 [connection signal="pressed" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/ConsoleButton" to="." method="_on_console_button_pressed"]
 [connection signal="pressed" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/ExitButton" to="." method="_on_exit_button_pressed"]
-[connection signal="value_changed" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/AudioVisual/MasterVolumeHbox/MasterVolumeSlider" to="." method="_on_volume_slider_value_changed" binds= ["master"]]
 [connection signal="drag_ended" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/AudioVisual/SFXVolumeHbox/SFXVolumeSlider" to="." method="_on_sfx_volume_drag_ended"]
-[connection signal="value_changed" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/AudioVisual/SFXVolumeHbox/SFXVolumeSlider" to="." method="_on_volume_slider_value_changed" binds= ["sfx"]]
-[connection signal="value_changed" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/AudioVisual/MusicVolumeHbox/MusicVolumeSlider" to="." method="_on_volume_slider_value_changed" binds= ["music"]]
-[connection signal="toggled" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/AudioVisual/PipeHbox/PipeButton" to="." method="_on_toggled_button_toggled" binds= ["pipe"]]
-[connection signal="toggled" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/AudioVisual/FullscreenHbox/FullscreenButton" to="." method="_on_toggled_button_toggled" binds= ["fullscreen"]]
+
+[editable path="TopVbox/Layer2/HealthUI"]

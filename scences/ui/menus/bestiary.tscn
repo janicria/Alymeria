@@ -1,12 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cogno32qd13u"]
+[gd_scene load_steps=3 format=3 uid="uid://cogno32qd13u"]
 
 [ext_resource type="Script" path="res://scences/ui/menus/bestiary.gd" id="1_i0uol"]
 [ext_resource type="Texture2D" uid="uid://ckp4wldwmrcxf" path="res://assets/objects/textbook.png" id="2_txjvj"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_p0uah"]
-font_size = 6
-outline_size = 2
-outline_color = Color(0, 0, 0, 1)
 
 [node name="Bestiary" type="Control"]
 layout_mode = 3
@@ -15,10 +10,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = -80.0
-offset_right = 150.0
-offset_bottom = 80.0
+offset_left = -301.0
+offset_top = -165.0
+offset_right = 304.0
+offset_bottom = 164.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_i0uol")
@@ -62,17 +57,32 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -100.0
-offset_top = 13.0
-offset_right = 100.0
-offset_bottom = 53.0
+offset_left = -244.0
+offset_top = 9.0
+offset_right = 244.0
+offset_bottom = 49.0
 grow_horizontal = 2
 theme_override_font_sizes/normal_font_size = 12
 bbcode_enabled = true
-text = "[center]Maths textbook[/center]"
+text = "[center][font_size=32]Maths textbook[/font_size][/center]"
 fit_content = true
 
 [node name="CoreIcon" type="TextureRect" parent="CoreView"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -40.0
+offset_top = 56.0
+offset_right = 40.0
+offset_bottom = 136.0
+grow_horizontal = 2
+texture = ExtResource("2_txjvj")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CoreText" type="RichTextLabel" parent="CoreView"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
@@ -80,29 +90,12 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -50.0
-offset_right = 20.0
-offset_bottom = -10.0
+offset_left = -204.0
+offset_top = -1.0
+offset_right = 204.0
+offset_bottom = 119.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_txjvj")
-stretch_mode = 5
-
-[node name="CoreText" type="RichTextLabel" parent="CoreView"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -80.0
-offset_top = -78.0
-offset_right = 80.0
-offset_bottom = 12.0
-grow_horizontal = 2
-grow_vertical = 0
 bbcode_enabled = true
 text = "[center]At the start of each turn gain 1 memory and draw 1 card. Whenever you play a card, draw a card then choose a card in your hand to discard
 
@@ -115,12 +108,11 @@ autowrap_mode = 2
 [node name="ShopText" type="Label" parent="CoreView"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 214.0
-offset_top = 33.0
-offset_right = 294.0
-offset_bottom = 48.0
+offset_left = 483.0
+offset_top = 67.0
+offset_right = 594.0
+offset_bottom = 124.0
 text = "Right click to purchase in shop"
-label_settings = SubResource("LabelSettings_p0uah")
 horizontal_alignment = 1
 autowrap_mode = 3
 

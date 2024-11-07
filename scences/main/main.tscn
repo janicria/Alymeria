@@ -105,14 +105,16 @@ grow_horizontal = 0
 [node name="SettingsBar" parent="UI" instance=ExtResource("4_0dled")]
 unique_name_in_owner = true
 layout_mode = 0
+offset_left = -155.0
+offset_right = 179.0
 
 [node name="CoreHandler" parent="UI" instance=ExtResource("5_w82hd")]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 9.0
-offset_top = 39.0
-offset_right = 71.0
-offset_bottom = 95.0
+offset_left = -138.0
+offset_top = 71.0
+offset_right = -76.0
+offset_bottom = 127.0
 
 [node name="BestiaryLayer" type="CanvasLayer" parent="UI"]
 layer = 99

@@ -24,38 +24,29 @@ func set_card_pile(new_value : CardPile) -> void:
 
 func _on_card_pile_size_changed(amount : int) -> void:
 	deck_size = amount
-	if get_name() == "CachePileButton": counter.text = "[center][color=D9BB26]%s[/color] %s[/center]" % [Data.character.cache_tokens, deck_size]
-	else: counter.text = "[center]%s[/center]" % deck_size
-	if Data.true_deck_size: update_ui() #Events.update_deck_button_ui.emit()
+	if name == "CachePileButton": counter.text = "[center][color=D9BB26]%s[/color] %s[/center]" % [Data.character.cache_tokens, deck_size]
+	else: update_text("[center]%s[/center]" % deck_size)
+	if Data.true_deck_size: update_ui()
 
 
 func update_ui() -> void:
 	match get_name():
 		"DeckButton":
 			if Data.true_deck_size: # Imagine putting this in a trenary
-				counter.text = "%s(%s)" % [deck_size, (deck_size - Data.character.deck.cards.filter(
-					func(card: Card)->bool: return card.has_status("exhaust")).size())]
-			else: counter.text = "[center]%s[/center]" % deck_size
-		
-		
-		"DrawPileButton":
-			if Data.card_pile_above_mana: position = Vector2(58, 145)
-			else: position = Vector2(80, 170)
-		
-		"DiscardPileButton":
-			if Data.card_pile_above_mana: position = Vector2(42, 145)
-			else: position = Vector2(317, 170)
-		
-		"ExhaustPileButton":
-			if Data.card_pile_above_mana: position = Vector2(26, 145)
-			else: position = Vector2(317, 145)
+				update_text("%s(%s)" % [deck_size, (deck_size - Data.character.deck.cards.filter(
+					func(card: Card)->bool: return card.has_status("exhaust")).size())])
+			else: update_text("[center]%s[/center]" % deck_size)
 		
 		"CachePileButton":
 			counter.position.x = -1
 			counter.text = "[center][color=D9BB26]%s[/color] %s[/center]" % [Data.character.cache_tokens, deck_size]
-			if Data.card_pile_above_mana: position = Vector2(10, 145)
-			else: position = Vector2(80, 145)
-	
+
+
+func update_text(text: String) -> void:
+	if name == "DeckButton":
+		counter.text = "[font_size=6]%s[/font_size]" % text
+	else: counter.text = text
+
 
 func _on_mouse_entered() -> void:
 	color_rect.color.a = 0.18

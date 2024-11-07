@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dyympjy3226qe"]
+[gd_scene load_steps=7 format=3 uid="uid://dyympjy3226qe"]
 
 [ext_resource type="StyleBox" uid="uid://ck3105wj7dcrn" path="res://scences/ui/player_card/card_ui/card_base_stylebox.tres" id="1_24aeo"]
 [ext_resource type="Script" path="res://custom_resources/enemy_card_ui.gd" id="1_maq84"]
@@ -6,8 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://bfvi02kojsa00" path="res://assets/objects/sword_size1.png" id="3_n08at"]
 [ext_resource type="Texture2D" uid="uid://bb3rcs5nqntir" path="res://assets/ui/misc/arrow.png" id="5_cxkpc"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_qmcvt"]
+font_size = 6
+
 [node name="EnemyCard" type="Node2D"]
-visible = false
+scale = Vector2(2, 2)
 script = ExtResource("1_maq84")
 
 [node name="Panel" type="Panel" parent="."]
@@ -24,10 +27,11 @@ theme_override_styles/panel = ExtResource("1_24aeo")
 [node name="Cost" type="Label" parent="."]
 unique_name_in_owner = true
 offset_left = 3.0
-offset_top = 1.0
-offset_right = 46.0
-offset_bottom = 11.0
+offset_top = 2.5
+offset_right = 14.0
+offset_bottom = 14.5
 text = "2"
+label_settings = SubResource("LabelSettings_qmcvt")
 vertical_alignment = 1
 
 [node name="Icon" type="TextureRect" parent="."]

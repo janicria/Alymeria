@@ -44,8 +44,8 @@ func _process(_delta: float) -> void:
 	# Prevents the map camera from moving screen elements
 	version_number.global_position.y = 2 - version_number.get_canvas_transform().origin.y
 	settings_bar.global_position.y = 0 - settings_bar.get_canvas_transform().origin.y
-	core_handler.global_position.y = 39 - core_handler.get_canvas_transform().origin.y
-	bestiary.global_position.y = 17 - bestiary.get_canvas_transform().origin.y
+	core_handler.global_position.y = 76 - core_handler.get_canvas_transform().origin.y
+	bestiary.global_position.y = 14 - bestiary.get_canvas_transform().origin.y
 
 
 func _input(_event: InputEvent) -> void:
