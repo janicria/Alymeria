@@ -6,6 +6,5 @@
 [resource]
 script = ExtResource("1_bl7ej")
 name = "burn"
+format_tooltip = false
 icon = ExtResource("1_sxqqr")
-description = "When this [color=0044ff]card[/color] is played, exhausted, or discarded if it is unplayable, remove a copy of it from your deck. If the [color=0044ff]card[/color] is [color=D9BB26]uncached[/color], add it back to your deck
-"

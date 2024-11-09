@@ -1,9 +1,9 @@
-class_name MapGenerator
-extends Node
+class_name MapGenerator extends Node
 
-const X_DIST := 25
-const Y_DIST := 30
-const PLACEMENT_RANDOMNESS := 5
+const X_DIST := 50
+const Y_DIST := 50
+const PLACEMENT_RANDOMNESS := 8
+# How many columns there are
 const MAP_WIDTH := 5
 const MONSTER_WEIGHT := 35
 const SHOP_WEIGHT := 18
@@ -122,7 +122,7 @@ func _setup_boss_room() -> void:
 	var middle := floori(MAP_WIDTH * 0.5)
 	var boss_room := map_data[floors - 1][middle] as Room
 	
-	# edits connections to boss room
+	# Edits connections to boss room
 	for j in MAP_WIDTH:
 		var current_room := map_data[floors - 2][j] as Room
 		if current_room.next_rooms:
@@ -133,7 +133,7 @@ func _setup_boss_room() -> void:
 	boss_room.battle_stats = battle_stats_pool.get_random_battle_from_tier(3)
 
 
-# I honestly have no idea how this (weight systems) work, but it does
+# I honestly have no idea how this works, but it does
 func _setup_random_room_weights() -> void:
 	random_room_type_weights[Room.Type.MONSTER] = MONSTER_WEIGHT
 	random_room_type_weights[Room.Type.HAVEN] = MONSTER_WEIGHT + HAVEN_WEIGHT

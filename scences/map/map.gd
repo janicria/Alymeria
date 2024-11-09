@@ -3,6 +3,7 @@ class_name Map extends Node2D
 signal map_exited(current_room: Room)
 
 const SCROLL_SPEED := 15
+const VISUAL_OFFSET := 80
 const MAP_ROOM := preload("res://scences/map/map_room.tscn")
 const MAP_LINE := preload("res://scences/map/map_line.tscn")
 
@@ -11,6 +12,7 @@ const MAP_LINE := preload("res://scences/map/map_line.tscn")
 @onready var rooms: Node2D = %Rooms
 @onready var camera_2d: Camera2D = %Camera2D
 @onready var map_generator: MapGenerator = %MapGenerator
+@onready var map_background: CanvasLayer = %MapBackground
 
 var map_data: Array[Array]
 var floors_climbed: int
@@ -20,6 +22,7 @@ var camera_edge_y: float
 
 func _ready() -> void:
 	camera_edge_y = MapGenerator.Y_DIST * (Data.biome_floors[Data.current_biome] - 2)
+	camera_2d.position.y = clamp(camera_2d.position.y, -camera_edge_y, 0)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -53,10 +56,12 @@ func create_map() -> void:
 	_spawn_room(map_data[map_generator.floors-1][middle])
 	
 	var map_width_pixels := MapGenerator.X_DIST * (MapGenerator.MAP_WIDTH -1)
-	# +40 is offset for LeftBox, +80 is so floor 1 isn't too high up
-	visuals.position.x = (get_viewport_rect().size.x - map_width_pixels + 40) / 2
+	# +80 is so floor 1 isn't too high up
+	visuals.position.x = (get_viewport_rect().size.x - map_width_pixels + VISUAL_OFFSET) / 2
 	visuals.position.y = (get_viewport_rect().size.y + 80) / 2
-
+	# Centres the background elements
+	map_background.offset = map_background.get_child(0).position * -1
+	
 
 func unlock_floor(which_floor: int = floors_climbed) -> void:
 	for map_room: MapRoom in rooms.get_children():

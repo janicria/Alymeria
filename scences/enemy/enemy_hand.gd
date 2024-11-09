@@ -1,14 +1,13 @@
-class_name EnemyHand
-extends HBoxContainer
+class_name EnemyHand extends HBoxContainer
 
 signal cards_finished_moving
 
+const CARD_OFFSET := 76
 const ENEMY_CARD_SCENE = preload("res://scences/enemy/enemy_card.tscn")
 
-var organiser_target_pos := position - Vector2(30, -5)
-# I honestly have no idea why this is needed but it stops enemy cards from ramping up in speed over time
-#var time_before_next_card := 0.0
-
+var card_start_position := func()->Vector2:
+	return position - Vector2(80, -5)
+var organiser_target_pos: Vector2
 
 func _ready() -> void:
 	get_parent().add_card_to_hand.connect(cardToGui)
@@ -19,14 +18,14 @@ func _ready() -> void:
 func cardToGui(card: EnemyCard, enemy: Enemy) -> void:
 	# Creating card
 	var card_ui := ENEMY_CARD_SCENE.instantiate()
-	card_ui.position = enemy.position - Vector2(100, 40)
+	card_ui.position = card_start_position.call()
 	card_ui.update_stats(card, enemy)
 	add_child(card_ui) 
 	
 	# Setting up card for movement
-	var target_pos := position - Vector2(30, -5) 
+	var target_pos := position - Vector2(80, -5) 
 	for i in get_child_count():
-		target_pos.x += 38
+		target_pos.x += CARD_OFFSET
 		if !card.health: await get_tree().create_timer(0.3).timeout
 	card_ui.visible = true
 	
@@ -51,11 +50,11 @@ func cardToGui(card: EnemyCard, enemy: Enemy) -> void:
 
 func organise_cards() -> void:
 	# Setup
-	organiser_target_pos = position - Vector2(30, -5) 
+	organiser_target_pos = card_start_position.call()
 	
 	# Moving card
 	for card: EnemyCardUI in get_children():
-		organiser_target_pos.x += 38
+		organiser_target_pos.x += CARD_OFFSET
 		var tween := create_tween().set_trans(Tween.TRANS_BACK)
 		tween.tween_property(card, "global_position", organiser_target_pos, 0.5)
 		# We want multiple cards to move at the same time

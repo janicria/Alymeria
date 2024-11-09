@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://d0ausrmh8y0is"]
+[gd_scene load_steps=13 format=3 uid="uid://d0ausrmh8y0is"]
 
 [ext_resource type="Theme" uid="uid://bhs76hnulf3s4" path="res://assets/misc/main_theme.tres" id="1_5mrf3"]
 [ext_resource type="Script" path="res://scences/ui/player_card/card_ui/cardui.gd" id="2_6d5p7"]
@@ -11,11 +11,14 @@
 [ext_resource type="Script" path="res://scences/ui/player_card/card_ui/card_states/card_released_state.gd" id="9_whhhk"]
 [ext_resource type="Script" path="res://scences/ui/player_card/card_ui/card_states/card_aiming_state.gd" id="10_5856o"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_fardj"]
+font_size = 12
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_245v2"]
 size = Vector2(45, 57)
 
 [node name="CardUI" type="Control"]
-custom_minimum_size = Vector2(40, 50)
+custom_minimum_size = Vector2(85, 100)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -39,18 +42,18 @@ theme_override_styles/panel = ExtResource("3_postk")
 [node name="Cost" type="Label" parent="."]
 layout_mode = 0
 offset_left = 3.0
-offset_top = 7.0
+offset_top = 13.0
 offset_right = 46.0
-offset_bottom = 17.0
+offset_bottom = 25.0
 text = "2"
 vertical_alignment = 1
 
 [node name="Type" type="Label" parent="."]
 layout_mode = 0
 offset_left = 4.0
-offset_top = 7.0
+offset_top = 13.0
 offset_right = 47.0
-offset_bottom = 17.0
+offset_bottom = 25.0
 text = "2"
 vertical_alignment = 1
 
@@ -78,9 +81,9 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 17.0
+offset_top = 28.5
 offset_right = 5.0
-offset_bottom = 8.6
+offset_bottom = 20.1
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
@@ -101,7 +104,8 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/line_spacing = 0
 theme_override_font_sizes/font_size = 6
-text = "Repurposing hiya"
+text = "hiya"
+label_settings = SubResource("LabelSettings_fardj")
 horizontal_alignment = 1
 autowrap_mode = 3
 

@@ -36,24 +36,13 @@ stretch_mode = 2
 script = ExtResource("1_gqwvr")
 sfx_slider_sound = ExtResource("2_mu1su")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-unique_name_in_owner = true
-process_mode = 3
-visible = false
-layout_mode = 0
-offset_left = -3.0
-offset_top = -4.0
-offset_right = 337.0
-offset_bottom = 191.0
-mouse_filter = 1
-color = Color(0, 0, 0, 0.470588)
-
 [node name="TopVbox" type="VBoxContainer" parent="."]
 layout_mode = 2
 offset_left = 8.0
 offset_top = 8.0
 offset_right = 77.0
 offset_bottom = 58.0
+mouse_filter = 2
 
 [node name="Layer1" type="HBoxContainer" parent="TopVbox"]
 layout_mode = 2
@@ -118,6 +107,25 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 1
 
+[node name="DeckViewLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="DeckView" parent="DeckViewLayer" instance=ExtResource("8_4kgy7")]
+unique_name_in_owner = true
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+visible = false
+layout_mode = 0
+offset_left = -3.0
+offset_top = -4.0
+offset_right = 337.0
+offset_bottom = 191.0
+mouse_filter = 1
+color = Color(0, 0, 0, 0.470588)
+
 [node name="SettingsLayer" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
 layer = 100
@@ -131,12 +139,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -125.0
-offset_top = -75.0
-offset_right = 125.0
-offset_bottom = 75.0
+offset_left = -252.0
+offset_top = -145.0
+offset_right = -2.0
+offset_bottom = 5.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(2, 2)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="SettingsLayer/Settings"]
 layout_mode = 1
@@ -221,24 +230,6 @@ layout_mode = 2
 toggle_mode = true
 button_pressed = true
 text = "Enabled"
-
-[node name="CardPilePosHbox" type="HBoxContainer" parent="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay"]
-layout_mode = 2
-size_flags_horizontal = 0
-
-[node name="Label" type="Label" parent="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/CardPilePosHbox"]
-custom_minimum_size = Vector2(62, 0)
-layout_mode = 2
-text = "  Card pile position"
-label_settings = SubResource("LabelSettings_kiq6t")
-horizontal_alignment = 1
-
-[node name="CardPilePosButton" type="Button" parent="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/CardPilePosHbox"]
-unique_name_in_owner = true
-layout_mode = 2
-toggle_mode = true
-button_pressed = true
-text = "Inside"
 
 [node name="SpeedyCards" type="HBoxContainer" parent="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay"]
 layout_mode = 2
@@ -382,19 +373,11 @@ offset_top = 14.0
 offset_right = 12.0
 offset_bottom = 50.0
 
-[node name="DeckViewLayer" type="CanvasLayer" parent="."]
-layer = 2
-
-[node name="DeckView" parent="DeckViewLayer" instance=ExtResource("8_4kgy7")]
-unique_name_in_owner = true
-visible = false
-
-[connection signal="gui_input" from="ColorRect" to="." method="_on_color_rect_gui_input"]
 [connection signal="gui_input" from="TopVbox/Layer1/Cog" to="." method="_on_cog_gui_input"]
+[connection signal="gui_input" from="ColorRect" to="." method="_on_color_rect_gui_input"]
 [connection signal="mouse_exited" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/TrueDrawHbox" to="." method="hide_tooltip"]
 [connection signal="mouse_exited" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/TrueDeckHbox" to="." method="hide_tooltip"]
 [connection signal="mouse_exited" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/HintsHbox" to="." method="hide_tooltip"]
-[connection signal="mouse_exited" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/CardPilePosHbox" to="." method="hide_tooltip"]
 [connection signal="mouse_exited" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/SpeedyCards" to="." method="hide_tooltip"]
 [connection signal="mouse_exited" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/ConsoleButton" to="." method="hide_tooltip"]
 [connection signal="pressed" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/ConsoleButton" to="." method="_on_console_button_pressed"]

@@ -70,7 +70,7 @@ _data = {
 }
 
 [node name="CoreUI" type="Control"]
-custom_minimum_size = Vector2(16, 16)
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_ouyvs")
@@ -93,5 +93,5 @@ libraries = {
 }
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
-[connection signal="mouse_entered" from="." to="." method="show_tooltip"]
-[connection signal="mouse_exited" from="." to="." method="hide_tooltip"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

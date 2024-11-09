@@ -23,7 +23,7 @@ border_color = Color(0.278499, 0.251714, 0.354967, 1)
 
 [resource]
 default_font_size = 6
-Button/font_sizes/font_size = 12
+Button/font_sizes/font_size = 6
 Button/styles/disabled = SubResource("StyleBoxFlat_g6cw0")
 Button/styles/focus = SubResource("StyleBoxEmpty_8y5pn")
 Button/styles/hover = ExtResource("1_qfdbm")

@@ -26,6 +26,7 @@ unique_name_in_owner = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 unique_name_in_owner = true
+position = Vector2(154, 85)
 offset = Vector2(167, 94)
 
 [node name="MapGenerator" type="Node" parent="."]
@@ -34,6 +35,7 @@ script = ExtResource("2_eocmu")
 battle_stats_pool = ExtResource("3_qmh5o")
 
 [node name="MapBackground" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
 layer = -1
 
 [node name="Background" type="TextureRect" parent="MapBackground"]
@@ -46,8 +48,8 @@ texture = SubResource("GradientTexture1D_3aq4a")
 
 [node name="LeftBox" type="TextureRect" parent="MapBackground"]
 modulate = Color(0.737193, 0.737193, 0.737193, 1)
-offset_left = -294.0
-offset_right = 319.0
+offset_left = -296.0
+offset_right = 317.0
 offset_bottom = 180.0
 scale = Vector2(2, 2)
 texture = ExtResource("3_qn01p")

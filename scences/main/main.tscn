@@ -77,6 +77,7 @@ run_startup = ExtResource("2_71wrl")
 
 [node name="Map" parent="." instance=ExtResource("3_oqdot")]
 unique_name_in_owner = true
+position = Vector2(-2, 0)
 
 [node name="CurrentView" type="Node" parent="."]
 unique_name_in_owner = true
@@ -96,25 +97,19 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = 252.0
-offset_top = 2.0
-offset_right = 292.0
-offset_bottom = 8.0
+offset_left = -44.0
+offset_top = 3.0
+offset_right = -4.0
+offset_bottom = 15.0
 grow_horizontal = 0
-
-[node name="SettingsBar" parent="UI" instance=ExtResource("4_0dled")]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = -155.0
-offset_right = 179.0
 
 [node name="CoreHandler" parent="UI" instance=ExtResource("5_w82hd")]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = -138.0
-offset_top = 71.0
-offset_right = -76.0
-offset_bottom = 127.0
+offset_left = 14.0
+offset_top = 70.0
+offset_right = 76.0
+offset_bottom = 126.0
 
 [node name="BestiaryLayer" type="CanvasLayer" parent="UI"]
 layer = 99
@@ -122,6 +117,12 @@ layer = 99
 [node name="Bestiary" parent="UI/BestiaryLayer" instance=ExtResource("6_codce")]
 unique_name_in_owner = true
 visible = false
+
+[node name="SettingsBar" parent="UI" instance=ExtResource("4_0dled")]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -2.0
+offset_right = 332.0
 
 [node name="ScenceTransition" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true

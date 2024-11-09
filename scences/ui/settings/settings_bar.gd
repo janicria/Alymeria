@@ -19,7 +19,6 @@ const DEFAULT_BUS_LAYOUT = preload("res://assets/misc/default_bus_layout.tres")
 @onready var true_draw_button: Button = %TrueDrawButton
 @onready var true_deck_button: Button = %TrueDeckButton
 @onready var hints_button: Button = %HintsButton
-@onready var pile_button: Button = %CardPilePosButton
 @onready var speedy_cards_button: Button = %SpeedyCardsButton
 @onready var master_volume: HSlider = %MasterVolumeSlider
 @onready var sfx_volume: HSlider = %SFXVolumeSlider
@@ -101,6 +100,7 @@ func _on_color_rect_gui_input(event: InputEvent) -> void:
 
 
 func _on_toggled_button_toggled(toggled_on: bool, button_string: String) -> void:
+	@warning_ignore("unused_variable")
 	var button: Node
 	match button_string:
 		"true_draw": 
@@ -120,12 +120,6 @@ func _on_toggled_button_toggled(toggled_on: bool, button_string: String) -> void
 			else:
 				DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 				DisplayServer.window_set_size(Vector2(1280, 720))
-		"card_pile_pos": 
-			button = %CardPilePosButton
-			if toggled_on: pile_button.text = "Inside"
-			else: pile_button.text = "Outside"
-			Data.card_pile_above_mana = toggled_on
-			Events.update_deck_button_ui.emit()
 		"speedy_cards":
 			button = %SpeedyCardsButton
 			Data.speedy_cards = toggled_on
@@ -133,11 +127,6 @@ func _on_toggled_button_toggled(toggled_on: bool, button_string: String) -> void
 			button = %PipeButton
 			SFXPlayer.pipe = toggled_on
 			if toggled_on: SFXPlayer.play(AudioStream.new())
-	
-	# We don't want to override the inside/outside text
-	if button == %CardPilePosButton: return
-	if toggled_on: button.text = "Enabled"
-	else: button.text = "Disabled"
 
 
 func _on_volume_slider_value_changed(_value: float, slider: String) -> void: 

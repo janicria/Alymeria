@@ -69,9 +69,9 @@ func set_card(value: Card) -> void:
 	# Card name (Prevents names from going out of the cardui's area/hitbox)
 	if _name.get_line_count() > 1 && !name_initialised:
 		name_initialised = true
-		cost.position.y = cost.position.y + (_name.get_line_count() * _name.get_line_height()) -5
+		cost.position.y = cost.position.y + (_name.get_line_count() * _name.get_line_height()) -10
 		type.position.y = cost.position.y
-		desc.position.y = desc.position.y + (_name.get_line_count() * _name.get_line_height()) -5
+		desc.position.y = desc.position.y + (_name.get_line_count() * _name.get_line_height()) -10
 	
 	# Card statuses
 	for status in card.statuses:

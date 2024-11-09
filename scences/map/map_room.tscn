@@ -3,7 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://bfvi02kojsa00" path="res://assets/objects/sword_size1.png" id="1_ipt5o"]
 [ext_resource type="Script" path="res://scences/map/map_room.gd" id="1_w7qjy"]
 
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_jqvep"]
 radius = 12.0
 
@@ -88,6 +87,7 @@ _data = {
 }
 
 [node name="MapRoom" type="Area2D"]
+scale = Vector2(2, 2)
 collision_layer = 8
 collision_mask = 0
 script = ExtResource("1_w7qjy")

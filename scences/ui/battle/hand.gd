@@ -58,14 +58,15 @@ func toggle_hand_state(toggled_on: bool) -> void:
 	for card in get_children(): card.disabled = toggled_on
 
 
+# FIXME: Need to check up on if values still look good
 func update_card_seperation() -> void:
-	if get_child_count() < 6: add_theme_constant_override("separation", 8)
+	if get_child_count() < 6: add_theme_constant_override("separation", 12)
 	match get_child_count():
-		6: add_theme_constant_override("separation", -1)
-		7: add_theme_constant_override("separation", -5)
-		8: add_theme_constant_override("separation", -10)
-		9: add_theme_constant_override("separation", -14)
-		10: add_theme_constant_override("separation", -17)
+		6: add_theme_constant_override("separation", -8)
+		7: add_theme_constant_override("separation", -15)
+		8: add_theme_constant_override("separation", -25)
+		9: add_theme_constant_override("separation", -28)
+		10: add_theme_constant_override("separation", -40)
 
 
 func update_card_variant(variant: String, value: int) -> void:

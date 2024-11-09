@@ -32,12 +32,12 @@ func flash() -> void:
 		SFXPlayer.play(PIPE)
 
 
-func show_tooltip() -> void:
-	Input.set_custom_mouse_cursor(BUBBLE_CURSOR)
-
-
-func hide_tooltip() -> void:
+func _on_mouse_exited() -> void:
 	Input.set_custom_mouse_cursor(CURSOR)
+
+
+func _on_mouse_entered() -> void:
+	Input.set_custom_mouse_cursor(BUBBLE_CURSOR)
 
 
 func _on_gui_input(event: InputEvent) -> void:
