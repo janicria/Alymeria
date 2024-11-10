@@ -12,5 +12,13 @@ func apply_status(target: Node) -> void:
 	nano_plauge.stacks = ceili(stacks * 0.2)
 	status_effect.status = nano_plauge
 	nano_plauge.active = false
-	for ally in target.get_tree().get_nodes_in_group(target.get_groups()[-1]):
-		if ally != target: status_effect.execute([ally])
+	match target.get_groups()[-1]:
+		"player": 
+			status_effect.execute(target.get_tree().get_nodes_in_group("summons"))
+		"summons":
+			status_effect.execute(target.get_tree().get_nodes_in_group("summons").filter(
+				func(summon:Summon)->bool: return summon != target))
+			status_effect.execute([target.get_tree().get_first_node_in_group("player")])
+		"enemies":
+			status_effect.execute(target.get_tree().get_nodes_in_group("enemies").filter(
+				func(enemy:Enemy)->bool: return enemy != target))

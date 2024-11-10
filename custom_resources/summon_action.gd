@@ -16,6 +16,7 @@ func setup() -> void:
 	if type == Type.CARD:
 		Events.player_card_played.connect(
 			func(card:Card)->void:
+				if owner == null: return
 				if card.type == owner.stats.card_action_type:
 					play())
 
