@@ -303,9 +303,16 @@ func act(number: int = -1) -> String:
 
 
 func debug(additional_option: String = \"\") -> String:
-	# Deck
+	# TODO: Add rust to windows debug
+	if additional_option == \"rust\":
+		var gob := Goblin.new() # <- Not actually an error
+		gob.texture = preload(\"res://assets/misc/icon.svg\")
+		get_parent().add_child(gob)
+		return \"rust :3\"
 	
+	# Deck
 	print(\"[CMD] Debug w/%s start\" % [(\" %s\" % additional_option) if additional_option != \"\" else \"o any :c\"])
+	
 	# Note: Running cards.clear() messes up card pile views to show 180-338 cards which is really funny
 	Data.character.deck.cards.clear()
 	deck(\"add\", \"repurposing\")
@@ -475,6 +482,8 @@ initial_position = 2
 size = Vector2i(512, 512)
 transient = true
 script = SubResource("GDScript_u0mjt")
+permissionLevel = null
+cheatsEnabled = null
 
 [node name="CommandParser" type="Node" parent="."]
 script = ExtResource("1_oe0g5")
@@ -502,9 +511,10 @@ theme_override_constants/separation = 8
 
 [node name="OutputField" type="RichTextLabel" parent="ConsolePanel/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 3
+size_flags_vertical = 2
 focus_mode = 2
 theme_override_styles/focus = SubResource("StyleBoxEmpty_opm5p")
 theme_override_styles/normal = SubResource("StyleBoxFlat_6ctxl")
@@ -515,6 +525,9 @@ selection_enabled = true
 [node name="InputField" type="LineEdit" parent="ConsolePanel/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 12
+expand_to_text_length = true
 caret_blink = true
 
 [connection signal="finished" from="ConsolePanel/MarginContainer/VBoxContainer/OutputField" to="." method="on_output_field_updated"]

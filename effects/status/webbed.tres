@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=3 format=3 uid="uid://dis78c6ai4xbd"]
 
-[ext_resource type="Texture2D" uid="uid://dytq0eumwvky6" path="res://assets/objects/anvil.png" id="1_54qmh"]
+[ext_resource type="Texture2D" uid="uid://dc444goiefmmx" path="res://assets/objects/cobweb.png" id="1_02xgt"]
 [ext_resource type="Script" path="res://effects/status/webbed.gd" id="1_lijh8"]
 
 [resource]
@@ -11,4 +11,4 @@ stack_type = 2
 format_tooltip = false
 duration = 1
 stacks = 0
-icon = ExtResource("1_54qmh")
+icon = ExtResource("1_02xgt")
