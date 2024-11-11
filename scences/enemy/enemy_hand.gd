@@ -3,7 +3,7 @@ class_name EnemyHand extends HBoxContainer
 signal cards_finished_moving
 
 const CARD_OFFSET := 76
-const ENEMY_CARD_SCENE = preload("res://scences/enemy/enemy_card.tscn")
+const ENEMY_CARDUI = preload("res://scences/enemy/enemy_card.tscn")
 
 var card_start_position := func()->Vector2:
 	return position - Vector2(80, -5)
@@ -17,9 +17,9 @@ func _ready() -> void:
 
 func cardToGui(card: EnemyCard, enemy: Enemy) -> void:
 	# Creating card
-	var card_ui := ENEMY_CARD_SCENE.instantiate() # Don't ask
-	# TODO: Fix pos
-	card_ui.global_position = enemy.position - card_start_position.call() - Vector2(enemy.sprite_2d.texture.get_size()*2)
+	var card_ui := ENEMY_CARDUI.instantiate()
+	card_ui.hide()
+	card_ui.global_position = enemy.mana_counter.global_position - Vector2(160, 60)
 	card_ui.update_stats(card, enemy)
 	add_child(card_ui) 
 	

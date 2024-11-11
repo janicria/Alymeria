@@ -55,9 +55,9 @@ autowrap_mode = 0
 [node name="StatusHandler" parent="." node_paths=PackedStringArray("status_owner") instance=ExtResource("7_tpe2t")]
 unique_name_in_owner = true
 offset_left = -22.0
-offset_top = 21.0
+offset_top = 19.0
 offset_right = -22.0
-offset_bottom = 21.0
+offset_bottom = 19.0
 status_owner = NodePath("..")
 
 [node name="ModifierHandler" parent="." instance=ExtResource("8_7aft4")]

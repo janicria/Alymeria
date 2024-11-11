@@ -1,18 +1,17 @@
-class_name  CardUI extends Control
+class_name CardUI extends Control
 
 signal reparent_requested(card_ui: CardUI)
 signal transition_requested(from: CardState, to: CardState.State)
 
-const BASE_STYLEBOX := preload("res://scences/ui/player_card/card_ui/card_base_stylebox.tres")
-const DRAG_STYLEBOX := preload("res://scences/ui/player_card/card_ui/card_dragging_stylebox.tres")
-const HOVER_STYLEBOX := preload("res://scences/ui/player_card/card_ui/card_hover_stylebox.tres")
+const DEFAULT_STYLEBOX = preload("res://assets/styleboxes/default_stylebox.tres")
+const HOVER_STYLEBOX = preload("res://assets/styleboxes/hover_stylebox.tres")
+const DRAG_STYLEBOX = preload("res://assets/styleboxes/card_dragging_stylebox.tres")
 
 @export var card: Card : set = set_card
 
 @onready var panel : Panel = $Panel
 @onready var cost : Label = $Cost
 @onready var type: Label = $Type
-@onready var icon : TextureRect = $Icon
 @onready var desc : RichTextLabel = $Desc
 @onready var _name: Label = $Name
 @onready var drop_point_detector : Area2D = $DropPointDetector
@@ -20,7 +19,7 @@ const HOVER_STYLEBOX := preload("res://scences/ui/player_card/card_ui/card_hover
 @onready var card_statuses: VBoxContainer = $CardStatuses
 @onready var targets: Array[Node] = []
 
-# Members below are referenced in various other scripts
+# Have to always be in scope
 var player_modifiers: ModifierHandler
 var stats := func()->String: 
 	return "%s - %s\n\n%s - %s" % [card.name, card.unique_id, self, get_index()]

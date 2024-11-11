@@ -1,5 +1,4 @@
-class_name StatusHandler
-extends GridContainer
+class_name StatusHandler extends GridContainer
 
 signal statuses_applied(type: Status.Type)
 signal status_added()

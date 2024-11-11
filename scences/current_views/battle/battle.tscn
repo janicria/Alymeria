@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://hmurq7k0cm7y"]
+[gd_scene load_steps=31 format=3 uid="uid://hmurq7k0cm7y"]
 
 [ext_resource type="Script" path="res://scences/current_views/battle/battle.gd" id="1_aq6po"]
 [ext_resource type="Texture2D" uid="uid://j16iwp255gqv" path="res://assets/backgrounds/sand.png" id="1_rkqh7"]
@@ -23,7 +23,9 @@
 [ext_resource type="PackedScene" uid="uid://ummt03ux4buj" path="res://scences/ui/battle/defeat_panel.tscn" id="17_lrr78"]
 [ext_resource type="PackedScene" uid="uid://cmrvm435qcold" path="res://scences/ui/player_card/card_pile/card_pile_button.tscn" id="21_4q4vq"]
 [ext_resource type="Texture2D" uid="uid://d048113h6rjjh" path="res://assets/ui/cards/exhaust.png" id="21_6q5ah"]
+[ext_resource type="StyleBox" uid="uid://r3x12h2yjbk0" path="res://assets/styleboxes/hover_stylebox.tres" id="21_iybba"]
 [ext_resource type="Script" path="res://scences/ui/battle/memory_ui.gd" id="22_5ta04"]
+[ext_resource type="StyleBox" uid="uid://ck3105wj7dcrn" path="res://assets/styleboxes/default_stylebox.tres" id="22_fnuxb"]
 [ext_resource type="Texture2D" uid="uid://fb0t0b1qg1ms" path="res://assets/ui/cards/discard.png" id="22_p100a"]
 [ext_resource type="PackedScene" uid="uid://hqt3nv2gge3l" path="res://scences/ui/player_card/card_pile/card_pile_view.tscn" id="25_e6li0"]
 
@@ -131,8 +133,8 @@ player = NodePath("../../Player")
 [node name="Tooltip" parent="BattleUI" instance=ExtResource("12_rl0gg")]
 offset_left = -153.0
 offset_top = 77.0
-offset_right = -23.0
-offset_bottom = 113.0
+offset_right = 97.0
+offset_bottom = 141.0
 
 [node name="DefeatPanel" parent="BattleUI" instance=ExtResource("17_lrr78")]
 visible = false
@@ -150,6 +152,8 @@ offset_bottom = -14.0
 grow_vertical = 0
 theme = ExtResource("13_j1van")
 theme_override_font_sizes/font_size = 12
+theme_override_styles/hover = ExtResource("21_iybba")
+theme_override_styles/normal = ExtResource("22_fnuxb")
 disabled = true
 text = "End turn"
 
@@ -170,8 +174,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -1.0
-offset_right = -1.0
+offset_top = 1.0
+offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "4/4"

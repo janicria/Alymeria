@@ -1,13 +1,13 @@
-class_name Tooltip
-extends PanelContainer
+class_name Tooltip extends PanelContainer
 
 @export var fade_seconds := 0.2
 
 @onready var tooltip_text_label: RichTextLabel = %TooltipText
 @onready var hide_timer: Timer = %HideTimer
 
-var tween : Tween
-var is_showing := false # is_visible is a method from CanvasItem
+# Has to always be in scope
+var tween: Tween
+var is_showing := false
 var is_playable := true
 
 

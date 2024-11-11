@@ -2,8 +2,8 @@ class_name CardMenuUI extends CenterContainer
 
 signal show_tooltip(card: Card)
 
-const BASE_STYLEBOX := preload("res://scences/ui/player_card/card_ui/card_base_stylebox.tres")
-const HOVER_STYLEBOX := preload("res://scences/ui/player_card/card_ui/card_hover_stylebox.tres")
+const DEFAULT_STYLEBOX = preload("res://assets/styleboxes/default_stylebox.tres")
+const HOVER_STYLEBOX = preload("res://assets/styleboxes/hover_stylebox.tres")
 
 @export var card: Card : set = set_card
 
@@ -75,5 +75,5 @@ func _on_tooltip_mouse_entered() -> void:
 
 
 func _on_tooltip_mouse_exited() -> void:
-	panel.set("theme_override_styles/panel", BASE_STYLEBOX)
+	panel.set("theme_override_styles/panel",DEFAULT_STYLEBOX)
 	card_tooltip.modulate.a = 0

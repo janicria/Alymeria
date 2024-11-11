@@ -35,7 +35,7 @@ func update_ui() -> void:
 			if Data.true_deck_size: # Imagine putting this in a trenary
 				update_text("%s(%s)" % [deck_size, (deck_size - Data.character.deck.cards.filter(
 					func(card: Card)->bool: return card.has_status("exhaust")).size())])
-			else: update_text("[center]%s[/center]" % deck_size)
+			else: update_text(str(deck_size))
 		
 		"CachePileButton":
 			counter.position.x = -1

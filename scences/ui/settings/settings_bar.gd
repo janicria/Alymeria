@@ -70,7 +70,6 @@ func _setup(card_pile : CardPile) -> void:
 	_on_toggled_button_toggled(Data.true_deck_size, "true_deck")
 	_on_toggled_button_toggled(Data.gameplay_tips, "hints")
 	if DisplayServer.window_get_mode() == 3: _on_toggled_button_toggled(true, "fullscreen")
-	_on_toggled_button_toggled(Data.card_pile_above_mana, "card_pile_pos")
 	_on_toggled_button_toggled(Data.speedy_cards, "speedy_cards")
 
 
@@ -84,6 +83,23 @@ func toggle_settings() -> void:
 		get_tree().paused = false
 		Events.hide_tooltip.emit()
 		Events.update_deck_button_ui.emit()
+
+
+func update_slider_volume(slider: String) -> void:
+	match slider:
+		"sfx":
+			for child: AudioStreamPlayer in SFXPlayer.get_children():
+				# If SFX is too loud the audio breaks
+				child.volume_db = (sfx_volume.value / 4) * (master_volume.value / 100)
+				if !sfx_volume.value or !master_volume.value: child.volume_db = -INF
+		"music":
+			for child: AudioStreamPlayer in MusicPlayer.get_children():
+				child.volume_db = (music_volume.value / 2) * (master_volume.value / 100)
+				if !music_volume.value or !master_volume.value: child.volume_db = -INF
+
+
+func hide_tooltip() -> void:
+	Events.hide_tooltip.emit()
 
 
 func _on_cog_gui_input(event: InputEvent) -> void:
@@ -100,8 +116,7 @@ func _on_color_rect_gui_input(event: InputEvent) -> void:
 
 
 func _on_toggled_button_toggled(toggled_on: bool, button_string: String) -> void:
-	@warning_ignore("unused_variable")
-	var button: Node
+	var button: Button
 	match button_string:
 		"true_draw": 
 			button = %TrueDrawButton
@@ -127,6 +142,7 @@ func _on_toggled_button_toggled(toggled_on: bool, button_string: String) -> void
 			button = %PipeButton
 			SFXPlayer.pipe = toggled_on
 			if toggled_on: SFXPlayer.play(AudioStream.new())
+	button.text = "Enabled" if toggled_on else "Disabled"
 
 
 func _on_volume_slider_value_changed(_value: float, slider: String) -> void: 
@@ -134,19 +150,6 @@ func _on_volume_slider_value_changed(_value: float, slider: String) -> void:
 		update_slider_volume("sfx")
 		update_slider_volume("music")
 	else: update_slider_volume(slider)
-
-
-func update_slider_volume(slider: String) -> void:
-	match slider:
-		"sfx":
-			for child: AudioStreamPlayer in SFXPlayer.get_children():
-				# If SFX is too loud the audio breaks
-				child.volume_db = (sfx_volume.value / 4) * (master_volume.value / 100)
-				if !sfx_volume.value or !master_volume.value: child.volume_db = -INF
-		"music":
-			for child: AudioStreamPlayer in MusicPlayer.get_children():
-				child.volume_db = (music_volume.value / 2) * (master_volume.value / 100)
-				if !music_volume.value or !master_volume.value: child.volume_db = -INF
 
 
 func _on_sfx_volume_drag_ended(_value_changed: bool) -> void:
@@ -162,11 +165,6 @@ func _on_exit_button_pressed() -> void:
 	if Data.save_to_file():
 		print("Quitting...\nBelow is not actually a memory leak (trust)")
 		get_tree().quit()
-
-
-# Yes this belongs here as it's connected by a signal
-func hide_tooltip() -> void:
-	Events.hide_tooltip.emit()
 
 
 func _on_console_button_pressed() -> void:

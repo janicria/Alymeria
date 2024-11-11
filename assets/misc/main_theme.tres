@@ -1,15 +1,9 @@
-[gd_resource type="Theme" load_steps=6 format=3 uid="uid://bhs76hnulf3s4"]
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://bhs76hnulf3s4"]
 
-[ext_resource type="StyleBox" uid="uid://ck3105wj7dcrn" path="res://scences/ui/player_card/card_ui/card_base_stylebox.tres" id="1_bl0es"]
-[ext_resource type="StyleBox" uid="uid://r3x12h2yjbk0" path="res://scences/ui/player_card/card_ui/card_hover_stylebox.tres" id="1_qfdbm"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g6cw0"]
-bg_color = Color(0.117647, 0.105882, 0.180392, 0.588235)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.34902, 0.317647, 0.439216, 1)
+[ext_resource type="StyleBox" uid="uid://b855o5u0hb8f4" path="res://assets/styleboxes/disabled_stylebox.tres" id="1_cqnnk"]
+[ext_resource type="StyleBox" uid="uid://bssdrd23fchtt" path="res://assets/styleboxes/thin_hover_stylebox.tres" id="1_fs0ub"]
+[ext_resource type="StyleBox" uid="uid://dkmjintvo8tqd" path="res://assets/styleboxes/thin_stylebox.tres" id="2_es2a3"]
+[ext_resource type="StyleBox" uid="uid://ck3105wj7dcrn" path="res://assets/styleboxes/default_stylebox.tres" id="3_27xba"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8y5pn"]
 
@@ -24,12 +18,12 @@ border_color = Color(0.278499, 0.251714, 0.354967, 1)
 [resource]
 default_font_size = 6
 Button/font_sizes/font_size = 6
-Button/styles/disabled = SubResource("StyleBoxFlat_g6cw0")
+Button/styles/disabled = ExtResource("1_cqnnk")
 Button/styles/focus = SubResource("StyleBoxEmpty_8y5pn")
-Button/styles/hover = ExtResource("1_qfdbm")
-Button/styles/normal = ExtResource("1_bl0es")
+Button/styles/hover = ExtResource("1_fs0ub")
+Button/styles/normal = ExtResource("2_es2a3")
 Button/styles/pressed = SubResource("StyleBoxFlat_lyinq")
 Label/font_sizes/font_size = 12
-Panel/styles/panel = ExtResource("1_bl0es")
-PanelContainer/styles/panel = ExtResource("1_bl0es")
+Panel/styles/panel = ExtResource("3_27xba")
+PanelContainer/styles/panel = ExtResource("3_27xba")
 RichTextLabel/font_sizes/normal_font_size = 12

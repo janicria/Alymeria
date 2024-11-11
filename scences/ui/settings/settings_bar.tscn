@@ -74,15 +74,15 @@ counter = NodePath("../Counter")
 
 [node name="Counter" type="RichTextLabel" parent="TopVbox/Layer1/DeckButtonControl"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
-offset_left = 0.894736
-offset_top = 5.15789
-offset_right = 30.8947
-offset_bottom = 21.1579
+offset_left = 12.5263
+offset_top = 5.0
+offset_right = 42.5263
+offset_bottom = 11.0
 bbcode_enabled = true
 text = "[font_size=6]99[/font_size]"
 fit_content = true
+scroll_active = false
 
 [node name="Layer2" type="HBoxContainer" parent="TopVbox"]
 layout_mode = 2
@@ -368,20 +368,30 @@ text = "Disabled"
 
 [node name="SettingsTooltip" parent="SettingsLayer" instance=ExtResource("7_w5c4v")]
 unique_name_in_owner = true
-offset_left = -138.0
-offset_top = 14.0
-offset_right = 12.0
-offset_bottom = 50.0
+offset_left = -247.0
+offset_top = 55.0
+offset_right = 3.0
+offset_bottom = 93.0
 
 [connection signal="gui_input" from="TopVbox/Layer1/Cog" to="." method="_on_cog_gui_input"]
 [connection signal="gui_input" from="ColorRect" to="." method="_on_color_rect_gui_input"]
+[connection signal="mouse_entered" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/TrueDrawHbox" to="." method="_on_hbox_mouse_entered" binds= ["Cards which draw show how far they move your deck (show one less on the draw counter)"]]
 [connection signal="mouse_exited" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/TrueDrawHbox" to="." method="hide_tooltip"]
+[connection signal="toggled" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/TrueDrawHbox/TrueDrawButton" to="." method="_on_toggled_button_toggled" binds= ["true_draw"]]
+[connection signal="mouse_entered" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/TrueDeckHbox" to="." method="_on_hbox_mouse_entered" binds= ["Deck counter doesn't show cards which exhaust"]]
 [connection signal="mouse_exited" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/TrueDeckHbox" to="." method="hide_tooltip"]
+[connection signal="toggled" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/TrueDeckHbox/TrueDeckButton" to="." method="_on_toggled_button_toggled" binds= ["true_deck"]]
+[connection signal="mouse_entered" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/HintsHbox" to="." method="_on_hbox_mouse_entered" binds= ["Show useful gameplay hints during menus (recommended)"]]
 [connection signal="mouse_exited" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/HintsHbox" to="." method="hide_tooltip"]
+[connection signal="toggled" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/HintsHbox/HintsButton" to="." method="_on_toggled_button_toggled" binds= ["hints"]]
+[connection signal="mouse_entered" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/SpeedyCards" to="." method="_on_hbox_mouse_entered" binds= ["Reverts patch which prevented enemy cards from going extra speedy over time"]]
 [connection signal="mouse_exited" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/SpeedyCards" to="." method="hide_tooltip"]
+[connection signal="toggled" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/SpeedyCards/SpeedyCardsButton" to="." method="_on_toggled_button_toggled" binds= ["speedy_cards"]]
+[connection signal="mouse_entered" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/ConsoleButton" to="." method="_on_hbox_mouse_entered" binds= ["Opens the debug console (can be toggled by pressing the '~' key, (not available in the main menu)"]]
 [connection signal="mouse_exited" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/ConsoleButton" to="." method="hide_tooltip"]
 [connection signal="pressed" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/ConsoleButton" to="." method="_on_console_button_pressed"]
 [connection signal="pressed" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="drag_ended" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/AudioVisual/SFXVolumeHbox/SFXVolumeSlider" to="." method="_on_sfx_volume_drag_ended"]
+[connection signal="toggled" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/AudioVisual/PipeHbox/PipeButton" to="." method="_on_toggled_button_toggled" binds= ["pipe"]]
 
 [editable path="TopVbox/Layer2/HealthUI"]
