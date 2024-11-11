@@ -3,10 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://bgu8o43fxdy3e" path="res://floors/custom_battles/a1_tier2_evenodd.tscn" id="1_6t287"]
 [ext_resource type="Script" path="res://floors/custom_battles/evenodd.gd" id="2_gtd45"]
 
-
 [resource]
 script = ExtResource("2_gtd45")
 battle_tier = 2
-weight = 30
+weight = 50
 pure = true
 enemies = ExtResource("1_6t287")

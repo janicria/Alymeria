@@ -387,11 +387,12 @@ func battle(id := \"\") -> String:
 	# Load the battles into memory
 	var battles: Array[BattleStats] = [
 		preload(\"res://floors/battles/a1t0_bat2.tres\"),
-		preload(\"res://floors/battles/a1t0_bat4.tres\"),
-		preload(\"res://floors/battles/a1t2_spider4.tres\"),
-		preload(\"res://floors/battles/a1t3_bat2.tres\"),
+		preload(\"res://floors/battles/a1t0_sentinel.tres\"),
+		preload(\"res://floors/battles/a1t1_spider+bat2.tres\"),
+		preload(\"res://floors/battles/a1t1_spider+sentinel.tres\"),
+		preload(\"res://floors/battles/a1t2_shaman_sentinel2.tres\"),
 		preload(\"res://floors/custom_battles/a1t2_evenodd.tres\"),
-		preload(\"res://floors/custom_battles/a1t2_sentinel.tres\")
+		preload(\"res://floors/battles/a1t3_shaman2_sentinel3.tres\")
 	]
 	
 	# List all battles
@@ -482,8 +483,6 @@ initial_position = 2
 size = Vector2i(512, 512)
 transient = true
 script = SubResource("GDScript_u0mjt")
-permissionLevel = null
-cheatsEnabled = null
 
 [node name="CommandParser" type="Node" parent="."]
 script = ExtResource("1_oe0g5")

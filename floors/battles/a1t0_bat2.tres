@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="BattleStats" load_steps=3 format=3 uid="uid://cplocow423w7a"]
 
 [ext_resource type="Script" path="res://custom_resources/battle_stats.gd" id="1_61e8f"]
-[ext_resource type="PackedScene" uid="uid://bcatqa8cj2n5s" path="res://floors/battles/a1_tier0_bat2.tscn" id="1_k2njq"]
+[ext_resource type="PackedScene" uid="uid://bcatqa8cj2n5s" path="res://floors/battles/a1t0_bat2.tscn" id="1_k2njq"]
 
 
 [resource]

@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://62q3pdsap00"]
+
+[ext_resource type="PackedScene" uid="uid://dkpw6tsw7i7y0" path="res://scences/enemy/enemy.tscn" id="1_tujjj"]
+[ext_resource type="Resource" uid="uid://frpidlsrkefm" path="res://enemies/spider_sentinel/sentinel_ai.tres" id="2_lr78r"]
+[ext_resource type="Resource" uid="uid://dgvmjlmtxy3dc" path="res://enemies/spider_shaman/shaman_stats.tres" id="3_i8pok"]
+[ext_resource type="Resource" uid="uid://ch45uruxcfdmb" path="res://enemies/spider_sentinel/sentinel_stats.tres" id="3_lyjgk"]
+[ext_resource type="Resource" uid="uid://bqcd3upk5k3uj" path="res://enemies/spider_shaman/shaman_ai.tres" id="4_88hfi"]
+
+[node name="a1t2_shaman_sentinel2" type="Node2D"]
+
+[node name="Enemy" parent="." instance=ExtResource("1_tujjj")]
+position = Vector2(401, 174)
+ai = ExtResource("2_lr78r")
+stats = ExtResource("3_lyjgk")
+
+[node name="Enemy2" parent="." instance=ExtResource("1_tujjj")]
+position = Vector2(494, 171)
+ai = ExtResource("2_lr78r")
+stats = ExtResource("3_lyjgk")
+
+[node name="Enemy3" parent="." instance=ExtResource("1_tujjj")]
+position = Vector2(584, 174)
+ai = ExtResource("4_88hfi")
+stats = ExtResource("3_i8pok")

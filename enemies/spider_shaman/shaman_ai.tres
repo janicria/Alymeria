@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="EnemyAI" load_steps=4 format=3 uid="uid://bqcd3upk5k3uj"]
+
+[ext_resource type="Script" path="res://custom_resources/enemy_card.gd" id="1_ky8yw"]
+[ext_resource type="Resource" uid="uid://dctowjb2f21o5" path="res://enemies/spider_shaman/placeholder.tres" id="2_ycg4v"]
+[ext_resource type="Script" path="res://custom_resources/enemy_ai.gd" id="3_4fvwp"]
+
+[resource]
+script = ExtResource("3_4fvwp")
+actions = Array[ExtResource("1_ky8yw")]([ExtResource("2_ycg4v")])
+health_cards = Array[ExtResource("1_ky8yw")]([])

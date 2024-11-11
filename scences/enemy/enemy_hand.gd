@@ -17,8 +17,9 @@ func _ready() -> void:
 
 func cardToGui(card: EnemyCard, enemy: Enemy) -> void:
 	# Creating card
-	var card_ui := ENEMY_CARD_SCENE.instantiate()
-	card_ui.position = card_start_position.call()
+	var card_ui := ENEMY_CARD_SCENE.instantiate() # Don't ask
+	# TODO: Fix pos
+	card_ui.global_position = enemy.position - card_start_position.call() - Vector2(enemy.sprite_2d.texture.get_size()*2)
 	card_ui.update_stats(card, enemy)
 	add_child(card_ui) 
 	

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BattleStats" load_steps=3 format=3 uid="uid://bc012qm8yh47x"]
+
+[ext_resource type="Script" path="res://custom_resources/battle_stats.gd" id="1_gnycd"]
+[ext_resource type="PackedScene" uid="uid://62q3pdsap00" path="res://floors/battles/a1t2_shaman_sentinel2.tscn" id="1_rtqp5"]
+
+[resource]
+script = ExtResource("1_gnycd")
+battle_tier = 2
+weight = 50
+pure = false
+enemies = ExtResource("1_rtqp5")

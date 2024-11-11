@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://bq3jh2ehe4rgo"]
+
+[ext_resource type="PackedScene" uid="uid://dkpw6tsw7i7y0" path="res://scences/enemy/enemy.tscn" id="1_75cf5"]
+[ext_resource type="Resource" uid="uid://frpidlsrkefm" path="res://enemies/spider_sentinel/sentinel_ai.tres" id="2_hltj3"]
+[ext_resource type="Resource" uid="uid://ch45uruxcfdmb" path="res://enemies/spider_sentinel/sentinel_stats.tres" id="3_n5ds4"]
+[ext_resource type="Resource" uid="uid://bqcd3upk5k3uj" path="res://enemies/spider_shaman/shaman_ai.tres" id="4_xk6sd"]
+[ext_resource type="Resource" uid="uid://dgvmjlmtxy3dc" path="res://enemies/spider_shaman/shaman_stats.tres" id="5_4hfxx"]
+
+[node name="a1t3_shaman2_sentinel3" type="Node2D"]
+
+[node name="Enemy" parent="." instance=ExtResource("1_75cf5")]
+position = Vector2(299, 187)
+ai = ExtResource("2_hltj3")
+stats = ExtResource("3_n5ds4")
+
+[node name="Enemy2" parent="." instance=ExtResource("1_75cf5")]
+position = Vector2(377, 172)
+ai = ExtResource("2_hltj3")
+stats = ExtResource("3_n5ds4")
+
+[node name="Enemy3" parent="." instance=ExtResource("1_75cf5")]
+position = Vector2(450, 185)
+ai = ExtResource("4_xk6sd")
+stats = ExtResource("5_4hfxx")
+
+[node name="Enemy4" parent="." instance=ExtResource("1_75cf5")]
+position = Vector2(521, 166)
+ai = ExtResource("4_xk6sd")
+stats = ExtResource("5_4hfxx")
+
+[node name="Enemy5" parent="." instance=ExtResource("1_75cf5")]
+position = Vector2(594, 187)
+ai = ExtResource("2_hltj3")
+stats = ExtResource("3_n5ds4")

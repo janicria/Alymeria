@@ -9,11 +9,11 @@
 [node name="a1t2_evenodd" type="Node2D"]
 
 [node name="Enemy" parent="." instance=ExtResource("1_6igyu")]
-position = Vector2(237, 83)
+position = Vector2(463, 163)
 ai = ExtResource("2_imj4m")
 stats = ExtResource("3_dbei6")
 
 [node name="Enemy2" parent="." instance=ExtResource("1_6igyu")]
-position = Vector2(267, 85)
+position = Vector2(559, 167)
 ai = ExtResource("4_i5uaw")
 stats = ExtResource("5_gm7nj")

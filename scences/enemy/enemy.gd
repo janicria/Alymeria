@@ -99,7 +99,7 @@ func do_turn() -> void:
 
 # Doesn't work as setter from mana var (mana decreases before cards are actually drawn)
 func update_mana_counter() -> void:
-	mana_counter.text = "[center][color=3D7BFF] %s [/color][/center]" % mana
+	mana_counter.text = "[center][color=3D7BFF][font_size=6]%s[/font_size][/color][/center]" % mana
 
 
 func take_damage(damage : int, modify_damage := true) -> void:
