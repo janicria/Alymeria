@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://bx27qsw0qyjox"]
+
+[node name="SoldOut" type="Panel"]
+offset_left = 1.0
+offset_top = 27.0
+offset_right = 41.0
+offset_bottom = 38.0
+rotation = 0.0523599
+
+[node name="Label" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.0
+offset_top = -3.0
+offset_right = 21.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center][color=E83521][font_size=6]SOLD OUT[/font_size][/color][/center]"
+fit_content = true
+scroll_active = false

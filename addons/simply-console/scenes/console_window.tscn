@@ -303,17 +303,10 @@ func act(number: int = -1) -> String:
 
 
 func debug(additional_option: String = \"\") -> String:
-	# TODO: Add rust to windows debug
-	if additional_option == \"rust\":
-		var gob := Goblin.new() # <- Not actually an error
-		gob.texture = preload(\"res://assets/misc/icon.svg\")
-		get_parent().add_child(gob)
-		return \"rust :3\"
-	
 	# Deck
 	print(\"[CMD] Debug w/%s start\" % [(\" %s\" % additional_option) if additional_option != \"\" else \"o any :c\"])
 	
-	# Note: Running cards.clear() messes up card pile views to show 180-338 cards which is really funny
+	# Note: Running cards.clear() messes up card pile views to `show 180-338 cards which is really funny
 	Data.character.deck.cards.clear()
 	deck(\"add\", \"repurposing\")
 	deck(\"add\", \"missile_launcher\")

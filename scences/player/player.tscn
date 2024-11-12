@@ -25,10 +25,14 @@ offset_bottom = 22.0
 
 [node name="DamageCounter" type="RichTextLabel" parent="."]
 unique_name_in_owner = true
-offset_left = -19.0
-offset_top = -16.0
-offset_right = 21.0
-offset_bottom = -10.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -47.0
+offset_top = -44.0
+offset_right = 45.0
+offset_bottom = -31.0
+grow_horizontal = 2
 bbcode_enabled = true
 
 [node name="StatusHandler" parent="." node_paths=PackedStringArray("status_owner") instance=ExtResource("4_vvspa")]

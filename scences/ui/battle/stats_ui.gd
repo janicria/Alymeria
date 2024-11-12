@@ -1,9 +1,8 @@
-class_name StatsUI
-extends HBoxContainer
+class_name StatsUI extends HBoxContainer
 
-@onready var barrier : HBoxContainer = %Barrier
-@onready var barrier_label : Label = %BarrierLabel
-@onready var health :HealthUI = %Health
+@onready var barrier: HBoxContainer = %Barrier
+@onready var barrier_label: Label = %BarrierLabel
+@onready var health: HealthUI = %Health
 
 
 func update_stats(stats: Stats) -> void:
