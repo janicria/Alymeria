@@ -25,7 +25,6 @@ var character: CharacterStats
 
 
 func _ready() -> void:
-	Data.main = self
 	color_rect.visible = true
 	scence_transition.play("fade_in")
 	version_number.text = ProjectSettings.get_setting("application/config/version")

@@ -1,5 +1,4 @@
-class_name BattleReward
-extends Control
+class_name BattleReward extends Control
 
 const CARD_REWARDS := preload("res://scences/ui/battle/card_rewards.tscn")
 const REWARD_BUTTON := preload("res://scences/ui/battle/reward_button.tscn")
@@ -36,7 +35,7 @@ func _ready() -> void:
 
 
 func add_card_reward() -> void:
-	var card_reward := REWARD_BUTTON.instantiate() as RewardButton
+	var card_reward := REWARD_BUTTON.instantiate()
 	card_reward.reward_icon = CARD_ICON
 	card_reward.reward_text = CARD_TEXT
 	card_reward.pressed.connect(_show_card_rewards)
@@ -44,7 +43,7 @@ func add_card_reward() -> void:
 
 
 func add_gold_reward(amount: int) -> void:
-	var gold_reward := REWARD_BUTTON.instantiate() as RewardButton
+	var gold_reward := REWARD_BUTTON.instantiate()
 	gold_reward.reward_icon = GOLD_ICON
 	gold_reward.reward_text = GOLD_TEXT % amount
 	gold_reward.pressed.connect(_on_gold_reward_taken.bind(amount))
@@ -52,7 +51,7 @@ func add_gold_reward(amount: int) -> void:
 
 
 func _show_card_rewards() -> void:
-	var card_rewards := CARD_REWARDS.instantiate() as CardRewards
+	var card_rewards := CARD_REWARDS.instantiate()
 	add_child(card_rewards)
 	card_rewards.card_reward_selected.connect(_on_card_reward_taken)
 	

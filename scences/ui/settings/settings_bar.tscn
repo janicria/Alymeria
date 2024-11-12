@@ -391,7 +391,10 @@ offset_bottom = 93.0
 [connection signal="mouse_exited" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/ConsoleButton" to="." method="hide_tooltip"]
 [connection signal="pressed" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/ConsoleButton" to="." method="_on_console_button_pressed"]
 [connection signal="pressed" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="value_changed" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/AudioVisual/MasterVolumeHbox/MasterVolumeSlider" to="." method="_on_volume_slider_value_changed" binds= ["master"]]
 [connection signal="drag_ended" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/AudioVisual/SFXVolumeHbox/SFXVolumeSlider" to="." method="_on_sfx_volume_drag_ended"]
+[connection signal="value_changed" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/AudioVisual/SFXVolumeHbox/SFXVolumeSlider" to="." method="_on_volume_slider_value_changed" binds= ["sfx"]]
+[connection signal="value_changed" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/AudioVisual/MusicVolumeHbox/MusicVolumeSlider" to="." method="_on_volume_slider_value_changed" binds= ["music"]]
 [connection signal="toggled" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/AudioVisual/PipeHbox/PipeButton" to="." method="_on_toggled_button_toggled" binds= ["pipe"]]
 
 [editable path="TopVbox/Layer2/HealthUI"]

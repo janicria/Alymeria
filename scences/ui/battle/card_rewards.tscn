@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://xryyxhv5ib3h"]
+[gd_scene load_steps=11 format=3 uid="uid://xryyxhv5ib3h"]
 
 [ext_resource type="PackedScene" uid="uid://4lwv2ug5j5j6" path="res://scences/ui/player_card/card_menu_ui/card_menu_ui.tscn" id="1_jl4mf"]
 [ext_resource type="Script" path="res://scences/ui/battle/card_rewards.gd" id="1_vmbv4"]
@@ -8,6 +8,8 @@
 [ext_resource type="Resource" uid="uid://073voiuhw5gi" path="res://characters/machine/cards/common/missile_launcher.tres" id="3_kg0bk"]
 [ext_resource type="Resource" uid="uid://dprpiekopnhe0" path="res://characters/machine/cards/common/shields.tres" id="4_p1fof"]
 [ext_resource type="Resource" uid="uid://brs0hub03o0k0" path="res://characters/machine/cards/common/laser.tres" id="5_7yg2y"]
+[ext_resource type="StyleBox" uid="uid://r3x12h2yjbk0" path="res://assets/styleboxes/hover_stylebox.tres" id="8_3b175"]
+[ext_resource type="StyleBox" uid="uid://ck3105wj7dcrn" path="res://assets/styleboxes/default_stylebox.tres" id="9_el6qb"]
 
 [node name="CardRewards" type="ColorRect"]
 anchors_preset = 15
@@ -26,13 +28,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -86.0
-offset_top = -28.0
-offset_right = 86.0
-offset_bottom = 28.0
+offset_left = -101.0
+offset_top = -37.0
+offset_right = 101.0
+offset_bottom = 37.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 10
+theme_override_constants/separation = 20
 
 [node name="Cards" type="HBoxContainer" parent="VBoxContainer"]
 unique_name_in_owner = true
@@ -53,9 +55,12 @@ layout_mode = 2
 
 [node name="SkipButton" type="Button" parent="VBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(60, 14)
+custom_minimum_size = Vector2(120, 28)
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 12
+theme_override_styles/hover = ExtResource("8_3b175")
+theme_override_styles/normal = ExtResource("9_el6qb")
 text = "Skip rewards"
 
 [node name="CardTooltip" parent="." instance=ExtResource("2_k2vqf")]

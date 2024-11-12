@@ -47,24 +47,27 @@ metadata/_edit_lock_ = true
 [node name="LeftBox" type="TextureRect" parent="."]
 modulate = Color(0.737193, 0.737193, 0.737193, 1)
 layout_mode = 0
+offset_right = 579.0
+offset_bottom = 358.0
 texture = ExtResource("3_c03h7")
 metadata/_edit_lock_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="RewardsBox" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -50.0
-offset_top = -46.0
-offset_right = 60.0
-offset_bottom = 68.0
+offset_left = -73.0
+offset_top = -104.0
+offset_right = 37.0
+offset_bottom = 10.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(2, 2)
 
-[node name="Title" type="Label" parent="VBoxContainer"]
+[node name="Title" type="Label" parent="RewardsBox"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Battle Reward"
@@ -72,40 +75,40 @@ label_settings = SubResource("LabelSettings_ycvx7")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="RewardContainer" type="PanelContainer" parent="VBoxContainer"]
+[node name="RewardContainer" type="PanelContainer" parent="RewardsBox"]
 custom_minimum_size = Vector2(110, 80)
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/RewardContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="RewardsBox/RewardContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="Rewards" type="VBoxContainer" parent="VBoxContainer/RewardContainer/MarginContainer"]
+[node name="Rewards" type="VBoxContainer" parent="RewardsBox/RewardContainer/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="GoldReward" parent="VBoxContainer/RewardContainer/MarginContainer/Rewards" instance=ExtResource("3_8ykem")]
+[node name="GoldReward" parent="RewardsBox/RewardContainer/MarginContainer/Rewards" instance=ExtResource("3_8ykem")]
 layout_mode = 2
 reward_icon = ExtResource("4_2cuyg")
 reward_text = "INF^38 gold"
 
-[node name="CardReward" parent="VBoxContainer/RewardContainer/MarginContainer/Rewards" instance=ExtResource("3_8ykem")]
+[node name="CardReward" parent="RewardsBox/RewardContainer/MarginContainer/Rewards" instance=ExtResource("3_8ykem")]
 layout_mode = 2
 reward_icon = ExtResource("5_s2vk7")
 reward_text = "Add a New Card"
 
-[node name="PotionReward" parent="VBoxContainer/RewardContainer/MarginContainer/Rewards" instance=ExtResource("3_8ykem")]
+[node name="PotionReward" parent="RewardsBox/RewardContainer/MarginContainer/Rewards" instance=ExtResource("3_8ykem")]
 layout_mode = 2
 reward_icon = ExtResource("6_ctgio")
 reward_text = "Regular potion"
 
-[node name="BackButton" type="Button" parent="VBoxContainer"]
+[node name="BackButton" type="Button" parent="RewardsBox"]
 custom_minimum_size = Vector2(50, 14)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Continue"
 
-[connection signal="pressed" from="VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="RewardsBox/BackButton" to="." method="_on_back_button_pressed"]

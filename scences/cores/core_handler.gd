@@ -10,6 +10,10 @@ const COREUI := preload("res://scences/cores/coreui.tscn")
 @onready var remaining_cores: GridContainer = %RemainingCores
 
 
+func _ready() -> void:
+	Data.core_handler = self
+
+
 func activate_cores_of_type(type: Core.Type) -> void:
 	if type == Core.Type.RIGHT_CLICK or type == Core.Type.EVENT:
 		return

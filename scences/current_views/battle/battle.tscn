@@ -131,10 +131,10 @@ script = ExtResource("2_jt18g")
 player = NodePath("../../Player")
 
 [node name="Tooltip" parent="BattleUI" instance=ExtResource("12_rl0gg")]
-offset_left = -153.0
-offset_top = 77.0
-offset_right = 97.0
-offset_bottom = 141.0
+offset_left = -160.0
+offset_top = 95.0
+offset_right = 90.0
+offset_bottom = 159.0
 
 [node name="DefeatPanel" parent="BattleUI" instance=ExtResource("17_lrr78")]
 visible = false

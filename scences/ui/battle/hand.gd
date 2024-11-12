@@ -15,6 +15,7 @@ func _ready() -> void:
 
 # TODO: Mention playing cards before start of turn cores being a feature
 func check_for_cancel() -> void:
+	if player == null: return
 	if player.status_handler._get_status("cancel"): 
 		for child: CardUI in get_children():
 			child.canceled = true
@@ -59,9 +60,9 @@ func toggle_hand_state(toggled_on: bool) -> void:
 
 
 func update_card_seperation() -> void:
-	if get_child_count() < 6: add_theme_constant_override("separation", 11)
+	if get_child_count() <= 5: add_theme_constant_override("separation", 11)
 	match get_child_count():
-		6: add_theme_constant_override("separation", -12)
+		6: add_theme_constant_override("separation", -10)
 		7: add_theme_constant_override("separation", -22)
 		8: add_theme_constant_override("separation", -30)
 		9: add_theme_constant_override("separation", -36)

@@ -61,7 +61,7 @@ func set_card(value: Card) -> void:
 		Card.Rarity.PURPLE: type.modulate = Color(Color.PURPLE)
 	_name.modulate = type.modulate
 	cost.text = str(card.cost)
-	desc.text = "[center]%s[/center]" % card.get_tooltip_text(player_modifiers, null)
+	desc.text = "[center]%s[/center]" % card.get_tooltip_text(player_modifiers if player_modifiers != null else null, null)
 	_name.text = card.name
 	type.text = " -%s" % (str(Card.Type.find_key(card.type))).capitalize()
 	

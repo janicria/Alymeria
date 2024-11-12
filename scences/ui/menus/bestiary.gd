@@ -9,6 +9,7 @@ class_name Bestiary extends Control
 
 
 func _ready() -> void:
+	Data.bestiary = self
 	visibility_changed.connect(func()->void:
 		color_rect.visible = visible)
 

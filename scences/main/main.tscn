@@ -105,7 +105,7 @@ offset_top = 3.0
 offset_right = -4.0
 offset_bottom = 15.0
 grow_horizontal = 0
-text = "Pre-Alpha 0.1.12 Rust is cool I think"
+text = "Pre-Alpha 0.1.12 - Rust is cool I think"
 label_settings = SubResource("LabelSettings_itc3d")
 
 [node name="CoreHandler" parent="UI" instance=ExtResource("5_w82hd")]

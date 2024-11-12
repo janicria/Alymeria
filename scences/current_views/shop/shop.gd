@@ -42,7 +42,7 @@ func _ready() -> void:
 		Input.set_custom_mouse_cursor(CURSOR))
 	resurrection_icon.gui_input.connect(func(input:InputEvent)->void:
 		if input.is_action_pressed("left_mouse"):
-			Data.main.bestiary.show_core(items["resurrection"], true))
+			Data.bestiary.show_core(items["resurrection"], true))
 
 
 func reload_costs() -> void:
@@ -80,7 +80,7 @@ func item_clicked(input: InputEvent, item: String) -> void:
 	&& input.is_action_released("right_mouse") 
 	&& get_node(item).modulate != Color.WHITE.darkened(0.3)):
 		if can_afford_item(item):
-			Data.main.core_handler.add_core(items["resurrection"])
+			Data.core_handler.add_core(items["resurrection"])
 			Data.removed_cores.erase(items["resurrection"])
 			purchase_item(item)
 			return

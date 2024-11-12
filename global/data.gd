@@ -51,7 +51,8 @@ const StatusDescriptions := {
 
 # Nodes
 var player_handler: PlayerHandeler
-var main: Main
+var bestiary: Bestiary
+var core_handler: CoreHandler
 var battle_ui: BattleUI
 var shop: Shop
 
