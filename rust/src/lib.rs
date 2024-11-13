@@ -1,8 +1,7 @@
 
 use godot::prelude::*;
-use godot::classes::{Sprite2D, ISprite2D};
 
-mod defeat_panel;
+mod health_ui;
 
 struct AlyRust;
 

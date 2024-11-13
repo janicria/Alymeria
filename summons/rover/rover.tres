@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="SummonStats" load_steps=6 format=3 uid="uid://b5t2dhytk2fg2"]
 
+[ext_resource type="Texture2D" uid="uid://1u3b3hwqd8yh" path="res://assets/characters/tile_0110.png" id="1_5n44i"]
 [ext_resource type="Resource" uid="uid://bm2vo0dtvg8um" path="res://summons/rover/card_action.tres" id="1_7afku"]
-[ext_resource type="Texture2D" uid="uid://blkttehatvu04" path="res://assets/misc/icon.svg" id="1_021cw"]
 [ext_resource type="Script" path="res://custom_resources/summon_stats.gd" id="1_x7j77"]
 [ext_resource type="Resource" uid="uid://e8e2t4op1qv5" path="res://summons/rover/base_action.tres" id="2_x0gyg"]
 [ext_resource type="Resource" uid="uid://dku4s8t713n4f" path="res://summons/rover/special_action.tres" id="5_6g41b"]
@@ -16,4 +16,4 @@ card_action_type = 1
 special_action = ExtResource("5_6g41b")
 special_action_type = 1
 max_health = 12
-art = ExtResource("1_021cw")
+art = ExtResource("1_5n44i")

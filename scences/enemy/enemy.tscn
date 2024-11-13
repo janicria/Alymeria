@@ -33,14 +33,6 @@ texture = ExtResource("2_itpu6")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_5jego")
 
-[node name="StatsUI" parent="." instance=ExtResource("3_jwf45")]
-unique_name_in_owner = true
-offset_left = -23.5
-offset_top = 10.0
-offset_right = 70.5
-offset_bottom = 34.0
-scale = Vector2(0.5, 0.5)
-
 [node name="ManaCounter" type="RichTextLabel" parent="."]
 unique_name_in_owner = true
 offset_left = -19.0
@@ -51,6 +43,18 @@ bbcode_enabled = true
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
+
+[node name="StatsUI" parent="." instance=ExtResource("3_jwf45")]
+unique_name_in_owner = true
+anchors_preset = 7
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -16.5
+offset_top = 7.0
+offset_right = 25.5
+offset_bottom = 31.0
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
 
 [node name="StatusHandler" parent="." node_paths=PackedStringArray("status_owner") instance=ExtResource("7_tpe2t")]
 unique_name_in_owner = true

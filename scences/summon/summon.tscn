@@ -10,6 +10,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v0mrw"]
 
 [node name="Summon" type="Area2D" groups=["summons"]]
+scale = Vector2(2, 2)
 collision_layer = 4
 script = ExtResource("1_ofle6")
 
@@ -27,10 +28,15 @@ stretch_mode = 5
 
 [node name="StatsUI" parent="." instance=ExtResource("2_js3ca")]
 unique_name_in_owner = true
-offset_left = -40.0
-offset_top = 14.0
-offset_right = 50.0
-offset_bottom = 30.0
+anchors_preset = 7
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -20.5
+offset_top = 15.5
+offset_right = 69.5
+offset_bottom = 39.5
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
 
 [node name="StatusHandler" parent="." instance=ExtResource("3_j7vls")]
 unique_name_in_owner = true

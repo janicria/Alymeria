@@ -9,7 +9,7 @@ const DEFAULT_BUS_LAYOUT = preload("res://assets/misc/default_bus_layout.tres")
 @onready var gold_ui: GoldUI = %GoldUI
 @onready var counter: RichTextLabel = %Counter
 @onready var cog: TextureRect = %Cog
-@onready var health_ui: HealthUI = %HealthUI
+@onready var health_ui: HealthUIRust = %HealthUIMenu
 # Misc
 @onready var color_rect: ColorRect = %ColorRect
 @onready var settings: Panel = %Settings
@@ -34,6 +34,7 @@ func _ready() -> void:
 	
 	cog.pivot_offset = cog.size / 2
 	_on_volume_slider_value_changed(0, "master")
+	health_ui.update_stats(12, 99)
 	
 	if get_parent().get_name() == "MainMenu":
 		deck_view.queue_free()
@@ -57,14 +58,15 @@ func _input(event: InputEvent) -> void:
 		toggle_settings()
 
 
-func _setup(card_pile : CardPile) -> void:
+func _setup(card_pile: CardPile) -> void:
 	deck_button.card_pile = card_pile
 	deck_view.card_pile = card_pile
 	Data.character.deck = card_pile
 	deck_button.pressed.connect(deck_view.show_current_view.bind("Deck"))
-	Data.character.stats_changed.connect(health_ui.update_stats.bind(Data.character))
-	health_ui.update_stats(Data.character)
-	
+	Data.character.stats_changed.connect(func()->void:
+		health_ui.update_stats(Data.character.health, Data.character.max_health))
+	Data.character.stats_changed.emit()
+
 	# Updates buttons changed in MainMenu
 	_on_toggled_button_toggled(Data.true_draw_amount, "true_draw")
 	_on_toggled_button_toggled(Data.true_deck_size, "true_deck")
