@@ -1,5 +1,4 @@
-class_name EnemyHandler
-extends Node2D
+class_name EnemyHandler extends Node2D
 
 signal add_card_to_hand(card: EnemyCard, sender: Node2D)
 signal finished_drawing()
@@ -10,7 +9,8 @@ signal statuses_applied
 @onready var enemy_hand: EnemyHand = %EnemyHand
 
 
-func _ready() -> void: 
+func _ready() -> void:
+	Data.enemy_handler = self
 	enemy_hand.cards_finished_moving.connect(play_next_card.bind(false))
 
 
@@ -39,7 +39,8 @@ func get_enemies() -> Array[Node]:
 
 func draw_cards() -> void:
 	Events.update_player_dmg_counter.emit(0, true)
-	for enemy: Enemy in get_enemies(): 
+	for enemy: Enemy in get_enemies():
+		# TODO: Runs twice
 		enemy.draw_cards(randi_range(1, 3))
 
 
@@ -50,7 +51,6 @@ func start_mana() -> void:
 
 
 func apply_start_of_turn_statuses() -> void:
-	# Filter prevents EnemyHand from being assigned
 	for enemy: Enemy in get_enemies():
 		enemy.status_handler.apply_statuses_by_type(Status.Type.START_OF_TURN)
 		if (enemy.get_index() != get_child_count() - 2) && enemy.status_handler.has_any_statuses(): 
@@ -59,7 +59,6 @@ func apply_start_of_turn_statuses() -> void:
 
 
 func start_turn() -> void:
-	# Filter prevents EnemyHand from being assigned
 	for enemy: Enemy in get_enemies():
 		enemy.do_turn()
 		if (enemy.get_index() != get_child_count() - 2) && enemy.status_handler.has_any_statuses(): 
@@ -70,16 +69,22 @@ func start_turn() -> void:
 func play_next_card(first_card := true) -> void:
 	# Makes animation look nicer
 	await get_tree().create_timer(0.1).timeout
-	
+	if !enemy_hand.get_children(): return
 	var card := enemy_hand.get_child(0) as EnemyCardUI
+	
+	if card == null:
+		enemy_hand.organise_cards()
+		return
+	
 	card.play()
 	
 	await card.finished_playing
 	if !Data.speedy_cards && !first_card: # Somehow actually works (I think)
 		await get_tree().create_timer((enemy_hand.get_child_count()+1)*0.1).timeout
 	
-	enemy_hand.remove_child(card)
-	card.queue_free()
+	if card != null:
+		enemy_hand.remove_child(card)
+		card.queue_free()
 	enemy_hand.organise_cards()
 
 

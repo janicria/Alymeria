@@ -14,6 +14,7 @@ enum Targets {SINGLE, SELF, ENEMIES, ALLIES, EVERYONE}
 @export var health: int = 0
 
 var cumulative_weight := 0
+var cardui: EnemyCardUI
 
 const icon_dict := {
 	Type.ATTACK: preload("res://assets/objects/sword_size1.png"),

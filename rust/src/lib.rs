@@ -3,7 +3,7 @@ use godot::prelude::*;
 
 mod health_ui;
 
-struct AlyRust;
+struct MycoRust;
 
 #[gdextension]
-unsafe impl ExtensionLibrary for AlyRust {}
+unsafe impl ExtensionLibrary for MycoRust {}

@@ -16,19 +16,20 @@ status = ExtResource("2_yeso5")
 [node name="Icon" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(10, 10)
 layout_mode = 0
+offset_right = 10.0
+offset_bottom = 10.0
 texture = ExtResource("1_nfrxt")
 expand_mode = 1
 stretch_mode = 5
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 8.0
-offset_top = 4.0
-offset_right = 18.0
-offset_bottom = 10.0
-text = "99"
+offset_left = 9.0
+offset_top = 3.0
+offset_right = 19.0
+offset_bottom = 9.0
+text = "12"
 label_settings = SubResource("LabelSettings_di3fp")
-horizontal_alignment = 1
 vertical_alignment = 1
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

@@ -91,7 +91,7 @@ unique_name_in_owner = true
 script = ExtResource("13_7kmvg")
 
 [node name="Summon" parent="SummonHandler" instance=ExtResource("14_h8sp4")]
-position = Vector2(269, 165)
+position = Vector2(288, 165)
 stats = ExtResource("15_4iapu")
 
 [node name="PlayerHandeler" type="Node" parent="." node_paths=PackedStringArray("player", "hand")]

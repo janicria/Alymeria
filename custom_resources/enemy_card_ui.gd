@@ -55,6 +55,7 @@ func get_targets() -> Array[Node]:
 			targets.append_array(get_tree().get_nodes_in_group("enemies"))
 	
 	for summon in targets:
+		if summon == null: break
 		if summon.status_handler._has_status("hidden"):
 			targets.erase(summon)
 	
@@ -80,6 +81,7 @@ func update_stats(card: EnemyCard, enemy: Enemy, from_status := false) -> void:
 	if !is_node_ready(): await ready
 	card_stats = card
 	enemy_stats = enemy
+	card_stats.cardui = self
 	
 	if !enemy_stats.status_handler.statuses_applied.is_connected(update_stats_from_status):
 		enemy_stats.status_handler.statuses_applied.connect(update_stats_from_status)
@@ -143,19 +145,27 @@ func apply_effects(targets: Array[Node]) -> void:
 				effect = BarrierEffect.new()
 				effect.amount = modified_barrier
 			
-			EnemyCard.Type.DRAW: enemy_stats.draw_cards(card_stats.amount); return
-			EnemyCard.Type.ENERGY: enemy_stats.mana += card_stats.amount; return
-			
-			EnemyCard.Type.BUFF: card_stats.custom_play(get_targets()); return
-			EnemyCard.Type.DEBUFF: card_stats.custom_play(get_targets()); return
-			EnemyCard.Type.SPAWN: card_stats.custom_play(get_targets()); return
-			EnemyCard.Type.UNKNOWN: card_stats.custom_play(get_targets()); return 
+			EnemyCard.Type.DRAW:
+				for enemy: Enemy in get_targets():
+					if enemy.mana > 0:
+						enemy.draw_cards(card_stats.amount)
+						await Data.enemy_handler.finished_drawing
+				break
+			EnemyCard.Type.ENERGY: 
+				enemy_stats.mana += card_stats.amount
+				break
+			_:
+				card_stats.custom_play(get_targets())
+				break
+		
 		# If effect hasn't been changed by any modifiers
 		if !effect.amount: effect.amount = card_stats.amount
 		effect.sound = card_stats.SFX_dict.get(card_stats.type)
 		effect.execute(targets)
 		# Await is needed because signals are slow (I think??)
 		await get_tree().create_timer(0.1).timeout
+	# Await is needed because godot is slooow
+	await get_tree().process_frame
 	finished_playing.emit()
 
 

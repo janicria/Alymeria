@@ -58,6 +58,7 @@ func _on_update_battle_state(state: State) -> void:
 			Events.update_battle_state.emit(State.ENEMY_DRAW)
 		
 		State.ENEMY_DRAW: # Also enemy statuses
+			summon_handler.start_of_turn_barrier_and_statuses()
 			enemy_handler.apply_start_of_turn_statuses()
 			#await enemy_handler.statuses_applied
 			enemy_handler.draw_cards()
@@ -71,6 +72,7 @@ func _on_update_battle_state(state: State) -> void:
 			player_handeler.start_turn()
 		
 		State.ENEMY_CARDS:
+			summon_handler.end_turn()
 			player_handeler.end_turn()
 			await Events.player_hand_discarded
 			core_handler.activate_cores_of_type(Core.Type.END_OF_TURN)

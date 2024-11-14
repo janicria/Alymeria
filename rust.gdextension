@@ -4,7 +4,7 @@ compatibility_minimum = 4.3
 reloadable = true
 
 [libraries]
-linux.debug.x86_64 =     "res://rust/target/debug/librust.so"
-linux.release.x86_64 =   "res://rust/target/release/librust.so"
-windows.debug.x86_64 =   "res://rust/target/debug/rust.dll"
-windows.release.x86_64 = "res://rust/target/release/rust.dll"
+linux.debug.x86_64 =     "res://rust/bin/librust.so"
+linux.release.x86_64 =   "res://rust/bin/librust.so"
+windows.debug.x86_64 =   "res://rust/bin/rust.dll"
+windows.release.x86_64 = "res://rust/bin/rust.dll"

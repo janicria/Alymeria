@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://chfdlmv00kqka"]
+
+[ext_resource type="Script" path="res://enemies/spider_sentinel/protect.gd" id="1_7wac7"]
+
+[resource]
+script = ExtResource("1_7wac7")
+type = 5
+amount = 1
+repeats = 1
+custom_amount = ""
+cost = 1
+weight = 1
+targets = 3
+health = 0

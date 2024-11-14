@@ -86,8 +86,9 @@ follow_viewport_enabled = true
 [node name="Arrow" type="Sprite2D" parent="ArrowLayer"]
 unique_name_in_owner = true
 visible = false
-position = Vector2(18, 45)
+position = Vector2(36, 85)
 rotation = 3.14159
+scale = Vector2(2, 2)
 texture = ExtResource("5_cxkpc")
 flip_v = true
 

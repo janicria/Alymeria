@@ -21,8 +21,6 @@ const DRAG_STYLEBOX = preload("res://assets/styleboxes/card_dragging_stylebox.tr
 
 # Have to always be in scope
 var player_modifiers: ModifierHandler
-var stats := func()->String: 
-	return "%s - %s\n\n%s - %s" % [card.name, card.unique_id, self, get_index()]
 var original_index := 0
 var parent: Control
 var tween: Tween
@@ -132,8 +130,6 @@ func play() -> void:
 
 func _on_gui_input(event: InputEvent) -> void:
 	card_state_machine.on_gui_input(event)
-	if event.is_action_pressed("middle_mouse"): 
-		OS.alert(stats.call(), "Card stats")
 
 
 func _on_mouse_entered() -> void:

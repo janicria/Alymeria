@@ -1,5 +1,4 @@
-class_name BarrierEffect
-extends Effect
+class_name BarrierEffect extends Effect
 
 var amount := 0
 

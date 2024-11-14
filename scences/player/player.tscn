@@ -43,10 +43,11 @@ bbcode_enabled = true
 
 [node name="StatusHandler" parent="." node_paths=PackedStringArray("status_owner") instance=ExtResource("4_vvspa")]
 unique_name_in_owner = true
-offset_left = -22.0
-offset_top = 20.0
-offset_right = -22.0
-offset_bottom = 20.0
+offset_left = -49.0
+offset_top = 23.0
+offset_right = -49.0
+offset_bottom = 23.0
+scale = Vector2(2, 2)
 status_owner = NodePath("..")
 
 [node name="ModifierHandler" parent="." instance=ExtResource("5_whoih")]

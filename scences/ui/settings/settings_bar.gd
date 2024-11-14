@@ -117,6 +117,7 @@ func _on_color_rect_gui_input(event: InputEvent) -> void:
 		toggle_settings()
 
 
+# DO NOT MOVE
 func _on_toggled_button_toggled(toggled_on: bool, button_string: String) -> void:
 	var button: Button
 	match button_string:
@@ -147,6 +148,7 @@ func _on_toggled_button_toggled(toggled_on: bool, button_string: String) -> void
 	button.text = "Enabled" if toggled_on else "Disabled"
 
 
+# DO NOT MOVE
 func _on_volume_slider_value_changed(_value: float, slider: String) -> void: 
 	if slider == "master":
 		update_slider_volume("sfx")
@@ -158,6 +160,7 @@ func _on_sfx_volume_drag_ended(_value_changed: bool) -> void:
 	SFXPlayer.play(sfx_slider_sound)
 
 
+# DO NOT MOVE
 func _on_hbox_mouse_entered(text: String) -> void:
 	Events.show_tooltip.emit("[center]%s[/center]" % text)
 

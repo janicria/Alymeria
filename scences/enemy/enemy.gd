@@ -37,8 +37,12 @@ func _setup_stats(value: EnemyStats) -> void:
 
 
 func _setup_card_weights() -> void:
-	total_card_weight = 0 # Not needed but is nice for safety
-	for card: EnemyCard in ai.actions:
+	# Gets called whenever stats changes
+	total_card_weight = 0
+	for card in ai.actions:
+		card.cumulative_weight = 0
+	
+	for card in ai.actions:
 		total_card_weight += card.weight
 		card.cumulative_weight = total_card_weight
 

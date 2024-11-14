@@ -37,8 +37,7 @@ func add_status(status: Status) -> void:
 		status_ui.status = status
 		status_ui.status.status_applied.connect(_on_status_applied)
 		status_ui.status.initalise_target(status_owner)
-		if status_ui.status.stack_type == Status.StackType.NONE: status_ui.custom_minimum_size.x -= 3
-		else: status_ui.custom_minimum_size.x = 10
+		status_ui.icon.size = status_ui.icon.custom_minimum_size
 		return
 	
 	# No need to do anything to the status if it can't stack

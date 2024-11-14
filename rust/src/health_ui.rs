@@ -22,7 +22,7 @@ impl IHBoxContainer for HealthUIRust {
 
 #[godot_api]
 impl HealthUIRust {
-    #[func]
+    #[func] // test comment
     fn update_stats(&mut self, health: i32, max_health: i32) {
         let mut text = health.to_string();
         if self.show_max_health {

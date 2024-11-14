@@ -11,3 +11,13 @@ func start_turn() -> void:
 		summon.stats.base_action.play()
 		await summon.stats.base_action.finished
 	actions_finished.emit()
+
+
+func start_of_turn_barrier_and_statuses() -> void:
+	for summon: Summon in get_children():
+		summon.do_turn()
+
+
+func end_turn() -> void:
+	for summon: Summon in get_children():
+		summon.status_handler.apply_statuses_by_type(Status.Type.END_OF_TURN)

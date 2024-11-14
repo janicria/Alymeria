@@ -26,6 +26,11 @@ func _ready() -> void:
 	stats_ui.update_stats(stats)
 
 
+func do_turn() -> void:
+	stats.barrier = clamp((stats.barrier -10), 0, 999)
+	status_handler.apply_statuses_by_type(Status.Type.START_OF_TURN)
+
+
 func take_damage(damage: int, status: Status = null) -> void:
 	if stats.health <= 0: return
 	Data.damage_dealt += damage

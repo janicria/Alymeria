@@ -1,5 +1,4 @@
-class_name StatusUI
-extends Control
+class_name StatusUI extends Control
 
 @export var status: Status : set = set_status
 

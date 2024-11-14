@@ -37,7 +37,6 @@ func cardToGui(card: EnemyCard, enemy: Enemy) -> void:
 	# Updating enemy mana and player damage counters
 	tween.finished.connect(func()->void:
 		card_ui.arrow.global_position = card_ui.global_position + card_ui.arrow.position
-		# TODO: Add await for enemy statuses to apply before playing enemy cards
 		var wr: WeakRef = weakref(enemy)
 		if !wr.get_ref(): return
 		enemy.update_mana_counter()
@@ -61,8 +60,11 @@ func organise_cards() -> void:
 		# We want multiple cards to move at the same time
 		await get_tree().create_timer(0.1).timeout
 		# Scheduling the next card to be played after all cards have been moved
-		if card == get_child(-1): cards_finished_moving.emit()
-	if !get_children(): Events.update_battle_state.emit(Battle.State.LOOPS)
+		if card == get_child(-1): 
+			cards_finished_moving.emit()
+	
+	if !get_children(): 
+		Events.update_battle_state.emit(Battle.State.LOOPS)
 
 
 func show_cards_owned_by_enemy(enemy: Enemy) -> void:
