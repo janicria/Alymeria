@@ -1,6 +1,8 @@
 class_name Enemy extends Area2D
 
 const ARROW_OFFSET := 19
+const CURSOR = preload("res://assets/misc/cursor.png")
+const BUBBLE_CURSOR = preload("res://assets/misc/bubble_cursor.png")
 
 @export var ai: EnemyAI
 @export var stats: EnemyStats : set = _setup_stats
@@ -146,13 +148,21 @@ func _on_area_entered(_area: Node) -> void:
 	if _area.get_parent().get_name() == "CardTargetSelector":
 		arrow.show()
 
+
 func _on_area_exited(_area: Node) -> void:
 	arrow.hide()
 
 
 func _on_mouse_entered() -> void:
 	get_parent().show_cards_owned_by_enemy.emit(self)
+	Input.set_custom_mouse_cursor(BUBBLE_CURSOR)
 
 
 func _on_mouse_exited() -> void:
 	get_parent().hide_enemy_card_arrows.emit()
+	Input.set_custom_mouse_cursor(CURSOR)
+
+
+func _on_mouse_hitbox_gui_input(event: InputEvent) -> void:
+	if event.is_action_pressed("left_mouse"):
+		Data.bestiary.show_menu([stats.name, stats.art, "TODO: Cards", "TODO: Starter statuses"], false)

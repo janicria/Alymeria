@@ -46,6 +46,6 @@ func _on_gui_input(event: InputEvent) -> void:
 		playable = false
 		flash()
 	elif event.is_action_released("left_mouse"):
-		Data.bestiary.show_core(core)
+		Data.bestiary.show_menu(core.to_bestiary(), false)
 		if core.core_name == "Comically Large Anvil":
 			flash()

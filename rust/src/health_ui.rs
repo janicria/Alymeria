@@ -4,14 +4,14 @@ use godot::classes::{HBoxContainer, IHBoxContainer, Label};
 
 #[derive(GodotClass)]
 #[class(base=HBoxContainer)]
-struct HealthUIRust {
+struct HealthUI {
     #[export]
     show_max_health: bool,
     base: Base<HBoxContainer>
 }
 
 #[godot_api]
-impl IHBoxContainer for HealthUIRust {
+impl IHBoxContainer for HealthUI {
     fn init(base: Base<HBoxContainer>) -> Self {
         Self {
             show_max_health: false,
@@ -21,8 +21,8 @@ impl IHBoxContainer for HealthUIRust {
 }
 
 #[godot_api]
-impl HealthUIRust {
-    #[func] // test comment
+impl HealthUI {
+    #[func]
     fn update_stats(&mut self, health: i32, max_health: i32) {
         let mut text = health.to_string();
         if self.show_max_health {

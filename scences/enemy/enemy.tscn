@@ -23,6 +23,18 @@ stats = ExtResource("3_aow6t")
 unique_name_in_owner = true
 texture = ExtResource("1_4apox")
 
+[node name="MouseHitbox" type="Control" parent="Sprite2D"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = -8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="Arrow" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 visible = false
@@ -82,3 +94,4 @@ type = 3
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="gui_input" from="Sprite2D/MouseHitbox" to="." method="_on_mouse_hitbox_gui_input"]

@@ -1,10 +1,13 @@
-[gd_resource type="Resource" script_class="EnemyStats" load_steps=3 format=3 uid="uid://c22fqvciaix8w"]
+[gd_resource type="Resource" script_class="EnemyStats" load_steps=4 format=3 uid="uid://c22fqvciaix8w"]
 
 [ext_resource type="Texture2D" uid="uid://con6y7mc74c5a" path="res://assets/characters/tile_0120.png" id="1_dgw2n"]
 [ext_resource type="Script" path="res://custom_resources/enemy_stats.gd" id="1_nrbak"]
+[ext_resource type="Script" path="res://custom_resources/status.gd" id="3_ekre3"]
 
 [resource]
 script = ExtResource("1_nrbak")
+name = "Bat"
 max_mana = 2
+starter_statuses = Array[ExtResource("3_ekre3")]([])
 max_health = 8
 art = ExtResource("1_dgw2n")

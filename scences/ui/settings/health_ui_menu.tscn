@@ -5,7 +5,8 @@
 [sub_resource type="LabelSettings" id="LabelSettings_leorl"]
 font_size = 6
 
-[node name="HealthUIMenu" type="HealthUIRust"]
+[node name="HealthUIMenu" type="HealthUI"]
+show_max_health = true
 offset_right = 40.0
 offset_bottom = 40.0
 

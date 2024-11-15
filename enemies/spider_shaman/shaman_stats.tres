@@ -6,6 +6,7 @@
 
 [resource]
 script = ExtResource("2_hpsxt")
+name = "Spider Shaman"
 max_mana = 3
 starter_statuses = Array[ExtResource("3_ysxin")]([])
 max_health = 16

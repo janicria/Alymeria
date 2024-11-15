@@ -9,7 +9,7 @@ const DEFAULT_BUS_LAYOUT = preload("res://assets/misc/default_bus_layout.tres")
 @onready var gold_ui: GoldUI = %GoldUI
 @onready var counter: RichTextLabel = %Counter
 @onready var cog: TextureRect = %Cog
-@onready var health_ui: HealthUIRust = %HealthUIMenu
+@onready var health_ui: HealthUI = %HealthUIMenu
 # Misc
 @onready var color_rect: ColorRect = %ColorRect
 @onready var settings: Panel = %Settings

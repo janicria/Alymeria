@@ -5,7 +5,7 @@
 [sub_resource type="LabelSettings" id="LabelSettings_s71vs"]
 font_size = 12
 
-[node name="HealthUIStats" type="HealthUIRust"]
+[node name="HealthUIStats" type="HealthUI"]
 offset_right = 55.0
 offset_bottom = 12.0
 

@@ -4,9 +4,9 @@
 [ext_resource type="Resource" uid="uid://dk2sl2aapuwe7" path="res://scences/main/run_startup.tres" id="2_71wrl"]
 [ext_resource type="PackedScene" uid="uid://klm1dw58y8fj" path="res://scences/map/map.tscn" id="3_oqdot"]
 [ext_resource type="PackedScene" uid="uid://bwuexw3t61b0h" path="res://scences/ui/settings/settings_bar.tscn" id="4_0dled"]
+[ext_resource type="PackedScene" uid="uid://bv46ipaamtkwu" path="res://scences/ui/menus/bestiary.tscn" id="5_hswd5"]
 [ext_resource type="PackedScene" uid="uid://iq0kljjd6vul" path="res://scences/cores/core_handler.tscn" id="5_w82hd"]
 [ext_resource type="PackedScene" uid="uid://cmrfdlp25wcby" path="res://addons/simply-console/scenes/console_window.tscn" id="6_0syis"]
-[ext_resource type="PackedScene" uid="uid://cogno32qd13u" path="res://scences/ui/menus/bestiary.tscn" id="6_codce"]
 [ext_resource type="Script" path="res://scences/main/shaker.gd" id="7_kpps0"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_itc3d"]
@@ -119,8 +119,9 @@ offset_bottom = 126.0
 [node name="BestiaryLayer" type="CanvasLayer" parent="UI"]
 layer = 99
 
-[node name="Bestiary" parent="UI/BestiaryLayer" instance=ExtResource("6_codce")]
+[node name="Bestiary" parent="UI/BestiaryLayer" instance=ExtResource("5_hswd5")]
 unique_name_in_owner = true
+physics_interpolation_mode = 0
 visible = false
 
 [node name="SettingsBar" parent="UI" instance=ExtResource("4_0dled")]

@@ -1,10 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cogno32qd13u"]
+[gd_scene load_steps=3 format=3 uid="uid://bv46ipaamtkwu"]
 
-[ext_resource type="Script" path="res://scences/ui/menus/bestiary.gd" id="1_i0uol"]
-[ext_resource type="Texture2D" uid="uid://ckp4wldwmrcxf" path="res://assets/objects/textbook.png" id="2_txjvj"]
+[ext_resource type="Script" path="res://scences/ui/menus/bestiary_class_ref.gd" id="2_orxg0"]
+[ext_resource type="Texture2D" uid="uid://ckp4wldwmrcxf" path="res://assets/objects/textbook.png" id="2_ucmsf"]
 
-[node name="Bestiary" type="Control"]
-layout_mode = 3
+[node name="Bestiary" type="Bestiary"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -16,7 +15,6 @@ offset_right = 304.0
 offset_bottom = 164.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_i0uol")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 unique_name_in_owner = true
@@ -34,55 +32,51 @@ grow_vertical = 2
 mouse_filter = 1
 color = Color(0, 0, 0, 0.470588)
 
-[node name="Panel" type="Panel" parent="."]
+[node name="PrimaryView" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 17.0
+offset_top = 15.0
+offset_right = -20.0
+offset_bottom = -12.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CoreView" type="Control" parent="."]
-unique_name_in_owner = true
+[node name="Panel" type="Panel" parent="PrimaryView"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 1.0
+offset_right = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CoreTitle" type="RichTextLabel" parent="CoreView"]
+[node name="Title" type="RichTextLabel" parent="PrimaryView"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -244.0
-offset_top = 9.0
+offset_top = 12.0
 offset_right = 244.0
-offset_bottom = 49.0
+offset_bottom = 52.0
 grow_horizontal = 2
 theme_override_font_sizes/normal_font_size = 12
 bbcode_enabled = true
 text = "[center][font_size=32]Maths textbook[/font_size][/center]"
 fit_content = true
 
-[node name="CoreIcon" type="TextureRect" parent="CoreView"]
+[node name="Icon" type="Sprite2D" parent="PrimaryView"]
 unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -40.0
-offset_top = 56.0
-offset_right = 40.0
-offset_bottom = 136.0
-grow_horizontal = 2
-texture = ExtResource("2_txjvj")
-expand_mode = 1
-stretch_mode = 5
+position = Vector2(286, 85)
+scale = Vector2(4, 4)
+texture = ExtResource("2_ucmsf")
 
-[node name="CoreText" type="RichTextLabel" parent="CoreView"]
+[node name="Description" type="RichTextLabel" parent="PrimaryView"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
@@ -91,9 +85,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -204.0
-offset_top = -1.0
+offset_top = -21.0
 offset_right = 204.0
-offset_bottom = 119.0
+offset_bottom = 99.0
 grow_horizontal = 2
 grow_vertical = 2
 bbcode_enabled = true
@@ -105,15 +99,34 @@ I knew there was a reason for me not liking maths in school[/center]"
 fit_content = true
 autowrap_mode = 2
 
-[node name="ShopText" type="Label" parent="CoreView"]
+[node name="ShopText" type="Label" parent="PrimaryView"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 483.0
-offset_top = 67.0
-offset_right = 594.0
-offset_bottom = 124.0
+offset_left = 448.0
+offset_top = 58.0
+offset_right = 559.0
+offset_bottom = 115.0
 text = "Right click to purchase in shop"
 horizontal_alignment = 1
 autowrap_mode = 3
+
+[node name="Footer" type="RichTextLabel" parent="PrimaryView"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -250.0
+offset_top = -40.0
+offset_right = 250.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 0
+bbcode_enabled = true
+
+[node name="ClassRef" type="Node" parent="."]
+script = ExtResource("2_orxg0")
 
 [connection signal="gui_input" from="ColorRect" to="." method="_on_color_rect_gui_input"]

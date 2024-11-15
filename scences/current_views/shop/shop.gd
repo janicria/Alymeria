@@ -42,7 +42,7 @@ func _ready() -> void:
 		Input.set_custom_mouse_cursor(CURSOR))
 	resurrection_icon.gui_input.connect(func(input:InputEvent)->void:
 		if input.is_action_pressed("left_mouse"):
-			Data.bestiary.show_core(items["resurrection"], true))
+			Data.bestiary.show_menu(items["resurrection"].to_bestiary(), true))
 
 
 func reload_costs() -> void:

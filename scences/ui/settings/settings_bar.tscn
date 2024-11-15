@@ -83,8 +83,8 @@ layout_mode = 2
 theme_override_constants/separation = 2
 
 [node name="HealthUIMenu" parent="TopVbox/Layer2" instance=ExtResource("6_u38ca")]
-show_max_health = true
 unique_name_in_owner = true
+physics_interpolation_mode = 0
 layout_mode = 2
 
 [node name="GoldUI" parent="TopVbox/Layer2" instance=ExtResource("6_qme55")]

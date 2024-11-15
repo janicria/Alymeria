@@ -2,6 +2,7 @@
 use godot::prelude::*;
 
 mod health_ui;
+mod bestiary;
 
 struct MycoRust;
 
