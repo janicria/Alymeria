@@ -37,6 +37,7 @@ file_logging/enable_file_logging=true
 file_logging/log_path="user://logs/info.log"
 file_logging/max_log_files=4
 gdscript/warnings/unused_signal=0
+gdscript/warnings/incompatible_ternary=0
 gdscript/warnings/untyped_declaration=1
 gdscript/warnings/integer_division=0
 gdscript/warnings/int_as_enum_without_cast=0

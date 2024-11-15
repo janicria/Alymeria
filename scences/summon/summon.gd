@@ -1,5 +1,8 @@
 class_name Summon extends Area2D
 
+const CURSOR = preload("res://assets/misc/cursor.png")
+const BUBBLE_CURSOR = preload("res://assets/misc/bubble_cursor.png")
+
 @export var stats: SummonStats
 
 @onready var texture: TextureRect = %Texture
@@ -69,3 +72,18 @@ func death_animation(repeats := 3) -> void:
 				#Events.summon_died.emit(self)
 				queue_free())
 	
+
+
+func _on_texture_input(event: InputEvent) -> void:
+	if event.is_action_pressed("left_mouse"):
+		Data.bestiary.show_menu(
+			[stats.name, stats.art, "\nActions\n\n%s" % stats.description, stats.flavour_text], 
+			false)
+
+
+func _on_mouse_entered() -> void:
+	Input.set_custom_mouse_cursor(BUBBLE_CURSOR)
+
+
+func _on_mouse_exited() -> void:
+	Input.set_custom_mouse_cursor(CURSOR)

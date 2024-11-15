@@ -55,3 +55,7 @@ type = 1
 
 [node name="DamageTaken" parent="ModifierHandler" instance=ExtResource("5_hl6es")]
 type = 2
+
+[connection signal="gui_input" from="Texture" to="." method="_on_texture_input"]
+[connection signal="mouse_entered" from="Texture" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Texture" to="." method="_on_mouse_exited"]

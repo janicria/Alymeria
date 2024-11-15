@@ -4,6 +4,7 @@ enum SpecialActionType {HEALTH_LOST, DEATH, STATUS_GAINED, STATUS_REMOVED}
 
 @export var name: String
 @export_multiline var description: String
+@export_multiline var flavour_text: String = "todo me :3"
 @export var base_action: SummonAction
 @export var card_action: SummonAction
 @export var card_action_type: Card.Type

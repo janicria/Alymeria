@@ -8,6 +8,7 @@ script = ExtResource("2_xgxyy")
 id = "suboptimal"
 type = 0
 stack_type = 0
+buff = true
 format_tooltip = true
 duration = 0
 stacks = 0

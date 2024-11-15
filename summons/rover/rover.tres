@@ -9,7 +9,12 @@
 [resource]
 script = ExtResource("1_x7j77")
 name = "Rover"
-description = ""
+description = "[color=CD57FF]Base[/color] - [color=3D7BFF]Draw[/color] a [color=0044ff]card[/color]
+
+[color=CD57FF]Type[/color] (Internal) - [color=ff0000]Attack[/color] 1. [color=CD57FF]Chaotic[/color]
+
+[color=CD57FF]Special[/color] (On death) - [color=1AD12C]Defence up[/color] 1. [color=CD57FF]Player[/color]"
+flavour_text = "todo me :3"
 base_action = ExtResource("2_x0gyg")
 card_action = ExtResource("1_7afku")
 card_action_type = 1

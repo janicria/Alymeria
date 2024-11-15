@@ -8,6 +8,7 @@ script = ExtResource("1_4rsxs")
 id = "spinneret"
 type = 2
 stack_type = 0
+buff = true
 format_tooltip = false
 duration = 0
 stacks = 0

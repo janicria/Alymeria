@@ -12,6 +12,7 @@ enum Targets {SINGLE, SELF, ENEMIES, ALLIES, EVERYONE}
 @export var weight :int
 @export var targets: Targets
 @export var health: int = 0
+@export_multiline var description: String
 
 var cumulative_weight := 0
 var cardui: EnemyCardUI

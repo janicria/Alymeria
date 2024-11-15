@@ -45,7 +45,7 @@ impl IControl for Bestiary {
 #[godot_api]
 impl Bestiary {
     #[func]
-    fn show_menu(&mut self, items: Array<Variant>, shop_text: bool) {//>icon: Gd<Texture2D>, title: GString, description: GString, footer: GString, shop_text: bool) {
+    fn show_menu(&mut self, items: Array<Variant>, shop_text: bool) {
         self.base_mut().show();
         self
         .base()

@@ -8,6 +8,7 @@ script = ExtResource("1_lijh8")
 id = "injured"
 type = 1
 stack_type = 2
+buff = false
 format_tooltip = false
 duration = 1
 stacks = 0

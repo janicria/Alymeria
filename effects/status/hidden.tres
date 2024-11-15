@@ -8,6 +8,7 @@ script = ExtResource("2_ah438")
 id = "hidden"
 type = 0
 stack_type = 2
+buff = true
 format_tooltip = false
 duration = 1
 stacks = 0

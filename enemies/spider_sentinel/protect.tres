@@ -12,3 +12,5 @@ cost = 1
 weight = 1
 targets = 3
 health = 0
+description = "Mana 1 - Enemy with the highest health
+Barrier 4 - All non sentinel enemies"

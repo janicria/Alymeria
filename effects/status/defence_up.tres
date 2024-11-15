@@ -8,6 +8,7 @@ script = ExtResource("2_lg55t")
 id = "defence_up"
 type = 2
 stack_type = 1
+buff = true
 format_tooltip = true
 duration = 0
 stacks = 1

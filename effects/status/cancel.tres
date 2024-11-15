@@ -8,6 +8,7 @@ script = ExtResource("2_4b3ro")
 id = "cancel"
 type = 1
 stack_type = 2
+buff = false
 format_tooltip = false
 duration = 1
 stacks = 0
