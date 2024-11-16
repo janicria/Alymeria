@@ -47,6 +47,7 @@ impl Bestiary {
     #[func]
     fn show_menu(&mut self, items: Array<Variant>, shop_text: bool) {
         self.base_mut().show();
+        self.color_rect.show();
         self
         .base()
         .get_node_as::<Label>("%ShopText")

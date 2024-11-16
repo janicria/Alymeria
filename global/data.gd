@@ -39,12 +39,12 @@ const StatusDescriptions := {
 	"spinneret": "[color=1AD12C]Spinneret[/color] - Whenever you receive unblocked [color=AB3321]attack damage[/color] from this [color=CD57FF]enemy[/color], gain one [color=AB3321]Webbed[/color]",
 	"nano_plague": "[color=AB3321]Nano plague[/color] - Take [color=ff0000]damage[/color] equal to 80% of stacks then apply [color=008000]nano plague[/color] equal to 20% of stacks to all [color=CD57FF]allies[/color] at the END of each turn",
 	"injured": "[color=AB3321]Injured[/color] - Recive 30% more [color=ff0000]damage[/color] from [color=ff0000]attacks[/color]. Decreases by 1 at the END of each turn",
-	
+	"file_corruption": "[color=1AD12C]File corruption[/color] - Whenever you play a [color=0044ff]card[/color] apply 1 [color=008000]nano plague[/color] to [color=CD57FF]everyone[/color]",
+
 	# With string replacements
 	"lucky_draw": "[color=9370db]Lucky draw[/color] - There is a [color=9370db]%d%%[/color] chance for this [color=0044ff]card[/color] to fail to play, chance decreases whenever you [color=3D7BFF]draw[/color] a [color=0044ff]card[/color]",
 	"damage_up": "[color=1AD12C]Damage up[/color] - [color=ff0000]Attacks[/color] deal %s additional [color=ff0000]damage[/color]",
 	"defence_up": "[color=1AD12C]Defence up[/color] - Gain %s more [color=0044ff]barrier[/color] from [color=0044ff]cards[/color]",
-	"file_corruption": "[color=1AD12C]File corruption[/color] - Whenever you play a [color=0044ff]card[/color] apply %s [color=008000]nano plague[/color] to [color=CD57FF]everyone[/color]",
 	"memory_down": "[color=AB3321]Memory down[/color] - Lose %s [color=ffff00]memory[/color] at the start of each turn. Amount is equal to looped [color=0044ff]card's[/color] cost",
 	"suboptimal": "[color=1AD12C]Suboptimal[/color] - At the start of each turn lose %d [color=ff0000]health[/color] and gain %d [color=1AD12C]damage up[/color]"
 }

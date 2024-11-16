@@ -1,15 +1,15 @@
-[gd_resource type="Resource" script_class="EnemyCard" load_steps=2 format=3 uid="uid://b7e76ouxktv47"]
+[gd_resource type="Resource" script_class="EnemyCard" load_steps=2 format=3 uid="uid://cshuck57f1vur"]
 
-[ext_resource type="Script" path="res://custom_resources/enemy_card.gd" id="1_bo1ko"]
-
+[ext_resource type="Script" path="res://custom_resources/enemy_card.gd" id="1_omfms"]
 
 [resource]
-script = ExtResource("1_bo1ko")
+script = ExtResource("1_omfms")
 type = 1
-amount = 6
+amount = 2
 repeats = 1
-cost = 1
-weight = 2
-targets = 1
-health = 0
-optional_desc = ""
+custom_amount = ""
+cost = 0
+weight = 0
+targets = 3
+health = 9
+description = ""

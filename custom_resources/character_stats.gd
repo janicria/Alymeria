@@ -26,9 +26,9 @@ func set_memory(value : int) -> void:
 	stats_changed.emit()
 
 
-func take_damage(damage: int, status: Status = null) -> void:
+func take_damage(damage: int, status: Status = null) -> bool:
 	var initial_health := health
-	super.take_damage(damage)
+	var result := super.take_damage(damage)
 	if initial_health > health:
 		Data.damage_taken += damage
 		if status != null:
@@ -36,6 +36,7 @@ func take_damage(damage: int, status: Status = null) -> void:
 			status_effect.status = status
 			status_effect.execute([Data.player_handler.player])
 		Events.player_hit.emit()
+	return result
 
 
 func can_play_card(card : Card) -> bool:

@@ -41,7 +41,9 @@ func take_damage(damage: int, status: Status = null) -> void:
 	var modified_damage := modifier_handler.get_modified_value(damage, Modifier.Type.DMG_TAKEN)
 	
 	var tween := create_tween()
-	tween.tween_callback(get_tree().current_scene.shaker.shake.bind(self, 12, 0.15))
+	tween.tween_callback(
+		get_tree()
+		.current_scene.shaker.shake.bind(self, 12, 0.15))
 	tween.tween_callback(stats.take_damage.bind(modified_damage, status))
 	tween.tween_interval(0.2)
 	
@@ -59,7 +61,9 @@ func death_animation(repeats := 3) -> void:
 	remove_from_group("summons")
 	
 	var death_tween := create_tween()
-	death_tween.tween_callback(get_tree().current_scene.shaker.shake.bind(self, 10, 0.15))
+	death_tween.tween_callback(
+		get_tree()
+		.current_scene.shaker.shake.bind(self, 30, 0.2))
 	death_tween.tween_interval(0.2)
 	
 	death_tween.finished.connect(

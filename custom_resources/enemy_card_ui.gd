@@ -42,17 +42,21 @@ func get_targets() -> Array[Node]:
 		return []
 	
 	match card_stats.targets:
-		card_stats.Targets.SINGLE: targets.append(target)
-		card_stats.Targets.SELF: targets.append(enemy_stats)
-		card_stats.Targets.ENEMIES: 
+		EnemyCard.Targets.SINGLE: targets.append(target)
+		EnemyCard.Targets.SELF: targets.append(enemy_stats)
+		EnemyCard.Targets.ENEMIES: 
 			targets.append_array(get_tree().get_nodes_in_group("player"))
 			targets.append_array(get_tree().get_nodes_in_group("summons"))
-		card_stats.Targets.ALLIES:
+		EnemyCard.Targets.ALLIES:
 			targets.append_array(get_tree().get_nodes_in_group("enemies"))
-		card_stats.Targets.EVERYONE:
+		EnemyCard.Targets.EVERYONE:
 			targets.append_array(get_tree().get_nodes_in_group("player"))
 			targets.append_array(get_tree().get_nodes_in_group("summons"))
 			targets.append_array(get_tree().get_nodes_in_group("enemies"))
+		EnemyCard.Targets.RANDOM_ALLY:
+			targets.append(get_tree()
+			.get_nodes_in_group("enemies")
+			.pick_random())
 	
 	for summon in targets:
 		if summon == null: break
@@ -153,7 +157,9 @@ func apply_effects(targets: Array[Node]) -> void:
 						await Data.enemy_handler.finished_drawing
 				break
 			EnemyCard.Type.ENERGY: 
-				enemy_stats.mana += card_stats.amount
+				for enemy: Enemy in get_targets():
+					enemy.mana += card_stats.amount
+					enemy.update_mana_counter()
 				break
 			_:
 				card_stats.custom_play(get_targets())
@@ -200,7 +206,8 @@ func _on_control_mouse_entered() -> void:
 		card_stats.Targets.SELF: tooltip_text += " [color=CD57FF]to itself[/color]"
 		card_stats.Targets.ENEMIES: tooltip_text += " [color=CD57FF]to you and your summons[/color]"
 		card_stats.Targets.ALLIES: tooltip_text += " [color=CD57FF]to all enemies[/color]"
-		card_stats.Targets.EVERYONE: tooltip_text += "[color=CD57FF]to everyone[/color]"
+		card_stats.Targets.EVERYONE: tooltip_text += " [color=CD57FF]to everyone[/color]"
+		card_stats.Targets.RANDOM_ALLY: tooltip_text += " [color=CD57FF]to a random enemy[/color]"
 	
 	tooltip_text += " when this [color=0044ff]card[/color] is played"
 	Events.show_tooltip.emit(tooltip_text)

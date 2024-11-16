@@ -13,3 +13,4 @@ func custom_play(final_targets: Array[Node]) -> void:
 			barrier_effect.sound = SFX_dict.get(type)
 			barrier_effect.execute([enemy])
 	highest_health[1].mana += 1
+	highest_health[1].update_mana_counter()

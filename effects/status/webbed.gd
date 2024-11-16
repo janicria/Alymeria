@@ -7,7 +7,7 @@ func initalise_target(target: Node) -> void:
 	var webbed_value: ModifierValue = damage_taken_modifier.get_value("webbed")
 	if !webbed_value:
 		webbed_value = ModifierValue.create_modifier("webbed", ModifierValue.Type.PERCENT)
-		webbed_value.percent_value =  1.3
+		webbed_value.percent_value =  0.3
 		damage_taken_modifier.add_new_value(webbed_value)
 	
 	# Updating mod

@@ -108,12 +108,13 @@ func update_enemy() -> void:
 
 
 func do_turn() -> void:
-	stats.barrier = clamp((stats.barrier -10), 0, 999)
+	stats.barrier = clampi((stats.barrier -10), 0, 999)
 	status_handler.apply_statuses_by_type(Status.Type.END_OF_TURN)
 
 
 # Doesn't work as setter from mana var (mana decreases before cards are actually drawn)
 func update_mana_counter() -> void:
+	mana_counter.visible = mana
 	mana_counter.text = "[center][color=3D7BFF][font_size=6]%s[/font_size][/color][/center]" % mana
 
 
@@ -121,17 +122,19 @@ func take_damage(damage : int, modify_damage := true) -> void:
 	if stats.health <= 0: return
 	Data.damage_dealt += damage
 	
-	var modified_damage := modifier_handler.get_modified_value(damage, Modifier.Type.DMG_TAKEN)
+	var modified_damage := modifier_handler.get_modified_value(
+		damage, Modifier.Type.DMG_TAKEN)
 	if !modify_damage: modified_damage = damage
 	
 	var tween := create_tween()
-	tween.tween_callback(get_tree().current_scene.shaker.shake.bind(self, 12, 0.15))
-	tween.tween_callback(stats.take_damage.bind(modified_damage))
-	tween.tween_interval(0.2)
+	tween.tween_callback(
+		get_tree()
+		.current_scene.shaker.shake.bind(self, 12, 0.2))
 	
 	tween.finished.connect(
 		func()->void:
-			check_health_cards()
+			if stats.take_damage(modified_damage):
+				check_health_cards()
 			if stats.health <= 0:
 				death_animation())
 
@@ -139,7 +142,8 @@ func take_damage(damage : int, modify_damage := true) -> void:
 func death_animation(repeats := 3) -> void:
 	is_alive = false
 	var death_tween := create_tween()
-	death_tween.tween_callback(get_tree().current_scene.shaker.shake.bind(self, 10, 0.15))
+	death_tween.tween_callback(
+		get_tree().current_scene.shaker.shake.bind(self, 30, 0.2))
 	death_tween.tween_interval(0.2)
 	
 	death_tween.finished.connect(
@@ -190,7 +194,8 @@ func to_bestiary() -> Array:
 			((("%sx%s" % [card.amount, card.repeats]) if card.repeats != 1 else card.amount)) if card.type > 5 else card.amount]
 	
 	# Statuses
-	if !stats.starter_statuses.is_empty(): return [stats.name, stats.art, cards_text, ""]
+	if stats.starter_statuses.is_empty(): 
+		return [stats.name, stats.art, cards_text, ""]
 	var status_text := "Statuses\n"
 	for status in stats.starter_statuses:
 		status_text += "[color=%s]%s[/color]" % [

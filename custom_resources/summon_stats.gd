@@ -14,9 +14,9 @@ enum SpecialActionType {HEALTH_LOST, DEATH, STATUS_GAINED, STATUS_REMOVED}
 var summon: Summon
 
 
-func take_damage(damage: int, status: Status = null) -> void:
+func take_damage(damage: int, status: Status = null) -> bool:
 	var initial_health := health
-	super.take_damage(damage)
+	var result := super.take_damage(damage)
 	if initial_health > health:
 		if special_action_type == SpecialActionType.HEALTH_LOST:
 			special_action.play()
@@ -24,3 +24,4 @@ func take_damage(damage: int, status: Status = null) -> void:
 			var status_effect := StatusEffect.new()
 			status_effect.status = status
 			status_effect.execute([summon])
+	return result
