@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://ddf16b6dtjrb7"]
+
+[ext_resource type="Script" path="res://enemies/spider_shaman/reanimate.gd" id="1_vq8l8"]
+
+[resource]
+script = ExtResource("1_vq8l8")
+type = 7
+amount = 1
+repeats = 1
+custom_amount = ""
+cost = 1
+weight = 2
+targets = 5
+health = 0
+description = "Summan a common spider"

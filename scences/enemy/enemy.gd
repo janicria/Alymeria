@@ -49,6 +49,15 @@ func _setup_card_weights() -> void:
 		card.cumulative_weight = total_card_weight
 
 
+func summon() -> void:
+	Data.enemy_handler.add_child(self)
+	active = true
+	stats.health = ceili(stats.health * 0.5)
+	stats.max_mana -= 1
+	global_position = Vector2(
+		randi_range(400, 600), randi_range(110, 140))
+
+
 func draw_cards(amount: int) -> void:
 	# In case old enemies haven't been cleared yet
 	if !active: return
@@ -171,13 +180,14 @@ func _on_mouse_hitbox_gui_input(event: InputEvent) -> void:
 func to_bestiary() -> Array:
 	# Cards
 	var cards_text := "Cards\n\n" if stats.starter_statuses.is_empty() else "Cards\n"
-	for card in ai.actions:
-		cards_text += "[color=CD57FF]%s[/color] [color=0044ff]%s mana[/color] %s weight\n%s %s\n\n" % [
+	for card in ai.actions + ai.health_cards:
+		cards_text += "[color=CD57FF]%s[/color] [color=0044ff]%s mana[/color] %s%s\n%s %s\n\n" % [
 			to_title(card.resource_path.get_slice("/", 4).trim_suffix(".tres")),
 			card.cost,
-			card.weight,
+			("[color=ff0000]" +str(card.health)+ " health[/color] ") if card.health else "",
+			(str(card.weight) + " weight") if card.weight else "",
 			to_title(EnemyCard.Type.find_key(card.type)) if card.type < 5 else card.description,
-			((("%sx%s" % [card.amount, card.repeats]) if card.repeats != 1 else card.amount)) if card.type > 5 else ""]
+			((("%sx%s" % [card.amount, card.repeats]) if card.repeats != 1 else card.amount)) if card.type > 5 else card.amount]
 	
 	# Statuses
 	if !stats.starter_statuses.is_empty(): return [stats.name, stats.art, cards_text, ""]

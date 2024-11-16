@@ -82,16 +82,17 @@ ai = ExtResource("6_ay38m")
 stats = ExtResource("7_ulgmk")
 
 [node name="Player" parent="." node_paths=PackedStringArray("handler") instance=ExtResource("3_qq8kc")]
-position = Vector2(210, 198)
+position = Vector2(204, 198)
 stats = ExtResource("4_jn668")
 handler = NodePath("../PlayerHandeler")
 
 [node name="SummonHandler" type="Node2D" parent="."]
 unique_name_in_owner = true
+position = Vector2(-4, 0)
 script = ExtResource("13_7kmvg")
 
 [node name="Summon" parent="SummonHandler" instance=ExtResource("14_h8sp4")]
-position = Vector2(288, 165)
+position = Vector2(270, 165)
 stats = ExtResource("15_4iapu")
 
 [node name="PlayerHandeler" type="Node" parent="." node_paths=PackedStringArray("player", "hand")]

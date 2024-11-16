@@ -9,16 +9,16 @@
 [node name="a1t2_shaman_sentinel2" type="Node2D"]
 
 [node name="Enemy" parent="." instance=ExtResource("1_tujjj")]
-position = Vector2(401, 174)
+position = Vector2(444, 176)
 ai = ExtResource("2_lr78r")
 stats = ExtResource("3_lyjgk")
 
 [node name="Enemy2" parent="." instance=ExtResource("1_tujjj")]
-position = Vector2(494, 171)
+position = Vector2(521, 170)
 ai = ExtResource("2_lr78r")
 stats = ExtResource("3_lyjgk")
 
 [node name="Enemy3" parent="." instance=ExtResource("1_tujjj")]
-position = Vector2(584, 174)
+position = Vector2(595, 181)
 ai = ExtResource("4_88hfi")
 stats = ExtResource("3_i8pok")

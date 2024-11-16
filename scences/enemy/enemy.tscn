@@ -43,6 +43,7 @@ rotation = 3.14159
 texture = ExtResource("2_itpu6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("RectangleShape2D_5jego")
 
 [node name="ManaCounter" type="RichTextLabel" parent="."]

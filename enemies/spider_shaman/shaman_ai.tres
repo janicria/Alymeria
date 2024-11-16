@@ -1,10 +1,12 @@
-[gd_resource type="Resource" script_class="EnemyAI" load_steps=4 format=3 uid="uid://bqcd3upk5k3uj"]
+[gd_resource type="Resource" script_class="EnemyAI" load_steps=6 format=3 uid="uid://bqcd3upk5k3uj"]
 
 [ext_resource type="Script" path="res://custom_resources/enemy_card.gd" id="1_ky8yw"]
-[ext_resource type="Resource" uid="uid://dctowjb2f21o5" path="res://enemies/spider_shaman/placeholder.tres" id="2_ycg4v"]
+[ext_resource type="Resource" uid="uid://ddf16b6dtjrb7" path="res://enemies/spider_shaman/reanimate.tres" id="2_88olf"]
 [ext_resource type="Script" path="res://custom_resources/enemy_ai.gd" id="3_4fvwp"]
+[ext_resource type="Resource" uid="uid://c2nsgn231up2g" path="res://enemies/spider_shaman/deanimate.tres" id="3_ulvvs"]
+[ext_resource type="Resource" uid="uid://kebu8gb1x5xb" path="res://enemies/spider_shaman/pls_no_touch.tres" id="4_a5gpo"]
 
 [resource]
 script = ExtResource("3_4fvwp")
-actions = Array[ExtResource("1_ky8yw")]([ExtResource("2_ycg4v")])
-health_cards = Array[ExtResource("1_ky8yw")]([])
+actions = Array[ExtResource("1_ky8yw")]([ExtResource("2_88olf"), ExtResource("3_ulvvs")])
+health_cards = Array[ExtResource("1_ky8yw")]([ExtResource("4_a5gpo")])

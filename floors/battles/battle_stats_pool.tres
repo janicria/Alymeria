@@ -6,10 +6,10 @@
 [ext_resource type="Resource" uid="uid://dliemj8rv8xjp" path="res://floors/battles/a1t0_sentinel.tres" id="3_rfm2q"]
 [ext_resource type="Resource" uid="uid://c6gs3s1ngmnlx" path="res://floors/battles/a1t1_spider+bat2.tres" id="4_iivr4"]
 [ext_resource type="Resource" uid="uid://ysmn3rhrp6gu" path="res://floors/battles/a1t1_spider+sentinel.tres" id="5_t5in1"]
-[ext_resource type="Resource" uid="uid://bc012qm8yh47x" path="res://floors/battles/a1t2_shaman_sentinel2.tres" id="6_leax0"]
+[ext_resource type="Resource" uid="uid://bc012qm8yh47x" path="res://floors/battles/a1t2_shaman+sentinel2.tres" id="6_vdkru"]
 [ext_resource type="Resource" uid="uid://dog4r7o48l47j" path="res://floors/custom_battles/a1t2_evenodd.tres" id="7_dky2r"]
-[ext_resource type="Resource" uid="uid://dxrbxyahgxuh8" path="res://floors/battles/a1t3_shaman2_sentinel3.tres" id="8_gujg0"]
+[ext_resource type="Resource" uid="uid://dxrbxyahgxuh8" path="res://floors/battles/a1t3_shaman2+sentinel3.tres" id="8_u84e0"]
 
 [resource]
 script = ExtResource("2_pu8rh")
-pool = Array[ExtResource("1_dd3t0")]([ExtResource("2_v2jmk"), ExtResource("3_rfm2q"), ExtResource("4_iivr4"), ExtResource("5_t5in1"), ExtResource("6_leax0"), ExtResource("7_dky2r"), ExtResource("8_gujg0")])
+pool = Array[ExtResource("1_dd3t0")]([ExtResource("2_v2jmk"), ExtResource("3_rfm2q"), ExtResource("4_iivr4"), ExtResource("5_t5in1"), ExtResource("6_vdkru"), ExtResource("7_dky2r"), ExtResource("8_u84e0")])

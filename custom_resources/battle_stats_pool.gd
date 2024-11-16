@@ -1,5 +1,4 @@
-class_name BattleStatsPool
-extends Resource
+class_name BattleStatsPool extends Resource
 
 @export var pool: Array[BattleStats]
 

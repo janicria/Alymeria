@@ -39,6 +39,7 @@ func _ready() -> void:
 	Data.character.stats_changed.connect(_on_character_changed)
 	card_state_machine.init(self)
 
+
 func  _input(event : InputEvent) -> void:
 	card_state_machine.on_input(event)
 

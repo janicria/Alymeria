@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="BattleStats" load_steps=3 format=3 uid="uid://dxrbxyahgxuh8"]
 
-[ext_resource type="PackedScene" uid="uid://bq3jh2ehe4rgo" path="res://floors/battles/a1t3_shaman2_sentinel3.tscn" id="1_ciy5s"]
+[ext_resource type="PackedScene" uid="uid://bq3jh2ehe4rgo" path="res://floors/battles/a1t3_shaman2+sentinel3.tscn" id="1_ciy5s"]
 [ext_resource type="Script" path="res://custom_resources/battle_stats.gd" id="2_ho26s"]
 
 [resource]

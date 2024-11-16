@@ -26,10 +26,6 @@ var fully_played := false
 var cache_cost: int : set = set_cache_cost
 
 
-func _to_string() -> String:
-	return cardui.stats.call()
-
-
 func set_cache_cost(_value: int) -> void:
 	match rarity:
 		Card.Rarity.COMMON: cache_cost = 10

@@ -38,8 +38,8 @@ func get_targets() -> Array[Node]:
 	
 	var targets: Array[Node] = []
 	
-	# In case enemy has been freed (only a warning is thrown but ¯\_(ツ)_/¯ )
-	var wr: WeakRef = weakref(enemy_stats); if !wr.get_ref(): return []
+	if card_stats.targets == EnemyCard.Targets.NULL || enemy_stats == null: 
+		return []
 	
 	match card_stats.targets:
 		card_stats.Targets.SINGLE: targets.append(target)
@@ -91,6 +91,7 @@ func update_stats(card: EnemyCard, enemy: Enemy, from_status := false) -> void:
 	cost.text = str(card.cost)
 	icon.texture = enemy.stats.art
 	attack_icon.texture = card.icon_dict.get(card.type)
+	if card_stats.type > 3: return
 	
 	# Updates the UI to include player and enemy modifiers in its calculations (horribly unreadable)
 	var player := get_targets()[0] as Player

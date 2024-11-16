@@ -383,9 +383,9 @@ func battle(id := \"\") -> String:
 		preload(\"res://floors/battles/a1t0_sentinel.tres\"),
 		preload(\"res://floors/battles/a1t1_spider+bat2.tres\"),
 		preload(\"res://floors/battles/a1t1_spider+sentinel.tres\"),
-		preload(\"res://floors/battles/a1t2_shaman_sentinel2.tres\"),
+		preload(\"res://floors/battles/a1t2_shaman+sentinel2.tres\"),
 		preload(\"res://floors/custom_battles/a1t2_evenodd.tres\"),
-		preload(\"res://floors/battles/a1t3_shaman2_sentinel3.tres\")
+		preload(\"res://floors/battles/a1t3_shaman2+sentinel3.tres\")
 	]
 	
 	# List all battles
