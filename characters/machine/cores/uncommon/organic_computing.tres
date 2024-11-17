@@ -12,4 +12,4 @@ rarity = 1
 pool = 2
 slotted_tooltip = "At the start of each combat spawn a random summon with 8 barrier then play it’s special action"
 dump_tooltip = "At the start of each combat spawn a random summon"
-flavour_text = "“What do you get if you multiply six by seven?”"
+flavour_text = "What do you get if you multiply six by nine?"

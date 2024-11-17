@@ -47,8 +47,8 @@ func update_text(text: String) -> void:
 		counter.text = "[left][font_size=6]%s[/font_size][/left]" % text
 		# Idk wy but this fixes the counter's position going haywire
 		# TODO: Nope
-		counter.global_position.x = (
-			37 if counter.get_screen_position().x < 40 else 54) + counter.get_canvas_transform().origin.x
+		#counter.global_position.x = (
+		#	37 if counter.get_screen_position().x < 40 else 54) + counter.get_canvas_transform().origin.x
 	else: counter.text = text
 
 

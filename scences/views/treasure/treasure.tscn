@@ -1,17 +1,17 @@
 [gd_scene load_steps=9 format=3 uid="uid://d1quhp3xdfqwa"]
 
-[ext_resource type="Script" path="res://scences/current_views/battle_rewards/battle_rewards.gd" id="1_5jbks"]
-[ext_resource type="Texture2D" uid="uid://cp4iq5fd6j8be" path="res://assets/backgrounds/sand_nobox.png" id="2_g45gf"]
-[ext_resource type="PackedScene" uid="uid://di7cqo1ujfv5n" path="res://scences/ui/battle/reward_button.tscn" id="3_8ykem"]
-[ext_resource type="Texture2D" uid="uid://dv4gtxwjv0yvi" path="res://assets/ui/universal/left_box.png" id="3_c03h7"]
-[ext_resource type="Texture2D" uid="uid://b0npnkt128wpy" path="res://assets/ui/universal/gold.png" id="4_2cuyg"]
-[ext_resource type="Texture2D" uid="uid://dfvgm8xob4mow" path="res://assets/ui/cards/orb.png" id="5_s2vk7"]
-[ext_resource type="Texture2D" uid="uid://c2xhttrclo1r7" path="res://assets/objects/tile_0116.png" id="6_ctgio"]
+[ext_resource type="Script" path="res://scences/views/treasure/treasure.gd" id="1_0qsgk"]
+[ext_resource type="Texture2D" uid="uid://cp4iq5fd6j8be" path="res://assets/backgrounds/sand_nobox.png" id="2_13vtn"]
+[ext_resource type="Texture2D" uid="uid://dv4gtxwjv0yvi" path="res://assets/ui/universal/left_box.png" id="3_3eemx"]
+[ext_resource type="PackedScene" uid="uid://di7cqo1ujfv5n" path="res://scences/ui/battle/reward_button.tscn" id="4_sw1va"]
+[ext_resource type="Texture2D" uid="uid://b0npnkt128wpy" path="res://assets/ui/universal/gold.png" id="5_vkoc2"]
+[ext_resource type="Texture2D" uid="uid://dfvgm8xob4mow" path="res://assets/ui/cards/orb.png" id="6_d1d2n"]
+[ext_resource type="Texture2D" uid="uid://c2xhttrclo1r7" path="res://assets/objects/tile_0116.png" id="7_ayixu"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ycvx7"]
 font_size = 12
 
-[node name="BattleReward" type="Control"]
+[node name="Treasure" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,7 +19,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("1_5jbks")
+script = ExtResource("1_0qsgk")
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 1
@@ -28,7 +28,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_g45gf")
+texture = ExtResource("2_13vtn")
 expand_mode = 1
 stretch_mode = 5
 metadata/_edit_lock_ = true
@@ -49,7 +49,7 @@ modulate = Color(0.737193, 0.737193, 0.737193, 1)
 layout_mode = 0
 offset_right = 579.0
 offset_bottom = 358.0
-texture = ExtResource("3_c03h7")
+texture = ExtResource("3_3eemx")
 metadata/_edit_lock_ = true
 
 [node name="RewardsBox" type="VBoxContainer" parent="."]
@@ -90,19 +90,19 @@ theme_override_constants/margin_bottom = 5
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="GoldReward" parent="RewardsBox/RewardContainer/MarginContainer/Rewards" instance=ExtResource("3_8ykem")]
+[node name="GoldReward" parent="RewardsBox/RewardContainer/MarginContainer/Rewards" instance=ExtResource("4_sw1va")]
 layout_mode = 2
-reward_icon = ExtResource("4_2cuyg")
+reward_icon = ExtResource("5_vkoc2")
 reward_text = "INF^38 gold"
 
-[node name="CardReward" parent="RewardsBox/RewardContainer/MarginContainer/Rewards" instance=ExtResource("3_8ykem")]
+[node name="CardReward" parent="RewardsBox/RewardContainer/MarginContainer/Rewards" instance=ExtResource("4_sw1va")]
 layout_mode = 2
-reward_icon = ExtResource("5_s2vk7")
+reward_icon = ExtResource("6_d1d2n")
 reward_text = "Add a New Card"
 
-[node name="PotionReward" parent="RewardsBox/RewardContainer/MarginContainer/Rewards" instance=ExtResource("3_8ykem")]
+[node name="PotionReward" parent="RewardsBox/RewardContainer/MarginContainer/Rewards" instance=ExtResource("4_sw1va")]
 layout_mode = 2
-reward_icon = ExtResource("6_ctgio")
+reward_icon = ExtResource("7_ayixu")
 reward_text = "Regular potion"
 
 [node name="BackButton" type="Button" parent="RewardsBox"]

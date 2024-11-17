@@ -84,14 +84,20 @@ func _on_update_battle_state(state: State) -> void:
 			enemy_handler.play_next_card()
 		
 		State.WIN:
-			if !is_inside_tree(): OS.alert("Need return here")
-			for coreui: CoreUI in core_handler.get_all_coreuis(): coreui.playable = false
+			# When the game closes enemies are freed, 
+			# causing state to be updated to win
+			if !is_inside_tree(): return
+			
+			for coreui: CoreUI in core_handler.get_all_coreuis(): 
+				coreui.playable = false
 			core_handler.activate_cores_of_type(Core.Type.END_OF_COMBAT)
+			
 			print("Victory!")
 			Data.save_to_file()
 		
 		State.LOSE:
-			for coreui: CoreUI in core_handler.get_all_coreuis(): coreui.playable = false
+			for coreui: CoreUI in core_handler.get_all_coreuis(): 
+				coreui.playable = false
 
 
 func _on_enemy_handler_child_order_changed() -> void:

@@ -41,10 +41,13 @@ func _on_mouse_entered() -> void:
 
 
 func _on_gui_input(event: InputEvent) -> void:
-	if playable && event.is_action_released("right_mouse") && core.type == Core.Type.RIGHT_CLICK && get_tree():
+	if (playable 
+	&& event.is_action_released("right_mouse") 
+	&& core.type == Core.Type.RIGHT_CLICK && is_inside_tree()):
 		core.activate()
 		playable = false
 		flash()
+	
 	elif event.is_action_released("left_mouse"):
 		Data.bestiary.show_menu(core.to_bestiary(), false)
 		if core.core_name == "Comically Large Anvil":

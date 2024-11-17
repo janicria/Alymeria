@@ -61,7 +61,7 @@ size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 12
 theme_override_styles/hover = ExtResource("8_3b175")
 theme_override_styles/normal = ExtResource("9_el6qb")
-text = "Skip rewards"
+text = "Skip cards"
 
 [node name="CardTooltip" parent="." instance=ExtResource("2_k2vqf")]
 visible = false

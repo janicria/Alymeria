@@ -1,11 +1,10 @@
 class_name Main extends Node
 
-const BATTLE_SCENCE := preload("res://scences/current_views/battle/battle.tscn")
-const SHOP_SCENCE := preload("res://scences/current_views/shop/shop.tscn")
-const TREASURE_SCENCE := preload("res://scences/current_views/treasure/treasure.tscn")
-const BATTLE_REWARD_SCENCE := preload("res://scences/current_views/battle_rewards/battle_rewards.tscn")
-const HAVEN_SCENCE := preload("res://scences/current_views/haven/haven.tscn")
-const EVENT_SCENCE := preload("res://scences/current_views/events/event.tscn")
+const BATTLE_SCENCE := preload("res://scences/views/battle/battle.tscn")
+const SHOP_SCENCE := preload("res://scences/views/shop/shop.tscn")
+const TREASURE_SCENCE := preload("res://scences/views/treasure/treasure.tscn")
+const HAVEN_SCENCE := preload("res://scences/views/haven/haven.tscn")
+const EVENT_SCENCE := preload("res://scences/views/events/event.tscn")
 const COMPASS = preload("res://characters/global/cores/common/compass.tres")
 
 @export var run_startup: RunStartup
@@ -116,15 +115,14 @@ func _on_battle_room_entered(room: Room) -> void:
 
 
 func _on_battle_state_updated(state: Battle.State) -> void:
-	if state != Battle.State.WIN: return
-	# When the game is exiting enemies are freed ca
-	if !is_inside_tree(): return
-	# In case the battle was run using the battle command
-	if !map.last_room: return
+	if state != Battle.State.WIN || !map.last_room: 
+		return
 	
-	var reward_scence := _change_view(BATTLE_REWARD_SCENCE) as BattleReward
+	var reward_scence: Treasure = _change_view(TREASURE_SCENCE)
 	reward_scence.add_gold_reward(map.last_room.battle_stats.roll_gold_reward())
 	reward_scence.add_card_reward()
+	if map.last_room.battle_stats.battle_tier == BattleStats.BattleTier.ELITE:
+		reward_scence.add_elite_core_reward()
 
 
 func _on_reward_exited() -> void:

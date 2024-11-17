@@ -1,0 +1,112 @@
+[gd_scene load_steps=5 format=3 uid="uid://bomvkwuswqcw6"]
+
+[ext_resource type="Script" path="res://scences/ui/battle/core_rewards.gd" id="1_35qq0"]
+[ext_resource type="PackedScene" uid="uid://bremx77uh6mpb" path="res://scences/cores/coreui.tscn" id="2_ki25u"]
+[ext_resource type="StyleBox" uid="uid://r3x12h2yjbk0" path="res://assets/styleboxes/hover_stylebox.tres" id="8_kkx1u"]
+[ext_resource type="StyleBox" uid="uid://ck3105wj7dcrn" path="res://assets/styleboxes/default_stylebox.tres" id="9_vqra2"]
+
+[node name="CoreRewards" type="ColorRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.627451)
+script = ExtResource("1_35qq0")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -168.0
+offset_top = -82.0
+offset_right = 168.0
+offset_bottom = 94.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Cores" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 80
+
+[node name="CoreA" type="Panel" parent="VBoxContainer/Cores"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+
+[node name="LabelA" type="Label" parent="VBoxContainer/Cores/CoreA"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 26.0
+grow_horizontal = 2
+text = "Core A"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CoreUIA" parent="VBoxContainer/Cores/CoreA" instance=ExtResource("2_ki25u")]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+
+[node name="CoreB" type="Panel" parent="VBoxContainer/Cores"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+
+[node name="LabelB" type="Label" parent="VBoxContainer/Cores/CoreB"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 26.0
+grow_horizontal = 2
+text = "Core B"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CoreUIB" parent="VBoxContainer/Cores/CoreB" instance=ExtResource("2_ki25u")]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+
+[node name="SkipButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(120, 28)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 12
+theme_override_styles/hover = ExtResource("8_kkx1u")
+theme_override_styles/normal = ExtResource("9_vqra2")
+text = "Skip cores"
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Right a core to add it"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="VBoxContainer/SkipButton" to="." method="_on_skip_button_pressed"]

@@ -1,5 +1,4 @@
-class_name ModifierValue
-extends Node
+class_name ModifierValue extends Node
 
 enum Type {PERCENT, FLAT}
 

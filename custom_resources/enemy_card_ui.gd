@@ -164,6 +164,7 @@ func apply_effects(targets: Array[Node]) -> void:
 					enemy.update_mana_counter()
 				break
 			_:
+				if is_dead: return
 				card_stats.custom_play(get_targets())
 				break
 		

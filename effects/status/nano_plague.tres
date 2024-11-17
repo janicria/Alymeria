@@ -8,6 +8,7 @@ script = ExtResource("1_psyxc")
 id = "nano_plague"
 type = 1
 stack_type = 1
+buff = false
 format_tooltip = false
 duration = 0
 stacks = 1

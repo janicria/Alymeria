@@ -64,7 +64,7 @@ func remove_status(status: CardStatus) -> void:
 
 
 func is_single_targeted() -> bool:
-	return target == Target.SINGLE_ENEMY or target == Target.SUMMON
+	return target == Target.SINGLE_ENEMY || target == Target.SUMMON
 
 
 func _get_targets(targets: Array[Node]) -> Array[Node]:

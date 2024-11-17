@@ -1,18 +1,18 @@
 [gd_scene load_steps=26 format=3 uid="uid://c7d5vr117jbiu"]
 
-[ext_resource type="Script" path="res://scences/current_views/shop/shop.gd" id="1_u6vi2"]
+[ext_resource type="Script" path="res://scences/views/shop/shop.gd" id="1_u6vi2"]
 [ext_resource type="Texture2D" uid="uid://dv4gtxwjv0yvi" path="res://assets/ui/universal/left_box.png" id="2_jqlx7"]
 [ext_resource type="Texture2D" uid="uid://c5144k01njctp" path="res://assets/characters/merchant_2.png" id="3_6y8nb"]
 [ext_resource type="Texture2D" uid="uid://bj3im6egs4wxx" path="res://assets/characters/merchant_1.png" id="3_lj5gb"]
 [ext_resource type="Texture2D" uid="uid://dmnh5xxe2xne0" path="res://assets/ui/misc/big_heart.png" id="5_8lctr"]
 [ext_resource type="Texture2D" uid="uid://ckp4wldwmrcxf" path="res://assets/objects/textbook.png" id="6_m4wph"]
 [ext_resource type="Texture2D" uid="uid://b0npnkt128wpy" path="res://assets/ui/universal/gold.png" id="6_v4so0"]
-[ext_resource type="PackedScene" uid="uid://bx27qsw0qyjox" path="res://scences/current_views/shop/sold_out.tscn" id="7_s2tmj"]
+[ext_resource type="PackedScene" uid="uid://bx27qsw0qyjox" path="res://scences/views/shop/sold_out.tscn" id="7_s2tmj"]
 [ext_resource type="Texture2D" uid="uid://fb0t0b1qg1ms" path="res://assets/ui/cards/discard.png" id="7_v7jrj"]
 [ext_resource type="Texture2D" uid="uid://c2xhttrclo1r7" path="res://assets/objects/tile_0116.png" id="8_fpyi0"]
 [ext_resource type="Texture2D" uid="uid://boklhiqs1414d" path="res://assets/objects/tile_0115.png" id="9_jtlib"]
 [ext_resource type="Texture2D" uid="uid://c4e7ovx16yfl1" path="res://assets/objects/tile_0113.png" id="10_tkglf"]
-[ext_resource type="PackedScene" uid="uid://bq7vjsw7is0iw" path="res://scences/current_views/shop/potion_bundle.tscn" id="13_at2h6"]
+[ext_resource type="PackedScene" uid="uid://bq7vjsw7is0iw" path="res://scences/views/shop/potion_bundle.tscn" id="13_at2h6"]
 
 [sub_resource type="Gradient" id="Gradient_gw1d3"]
 colors = PackedColorArray(0.215686, 0.215686, 0.215686, 1, 0.4, 0.219608, 0.203922, 1)

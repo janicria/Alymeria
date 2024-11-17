@@ -1,13 +1,10 @@
-class_name BattleReward extends Control
+class_name Treasure extends Control
 
 const CARD_REWARDS := preload("res://scences/ui/battle/card_rewards.tscn")
+const CORE_REWARDS := preload("res://scences/ui/battle/core_rewards.tscn")
 const REWARD_BUTTON := preload("res://scences/ui/battle/reward_button.tscn")
 const GOLD_ICON := preload("res://assets/ui/universal/gold.png")
-const GOLD_TEXT := "%s gold"
 const CARD_ICON := preload("res://assets/ui/cards/orb.png")
-const CARD_TEXT := "Add a New Card"
-const REGULAR_POTION_ICON := preload("res://assets/objects/tile_0114.png")
-#const POTION_TEXT := ""
 
 @onready var rewards: VBoxContainer = %Rewards
 @onready var title: Label = %Title
@@ -37,7 +34,7 @@ func _ready() -> void:
 func add_card_reward() -> void:
 	var card_reward := REWARD_BUTTON.instantiate()
 	card_reward.reward_icon = CARD_ICON
-	card_reward.reward_text = CARD_TEXT
+	card_reward.reward_text = "Add a New Card"
 	card_reward.pressed.connect(_show_card_rewards)
 	rewards.add_child.call_deferred(card_reward)
 
@@ -45,9 +42,23 @@ func add_card_reward() -> void:
 func add_gold_reward(amount: int) -> void:
 	var gold_reward := REWARD_BUTTON.instantiate()
 	gold_reward.reward_icon = GOLD_ICON
-	gold_reward.reward_text = GOLD_TEXT % amount
-	gold_reward.pressed.connect(_on_gold_reward_taken.bind(amount))
+	gold_reward.reward_text = "%s gold" % amount
+	gold_reward.pressed.connect(
+		func()->void: Data.gold += amount)
 	rewards.add_child.call_deferred(gold_reward)
+
+
+func add_elite_core_reward() -> void:
+	var core_reward := REWARD_BUTTON.instantiate()
+	var core := Data.get_core_from_weight()
+	core_reward.reward_icon = core.icon
+	core_reward.reward_text = "Add a new core"
+	core_reward.pressed.connect(
+		func()->void:
+			var core_rewards := CORE_REWARDS.instantiate()
+			add_child(core_rewards)
+			core_rewards.add_cores(core, Data.get_core_from_weight()))
+	rewards.add_child.call_deferred(core_reward)
 
 
 func _show_card_rewards() -> void:
@@ -86,7 +97,7 @@ func setup_card_rarity_chances() -> void:
 	card_rarity_weights[Card.Rarity.COMMON] = Data.common_weight
 	card_rarity_weights[Card.Rarity.UNCOMMON] = Data.uncommon_weight + Data.multipliers.get("UNCOMMON_CARD_RARITY")
 	card_rarity_weights[Card.Rarity.RARE] = Data.rare_weight + Data.multipliers.get("RARE_CARD_RARITY")
-	if  Data.current_biome:
+	if Data.current_biome:
 		card_rarity_weights[Card.Rarity.UNCOMMON] *= 1+(Data.current_biome / 2)
 		card_rarity_weights[Card.Rarity.RARE] +=  1+(Data.current_biome / 5)
 
@@ -130,13 +141,6 @@ func _on_card_reward_taken(card: Card) -> void:
 	
 	print("Drafted %s" % card.name)
 	Data.character.deck.add_card(card)
-
-
-func _on_gold_reward_taken(amount: int) -> void:
-	if ! Data:
-		return
-	
-	Data.gold += amount
 
 
 func _on_back_button_pressed() -> void:

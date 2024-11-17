@@ -1,7 +1,8 @@
-class_name BattleStats
-extends Resource
+class_name BattleStats extends Resource
 
-@export_range(0,3) var battle_tier: int
+enum BattleTier {EASY, REGULAR, ELITE, BOSS}
+
+@export_range(0,3) var battle_tier: BattleTier
 @export_range(0,100) var weight: int
 @export var pure: bool # Can't be infected
 @export var enemies: PackedScene

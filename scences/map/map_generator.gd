@@ -5,8 +5,8 @@ const Y_DIST := 50
 const PLACEMENT_RANDOMNESS := 8
 # How many columns there are
 const MAP_WIDTH := 5
-const MONSTER_WEIGHT := 35
-const SHOP_WEIGHT := 18
+const MONSTER_WEIGHT := 38
+const SHOP_WEIGHT := 15
 const HAVEN_WEIGHT := 25
 const ELITE_WEIGHT := 22
 
@@ -171,13 +171,13 @@ func _setup_room_types() -> void:
 
 func _set_room_randomly(room: Room) -> void:
 	var haven_below_4 := true
-	var elite_below_3 := true
+	var elite_below_4 := true
 	var consecutive_shop := true
 	var consecutive_haven := true
 	var type_candidate: Room.Type
 	
 	# Rerolls room type until conditions are NOT met
-	while haven_below_4 or elite_below_3 or consecutive_shop or consecutive_haven:
+	while haven_below_4 || elite_below_4 || consecutive_shop || consecutive_haven:
 		type_candidate = _get_random_room_type_by_weight()
 		
 		var is_haven := type_candidate == Room.Type.HAVEN
@@ -188,7 +188,7 @@ func _set_room_randomly(room: Room) -> void:
 		
 		
 		haven_below_4 = is_haven && room.row < 3
-		elite_below_3 = is_elite && room.row < 2
+		elite_below_4 = is_elite && room.row < 3
 		consecutive_haven = is_haven && has_haven_parent
 		consecutive_shop = is_shop && has_shop_parent
 	
