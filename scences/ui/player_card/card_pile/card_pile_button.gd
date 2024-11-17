@@ -1,7 +1,7 @@
 class_name CardPileButton extends TextureButton
 
-@export var counter : RichTextLabel
-@export var card_pile : CardPile : set = set_card_pile
+@export var counter: RichTextLabel
+@export var card_pile: CardPile : set = set_card_pile
 
 @onready var color_rect: ColorRect = $ColorRect
 
@@ -44,7 +44,11 @@ func update_ui() -> void:
 
 func update_text(text: String) -> void:
 	if name == "DeckButton":
-		counter.text = "[font_size=6]%s[/font_size]" % text
+		counter.text = "[left][font_size=6]%s[/font_size][/left]" % text
+		# Idk wy but this fixes the counter's position going haywire
+		# TODO: Nope
+		counter.global_position.x = (
+			37 if counter.get_screen_position().x < 40 else 54) + counter.get_canvas_transform().origin.x
 	else: counter.text = text
 
 

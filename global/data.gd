@@ -53,6 +53,7 @@ const StatusDescriptions := {
 var player_handler: PlayerHandeler
 var bestiary: Bestiary
 var enemy_handler: EnemyHandler
+var summon_handler: SummonHandler
 var core_handler: CoreHandler
 var battle_ui: BattleUI
 var shop: Shop
@@ -125,6 +126,11 @@ var card_rewards := BASE_CARD_REWARDS
 var common_weight := BASE_COMMON_WEIGHT
 var uncommon_weight := BASE_UNCOMMON_WEIGHT
 var rare_weight := BASE_RARE_WEIGHT
+# Summons shouldn't be character dependant
+var summons: Array[SummonStats] = [
+	preload("res://summons/rover/rover.tres")
+]
+# TODO: Move to character stats
 var available_cores: Array[Core] = [
 	preload("res://characters/global/cores/common/comically_large_anvil.tres"),
 	preload("res://characters/global/cores/common/compass.tres"),
@@ -132,7 +138,7 @@ var available_cores: Array[Core] = [
 	preload("res://characters/global/cores/rare/finale.tres"),
 	preload("res://characters/global/cores/rare/maths_textbook.tres"),
 	preload("res://characters/global/cores/uncommon/infected_horn.tres"),
-	preload("res://characters/machine/cores/secure_boot.tres")
+	preload("res://characters/machine/cores/common/secure_boot.tres")
 ]
 var removed_cores: Array[Core]
 
@@ -166,7 +172,7 @@ func get_core_from_weight() -> Core:
 
 @warning_ignore("untyped_declaration")
 func hi(message = "") -> void:
-	OS.alert("hiya" if str(message) == "" else str(message), "I think something broke :c")
+	OS.alert(":3" if str(message) == "" else str(message), "I think something broke :c")
 
 
 func reset_stats() -> void:

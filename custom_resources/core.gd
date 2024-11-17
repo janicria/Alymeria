@@ -17,7 +17,7 @@ var coreui: CoreUI
 
 
 func to_bestiary() -> Array:
-	return [core_name, icon, "%s\n\n%s" % [slotted_tooltip, dump_tooltip], flavour_text]
+	return [core_name, icon, "\n%s\n\n%s" % [slotted_tooltip, dump_tooltip], flavour_text]
 
 
 func activate() -> void:

@@ -4,8 +4,8 @@ class_name CharacterStats extends Stats
 @export var starting_deck: CardPile
 @export var starting_core: Core
 @export var card_pool: CardPile
-@export var cards_per_turn : int
-@export var max_memory : int
+@export var cards_per_turn: int
+@export var max_memory: int
 
 var memory: int : set = set_memory
 var cache_tokens: int : set = set_cache

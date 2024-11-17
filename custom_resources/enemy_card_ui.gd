@@ -25,22 +25,24 @@ func _ready() -> void:
 
 
 func get_targets() -> Array[Node]:
-	# Last enemy card to be played in hand searches for targets a second time after
-	# being played, therefore we can return any node since the card is about to be freed,
-	# however this Node needs to be self to prevent orphans nodes being created
-	if !is_inside_tree(): return [self]
-	
-	var target := get_tree().get_first_node_in_group("player")
-	if get_tree().get_node_count_in_group("summons"):
-		if !get_tree().get_first_node_in_group("summons").status_handler._has_status("hidden"):
-			target = get_tree().get_first_node_in_group("summons")
-		else: target = get_tree().get_first_node_in_group("player")
-	
-	var targets: Array[Node] = []
-	
-	if card_stats.targets == EnemyCard.Targets.NULL || enemy_stats == null: 
+	# Tree check is because of last card being played searches 
+	# for targets a second time after being played
+	if (!is_inside_tree() 
+	|| card_stats.targets == EnemyCard.Targets.NULL 
+	|| enemy_stats == null): 
 		return []
 	
+	var target := get_tree().get_first_node_in_group("player")
+	
+	# Gets the frontmost summon
+	for i in Data.summon_handler.get_child_count():
+		# Yes this works with only one summon active
+		if i == 0: i = 1
+		if !Data.summon_handler.get_child(-i).status_handler._has_status("hidden"):
+			target = Data.summon_handler.get_child(-i)
+			break
+	
+	var targets: Array[Node] = []
 	match card_stats.targets:
 		EnemyCard.Targets.SINGLE: targets.append(target)
 		EnemyCard.Targets.SELF: targets.append(enemy_stats)
@@ -95,7 +97,7 @@ func update_stats(card: EnemyCard, enemy: Enemy, from_status := false) -> void:
 	cost.text = str(card.cost)
 	icon.texture = enemy.stats.art
 	attack_icon.texture = card.icon_dict.get(card.type)
-	if card_stats.type > 3: return
+	if card_stats.type > 3: return#Data.hi(); return
 	
 	# Updates the UI to include player and enemy modifiers in its calculations (horribly unreadable)
 	var player := get_targets()[0] as Player

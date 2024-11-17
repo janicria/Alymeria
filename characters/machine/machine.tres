@@ -4,12 +4,12 @@
 [ext_resource type="Resource" uid="uid://dgqbrh131722d" path="res://characters/machine/card_pool.tres" id="2_aiumi"]
 [ext_resource type="Resource" uid="uid://ke1cmnfj0lc2" path="res://characters/machine/starting_deck.tres" id="3_g07y5"]
 [ext_resource type="Script" path="res://custom_resources/character_stats.gd" id="3_ny11w"]
-[ext_resource type="Resource" uid="uid://deml6o2r0hunt" path="res://characters/global/cores/uncommon/infected_horn.tres" id="4_eqpr5"]
+[ext_resource type="Resource" uid="uid://b1m27bmwfi6iu" path="res://characters/machine/cores/uncommon/organic_computing.tres" id="4_j6ngt"]
 
 [resource]
 script = ExtResource("3_ny11w")
 starting_deck = ExtResource("3_g07y5")
-starting_core = ExtResource("4_eqpr5")
+starting_core = ExtResource("4_j6ngt")
 card_pool = ExtResource("2_aiumi")
 cards_per_turn = 5
 max_memory = 4

@@ -1,5 +1,6 @@
 class_name Summon extends Area2D
 
+const SUMMON = preload("res://scences/summon/summon.tscn")
 const CURSOR = preload("res://assets/misc/cursor.png")
 const BUBBLE_CURSOR = preload("res://assets/misc/bubble_cursor.png")
 
@@ -9,7 +10,6 @@ const BUBBLE_CURSOR = preload("res://assets/misc/bubble_cursor.png")
 @onready var stats_ui: StatsUI = %StatsUI
 @onready var status_handler: StatusHandler = %StatusHandler
 @onready var modifier_handler: ModifierHandler = %ModifierHandler
-
 
 func _ready() -> void:
 	stats = stats.create_instance()
@@ -27,6 +27,17 @@ func _ready() -> void:
 	stats.card_action.setup()
 	#stats.special_action.setup()
 	stats_ui.update_stats(stats)
+
+
+static func summon(new_stats: SummonStats) -> Summon:
+	var new_summon := SUMMON.instantiate()
+	new_summon.stats = new_stats
+	Data.summon_handler.add_child(new_summon)
+	new_summon.add_to_group("summons", true)
+	new_summon.global_position = Vector2(
+		140+(50*(Data.summon_handler.get_child_count()+1)), 
+		randi_range(150, 170))
+	return new_summon
 
 
 func do_turn() -> void:

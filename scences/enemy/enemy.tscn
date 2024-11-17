@@ -72,9 +72,9 @@ scale = Vector2(0.5, 0.5)
 [node name="StatusHandler" parent="." node_paths=PackedStringArray("status_owner") instance=ExtResource("7_tpe2t")]
 unique_name_in_owner = true
 offset_left = -22.0
-offset_top = 15.5
+offset_top = 15.0
 offset_right = -22.0
-offset_bottom = 15.5
+offset_bottom = 15.0
 status_owner = NodePath("..")
 
 [node name="ModifierHandler" parent="." instance=ExtResource("8_7aft4")]
