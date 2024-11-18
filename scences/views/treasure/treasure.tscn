@@ -1,12 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://d1quhp3xdfqwa"]
+[gd_scene load_steps=6 format=3 uid="uid://d1quhp3xdfqwa"]
 
 [ext_resource type="Script" path="res://scences/views/treasure/treasure.gd" id="1_0qsgk"]
 [ext_resource type="Texture2D" uid="uid://cp4iq5fd6j8be" path="res://assets/backgrounds/sand_nobox.png" id="2_13vtn"]
 [ext_resource type="Texture2D" uid="uid://dv4gtxwjv0yvi" path="res://assets/ui/universal/left_box.png" id="3_3eemx"]
 [ext_resource type="PackedScene" uid="uid://di7cqo1ujfv5n" path="res://scences/ui/battle/reward_button.tscn" id="4_sw1va"]
-[ext_resource type="Texture2D" uid="uid://b0npnkt128wpy" path="res://assets/ui/universal/gold.png" id="5_vkoc2"]
-[ext_resource type="Texture2D" uid="uid://dfvgm8xob4mow" path="res://assets/ui/cards/orb.png" id="6_d1d2n"]
-[ext_resource type="Texture2D" uid="uid://c2xhttrclo1r7" path="res://assets/objects/tile_0116.png" id="7_ayixu"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ycvx7"]
 font_size = 12
@@ -53,6 +50,7 @@ texture = ExtResource("3_3eemx")
 metadata/_edit_lock_ = true
 
 [node name="RewardsBox" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -92,18 +90,12 @@ layout_mode = 2
 
 [node name="GoldReward" parent="RewardsBox/RewardContainer/MarginContainer/Rewards" instance=ExtResource("4_sw1va")]
 layout_mode = 2
-reward_icon = ExtResource("5_vkoc2")
-reward_text = "INF^38 gold"
 
 [node name="CardReward" parent="RewardsBox/RewardContainer/MarginContainer/Rewards" instance=ExtResource("4_sw1va")]
 layout_mode = 2
-reward_icon = ExtResource("6_d1d2n")
-reward_text = "Add a New Card"
 
 [node name="PotionReward" parent="RewardsBox/RewardContainer/MarginContainer/Rewards" instance=ExtResource("4_sw1va")]
 layout_mode = 2
-reward_icon = ExtResource("7_ayixu")
-reward_text = "Regular potion"
 
 [node name="BackButton" type="Button" parent="RewardsBox"]
 custom_minimum_size = Vector2(50, 14)

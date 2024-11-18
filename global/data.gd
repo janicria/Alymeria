@@ -52,6 +52,7 @@ const StatusDescriptions := {
 # Nodes
 var player_handler: PlayerHandeler
 var bestiary: Bestiary
+var treasure: Treasure
 var enemy_handler: EnemyHandler
 var summon_handler: SummonHandler
 var core_handler: CoreHandler
@@ -149,16 +150,22 @@ func _init() -> void:
 		func(number:int)->void: turn_number = number)
 	
 	print("Successful launch")
-	print("Version: %s (%s)" % [ProjectSettings.get_setting("application/config/version"), "Linux" if OS.has_feature("linux") else "Windows"])
+	print("Version: %s (%s)" % [
+		ProjectSettings.get_setting("application/config/version"), 
+		"Linux" if OS.has_feature("linux") else "Windows"])
 
 
 func get_core_from_rarity(rarity: Core.Rarity) -> Core:
+	if rarity == Core.Rarity.NULL:
+		return get_core_from_weight()
+	
 	available_cores.shuffle()
 	for core in available_cores:
 		if core.rarity == rarity:
 			available_cores.erase(core)
 			removed_cores.append(core)
 			return core
+	
 	OS.alert("Ran out of cores in rarity %s" % rarity)
 	return removed_cores.pick_random()
 

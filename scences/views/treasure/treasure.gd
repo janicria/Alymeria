@@ -1,13 +1,14 @@
 class_name Treasure extends Control
 
-const CARD_REWARDS := preload("res://scences/ui/battle/card_rewards.tscn")
-const CORE_REWARDS := preload("res://scences/ui/battle/core_rewards.tscn")
+const CARD_REWARDS := preload("res://scences/views/treasure/card_rewards.tscn")
+const CORE_REWARDS := preload("res://scences/views/treasure/core_rewards.tscn")
 const REWARD_BUTTON := preload("res://scences/ui/battle/reward_button.tscn")
 const GOLD_ICON := preload("res://assets/ui/universal/gold.png")
 const CARD_ICON := preload("res://assets/ui/cards/orb.png")
 
 @onready var rewards: VBoxContainer = %Rewards
 @onready var title: Label = %Title
+@onready var rewards_box: VBoxContainer = %RewardsBox
 
 var card_reward_total_weight := 0.0
 var card_rarity_weights := {
@@ -18,6 +19,7 @@ var card_rarity_weights := {
 
 
 func _ready() -> void:
+	Data.treasure = self
 	# Removes placeholder rewards
 	for node: Node in rewards.get_children(): 
 		node.queue_free()
@@ -31,34 +33,40 @@ func _ready() -> void:
 		5: title.text = "Better skip these"
 
 
-func add_card_reward() -> void:
+func add_card_reward(cost: int) -> void:
 	var card_reward := REWARD_BUTTON.instantiate()
-	card_reward.reward_icon = CARD_ICON
-	card_reward.reward_text = "Add a New Card"
+	card_reward.set_items(CARD_ICON, "Add a New Card", cost)
 	card_reward.pressed.connect(_show_card_rewards)
 	rewards.add_child.call_deferred(card_reward)
 
 
 func add_gold_reward(amount: int) -> void:
 	var gold_reward := REWARD_BUTTON.instantiate()
-	gold_reward.reward_icon = GOLD_ICON
-	gold_reward.reward_text = "%s gold" % amount
+	gold_reward.set_items(GOLD_ICON, "%s gold" % amount)
 	gold_reward.pressed.connect(
 		func()->void: Data.gold += amount)
 	rewards.add_child.call_deferred(gold_reward)
 
 
-func add_elite_core_reward() -> void:
+
+func add_core_reward(amount: int, cost: int, custom_rarity := Core.Rarity.NULL) -> void:
 	var core_reward := REWARD_BUTTON.instantiate()
-	var core := Data.get_core_from_weight()
-	core_reward.reward_icon = core.icon
-	core_reward.reward_text = "Add a new core"
+	var core := Data.get_core_from_rarity(custom_rarity)
+	core_reward.set_items(core.icon, "Add a new core", cost)
 	core_reward.pressed.connect(
-		func()->void:
-			var core_rewards := CORE_REWARDS.instantiate()
-			add_child(core_rewards)
-			core_rewards.add_cores(core, Data.get_core_from_weight()))
+		show_core_reward.bind(amount, core, custom_rarity))
 	rewards.add_child.call_deferred(core_reward)
+
+
+func show_core_reward(amount: int, first_core: Core, custom_rarity: Core.Rarity) -> void:
+	var core_rewards := CORE_REWARDS.instantiate()
+	var core_array: Array[Core] = [first_core]
+	for i in (amount-1):
+		core_array.append(
+			Data.get_core_from_rarity(custom_rarity))
+	
+	add_child(core_rewards)
+	core_rewards.add_cores(core_array)
 
 
 func _show_card_rewards() -> void:

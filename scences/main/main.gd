@@ -120,9 +120,9 @@ func _on_battle_state_updated(state: Battle.State) -> void:
 	
 	var reward_scence: Treasure = _change_view(TREASURE_SCENCE)
 	reward_scence.add_gold_reward(map.last_room.battle_stats.roll_gold_reward())
-	reward_scence.add_card_reward()
+	reward_scence.add_card_reward(0)
 	if map.last_room.battle_stats.battle_tier == BattleStats.BattleTier.ELITE:
-		reward_scence.add_elite_core_reward()
+		reward_scence.add_core_reward(2, 0)
 
 
 func _on_reward_exited() -> void:
@@ -136,10 +136,27 @@ func _on_reward_exited() -> void:
 	else: _show_map()
 
 
+func enter_treasure_room() -> void:
+	var treasure_scene: Treasure = _change_view(TREASURE_SCENCE)
+	# First reward
+	match randi_range(0, 2):
+		0: treasure_scene.add_gold_reward(randi_range(40, 80))
+		1: 
+			treasure_scene.add_gold_reward(randi_range(30, 40))
+			#treasure_scene.add_potion_reward()
+		#2: treasure_scene.add_potion_reward()
+	# Second reward
+	match randi_range(0, 2):
+		0: treasure_scene.add_core_reward(2, randi_range(20, 40))
+		1: treasure_scene.add_card_reward(randi_range(20, 40))
+		2: treasure_scene.add_core_reward(
+			2, randi_range(40, 60), Core.Rarity.RARE)
+
+
 func _on_map_exited(room: Room) -> void:
 	match room.type:
 		Room.Type.MONSTER: _on_battle_room_entered(room)
-		Room.Type.TREASURE: _change_view(TREASURE_SCENCE)
+		Room.Type.TREASURE: enter_treasure_room()
 		Room.Type.HAVEN: _change_view(HAVEN_SCENCE)
 		Room.Type.SHOP: _change_view(SHOP_SCENCE)
 		Room.Type.ELITE: _on_battle_room_entered(room)

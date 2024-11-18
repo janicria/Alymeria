@@ -1,7 +1,7 @@
 class_name Core extends Resource
 
 enum Type {START_OF_TURN, START_OF_COMBAT, END_OF_TURN, END_OF_COMBAT, RIGHT_CLICK, EVENT}
-enum Rarity {COMMON, UNCOMMON, RARE, SPECIAL}
+enum Rarity {COMMON, UNCOMMON, RARE, SPECIAL, NULL}
 enum Pool {GLOBAL, SPECIAL, MACHINE}
 
 @export var core_name: String

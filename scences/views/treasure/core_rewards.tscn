@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=3 uid="uid://cd1uacu3lq5t5"]
+
+[ext_resource type="Script" path="res://scences/ui/battle/core_rewards.gd" id="1_r452a"]
+[ext_resource type="StyleBox" uid="uid://r3x12h2yjbk0" path="res://assets/styleboxes/hover_stylebox.tres" id="3_thbjj"]
+[ext_resource type="StyleBox" uid="uid://ck3105wj7dcrn" path="res://assets/styleboxes/default_stylebox.tres" id="4_actsc"]
+
+[node name="CoreRewards" type="ColorRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.627451)
+script = ExtResource("1_r452a")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -168.0
+offset_top = -82.0
+offset_right = 168.0
+offset_bottom = 94.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Cores" type="HBoxContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 80
+
+[node name="SkipButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(120, 28)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 12
+theme_override_styles/hover = ExtResource("3_thbjj")
+theme_override_styles/normal = ExtResource("4_actsc")
+text = "Skip cores"
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Right a core to add it"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="VBoxContainer/SkipButton" to="." method="_on_skip_button_pressed"]
