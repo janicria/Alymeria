@@ -1,5 +1,7 @@
 class_name CoreLabel extends Panel
 
+signal free_rewards()
+
 @onready var label: Label = %Label
 @onready var core_ui: CoreUI = %CoreUI
 
@@ -13,4 +15,4 @@ func core_pressed(event: InputEvent) -> void:
 	if event.is_action_pressed("right_mouse"):
 		Data.core_handler.add_core(core_ui.core)
 		Data.removed_cores.erase(core_ui.core)
-		get_parent().queue_free()
+		free_rewards.emit()

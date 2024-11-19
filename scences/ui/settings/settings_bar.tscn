@@ -72,10 +72,23 @@ offset_left = 12.5263
 offset_top = 5.0
 offset_right = 42.5263
 offset_bottom = 11.0
+mouse_filter = 2
 bbcode_enabled = true
 text = "[left][font_size=6]99[/font_size][/left]"
 fit_content = true
 scroll_active = false
+
+[node name="Bestiary" type="Control" parent="TopVbox/Layer1"]
+layout_mode = 2
+
+[node name="HelpLabel" type="RichTextLabel" parent="TopVbox/Layer1/Bestiary"]
+layout_mode = 2
+offset_left = 19.1579
+offset_top = 0.105263
+offset_right = 48.1579
+offset_bottom = 28.1053
+bbcode_enabled = true
+text = "[center][font_size=6][color=ff0000]CLICK  FOR HELP[/color][/font_size][/center]"
 
 [node name="Layer2" type="HBoxContainer" parent="TopVbox"]
 layout_mode = 2
@@ -357,6 +370,7 @@ offset_right = 3.0
 offset_bottom = 93.0
 
 [connection signal="gui_input" from="TopVbox/Layer1/Cog" to="." method="_on_cog_gui_input"]
+[connection signal="gui_input" from="TopVbox/Layer1/Bestiary/HelpLabel" to="." method="_on_bestiary_gui_input"]
 [connection signal="gui_input" from="ColorRect" to="." method="_on_color_rect_gui_input"]
 [connection signal="mouse_entered" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/TrueDrawHbox" to="." method="_on_hbox_mouse_entered" binds= ["Cards which draw show how far they move your deck (show one less on the draw counter)"]]
 [connection signal="mouse_exited" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/Gameplay/TrueDrawHbox" to="." method="hide_tooltip"]

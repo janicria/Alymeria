@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_lijh8")
-id = "injured"
+id = "webbed"
 type = 1
 stack_type = 2
 buff = false

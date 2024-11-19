@@ -143,14 +143,15 @@ func enter_treasure_room() -> void:
 		0: treasure_scene.add_gold_reward(randi_range(40, 80))
 		1: 
 			treasure_scene.add_gold_reward(randi_range(30, 40))
-			#treasure_scene.add_potion_reward()
-		#2: treasure_scene.add_potion_reward()
+			treasure_scene.add_core_reward(2, 0, Core.Rarity.COMMON, "Add a common core")
+		2: treasure_scene.add_core_reward(2, 0)
 	# Second reward
 	match randi_range(0, 2):
 		0: treasure_scene.add_core_reward(2, randi_range(20, 40))
-		1: treasure_scene.add_card_reward(randi_range(20, 40))
+		1: treasure_scene.add_card_reward(
+			randi_range(20, 40), Card.Rarity.RARE, "Add a rare card")
 		2: treasure_scene.add_core_reward(
-			2, randi_range(40, 60), Core.Rarity.RARE)
+			2, randi_range(40, 60), Core.Rarity.RARE, "Add a rare core")
 
 
 func _on_map_exited(room: Room) -> void:

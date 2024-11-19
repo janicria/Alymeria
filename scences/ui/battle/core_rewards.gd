@@ -10,6 +10,7 @@ func add_cores(core_array: Array[Core]) -> void:
 		var core_label := CORE_LABEL.instantiate()
 		cores.add_child(core_label)
 		core_label.core_ui.core = core
+		core_label.free_rewards.connect(_on_skip_button_pressed)
 		core_label.setup()
 
 

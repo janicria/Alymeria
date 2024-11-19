@@ -33,10 +33,10 @@ func _ready() -> void:
 		5: title.text = "Better skip these"
 
 
-func add_card_reward(cost: int) -> void:
+func add_card_reward(cost: int, rarity := Card.Rarity.NULL, text := "Add a New Card") -> void:
 	var card_reward := REWARD_BUTTON.instantiate()
-	card_reward.set_items(CARD_ICON, "Add a New Card", cost)
-	card_reward.pressed.connect(_show_card_rewards)
+	card_reward.set_items(CARD_ICON, text, cost)
+	card_reward.pressed.connect(_show_card_rewards.bind(rarity))
 	rewards.add_child.call_deferred(card_reward)
 
 
@@ -49,10 +49,10 @@ func add_gold_reward(amount: int) -> void:
 
 
 
-func add_core_reward(amount: int, cost: int, custom_rarity := Core.Rarity.NULL) -> void:
+func add_core_reward(amount: int, cost: int, custom_rarity := Core.Rarity.NULL, text := "Add a new core") -> void:
 	var core_reward := REWARD_BUTTON.instantiate()
 	var core := Data.get_core_from_rarity(custom_rarity)
-	core_reward.set_items(core.icon, "Add a new core", cost)
+	core_reward.set_items(core.icon, text, cost)
 	core_reward.pressed.connect(
 		show_core_reward.bind(amount, core, custom_rarity))
 	rewards.add_child.call_deferred(core_reward)
@@ -69,7 +69,7 @@ func show_core_reward(amount: int, first_core: Core, custom_rarity: Core.Rarity)
 	core_rewards.add_cores(core_array)
 
 
-func _show_card_rewards() -> void:
+func _show_card_rewards(custom_rarity: Card.Rarity) -> void:
 	var card_rewards := CARD_REWARDS.instantiate()
 	add_child(card_rewards)
 	card_rewards.card_reward_selected.connect(_on_card_reward_taken)
@@ -81,6 +81,13 @@ func _show_card_rewards() -> void:
 	for i in Data.card_rewards:
 		setup_card_rarity_chances()
 		var roll := randf_range(0.0, card_reward_total_weight)
+		
+		if custom_rarity != Card.Rarity.NULL:
+			_modify_weights(custom_rarity)
+			var picked_card := _get_random_available_card(available_cards, custom_rarity)
+			card_reward_array.append(picked_card)
+			available_cards.erase(picked_card)
+			break
 		
 		for rarity: Card.Rarity in card_rarity_weights:
 			if rarity == Card.Rarity.COMMON:
