@@ -42,7 +42,7 @@ func add_card(card: Card, pile: String) -> void:
 
 
 func draw_card() -> void:
-	if hand.get_child_count() >= 10: OS.alert("Max hand size is 10"); return
+	if hand.get_child_count() >= 10: return
 	reshuffle_draw_from_discard()
 	if !Data.character.draw_pile.cards: return
 	hand.add_card(Data.character.draw_pile.draw_card())

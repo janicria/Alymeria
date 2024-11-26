@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=3 format=3 uid="uid://b8wm8xlls652g"]
+[gd_resource type="Resource" script_class="NanoPlague" load_steps=3 format=3 uid="uid://b8wm8xlls652g"]
 
 [ext_resource type="Texture2D" uid="uid://psr6xk3k26oh" path="res://assets/objects/tile_0114.png" id="1_fwccx"]
 [ext_resource type="Script" path="res://effects/status/nano_plague.gd" id="1_psyxc"]
@@ -8,8 +8,8 @@ script = ExtResource("1_psyxc")
 id = "nano_plague"
 type = 1
 stack_type = 1
-buff = false
-format_tooltip = false
-duration = 0
+buff = null
+format_tooltip = null
+duration = null
 stacks = 1
 icon = ExtResource("1_fwccx")

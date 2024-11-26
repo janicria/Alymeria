@@ -46,7 +46,7 @@ func do_turn() -> void:
 
 
 func take_damage(damage: int, status: Status = null) -> void:
-	if stats.health <= 0: return
+	if stats.health <= 0 || !enemies_are_alive(): return
 	Data.damage_dealt += damage
 	
 	var modified_damage := modifier_handler.get_modified_value(damage, Modifier.Type.DMG_TAKEN)
@@ -60,7 +60,7 @@ func take_damage(damage: int, status: Status = null) -> void:
 	
 	tween.finished.connect(
 		func()->void:
-			if stats.health <= 0:
+			if stats.health <= 0 && enemies_are_alive():
 				death_animation())
 
 
@@ -86,7 +86,13 @@ func death_animation(repeats := 3) -> void:
 				await get_tree().create_timer(0.2, false).timeout
 				#Events.summon_died.emit(self)
 				queue_free())
-	
+
+
+# Prevents tween from being active after summon is freed
+func enemies_are_alive() -> bool:
+	return get_tree().get_nodes_in_group("enemies").all(
+		func(enemy: Enemy) -> bool:
+			return enemy.is_alive)
 
 
 func _on_texture_input(event: InputEvent) -> void:

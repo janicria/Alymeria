@@ -1,5 +1,4 @@
-class_name Hand
-extends HBoxContainer
+class_name Hand extends HBoxContainer
 
 @export var player: Player
 
@@ -24,8 +23,8 @@ func check_for_cancel() -> void:
 
 
 func add_card(card: Card) -> void:
-	# Needed for uncaching cards
-	if get_child_count() >= 10: OS.alert("Max hand size is 10"); return
+	# Needed for uncaching
+	if get_child_count() >= 10: return
 	var new_card_ui := CARDUI.instantiate() as CardUI
 	add_child(new_card_ui)
 	new_card_ui.reparent_requested.connect(_on_card_ui_reparent_requested)
