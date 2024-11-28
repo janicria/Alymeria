@@ -117,7 +117,7 @@ func _on_color_rect_gui_input(event: InputEvent) -> void:
 		toggle_settings()
 
 
-# DO NOT MOVE
+# DO NOT MOVE <- but actually, don't move it as it disconnects the signals
 func _on_toggled_button_toggled(toggled_on: bool, button_string: String) -> void:
 	var button: Button
 	match button_string:
@@ -174,8 +174,3 @@ func _on_exit_button_pressed() -> void:
 
 func _on_console_button_pressed() -> void:
 	Events.toggle_console_visible.emit()
-
-
-func _on_bestiary_gui_input(event: InputEvent) -> void:
-	if event.is_action_pressed("left_mouse"):
-		Data.bestiary.open()

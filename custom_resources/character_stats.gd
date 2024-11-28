@@ -53,5 +53,5 @@ func create_instance() -> Resource:
 	instance.discard = CardPile.new()
 	instance.exhaust_pile = CardPile.new()
 	instance.cache_pile = CardPile.new()
-	instance.player = true
+	instance.is_player = true
 	return instance

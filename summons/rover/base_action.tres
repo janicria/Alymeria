@@ -1,8 +1,0 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://e8e2t4op1qv5"]
-
-[ext_resource type="Script" path="res://summons/rover/base_action.gd" id="1_js643"]
-
-[resource]
-script = ExtResource("1_js643")
-type = 0
-target_type = 1

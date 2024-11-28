@@ -5,9 +5,9 @@ signal stats_changed
 @export var max_health := 1 : set = set_max_health
 @export var art : Texture
 
-var health : int : set = set_health
-var barrier : int : set = set_barrier
-var player := false
+var health: int : set = set_health
+var barrier: int : set = set_barrier
+var is_player := false
 
 
 func set_max_health(value: int) -> void:
@@ -36,7 +36,7 @@ func take_damage(damage: int) -> bool:
 
 func heal(amount : int) -> void:
 	health += amount
-	if player: Data.health_healed += amount
+	if is_player: Data.health_healed += amount
 
 
 func create_instance() -> Resource:

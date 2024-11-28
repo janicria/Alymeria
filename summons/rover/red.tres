@@ -1,0 +1,12 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://cpa82bct4anw4"]
+
+[ext_resource type="Script" path="res://summons/rover/red.gd" id="1_bs0iv"]
+[ext_resource type="AudioStream" uid="uid://dixklg6g4jnsq" path="res://assets/sfx/slash.ogg" id="2_dv8u2"]
+
+[resource]
+script = ExtResource("1_bs0iv")
+type = 1
+target = 4
+sound = ExtResource("2_dv8u2")
+pos = Vector2i(0, 0)
+size = Vector2i(0, 0)

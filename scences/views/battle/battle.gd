@@ -50,14 +50,12 @@ func _on_update_battle_state(state: State) -> void:
 			Data.save_to_file()
 			core_handler.activate_cores_of_type(Core.Type.START_OF_TURN)
 			await core_handler.core_activated
-			summon_handler.start_turn()
-			await summon_handler.actions_finished
 			Events.update_turn_number.emit(Data.turn_number + 1)
 			enemy_handler.start_mana()
 			battle_stats.turn_effects()
 			Events.update_battle_state.emit(State.ENEMY_DRAW)
 		
-		State.ENEMY_DRAW: # Also enemy statuses
+		State.ENEMY_DRAW: # Also known as end of turn / enemy statuses
 			summon_handler.start_of_turn_barrier_and_statuses()
 			enemy_handler.apply_start_of_turn_statuses()
 			#await enemy_handler.statuses_applied

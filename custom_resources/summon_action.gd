@@ -2,39 +2,42 @@ class_name SummonAction extends Resource
 
 signal finished
 
-enum Type {BASE, CARD, SPECIAL}
-enum Targets {SINGLE, PLAYER, SELF, ENEMIES, RANDOM_ENEMY, ALLIES, EVERYONE}
+# I WILL REWRITE THIS ENTIRE GAME IN RUST!!!!
+enum Type {GREEN, RED, PURPLE, FINISHER}
+enum Targets {SINGLE, PLAYER, SELF, ENEMIES, RANDOM_ENEMY, ALLIES, EVERYONE, NONE}
 
+@export_group("Main")
 @export var type: Type
-@export var target_type: Targets
+@export var target: Targets
 @export var sound: AudioStream
 
-var owner: Summon
+@export_group("Light")
+@export var active_image: Texture2D
+@export var inactive_image: Texture2D
+@export var pos: Vector2i
+@export var size: Vector2i
+
+var stats: SummonStats
 
 
 func setup() -> void:
-	if type == Type.CARD:
-		Events.player_card_played.connect(
-			func(card:Card)->void:
-				if owner == null: return
-				if card.type == owner.stats.card_action_type:
-					play())
+	pass
 
 
-func get_modified_damage(damage: int, target: Node) -> int:
-		var modified_damage := owner.modifier_handler.get_modified_value(damage, Modifier.Type.DMG_DEALT)
+func get_modified_damage(damage: int, target: Node) -> int: # Pls overwrite nicely godot
+		var modified_damage := stats.summon.modifier_handler.get_modified_value(damage, Modifier.Type.DMG_DEALT)
 		return target.modifier_handler.get_modified_value(modified_damage, Modifier.Type.DMG_TAKEN)
 
 
 func play() -> void:
 	var targets: Array[Node]
-	match target_type:
+	match target:
 		Targets.SINGLE:
 			targets = [Data.get_tree().get_first_node_in_group("enemies")]
 		Targets.PLAYER:
 			targets = [Data.get_tree().get_first_node_in_group("player")]
 		Targets.SELF:
-			targets = [owner]
+			targets = [stats.summon]
 		Targets.ENEMIES:
 			targets = Data.get_tree().get_nodes_in_group("enemies")
 		Targets.RANDOM_ENEMY:

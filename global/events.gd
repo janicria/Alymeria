@@ -11,7 +11,8 @@ signal update_deck_button_ui() # Used by card_pile_button
 signal update_draw_card_ui # Used by repurposing & card
 signal update_card_variant(variant: String, value: int) # Used by hand
 signal update_hand_state() # Used by hand to check if a the player has cancel
-signal player_card_drawn # Used by godroll (needs to be a global)
+signal player_card_drawn # Used by godroll (needs to be a global) <- care to explain why?
+signal card_exhausted # Used by rover purple action
 
 ## Player-related events
 signal player_draw_cards(amount : int) # Used by player_handler

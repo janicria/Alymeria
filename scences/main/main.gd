@@ -126,14 +126,16 @@ func _on_battle_state_updated(state: Battle.State) -> void:
 
 
 func _on_reward_exited() -> void:
-	var event_range := 20
-	if core_handler.get_core("Compass"):
-		event_range = 40 if core_handler.get_core("Compass").coreui.slotted else 30
-	
-	if randi_range(0, 100) <= event_range: 
-		_change_view(EVENT_SCENCE)
-		print("Event -> %d%%" % event_range)
-	else: _show_map()
+	#TODO: Do next version pls
+	#var event_range := 20
+	#if core_handler.get_core("Compass"):
+	#	event_range = 40 if core_handler.get_core("Compass").coreui.slotted else 30
+	#
+	#if randi_range(0, 100) <= event_range: 
+	#	_change_view(EVENT_SCENCE)
+	#	print("Event -> %d%%" % event_range)
+	#else: _show_map()
+	_show_map()
 
 
 func enter_treasure_room() -> void:

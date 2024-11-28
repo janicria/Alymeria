@@ -134,9 +134,9 @@ var summons: Array[SummonStats] = [
 # TODO: Move to character stats
 var available_cores: Array[Core] = [
 	preload("res://characters/global/cores/common/comically_large_anvil.tres"),
-	preload("res://characters/global/cores/common/compass.tres"),
-	preload("res://characters/global/cores/rare/blindfold.tres"),
-	preload("res://characters/global/cores/rare/finale.tres"),
+	#preload("res://characters/global/cores/common/compass.tres"),
+	#preload("res://characters/global/cores/rare/blindfold.tres"),
+	#preload("res://characters/global/cores/rare/finale.tres"),
 	preload("res://characters/global/cores/rare/maths_textbook.tres"),
 	preload("res://characters/global/cores/uncommon/infected_horn.tres"),
 	preload("res://characters/machine/cores/common/secure_boot.tres")

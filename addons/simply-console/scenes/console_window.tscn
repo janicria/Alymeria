@@ -8,6 +8,10 @@ resource_name = "console_window"
 script/source = "extends Window
 
 const SHOP := preload(\"res://scences/views/shop/shop.tscn\")
+const HELP_MESSAGE := \"To see a list of available commands use the 'help' command
+Optionally, use 'help <command>' to get more information about a specific command.
+Press ~ to toggle console
+Special thanks to Mark Velez for creating the base of this console\"
 
 # Permissions for executing commands.
 @export var permissionLevel: ConsoleDataManager.PermissionLevel = 0
@@ -35,12 +39,7 @@ func _ready() -> void:
 	Events.toggle_console_visible.connect(func()->void:
 		visible = !visible; if Data.console_banned: queue_free())
 	visibility_changed.connect(func()->void: Data.console_open = visible)
-	output_comment(
-		\"To see a list of available commands use the 'help' command)\"
-	)
-	output_comment(
-		\"Optionally, use 'help (command)' to get more information about a specific command.\"
-	)
+	output_comment(HELP_MESSAGE)
 
 
 func _input(event: InputEvent) -> void:
@@ -134,7 +133,7 @@ func output_text(text: String, color := Color.WHITE) -> void:
 		OutputFieldRef.push_color(color)
 	
 	OutputFieldRef.push_paragraph(HORIZONTAL_ALIGNMENT_LEFT)
-	OutputFieldRef.append_text(text)
+	OutputFieldRef.append_text(\"\\n%s\" % text)
 	OutputFieldRef.pop_all()
 
 

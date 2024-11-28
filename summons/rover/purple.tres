@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://y1ekyo83h5jf"]
+
+[ext_resource type="Script" path="res://summons/rover/purple.gd" id="1_5wvsj"]
+
+[resource]
+script = ExtResource("1_5wvsj")
+type = 2
+target = 7
+pos = Vector2i(0, 0)
+size = Vector2i(0, 0)

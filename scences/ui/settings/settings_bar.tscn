@@ -380,3 +380,4 @@ offset_bottom = 93.0
 [connection signal="value_changed" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/AudioVisual/SFXVolumeHbox/SFXVolumeSlider" to="." method="_on_volume_slider_value_changed" binds= ["sfx"]]
 [connection signal="value_changed" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/AudioVisual/MusicVolumeHbox/MusicVolumeSlider" to="." method="_on_volume_slider_value_changed" binds= ["music"]]
 [connection signal="toggled" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/AudioVisual/PipeHbox/PipeButton" to="." method="_on_toggled_button_toggled" binds= ["pipe"]]
+[connection signal="toggled" from="SettingsLayer/Settings/VBoxContainer/SettingsHbox/AudioVisual/FullscreenHbox/FullscreenButton" to="." method="_on_toggled_button_toggled" binds= ["fullscreen"]]
