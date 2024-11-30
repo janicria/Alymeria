@@ -72,7 +72,7 @@ fit_content = true
 
 [node name="Icon" type="Sprite2D" parent="PrimaryView"]
 unique_name_in_owner = true
-position = Vector2(286, 85)
+position = Vector2(286, 86)
 scale = Vector2(4, 4)
 texture = ExtResource("2_ucmsf")
 

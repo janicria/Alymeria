@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://hmurq7k0cm7y"]
+[gd_scene load_steps=30 format=3 uid="uid://hmurq7k0cm7y"]
 
 [ext_resource type="Script" path="res://scences/views/battle/battle.gd" id="1_aq6po"]
 [ext_resource type="Texture2D" uid="uid://j16iwp255gqv" path="res://assets/backgrounds/sand.png" id="1_rkqh7"]
@@ -26,6 +26,7 @@
 [ext_resource type="StyleBox" uid="uid://ck3105wj7dcrn" path="res://assets/styleboxes/default_stylebox.tres" id="22_fnuxb"]
 [ext_resource type="Texture2D" uid="uid://fb0t0b1qg1ms" path="res://assets/ui/cards/discard.png" id="22_p100a"]
 [ext_resource type="PackedScene" uid="uid://hqt3nv2gge3l" path="res://scences/ui/player_card/card_pile/card_pile_view.tscn" id="25_e6li0"]
+[ext_resource type="PackedScene" uid="uid://x1sc75swc2om" path="res://scences/credits/victory_sounds_cooler_as_a_filename.tscn.tscn" id="27_qhusk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_evep0"]
 size = Vector2(640, 230)
@@ -37,6 +38,11 @@ font_size = 8
 script = ExtResource("1_aq6po")
 music = ExtResource("3_up5un")
 metadata/_edit_lock_ = true
+
+[node name="Credits" parent="." instance=ExtResource("27_qhusk")]
+unique_name_in_owner = true
+offset_left = 1.0
+offset_right = 640.0
 
 [node name="Background" type="Sprite2D" parent="."]
 modulate = Color(0.737193, 0.737193, 0.737193, 1)

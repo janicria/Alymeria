@@ -22,9 +22,9 @@ func setup_stats(value: SummonStats) -> void:
 	
 	texture.texture = stats.art
 	status_handler.status_owner = self
-	stats.setup(self)
 	
 	if !stats.stats_changed.is_connected(stats_ui.update_stats):
+		stats.setup(self)
 		stats.stats_changed.connect(stats_ui.update_stats.bind(stats))
 	
 	stats_ui.update_stats(stats)
@@ -57,7 +57,6 @@ func take_damage(damage: int, status: Status = null) -> void:
 		get_tree()
 		.current_scene.shaker.shake.bind(self, 12, 0.15))
 	tween.tween_callback(stats.take_damage.bind(modified_damage, status))
-	tween.tween_callback(func()->void: damaged.emit()) #FIXME: Gets played 4 times
 	tween.tween_interval(0.2)
 	
 	tween.finished.connect(
@@ -97,7 +96,7 @@ func enemies_are_alive() -> bool:
 func _on_texture_input(event: InputEvent) -> void:
 	if event.is_action_pressed("left_mouse"):
 		Data.bestiary.show_menu(
-			[stats.name, stats.art, "\nActions\n\n%s" % stats.description, stats.flavour_text], 
+			[stats.name, stats.art, "\n%s" % stats.description, stats.flavour_text], 
 			false)
 
 

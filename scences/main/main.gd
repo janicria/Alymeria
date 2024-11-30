@@ -6,6 +6,7 @@ const TREASURE_SCENCE := preload("res://scences/views/treasure/treasure.tscn")
 const HAVEN_SCENCE := preload("res://scences/views/haven/haven.tscn")
 const EVENT_SCENCE := preload("res://scences/views/events/event.tscn")
 const COMPASS = preload("res://characters/global/cores/common/compass.tres")
+const CURSOR = preload("res://assets/misc/cursor.png")
 
 @export var run_startup: RunStartup
 
@@ -21,7 +22,7 @@ const COMPASS = preload("res://characters/global/cores/common/compass.tres")
 @onready var shaker: Node = %Shaker
 
 var character: CharacterStats
-
+var fix_node_positions := true
 
 func _ready() -> void:
 	color_rect.visible = true
@@ -39,11 +40,16 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	# Prevents the map camera from moving screen elements
-	version_number.global_position.y = 4 - version_number.get_canvas_transform().origin.y
-	settings_bar.global_position.y = 0 - settings_bar.get_canvas_transform().origin.y
-	core_handler.global_position.y = 76 - core_handler.get_canvas_transform().origin.y
-	bestiary.global_position.y = 14 - bestiary.get_canvas_transform().origin.y
+	if fix_node_positions:
+		# Prevents the map camera from moving screen elements
+		version_number.global_position.y = 4 - version_number.get_canvas_transform().origin.y
+		settings_bar.global_position.y = 0 - settings_bar.get_canvas_transform().origin.y
+		core_handler.global_position.y = 76 - core_handler.get_canvas_transform().origin.y
+		bestiary.global_position.y = 14 - bestiary.get_canvas_transform().origin.y
+	
+	# In case something which changes the cursor is shadowrealmed
+	if Engine.get_frames_drawn() % 600 == 0: # Averages to 5s
+		Input.set_custom_mouse_cursor(CURSOR)
 
 
 func _input(_event: InputEvent) -> void:
@@ -67,12 +73,13 @@ func _change_view(scence: PackedScene) -> Node:
 	# Removes the previous view
 	if current_view.get_child_count() > 0:
 		current_view.get_child(0).queue_free()
-	if scence ==  EVENT_SCENCE: print("Rolled event scene")
+	if scence == EVENT_SCENCE: print("Rolled event scene")
 	
 	get_tree().paused = false
 	var new_view := scence.instantiate()
 	current_view.add_child(new_view)
 	map.hide_map()
+	Data.save_to_file()
 	
 	return new_view
 
@@ -115,14 +122,19 @@ func _on_battle_room_entered(room: Room) -> void:
 
 
 func _on_battle_state_updated(state: Battle.State) -> void:
+	# Room check is if battle was set through console
 	if state != Battle.State.WIN || !map.last_room: 
 		return
 	
-	var reward_scence: Treasure = _change_view(TREASURE_SCENCE)
-	reward_scence.add_gold_reward(map.last_room.battle_stats.roll_gold_reward())
-	reward_scence.add_card_reward(0)
-	if map.last_room.battle_stats.battle_tier == BattleStats.BattleTier.ELITE:
-		reward_scence.add_core_reward(2, 0)
+	if map.last_room.battle_stats.battle_tier == BattleStats.BattleTier.BOSS:
+		Data.battle.credits.begin()
+	
+	else:
+		var reward_scence: Treasure = _change_view(TREASURE_SCENCE)
+		reward_scence.add_gold_reward(map.last_room.battle_stats.roll_gold_reward())
+		reward_scence.add_card_reward(0)
+		if map.last_room.battle_stats.battle_tier == BattleStats.BattleTier.ELITE:
+			reward_scence.add_core_reward(2, 0)
 
 
 func _on_reward_exited() -> void:

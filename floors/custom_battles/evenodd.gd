@@ -2,17 +2,25 @@ extends BattleStats
 
 var superboss: bool
 
+
 func turn_effects() -> void:
 	if superboss: return
 	
+	# Setting mana
 	if Data.turn_number % 2 == 0: 
-		live_enemies[1].mana = 0; live_enemies[0].mana = live_enemies[1].stats.max_mana
-	else: live_enemies[0].mana = 0; live_enemies[1].mana = live_enemies[0].stats.max_mana
-	for enemy in live_enemies: enemy.sprite_2d.flip_h = true; enemy.update_mana_counter()
+		live_enemies[1].mana = 0
+		live_enemies[0].mana = live_enemies[1].stats.max_mana
+	else:
+		live_enemies[0].mana = 0
+		live_enemies[1].mana = live_enemies[0].stats.max_mana
+	
+	for enemy in live_enemies: 
+		enemy.sprite_2d.flip_h = true
+		enemy.update_mana_counter()
 
 
 func update_battle() -> void:
-	#if !live_enemies[0]: return
+	if !live_enemies[0] || Data.turn_number != 0: return
 	superboss = true
 	Data.console_banned = true
 	Events.toggle_console_visible.emit()

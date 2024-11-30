@@ -1,0 +1,201 @@
+[gd_scene load_steps=3 format=3 uid="uid://x1sc75swc2om"]
+
+[ext_resource type="Script" path="res://scences/credits/victory.gd" id="1_5jmip"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_pyalq"]
+font_size = 42
+shadow_size = 4
+shadow_color = Color(0.772549, 0.454902, 0.72549, 0.509804)
+
+[node name="Credits" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5jmip")
+
+[node name="Layer" type="CanvasLayer" parent="."]
+layer = 128
+follow_viewport_enabled = true
+
+[node name="ColorRect" type="ColorRect" parent="Layer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 360.0
+offset_bottom = 2000.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.129558, 0.129558, 0.129558, 1)
+
+[node name="Title" type="Label" parent="Layer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -220.0
+offset_top = 423.0
+offset_right = 220.0
+offset_bottom = 472.0
+grow_horizontal = 2
+text = "System Mycosis"
+label_settings = SubResource("LabelSettings_pyalq")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Layer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -153.5
+offset_top = 505.0
+offset_right = 151.5
+offset_bottom = 1398.0
+grow_horizontal = 2
+bbcode_enabled = true
+text = "[center]
+Developed by
+
+janicria
+
+
+
+
+Using the Godot game engine
+
+godotengine.org/license
+
+
+
+with the Simply Console plugin by Mark Velez
+
+https://github.com/MarkVelez/godot-simply-console
+
+Licence located at credits.txt
+
+
+
+
+and cool Rust integration by gdext
+
+https://github.com/godot-rust/gdext
+
+Licence located at credits.txt
+
+
+
+
+along with not at all misplaced assets by
+
+
+janicria
+
+
+
+Kenney
+
+https://kenney.nl/
+
+
+
+
+
+
+
+cool sfx from
+
+StarNinjas
+
+https://opengameart.org/users/starninjas
+
+
+
+Pixabay
+
+https://pixabay.com/sound-effects/shield-guard-6963/
+
+
+
+artisticdude
+
+https://opengameart.org/users/artisticdude
+
+
+
+rush6085
+
+https://www.youtube.com/watch?v=f8mL0_4GeV0
+
+(Orginal by JixawXP)
+https://www.youtube.com/@JixawXP
+
+
+
+
+
+
+music by
+
+
+Author
+
+Song name
+
+url to Soundcloud/bandcamp / wherever I got it from I forgot
+
+
+
+
+
+
+
+
+and finally...
+
+
+
+
+
+You!
+
+
+
+
+
+
+(This is the part where you give me feedback)
+
+
+
+
+But actually
+
+
+
+
+
+ty for playing my game 
+
+
+
+
+
+
+The end.
+
+
+
+
+
+Until version 0.3 releases"
+fit_content = true
+scroll_active = false
+
+[node name="Camera2D" type="Camera2D" parent="Layer"]
+unique_name_in_owner = true
+position = Vector2(319, 180)
+limit_bottom = 2319
+limit_smoothed = true
+position_smoothing_speed = 1.0

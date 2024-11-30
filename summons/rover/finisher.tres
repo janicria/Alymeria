@@ -1,0 +1,12 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://b3frxb041k64j"]
+
+[ext_resource type="Script" path="res://summons/rover/finisher.gd" id="1_2wof0"]
+[ext_resource type="AudioStream" uid="uid://b1vpjjmi5cj3n" path="res://assets/sfx/axe.ogg" id="2_65i40"]
+
+[resource]
+script = ExtResource("1_2wof0")
+type = 3
+target = 0
+sound = ExtResource("2_65i40")
+pos = Vector2i(0, 0)
+size = Vector2i(0, 0)

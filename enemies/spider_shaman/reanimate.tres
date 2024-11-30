@@ -12,4 +12,4 @@ cost = 1
 weight = 2
 targets = 5
 health = 0
-description = "Summan a common spider"
+description = "Spawn a common spider"

@@ -28,7 +28,7 @@ func get_targets() -> Array[Node]:
 	# Tree check is because of last card being played searches 
 	# for targets a second time after being played
 	if (!is_inside_tree() 
-	|| card_stats.targets == EnemyCard.Targets.NULL 
+	|| card_stats.targets == EnemyCard.Targets.NONE 
 	|| enemy_stats == null): 
 		return []
 	

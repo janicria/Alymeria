@@ -10,6 +10,6 @@ icon = ExtResource("1_h73oo")
 type = 1
 rarity = 1
 pool = 2
-slotted_tooltip = "At the start of each combat spawn a random summon with 4 barrier then play it’s finisher"
+slotted_tooltip = "At the start of each combat spawn a random summon with 14 barrier then play it’s finisher"
 dump_tooltip = "At the start of each combat spawn a random summon"
 flavour_text = "What do you get if you multiply six by nine?"

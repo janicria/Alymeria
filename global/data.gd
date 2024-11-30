@@ -36,7 +36,7 @@ const StatusDescriptions := {
 	# Statuses
 	"hidden": "[color=1AD12C]Hidden[/color] - [color=CD57FF]Enemies[/color] ignore this [color=CD57FF]summon[/color] when [color=ff0000]attacking[/color]. Decreases at the start of each turn",
 	"webbed": "[color=AB3321]Webbed[/color] - [color=0044ff]Cards[/color] deal 30% less [color=ff0000]damage[/color]. Decreases at the start of each turn",
-	"spinneret": "[color=1AD12C]Spinneret[/color] - Whenever you receive unblocked [color=AB3321]attack damage[/color] from this [color=CD57FF]enemy[/color], gain one [color=AB3321]Webbed[/color]",
+	"spinneret": "[color=1AD12C]Spinneret[/color] - Whenever you receive unblocked [color=ff0000]attack damage[/color] from this [color=CD57FF]enemy[/color], gain one [color=AB3321]Webbed[/color]",
 	"nano_plague": "[color=AB3321]Nano plague[/color] - Take [color=ff0000]damage[/color] equal to 80% of stacks then apply [color=008000]nano plague[/color] equal to 20% of stacks to all [color=CD57FF]allies[/color] at the END of each turn",
 	"injured": "[color=AB3321]Injured[/color] - Recive 30% more [color=ff0000]damage[/color] from [color=ff0000]attacks[/color]. Decreases by 1 at the END of each turn",
 	"file_corruption": "[color=1AD12C]File corruption[/color] - Whenever you play a [color=0044ff]card[/color] apply 1 [color=008000]nano plague[/color] to [color=CD57FF]everyone[/color]",
@@ -50,12 +50,14 @@ const StatusDescriptions := {
 }
 
 # Nodes
-var player_handler: PlayerHandeler
+var map: Map
 var bestiary: Bestiary
 var treasure: Treasure
 var enemy_handler: EnemyHandler
 var summon_handler: SummonHandler
 var core_handler: CoreHandler
+var player_handler: PlayerHandeler
+var battle: Battle
 var battle_ui: BattleUI
 var shop: Shop
 
@@ -197,8 +199,11 @@ func reset_stats() -> void:
 # TODO: lmao
 func save_to_file() -> bool:
 	var result: bool
+	
 	result = true
+	
 	if result: print("Game saved! - %d" % (get_tree().get_frame()/60))
-	else: OS.alert("Failed writing save file to path %s" % ProjectSettings.globalize_path("user://saves/save.exampleExtenstion"))
+	else: 
+		OS.alert("Failed writing save file to path %s" % ProjectSettings.globalize_path("user://saves/save.exampleExtenstion"))
 	
 	return result

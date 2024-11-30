@@ -1,5 +1,4 @@
-class_name Battle
-extends Node2D
+class_name Battle extends Node2D
 
 enum State {BASE, LOOPS, ENEMY_DRAW, PLAYER, ENEMY_CARDS, WIN, LOSE}
 
@@ -11,8 +10,10 @@ enum State {BASE, LOOPS, ENEMY_DRAW, PLAYER, ENEMY_CARDS, WIN, LOSE}
 @onready var player_handeler: PlayerHandeler = $PlayerHandeler
 @onready var player: Player = $Player
 @onready var summon_handler: SummonHandler = %SummonHandler
+@onready var credits: Credits = %Credits
 
 var core_handler: CoreHandler
+var state: State
 
 
 func _ready() -> void:
@@ -23,6 +24,7 @@ func _ready() -> void:
 func start_battle() -> void:
 	get_tree().paused = false
 	MusicPlayer.play(music, true)
+	Data.battle = self
 	
 	player.stats = Data.character
 	enemy_handler.setup_enemies(battle_stats)
@@ -37,11 +39,14 @@ func start_battle() -> void:
 	Events.update_battle_state.emit(State.BASE)
 
 
+# Handles all battle logic and only freezes every 3rd commit
 func _on_update_battle_state(state: State) -> void:
+	self.state = state
 	match state:
 		State.BASE:
 			Data.turn_number = 0
 			core_handler.activate_cores_of_type(Core.Type.START_OF_COMBAT)
+			await get_tree().create_timer(0.3).timeout # Nice anim padding
 			for coreui: CoreUI in core_handler.get_all_coreuis(): coreui.playable = true
 			await core_handler.core_activated
 			Events.update_battle_state.emit(State.LOOPS)
@@ -82,8 +87,7 @@ func _on_update_battle_state(state: State) -> void:
 			enemy_handler.play_next_card()
 		
 		State.WIN:
-			# When the game closes enemies are freed, 
-			# causing state to be updated to win
+			# When the game closes enemies are freed causing state to be updated to windows 7 ultimate edition
 			if !is_inside_tree(): return
 			
 			for coreui: CoreUI in core_handler.get_all_coreuis(): 

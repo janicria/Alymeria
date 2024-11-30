@@ -3,17 +3,21 @@ class_name SummonStats extends Stats
 
 @export var name: String
 @export_multiline var description: String
-@export_multiline var flavour_text: String = "todo me :3"
+@export_multiline var flavour_text: String = "todo/make (it all makes sense now) me :3"
 @export var green_action: SummonAction
 @export var red_action: SummonAction
 @export var purple_action: SummonAction
 @export var finisher: SummonAction
 
 var summon: Summon
+var stats_initalised: bool
 var used_actions: Array[SummonAction]
 
 
 func setup(summon: Summon) -> void:
+	# Evil Godot is slow and needs safety
+	await Data.get_tree().process_frame
+	if stats_initalised: return
 	self.summon = summon # <- Ewwww starts
 	green_action.stats = self
 	red_action.stats = self
@@ -23,6 +27,7 @@ func setup(summon: Summon) -> void:
 	red_action.setup()
 	purple_action.setup()
 	finisher.setup() # <- Ewwww finishes
+	stats_initalised = true
 
 
 # Godot's array's kinda suck
@@ -48,6 +53,7 @@ func take_damage(damage: int, status: Status = null) -> bool:
 	var initial_health := health
 	var result := super.take_damage(damage)
 	if initial_health > health:
+		summon.damaged.emit()
 		if status != null:
 			var status_effect := StatusEffect.new()
 			status_effect.status = status

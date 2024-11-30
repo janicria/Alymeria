@@ -187,12 +187,11 @@ func to_bestiary() -> Array:
 		cards_text += "[color=CD57FF]%s[/color] [color=0044ff]%s mana[/color] %s%s [color=CD57FF]%s[/color]\n%s %s\n\n" % [
 			to_title(card.resource_path.get_slice("/", 4).trim_suffix(".tres")),
 			card.cost,
-			("[color=ff0000]" +str(card.health)+ " health[/color] ") if card.health else "",
+			("[color=ff0000]" +str(card.health)+ " health[/color]") if card.health else "",
 			(str(card.weight) + " weight") if card.weight else "",
-			to_title(EnemyCard.Targets.find_key(card.type)),
+			to_title(EnemyCard.Targets.find_key(card.type)) if card.type != EnemyCard.Type.SPAWN else "Spawn", # Don't ask
 			to_title(EnemyCard.Type.find_key(card.type)) if card.type < 5 else card.description,
 			((("%sx%s" % [card.amount, card.repeats]) if card.repeats != 1 else card.amount)) if card.type > 5 else card.amount]
-	
 	# Statuses
 	if stats.starter_statuses.is_empty(): 
 		return [stats.name, stats.art, cards_text, ""]
@@ -206,5 +205,5 @@ func to_bestiary() -> Array:
 
 
 func to_title(text: String) -> String:
-	return (text.to_snake_case().replace("_", " ").substr(0, 1).to_upper() 
-	+ text.to_snake_case().replace("_", " ").substr(1))
+	return (text.to_snake_case().replace("_", " ").substr(0, 1).to_upper()
+	+ text.to_snake_case().replace("_", " ").substr(1)) # First letter + the rest

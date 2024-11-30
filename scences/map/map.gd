@@ -21,6 +21,7 @@ var camera_edge_y: float
 
 
 func _ready() -> void:
+	Data.map = self
 	camera_edge_y = MapGenerator.Y_DIST * (Data.biome_floors[Data.current_biome] - 2)
 	camera_2d.position.y = clamp(camera_2d.position.y, -camera_edge_y, 0)
 

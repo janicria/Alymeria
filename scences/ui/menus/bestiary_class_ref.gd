@@ -1,5 +1,7 @@
 extends Node
 
+const CURSOR = preload("res://assets/misc/cursor.png")
+
 
 func _ready() -> void:
 	await get_parent().ready
@@ -11,3 +13,4 @@ func _ready() -> void:
 func update_visibility() -> void:
 	# Deferred is to prevent settings from opening when bestiary is closed
 	Data.set_deferred("bestiary_open", get_parent().visible)
+	Input.set_custom_mouse_cursor(CURSOR)

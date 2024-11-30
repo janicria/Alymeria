@@ -4,7 +4,7 @@ signal finished
 
 # I WILL REWRITE THIS ENTIRE GAME IN RUST!!!!
 enum Type {GREEN, RED, PURPLE, FINISHER}
-enum Targets {SINGLE, PLAYER, SELF, ENEMIES, RANDOM_ENEMY, ALLIES, EVERYONE, NONE}
+enum Targets {SINGLE, PLAYER, SELF, ENEMIES, FRONTMOST_ENEMY, ALLIES, EVERYONE, NONE}
 
 @export_group("Main")
 @export var type: Type
@@ -24,8 +24,8 @@ func setup() -> void:
 	pass
 
 
-func get_modified_damage(damage: int, target: Node) -> int: # Pls overwrite nicely godot
-		var modified_damage := stats.summon.modifier_handler.get_modified_value(damage, Modifier.Type.DMG_DEALT)
+func get_modified_damage(damage: int, mods: ModifierHandler, target: Node) -> int: # Pls overwrite nicely godot
+		var modified_damage := mods.get_modified_value(damage, Modifier.Type.DMG_DEALT)
 		return target.modifier_handler.get_modified_value(modified_damage, Modifier.Type.DMG_TAKEN)
 
 
@@ -33,15 +33,15 @@ func play() -> void:
 	var targets: Array[Node]
 	match target:
 		Targets.SINGLE:
-			targets = [Data.get_tree().get_first_node_in_group("enemies")]
+			targets = [Data.get_tree().get_nodes_in_group("enemies").pick_random()]
 		Targets.PLAYER:
 			targets = [Data.get_tree().get_first_node_in_group("player")]
 		Targets.SELF:
 			targets = [stats.summon]
 		Targets.ENEMIES:
 			targets = Data.get_tree().get_nodes_in_group("enemies")
-		Targets.RANDOM_ENEMY:
-			targets = [Data.get_tree().get_nodes_in_group("enemies").pick_random()]
+		Targets.FRONTMOST_ENEMY:
+			targets = [Data.get_tree().get_first_node_in_group("enemies")]
 		Targets.ALLIES:
 			targets = Data.get_tree().get_nodes_in_group("summon")
 			targets.append(Data.get_tree().get_first_node_in_group("player"))
