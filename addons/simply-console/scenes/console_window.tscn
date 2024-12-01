@@ -36,8 +36,13 @@ var historyPosition: int = 0
 
 
 func _ready() -> void:
-	Events.toggle_console_visible.connect(func()->void:
-		visible = !visible; if Data.console_banned: queue_free())
+	Events.toggle_console_visible.connect(
+		func()->void:
+			if Data.console_banned: 
+				queue_free()
+				await get_tree().process_frame
+			visible = !visible)
+	
 	visibility_changed.connect(func()->void: Data.console_open = visible)
 	output_comment(HELP_MESSAGE)
 
@@ -378,6 +383,7 @@ func cache(amount: int) -> String:
 func battle(id := \"\") -> String:
 	# Load the battles into memory
 	var battles: Array[BattleStats] = [
+		preload(\"res://floors/battles/a0t0_dummy.tres\"),
 		preload(\"res://floors/battles/a1t0_bat2.tres\"),
 		preload(\"res://floors/battles/a1t0_sentinel.tres\"),
 		preload(\"res://floors/battles/a1t1_spider+bat2.tres\"),

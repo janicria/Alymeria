@@ -85,19 +85,25 @@ func update_stats_from_status(_type: Status.Type) -> void:
 
 func update_stats(card: EnemyCard, enemy: Enemy, from_status := false) -> void:
 	if !is_node_ready(): await ready
+	# Variables
 	card_stats = card
 	enemy_stats = enemy
 	card_stats.cardui = self
 	
+	# Signals
 	if !enemy_stats.status_handler.statuses_applied.is_connected(update_stats_from_status):
 		enemy_stats.status_handler.statuses_applied.connect(update_stats_from_status)
 	if !enemy_stats.status_handler.status_added.is_connected(update_stats_from_status):
 		enemy_stats.status_handler.status_added.connect(update_stats_from_status.bind(Status.Type.EVENT))
 	
+	# Exports
 	cost.text = str(card.cost)
 	icon.texture = enemy.stats.art
 	attack_icon.texture = card.icon_dict.get(card.type)
-	if card_stats.type > 3: return#Data.hi(); return
+	if card.type == EnemyCard.Type.UNKNOWN:
+		attack_icon.custom_minimum_size = Vector2(10, 10) # Compared to 15, 15
+	
+	if card_stats.type > 3: return
 	
 	# Updates the UI to include player and enemy modifiers in its calculations (horribly unreadable)
 	var player := get_targets()[0] as Player
@@ -124,14 +130,9 @@ func play() -> void:
 
 
 func apply_effects(targets: Array[Node]) -> void:
-	if is_dead:
+	if is_dead || enemy_stats == null:
 		await get_tree().process_frame
 		finished_playing.emit()
-		return
-	if card_stats.custom_amount != "": 
-		card_stats.custom_play(get_targets())
-		return
-	if enemy_stats == null: 
 		return
 	
 	for i in card_stats.repeats:
@@ -176,13 +177,14 @@ func apply_effects(targets: Array[Node]) -> void:
 		await get_tree().create_timer(0.1).timeout
 	# Await is needed because godot is slooow
 	await get_tree().process_frame
+	print(1)
 	finished_playing.emit()
 
 
 func _on_control_mouse_entered() -> void:
-	var wr: WeakRef = weakref(enemy_stats); if !wr.get_ref(): 
+	if enemy_stats == null: 
 		Events.show_tooltip.emit(
-		"This [color=CD57FF]enemy[/color] died, but it's [color=0044ff]card[/color] is still here for some reason? \n [s](bad programming)[/s]")
+		"This [color=CD57FF]enemy[/color] died, but it's [color=0044ff]card[/color] is still here for some reason? \n [s](bad coding)[/s]")
 		return
 	
 	if card_stats.custom_amount != "":
@@ -215,14 +217,15 @@ func _on_control_mouse_entered() -> void:
 	tooltip_text += " when this [color=0044ff]card[/color] is played"
 	Events.show_tooltip.emit(tooltip_text)
 	
-	enemy_stats.arrow.visible = !enemy_stats.arrow.visible
+	# Can't do = !visible as sometimes these can be accidentally left on / off
+	enemy_stats.arrow.visible = true
 
 
 func _on_control_mouse_exited() -> void:
 	Events.hide_tooltip.emit()
 	
-	# Safety for if enemy was freed
-	var wr: WeakRef = weakref(enemy_stats)
-	if !wr.get_ref(): return
+	if enemy_stats == null: 
+		return
 	
-	enemy_stats.arrow.visible = !enemy_stats.arrow.visible
+	# Can't do = !visible as sometimes these can be accidentally left on / off
+	enemy_stats.arrow.visible = false

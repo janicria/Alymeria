@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BattleStats" load_steps=3 format=3 uid="uid://b615y6qdujgvc"]
+
+[ext_resource type="Script" path="res://custom_resources/battle_stats.gd" id="1_va4m8"]
+[ext_resource type="PackedScene" uid="uid://ckvu5oo6wxs75" path="res://floors/battles/a0t0_dummy.tscn" id="1_yfjxr"]
+
+[resource]
+script = ExtResource("1_va4m8")
+battle_tier = 0
+weight = 0
+pure = true
+enemies = ExtResource("1_yfjxr")

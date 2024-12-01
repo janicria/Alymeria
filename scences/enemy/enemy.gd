@@ -33,6 +33,8 @@ func _setup_stats(value: EnemyStats) -> void:
 	_setup_card_weights()
 	
 	if !is_node_ready(): await ready
+	
+	sprite_2d.flip_h = stats.flip_sprite
 	status_handler.status_owner = self
 	for status in stats.starter_statuses:
 		status_handler.add_status(status)
@@ -189,9 +191,9 @@ func to_bestiary() -> Array:
 			card.cost,
 			("[color=ff0000]" +str(card.health)+ " health[/color]") if card.health else "",
 			(str(card.weight) + " weight") if card.weight else "",
-			to_title(EnemyCard.Targets.find_key(card.type)) if card.type != EnemyCard.Type.SPAWN else "Spawn", # Don't ask
-			to_title(EnemyCard.Type.find_key(card.type)) if card.type < 5 else card.description,
-			((("%sx%s" % [card.amount, card.repeats]) if card.repeats != 1 else card.amount)) if card.type > 5 else card.amount]
+			to_title(EnemyCard.Targets.find_key(card.targets)),
+			to_title(EnemyCard.Type.find_key(card.type)) if card.type < 5 else card.description, # Trans: 2, if type > energy && repeats: 2x3, else ""
+			(((("%sx%s" % [card.amount, card.repeats]) if card.repeats != 1 else card.amount)) if card.type > 4 else card.amount) if card.amount else ""] # Yikes
 	# Statuses
 	if stats.starter_statuses.is_empty(): 
 		return [stats.name, stats.art, cards_text, ""]

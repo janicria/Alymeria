@@ -48,7 +48,7 @@ offset_left = -5.0
 offset_top = 19.0
 offset_right = 37.0
 offset_bottom = 34.0
-theme_override_constants/separation = 0
+theme_override_constants/separation = 2
 alignment = 1
 
 [node name="AttackIcon" type="TextureRect" parent="Actions"]

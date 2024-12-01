@@ -26,9 +26,8 @@ func set_barrier(value : int) -> void:
 
 # Returns true if health was lost
 func take_damage(damage: int) -> bool:
-	if damage <= 0: return false
-	var initial_damage := damage
-	damage = clampi(damage - barrier, 0, damage)
+	var initial_damage := damage # OMG NEGATIVE ATTACKS HEAL AMOUNT + BARRIER HP
+	damage = clampi(damage - barrier, int(NAN), damage)
 	barrier = clampi(barrier - initial_damage, 0, barrier)
 	health -= damage
 	return damage > 0

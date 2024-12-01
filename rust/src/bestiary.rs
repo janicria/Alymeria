@@ -2,7 +2,6 @@ use godot::prelude::*;
 use godot::global::Error;
 use godot::classes::{Control, IControl, ColorRect, Label, RichTextLabel, Sprite2D, Texture2D, InputEvent};
 
-
 #[derive(GodotClass)]
 #[class(base=Control)]
 struct Bestiary {
@@ -22,6 +21,7 @@ impl IControl for Bestiary {
     }
 
     fn ready(&mut self) {
+        // Setting up nodes
         self.color_rect = self
         .base()
         .get_node_as::<ColorRect>("%ColorRect");
@@ -29,6 +29,7 @@ impl IControl for Bestiary {
         .base()
         .get_node_as::<Sprite2D>("%Icon");
 
+        // Connecting Signals
         match self.color_rect.get_parent() {
             Some(mut parent) => {
             self.color_rect.connect(

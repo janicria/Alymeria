@@ -2,7 +2,8 @@ class_name CoreHandler extends VBoxContainer
 
 signal core_activated(type: Core.Type)
 
-const APPLY_INTERVAL := 0.5 # Used for readability
+const APPLY_INTERVAL := 0.5
+const HOW_SLOW_IS_GODOT := 20
 const COREUI := preload("res://scences/cores/coreui.tscn")
 
 @onready var slotted_cores: HBoxContainer = %SlottedCores
@@ -19,9 +20,12 @@ func activate_cores_of_type(type: Core.Type) -> void:
 		return
 	
 	var queue := get_all_coreuis().filter(
-		func(coreui:CoreUI)->bool: return coreui.core.type == type)
+		func(coreui:CoreUI)->bool: 
+			return coreui.core.type == type)
+	
 	if queue.is_empty():
-		await get_tree().process_frame
+		for i in HOW_SLOW_IS_GODOT: # Very slow it seems (0.3s)
+			await get_tree().process_frame
 		core_activated.emit(type)
 		return
 	

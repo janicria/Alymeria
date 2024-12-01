@@ -43,8 +43,9 @@ const SFX_dict := {
 
 
 func custom_play(_final_targets: Array[Node]) -> void:
+	print(2)
 	pass
 
 
 func get_tooltip() -> String:
-	return "Pls give me a tooltip"
+	return description # Overwritable

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EnemyAI" load_steps=5 format=3 uid="uid://1fnkh0qwmrwy"]
+
+[ext_resource type="Script" path="res://custom_resources/enemy_card.gd" id="1_6twcs"]
+[ext_resource type="Resource" uid="uid://dtcr3r6tf2jl0" path="res://enemies/dummy/does_nothing.tres" id="2_o5qjq"]
+[ext_resource type="Script" path="res://custom_resources/enemy_ai.gd" id="2_tjlbf"]
+[ext_resource type="Resource" uid="uid://be6t8ob1t7y4v" path="res://enemies/dummy/does_something.tres" id="3_amkeq"]
+
+[resource]
+script = ExtResource("2_tjlbf")
+actions = Array[ExtResource("1_6twcs")]([ExtResource("2_o5qjq"), ExtResource("3_amkeq")])
+health_cards = Array[ExtResource("1_6twcs")]([])
