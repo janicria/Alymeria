@@ -79,7 +79,6 @@ func _on_update_battle_state(state: State) -> void:
 			player_handeler.end_turn()
 			await Events.player_hand_discarded
 			core_handler.activate_cores_of_type(Core.Type.END_OF_TURN)
-			await core_handler.core_activated
 			if !enemy_handler.get_enemies().all(func(enemy:Enemy)->bool:
 				return enemy.is_alive): return # If all the enemies are dead
 			enemy_handler.start_turn()

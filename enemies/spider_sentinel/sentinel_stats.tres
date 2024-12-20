@@ -10,5 +10,6 @@ script = ExtResource("1_b2hm1")
 name = "Spider Sentinel"
 max_mana = 2
 starter_statuses = Array[ExtResource("3_0pifa")]([ExtResource("4_jmbc0")])
+flip_sprite = false
 max_health = 16
 art = ExtResource("1_rgi0d")

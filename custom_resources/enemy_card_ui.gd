@@ -33,12 +33,12 @@ func get_targets() -> Array[Node]:
 		return []
 	
 	var target := get_tree().get_first_node_in_group("player")
-	
 	# Gets the frontmost summon
 	for i in Data.summon_handler.get_child_count():
 		# Yes this works with only one summon active
 		if i == 0: i = 1
-		if !Data.summon_handler.get_child(-i).status_handler._has_status("hidden"):
+		if (!Data.summon_handler.get_child(-i).status_handler._has_status("hidden") 
+		&& Data.summon_handler.get_child(-i).is_in_group("summons")): # If not it means the summon's dead
 			target = Data.summon_handler.get_child(-i)
 			break
 	
@@ -125,8 +125,7 @@ func play() -> void:
 	if is_queued_for_deletion(): 
 		return
 	
-	var targets := get_targets()
-	apply_effects(targets)
+	apply_effects(get_targets())
 
 
 func apply_effects(targets: Array[Node]) -> void:
@@ -177,7 +176,6 @@ func apply_effects(targets: Array[Node]) -> void:
 		await get_tree().create_timer(0.1).timeout
 	# Await is needed because godot is slooow
 	await get_tree().process_frame
-	print(1)
 	finished_playing.emit()
 
 

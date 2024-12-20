@@ -16,8 +16,8 @@ description = "[color=1AD12C]Green[/color] (End of turn) - [color=3D7BFF]Draw[/c
 
 [color=CD57FF]Purple[/color] (Card exhausted) - [color=1AD12C]Heal[/color] 1. [color=CD57FF]Player[/color]
 
-[color=D9BB26]Finisher[/color] - [color=ff0000]Attack[/color] X. [color=CD57FF]Player[/color] modifiers. [color=CD57FF]Chaotic[/color]. 
-X = [color=ff0000]health[/color]"
+[color=D9BB26]Finisher[/color] -  [color=ff0000]Attack[/color] X. [color=CD57FF]Player[/color] modifiers. 
+[color=CD57FF]Self + Chaotic[/color]. X = [color=ff0000]health[/color]"
 flavour_text = "todo/make (it all makes sense now) me :3"
 green_action = ExtResource("2_ulexf")
 red_action = ExtResource("4_kmcdt")

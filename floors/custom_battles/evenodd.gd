@@ -7,12 +7,14 @@ func turn_effects() -> void:
 	if superboss: return
 	
 	# Setting mana
-	if Data.turn_number % 2 == 0: 
-		live_enemies[1].mana = 0
-		live_enemies[0].mana = live_enemies[1].stats.max_mana
-	else:
-		live_enemies[0].mana = 0
-		live_enemies[1].mana = live_enemies[0].stats.max_mana
+	for enemy: Enemy in live_enemies:
+		if enemy != null: # Null was a mistake
+			if Data.turn_number % 2 == 0:
+				if enemy == live_enemies[1]: enemy.mana = 0
+				elif enemy == live_enemies[0]: enemy.mana = enemy.stats.max_mana
+			else:
+				if enemy == live_enemies[0]: enemy.mana = 0
+				elif enemy == live_enemies[1]: enemy.mana = enemy.stats.max_mana
 	
 	for enemy in live_enemies: 
 		enemy.sprite_2d.flip_h = true

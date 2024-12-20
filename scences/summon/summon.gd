@@ -57,6 +57,7 @@ func take_damage(damage: int, status: Status = null) -> void:
 		get_tree()
 		.current_scene.shaker.shake.bind(self, 12, 0.15))
 	tween.tween_callback(stats.take_damage.bind(modified_damage, status))
+	tween.tween_callback(func()->void: damaged.emit())
 	tween.tween_interval(0.2)
 	
 	tween.finished.connect(
