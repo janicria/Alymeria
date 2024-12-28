@@ -126,7 +126,6 @@ func take_damage(damage : int, modify_damage := true) -> void:
 
 	var modified_damage := modifier_handler.get_modified_value(damage, Modifier.Type.DMG_TAKEN)
 	if !modify_damage: modified_damage = damage
-	print(modified_damage) # FIXME: Called 3 times from summon finisher
 	var tween := create_tween()
 	tween.tween_callback(
 		get_tree()

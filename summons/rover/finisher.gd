@@ -12,4 +12,4 @@ func apply_effects(target: Node) -> void:
 	await stats.summon.damaged
 	
 	target.call("take_damage", Data.player_handler.player.modifier_handler.get_modified_value(
-		stats.health, Modifier.Type.DMG_DEALT))
+		stats.health / 3, Modifier.Type.DMG_DEALT))
